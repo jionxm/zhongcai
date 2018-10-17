@@ -63,7 +63,6 @@
 				<procedure name="jsave" logic="Save" ifyes="jclose" ifno="">
 					<param name="In" value="pForm"></param>
 					<param name="Msg" value="信息保存成功"></param>
-					<param name="Plugin" value=""></param>
 				</procedure>
 				<procedure name="jclose" logic="Close">
 					<param name="Refresh" value="true"></param>

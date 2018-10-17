@@ -59,6 +59,16 @@
         <param name="Sql" value="project/QryProjectList"></param>
       </procedure>              
     </flow>  
+    <!-- 点击标题 -->
+    <flow trigger="pTable.ctlName" event="OnClick" filter="">
+      <procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jsgoto" ifno="">
+        <param name="In" value="pTable.id"></param>
+      </procedure>
+      <procedure name="jsgoto"  logic="Transition" ifyes="" ifno="">
+        <param name="To" value="frmProjectDetail"></param>
+        <param name="Mode" value="Readonly"></param>
+      </procedure>
+    </flow>
     <!-- 删除 --> 
      <flow trigger="pTable.ctlDel" event="OnClick" filter="">
       <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">
