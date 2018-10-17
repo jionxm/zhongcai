@@ -1,1 +1,0 @@
-delete from t_trainee_file where id=#{data.id}

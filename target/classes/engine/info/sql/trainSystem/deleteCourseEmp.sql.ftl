@@ -1,1 +1,0 @@
-delete from t_train_course_result where trainee_id = #{data.traineeId} and plan_id = #{data.planId}

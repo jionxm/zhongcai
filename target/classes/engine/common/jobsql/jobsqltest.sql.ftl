@@ -1,1 +1,0 @@
-insert into t_job_log(job_id,create_time,cost,type,concurrent,param,result) SELECT id,now(),10,type,`concurrent`,'aaa' ,'success' from t_schedule_job;
