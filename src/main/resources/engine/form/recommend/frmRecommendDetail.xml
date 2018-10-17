@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tsoftware xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
+    <ui_layer>
+        <ui name="frmRecommendDetail" title="推荐详情">
+            <panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
+                <control name="ctlType" title="新增推荐类别" property="" type="Button" edit="" required="" format=""
+                         width="" height="" column=""/>
+                <control name="ctlEmp" title="参会人员" property="" type="Button" edit="" required="" format=""
+                         width="" height="" column=""/>
+                         
+                <control name="ctlBack" title="返回" property="" type="Button" edit="" required="" format="" width=""
+                         height="" column=""/>
+            </panel>
+            <panel name="pnlDetailGroup" title="详细信息" object="recommend1" type="Group">                
+                <control name="ctlId" title="id" property="id" type="Hidden" edit="N" required="N" format=""
+                         width="1" height="1" column=""/>
+                <control name="ctlTitle" title="标题" property="title" type="TextBox" edit="Y" required="" format="" width="2"
+                         height="" column=""/>
+                <control name="ctlPlanDate" title="计划日期" property="planDate" type="DateBox" edit="Y" required="Y" format=""
+                         width="1" height="1" column=""/>
+                <control name="ctlAddress" title="投票地点" property="address" type="TextBox" edit="Y" required="Y" format=""
+                         width="1" height="1" column=""/>
+                <control name="ctlMethod" title="投选方式" property="methodName" type="TextBox" edit="Y" required="N" format=""
+                         width="1" height="1" column="5"/>
+                <control name="ctlMessage" title="指导语" property="message" type="TextBox" edit="Y" required="N"
+                         format="" width="1" height="1" column="1"/>
+            </panel>
+            <panel name="pnlType" title="推荐类别" object="recommendType" type="Grid"><!-- userrole -->
+                <control name="id" title="ID" property="id" type="Hidden" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlEdit" title="编辑" property="" type="Link" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlType" title="类别" property="post" type="Hidden" edit="" required=""
+                         format="" width="140" height="" column=""/>
+                <control name="ctlTypeName" title="类别" property="postName" type="TextBox" edit="" required=""
+                         format="" width="140" height="" column=""/>
+                <control name="ctlModeName" title="推荐方式" property="modeName" type="TextBox" edit="" required=""
+                         format="" width="140" height="" column=""/>
+                <control name="ctlNumberMin" title="最少推荐名额" property="numberMin" type="TextBox" edit="" required="" format=""
+                         width="140" height="" column=""/>
+                <control name="ctlNumberMax" title="最多推荐名额" property="numberMax" type="TextBox" edit="" required=""
+                         format="" width="140" height="" column=""/>
+                <control name="ctlBasic" title="基本条件" property="" type="Link" edit="" required=""
+                         format="" width="140" height="" column=""/>
+            </panel>
+            <panel name="pnlEmp" title="参会人员" object="participants" type="Grid">
+                <control name="id" title="ID" property="id" type="Hidden" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlEdit" title="编辑" property="" type="Link" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlEmp" title="人员姓名" property="empName" type="TextBox" edit="" required=""
+                         format="" width="140" height="" column=""/>
+                <control name="ctlOrgName" title="部门" property="orgName" type="TextBox" edit="" required=""
+                         format="" width="140" height="" column=""/>
+                <control name="ctlPostName" title="单位名称" property="postName" type="TextBox" edit="" required="" format=""
+                         width="140" height="" column=""/>
+            </panel>
+            
+
+            <!-- 加载 -->
+            <flow trigger="" event="OnLoad" filter="">
+                <procedure name="getId" server="" logic="DecodeId" ifyes="queryInfo" ifno="">
+                    <param name="Out" value="pnlDetailGroup.ctlId"></param>
+                </procedure>                
+                <procedure name="queryInfo" logic="QueryById" ifyes="queryType" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlDetailGroup"></param>
+                    <param name="Sql" value="recommend/QryRecommendList"></param>
+                </procedure>
+                <procedure name="queryType" logic="Query" ifyes="queryEmp" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlType"></param>
+                    <param name="Sql" value="recommend/QryTypeList"></param>
+                </procedure>
+                <procedure name="queryEmp" logic="Query" ifyes="" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlEmp"></param>
+                    <param name="Sql" value="recommend/QryEmpList"></param>
+                </procedure>                
+            </flow>
+            <!-- 新增推荐类别-->
+		    <flow trigger="pnlDetailTool.ctlType" event="OnClick" filter="">
+		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
+		        <param name="In" value="pnlDetailGroup.ctlId"/>
+		      </procedure>
+		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
+		        <param name="To" value="frmRecTypeEdit"/>
+		        <param name="Mode" value="Add"/>
+		         <param name="Window" value="Large"/>
+		      </procedure>
+		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
+		        <param name="Out" value="pnlType"/>
+		        <param name="Sql" value="recommend/QryTypeList"/>
+		      </procedure>              
+		    </flow>
+		    <!-- 类别删除 -->
+		    <flow trigger="pnlType.ctlDel" event="OnClick" filter="">
+		      <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">
+		       <param name="Title" value="删除提示" />
+		       <param name="Msg" value="确认删除当前数据吗?" />
+		      </procedure>
+		      <procedure name="j1"  logic="Delete" ifyes="jsquery" ifno="">
+		        <param name="In" value="pnlType" />
+		        <param name="Msg" value="'数据已删除'" />
+		      </procedure>
+		      <procedure name="jsquery" logic="Query" ifyes="" ifno="">
+                	<param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlType"></param>
+                    <param name="Sql" value="recommend/QryTypeList"></param>
+               </procedure>               
+		    </flow>
+		    <!-- 新增参会人员-->
+		    <flow trigger="pnlDetailTool.ctlEmp" event="OnClick" filter="">
+		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
+		        <param name="To" value="frmParticipants"/>
+		        <param name="Mode" value="Add"/>
+		         <param name="Window" value="Medium"/>
+		      </procedure>
+		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
+		        <param name="Out" value="pnlType"/>
+		        <param name="Sql" value="recommend/QryParticipants"/>
+		      </procedure>              
+		    </flow>
+		    
+		    
+		    
+            <!-- 新增教育 
+            <flow trigger="pnlDetailTool.ctlEducation" event="OnClick" filter="">
+                <procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jspopup" ifno="">
+                    <param name="In" value="pnlDetailGroup.ctlId"></param>
+                </procedure>
+                <procedure name="jspopup" logic="Popup" ifyes="queryEducation" ifno="">
+                    <param name="To" value="frmEducation"></param>
+                    <param name="Mode" value="Add"></param>
+                    <param name="Window" value="Medium"></param>
+                </procedure>
+                <procedure name="queryEducation" logic="Query" ifyes="" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlEducation"></param>
+                    <param name="Sql" value="QryEducationList"></param>
+                </procedure>
+            </flow>
+             -->
+           
+            <!-- 返回 -->
+            <flow trigger="pnlDetailTool.ctlBack" event="OnClick" filter="">
+                <procedure name="jsback" logic="Back" ifyes="" ifno="">
+
+                </procedure>
+            </flow>
+
+            
+            <!-- 布局 -->
+            <layout>
+                <region location="North" scale="">
+                    <subregion panel="pnlDetailTool" location="North" scale=""/>
+                    <subregion panel="pnlDetailGroup" location="Center" scale=""/>
+                </region>
+
+                <region location="Center" scale="">
+                    <subregion panel="pnlType" location="Center" scale=""/>
+                    <subregion panel="pnlEmp" location="Center" scale=""/>
+                </region>
+            </layout>
+        </ui>
+    </ui_layer>
+</tsoftware>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tsoftware xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
+    <ui_layer>
+        <ui name="frmTestDetail" title="测评表详情">
+            <panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
+                <control name="ctlQuestion" title="新增指标" property="" type="Button" edit="" required="" format=""
+                         width="" height="" column=""/>
+                <control name="ctlTester" title="主体权重" property="" type="Button" edit="" required="" format=""
+                         width="" height="" column=""/>
+                         
+                <control name="ctlBack" title="返回" property="" type="Button" edit="" required="" format="" width=""
+                         height="" column=""/>
+            </panel>
+            <panel name="pnlDetailGroup" title="详细信息" object="test" type="Group">
+                <control name="eq_id" title="id" property="id" type="Hidden" edit="N" required="N" format=""
+                         width="1" height="1" column=""/>
+                         <control name="ctlId" title="id" property="id" type="Hidden" edit="N" required="N" format=""
+                         width="1" height="1" column=""/>
+                <control name="ctlTitle" title="标题" property="title" type="TextBox" edit="Y" required="" format="" width="2"
+                         height="" column=""/>
+                <control name="ctlTypeName" title="对象类型" property="typeName" type="TextBox" edit="Y" required="Y" format=""
+                         width="1" height="1" column=""/>
+                <control name="ctlMessage" title="说明" property="message" type="TextBox" edit="Y" required="N"
+                         format="" width="1" height="1" column="4"/>
+            </panel>
+            <panel name="pnlQuestion" title="指标" object="questions" type="Grid"><!-- userrole -->
+                <control name="id" title="ID" property="id" type="Hidden" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlEdit" title="编辑" property="" type="Link" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlTestId" title="测评表id" property="testId" type="Hidden" edit="" required=""
+                         format="" width="140" height="" column=""/>
+                <control name="ctlDimension" title="维度" property="dimension" type="TextBox" edit="" required=""
+                         format="" width="140" height="" column=""/>
+                <control name="ctlQuestion" title="指标" property="question" type="TextBox" edit="" required=""
+                         format="" width="140" height="" column=""/>
+                <control name="ctlWeight" title="权重" property="weight" type="TextBox" edit="" required="" format=""
+                         width="140" height="" column=""/>
+                <control name="ctlNtypeName" title="试题类型" property="typeName" type="TextBox" edit="" required=""
+                         format="" width="140" height="" column=""/>
+                <control name="ctlMustName" title="必填项" property="mustName" type="TextBox" edit="" required=""
+                         format="" width="140" height="" column=""/>
+                <control name="ctlChooseId" title="选项类型" property="chooseId" type="TextBox" edit="" required=""
+                         format="" width="140" height="" column=""/>
+            </panel>
+            <panel name="pnlTester" title="主体权重" object="tester" type="Grid">
+                <control name="id" title="ID" property="id" type="Hidden" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlEdit" title="编辑" property="" type="Link" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlName" title="测评主体" property="name" type="TextBox" edit="" required=""
+                         format="" width="140" height="" column=""/>
+                <control name="ctlDimension" title="主体权重" property="dimension" type="TextBox" edit="" required=""
+                         format="" width="140" height="" column=""/>
+            </panel>
+            
+
+            <!-- 加载 -->
+            <flow trigger="" event="OnLoad" filter="">
+                <procedure name="getId" server="" logic="DecodeId" ifyes="je" ifno="">
+                    <param name="Out" value="pnlDetailGroup.ctlId"></param>
+                </procedure>
+                <procedure name="je" logic="EncodeId" ifyes="jd" ifno="">
+                    <param name="In" value="pnlDetailGroup.ctlId"></param>
+                </procedure>
+                <procedure name="jd" server="" logic="DecodeId" ifyes="queryInfo" ifno="">
+                    <param name="Out" value="pnlDetailGroup.eq_id"></param>
+                </procedure>
+                <procedure name="queryInfo" logic="QueryById" ifyes="queryQuestion" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlDetailGroup"></param>
+                    <param name="Sql" value="test/QryTestList"></param>
+                </procedure>
+                <procedure name="queryQuestion" logic="Query" ifyes="queryTester" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlQuestion"></param>
+                    <param name="Sql" value="test/QryQuestiontList"></param>
+                </procedure>
+                <procedure name="queryTester" logic="Query" ifyes="" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlTester"></param>
+                    <param name="Sql" value="test/QryTestertList"></param>
+                </procedure>                
+            </flow>
+            <!-- 新增推荐类别
+		    <flow trigger="pnlDetailTool.ctlType" event="OnClick" filter="">
+		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
+		        <param name="In" value="pnlDetailGroup.ctlId"/>
+		      </procedure>
+		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
+		        <param name="To" value="frmRecTypeEdit"/>
+		        <param name="Mode" value="Add"/>
+		         <param name="Window" value="Large"/>
+		      </procedure>
+		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
+		        <param name="Out" value="pnlType"/>
+		        <param name="Sql" value="recommend/QryTypeList"/>
+		      </procedure>              
+		    </flow>
+		    -->
+		    
+		    
+		    
+            <!-- 新增教育 
+            <flow trigger="pnlDetailTool.ctlEducation" event="OnClick" filter="">
+                <procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jspopup" ifno="">
+                    <param name="In" value="pnlDetailGroup.ctlId"></param>
+                </procedure>
+                <procedure name="jspopup" logic="Popup" ifyes="queryEducation" ifno="">
+                    <param name="To" value="frmEducation"></param>
+                    <param name="Mode" value="Add"></param>
+                    <param name="Window" value="Medium"></param>
+                </procedure>
+                <procedure name="queryEducation" logic="Query" ifyes="" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlEducation"></param>
+                    <param name="Sql" value="QryEducationList"></param>
+                </procedure>
+            </flow>
+             -->
+           
+            <!-- 返回 -->
+            <flow trigger="pnlDetailTool.ctlBack" event="OnClick" filter="">
+                <procedure name="jsback" logic="Back" ifyes="" ifno="">
+
+                </procedure>
+            </flow>
+
+            
+            <!-- 布局 -->
+            <layout>
+                <region location="North" scale="">
+                    <subregion panel="pnlDetailTool" location="North" scale=""/>
+                    <subregion panel="pnlDetailGroup" location="Center" scale=""/>
+                </region>
+
+                <region location="Center" scale="">
+                    <subregion panel="pnlQuestion" location="Center" scale=""/>
+                    <subregion panel="pnlTester" location="Center" scale=""/>
+                </region>
+            </layout>
+        </ui>
+    </ui_layer>
+</tsoftware>

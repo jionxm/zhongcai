@@ -1,0 +1,100 @@
+ul{
+    padding:0;
+    margin: 0;
+    list-style: none;
+}
+body{
+    margin: 0px;
+    background: url("../../../images/contact-us/background.png");
+    width:750px;
+    height:1825px;
+}
+.cl{
+    clear: both;
+}
+a{
+    text-decoration: none;
+}
+#top{
+    margin-top:50px;
+    height:80px;
+}
+#top>img{
+    float:left;
+    margin-left:38px;
+}
+#top>a{
+    float:right;
+    margin-right: 40px;
+    color:#333333;
+    margin-top:5px;
+}
+#middle{
+    margin-top:40px;
+    width:750px;
+    height:auto;
+}
+#middle>div.adTop>h1{
+    text-align: center;
+    color:#e89316;
+    font-family: "SourceHanSansCN";
+    font-size: 60px;
+    margin-bottom: 0px;
+}
+#middle>div.adTop>h2{
+    text-align: center;
+    color:#17325f;
+    font-family: "SourceHanSansCN";
+    font-size:48px;
+    margin-top:20px;
+    margin-bottom: 0px;
+}
+#middle>div.adTop>div.advantage{
+    margin-top:30px;
+}
+#middle>div.adTop>div.advantage>div{
+    position: relative;
+    width:750px;
+    text-align: center;
+}
+#middle>div.adTop>div.advantage>div>span.triangle{
+    position: absolute;
+    top:7px;
+    left:290px;
+    padding-top:5px;
+    width:0px;
+    height: 0px;
+    border-left:10px solid transparent;   
+    border-right:10px solid transparent;   
+    border-top:16px solid #e89316;
+    margin-top:5px;
+}
+#middle>div.adTop>div.advantage>div>b{
+    font-weight: normal;
+    color:#e89316;
+    font-size: 28px;
+    font-family: "SourceHanSansCN";
+}
+#middle>div.adTop>div.advantage>p{
+    text-align: center;
+    font-size: 30px;
+    font-family: "SourceHanSansCN";
+    color:#17325f;
+    font-weight: bold;
+}
+#middle>img.jieshao{
+    margin-top:70px;
+    margin-left:55px;
+}
+#footer{
+    margin-top:70px;
+}
+#footer>img.code{
+    margin-left: 280px;
+}
+#footer>img.phone{
+    margin-top:74px;
+    margin-left: 149px;
+}
+
+

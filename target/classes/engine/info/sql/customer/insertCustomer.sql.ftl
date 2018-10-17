@@ -1,0 +1,2 @@
+insert into t_customer (name,short_name,create_time,create_by,update_time,update_by) 
+values(#{data.customerName},#{data.customerName},#{data.createTime},#{data.createBy},#{data.updateTime},#{data.updateBy}) 

@@ -1,0 +1,173 @@
+#container {
+  width: 800px;
+  margin: 0 auto;
+  height: 600px;
+}
+#container > .lf {
+  position: relative;
+  width: 23.75%;
+  padding-left: 20px;
+  height: 100%;
+}
+#container > .lf .next_two {
+  border-bottom: 1px solid #eeeeee;
+  line-height: 50px;
+  height: 50px;
+  padding-right: 25px;
+  font-size: 16px;
+}
+#container > .lf .lf_search {
+  border-bottom: 1px solid #eeeeee;
+  line-height: 50px;
+  height: 50px;
+  padding-right: 25px;
+  font-size: 14px;
+}
+#container > .lf .lf_search > input{
+  width:60px;
+  margin-left:10px;
+}
+#container > .lf .lf_search > button{
+  width:39px;
+  color:white;
+  background: #1ab394;
+  border:none;
+  margin-top:16px;
+}
+#container > .lf .lf_header {
+  border-bottom: 1px solid #eeeeee;
+  line-height: 50px;
+  height: 50px;
+  padding-right: 25px;
+  font-size: 16px;
+}
+#container > .lf .lf_header > b {
+  top: 0;
+  background: url(../images/unAllChecked.png) no-repeat center center;
+  width: 17px;
+  height: 50px;
+  margin-left: 5px;
+}
+#container > .lf .lf_header > b.active {
+  background: url(../images/AllChecked.png) no-repeat center center;
+}
+#container > .lf .lf_header > span {
+  font-size: 16px;
+  vertical-align: middle;
+}
+#container > .lf .lf_header:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+#container > .lf > ul {
+  height: 497px;
+  overflow-y: scroll;
+  overflow-x: hhidden;
+}
+#container > .lf > ul::-webkit-scrollbar {
+  display: none;
+}
+#container > .lf > ul > li {
+  border-bottom: 1px solid #eeeeee;
+  line-height: 50px;
+  height: 50px;
+  padding-right: 25px;
+  font-size: 16px;
+}
+#container > .lf > ul > li > #middle {
+  display: none;
+}
+#container > .lf > ul > li > b {
+  height: 50px;
+  width: 12px;
+  background: url(../images/unChooseItem.png) no-repeat center center;
+}
+#container > .lf > ul > li > .active {
+  background: url(../images/chooseItem.png) no-repeat center center;
+}
+#container > .lf > ul > li:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+#container > .lf .lf_footer {
+  height: 53px;
+  line-height: 53px;
+  padding-right: 25px;
+  width: 100%;
+}
+#container > .lf .lf_footer .lf {
+  color: #666666;
+  font-size: 12px;
+}
+#container > .lf .lf_footer .rt {
+  font-size: 16px;
+}
+#container > .rt {
+  width: 76.25%;
+  background: #eeeeee;
+  height: 100%;
+}
+#container > .rt > .top {
+  height: 73.8%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 35px 60px;
+}
+#container > .rt > .top > .item {
+  font-size: 14px;
+  width: 100%;
+}
+#container > .rt > .top > .item h1.time {
+  text-align: center;
+  font-size: 14px;
+  color: #c0c0c0;
+  padding: 20px 0;
+}
+#container > .rt > .top > .item .content {
+  background: white;
+  padding: 18px 30px;
+}
+#container > .rt > .top > .item .content .owner {
+  color: black;
+  margin: 2px 0;
+}
+#container > .rt > .top > .item .content > .sentTo {
+  color: #999999;
+}
+#container > .rt > .top > .item .content > p {
+  margin-top: 5px;
+}
+#container > .rt > .bottom {
+  height: 26.2%;
+  border-top: 1px solid #d2d2d2;
+  padding: 0 25px;
+  padding-top: 22px;
+}
+#container > .rt > .bottom > textarea {
+  width: 100%;
+  height: 90px;
+  background: none;
+  border: none;
+  outline: none;
+  resize: none;
+}
+#container > .rt > .bottom > .btn-group button {
+  float: left;
+  width: 75px;
+  height: 30px;
+  line-height: 28px;
+  text-align: center;
+}
+#container > .rt > .bottom > .btn-group button:nth-child(1) {
+  border: 1px solid #1ab394;
+  background: #1ab394;
+  color: white;
+  margin-right: 20px;
+}
+#container > .rt > .bottom > .btn-group button:nth-child(2) {
+  border: 1px solid #959595;
+  color: #959595;
+}

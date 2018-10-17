@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tsoftware  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+			xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
+<model_layer>
+<!-- 推荐项目model -->
+	<object name="recommend1" table="t_recommend" primary="id" unique="" order="">
+		<property name="id" type="Long" length="20" initial="" field="id"/>
+		<property name="type" type="String" length="20" initial="" field="type"/>
+		<property name="title" type="String" length="20" field="title"/>
+		<property name="planDate" type="Date" length="20" field="plan_date"/>
+		<property name="address" type="String" length="50" field="address"/>
+		<property name="message" type="String" length="200" field="message"/>
+		<property name="method" type="String" length="20" field="method"/>
+		<property name="state" type="String" length="20" field="state"/>
+		
+		<property name="createTime" type="Date" length="" validate=""  field="create_time" />		
+		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
+		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
+		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />
+		
+		<property name="typeName" type="String" length="20" validate=""  field="" />		
+		<property name="methodName" type="String" length="20" validate=""  field="" />		
+		<property name="stateName" type="String" length="20" validate=""  field="" />		
+ 	</object>  
+ 	<!-- 候选人model -->
+ 	<object name="recommendEmp" table="t_recommend_emp" primary="id" unique="" order="">
+		<property name="id" type="Long" length="20" initial="" field="id"/>
+		<property name="recommendTypeId" type="Long" length="20" initial="" field="recommend_type_id"/>
+		<property name="empId" type="Long" length="20" field="emp_id"/>
+		
+		<property name="createTime" type="Date" length="" validate=""  field="create_time" />		
+		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
+		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
+		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />
+ 	</object>  
+ 	
+ 	<!-- 推荐类别(岗位)model -->
+ 	<object name="recommendType" table="t_recommend_type" primary="id" unique="" order="">
+		<property name="id" type="Long" length="20" initial="" field="id"/>
+		<property name="recommendId" type="Long" length="20" initial="" field="recommend_id"/>
+		<property name="post" type="Long" length="20" field="post"/>
+		<property name="mode" type="String" length="20" field="mode"/>
+		<property name="numberMin" type="Long" length="20" field="number_min"/>
+		<property name="numberMax" type="Long" length="20" field="number_max"/>
+		<property name="basic" type="String" length="200" field="basic"/>
+		
+		<property name="createTime" type="Date" length="" validate=""  field="create_time" />		
+		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
+		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
+		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />
+		
+		<property name="postName" type="Long" length="20" field=""/>
+		<property name="modeName" type="Long" length="20" field=""/>
+ 	</object>  
+ 	<!-- 参会人员model -->
+ 	<object name="participants" table="t_participants" primary="id" unique="" order="">
+		<property name="id" type="Long" length="20" initial="" field="id"/>
+		<property name="recommendId" type="Long" length="20" initial="" field="recommend_id"/>
+		<property name="empId" type="Long" length="20" field="emp_id"/>
+		
+		<property name="createTime" type="Date" length="" validate=""  field="create_time" />		
+		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
+		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
+		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />
+		
+		<property name="empName" type="String" length="20" field=""/>
+		<property name="orgName" type="String" length="20" field=""/>
+		<property name="postName" type="String" length="20" field=""/>
+ 	</object>  
+ 	
+</model_layer>
+</tsoftware>

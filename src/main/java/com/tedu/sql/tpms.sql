@@ -1,0 +1,11 @@
+UPDATE t_employee SET id_card=NULL,mobile=NULL,home_phone=NULL;
+UPDATE t_user SET `password`=123;
+DELETE FROM t_sales_clues;
+DELETE FROM t_sales_contacts;
+DELETE FROM t_seller_act;
+DELETE FROM t_saleact;
+DELETE FROM t_sale_log;
+DELETE FROM t_sale_build;
+DELETE FROM t_sales_file;
+DELETE FROM t_customer;
+DELETE FROM t_contacts;
