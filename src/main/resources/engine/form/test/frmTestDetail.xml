@@ -12,10 +12,8 @@
                 <control name="ctlBack" title="返回" property="" type="Button" edit="" required="" format="" width=""
                          height="" column=""/>
             </panel>
-            <panel name="pnlDetailGroup" title="详细信息" object="test" type="Group">
-                <control name="eq_id" title="id" property="id" type="Hidden" edit="N" required="N" format=""
-                         width="1" height="1" column=""/>
-                         <control name="ctlId" title="id" property="id" type="Hidden" edit="N" required="N" format=""
+            <panel name="pnlDetailGroup" title="详细信息" object="test" type="Group">                
+                <control name="ctlId" title="id" property="id" type="Hidden" edit="N" required="N" format=""
                          width="1" height="1" column=""/>
                 <control name="ctlTitle" title="标题" property="title" type="TextBox" edit="Y" required="" format="" width="2"
                          height="" column=""/>
@@ -62,14 +60,8 @@
 
             <!-- 加载 -->
             <flow trigger="" event="OnLoad" filter="">
-                <procedure name="getId" server="" logic="DecodeId" ifyes="je" ifno="">
+                <procedure name="getId" server="" logic="DecodeId" ifyes="queryInfo" ifno="">
                     <param name="Out" value="pnlDetailGroup.ctlId"></param>
-                </procedure>
-                <procedure name="je" logic="EncodeId" ifyes="jd" ifno="">
-                    <param name="In" value="pnlDetailGroup.ctlId"></param>
-                </procedure>
-                <procedure name="jd" server="" logic="DecodeId" ifyes="queryInfo" ifno="">
-                    <param name="Out" value="pnlDetailGroup.eq_id"></param>
                 </procedure>
                 <procedure name="queryInfo" logic="QueryById" ifyes="queryQuestion" ifno="">
                     <param name="In" value="pnlDetailGroup"></param>
