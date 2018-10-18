@@ -8,5 +8,4 @@ select * from (
 	from t_project_group p
 	LEFT JOIN t_group g ON g.id=p.group_id
 	LEFT JOIN t_test t ON t.id=p.test_id
-	where p.project_id = #{data.ctlId}
  ) a 

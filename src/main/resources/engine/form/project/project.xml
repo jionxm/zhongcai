@@ -26,6 +26,7 @@
  	<object name="group" table="t_group" primary="id" unique="" order="">
 		<property name="id" type="Long" length="20" initial="" field="id"/>
 		<property name="name" type="String" length="20" initial="" field="name"/>
+		<property name="testId" type="Long" length="20" initial="" field="test_id"/>
 		
 		<property name="createTime" type="Date" length="" validate=""  field="create_time" />		
 		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
@@ -48,6 +49,7 @@
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />
 		
 		<property name="groupName" type="String" length="20" validate=""  field="" />
+		<property name="testName" type="String" length="50" initial="" field=""/>
  	</object>   	
  	
  	<!-- 测评对象人数表model -->
@@ -57,7 +59,7 @@
 		<property name="dimension" type="Long" length="20" initial="" field="dimension"/>
 		<property name="number" type="Long" length="20" initial="" field="number"/>
 		
-		<property name="createTime" type="Date" length="" validate=""  field="create_time" />		
+		<property name="createTime" type="Date" length="" validate=""  field="create_time" />
 		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
 		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />

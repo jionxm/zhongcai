@@ -10,7 +10,7 @@
                          width="" height="" column=""/>                         
             </panel>
             <panel name="pnlDetailGroup" title="详细信息" object="project" type="Group">                
-                <control name="ctlId" title="id" property="id" type="Hidden" edit="N" required="N" format=""
+                <control name="ctlId" title="项目id" property="id" type="Hidden" edit="N" required="N" format=""
                          width="1" height="1" column=""/>
                 <control name="ctlTName" title="标题" property="name" type="TextBox" edit="Y" required="" format="" width="2"
                          height="" column=""/>
@@ -31,13 +31,15 @@
                 <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width=""
                          height="" column=""/>
                 <control name="ctlAddGroupNumber" title="编辑主体身份人数" property="" type="Link" edit="" required="" format="" width=""
-                         height="" column=""/>
+                         height="" column=""/>                
+                <control name="ctlGroupId" title="分组id" property="groupId" type="Hidden" edit="" required=""
+                         format="" width="140" height="" column=""/>
                 <control name="ctlGroupName" title="分组" property="groupName" type="TextBox" edit="" required=""
+                         format="" width="140" height="" column=""/>
+                <control name="ctlTestName" title="测评表" property="testName" type="TextBox" edit="" required=""
                          format="" width="140" height="" column=""/>                
             </panel>
             
-            
-
             <!-- 加载 -->
             <flow trigger="" event="OnLoad" filter="">
                 <procedure name="getId" server="" logic="DecodeId" ifyes="queryInfo" ifno="">
@@ -65,29 +67,31 @@
 		         <param name="Window" value="Large"/>
 		      </procedure>
 		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-		        <param name="Out" value="pnlType"/>
+		      	<param name="In" value="pnlDetailGroup"/>
+		        <param name="Out" value="pnlTProjectGroup"/>
 		        <param name="Sql" value="project/QryProjectGroup"/>
 		      </procedure>              
 		    </flow>
 		    <!--  编辑 -->
 		    <flow trigger="pnlTProjectGroup.ctlEdit" event="OnClick" filter="">
 		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
-		        <param name="In" value="pnlDetailGroup.ctlId"/>
-		      </procedure>
+		        <param name="In" value="pnlTProjectGroup.id"/>
+		      </procedure>		      
 		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
 		        <param name="To" value="frmAddGroup"/>
 		        <param name="Mode" value="Edit"/>
 		         <param name="Window" value="Large"/>
 		      </procedure>
 		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-		        <param name="Out" value="pnlType"/>
+		      	<param name="In" value="pnlDetailGroup" />
+		        <param name="Out" value="pnlTProjectGroup"/>
 		        <param name="Sql" value="project/QryProjectGroup"/>
 		      </procedure>              
 		    </flow>
             <!--  编辑主体身份人数 -->
 		    <flow trigger="pnlTProjectGroup.ctlAddGroupNumber" event="OnClick" filter="">
 		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
-		        <param name="In" value="pnlDetailGroup.ctlId"/>
+		        <param name="In" value="pnlTProjectGroup.id"/>
 		      </procedure>
 		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
 		        <param name="To" value="frmAddGroupNumber"/>
@@ -99,20 +103,20 @@
 		        <param name="Sql" value="project/QryProjectGroup"/>
 		      </procedure>              
 		    </flow>
-		    <!-- 类别删除 -->
-		    <flow trigger="pnlType.ctlDel" event="OnClick" filter="">
+		    <!-- 分组删除 -->
+		    <flow trigger="pnlTProjectGroup.ctlDel" event="OnClick" filter="">
 		      <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">
 		       <param name="Title" value="删除提示" />
 		       <param name="Msg" value="确认删除当前数据吗?" />
 		      </procedure>
 		      <procedure name="j1"  logic="Delete" ifyes="jsquery" ifno="">
-		        <param name="In" value="pnlType" />
+		        <param name="In" value="pnlTProjectGroup" />
 		        <param name="Msg" value="'数据已删除'" />
 		      </procedure>
 		      <procedure name="jsquery" logic="Query" ifyes="" ifno="">
                 	<param name="In" value="pnlDetailGroup"></param>
-                    <param name="Out" value="pnlType"></param>
-                    <param name="Sql" value="recommend/QryTypeList"></param>
+                    <param name="Out" value="pnlTProjectGroup"></param>
+                    <param name="Sql" value="project/QryProjectGroup"></param>
                </procedure>               
 		    </flow>
 		    
