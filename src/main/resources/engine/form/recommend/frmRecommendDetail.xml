@@ -116,6 +116,7 @@
 		    </flow>
 		    <!-- 新增参会人员-->
 		    <flow trigger="pnlDetailTool.ctlEmp" event="OnClick" filter="">
+		    
 		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
 		        <param name="To" value="frmParticipants"/>
 		        <param name="Mode" value="Add"/>
