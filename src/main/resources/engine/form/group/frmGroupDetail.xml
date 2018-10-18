@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tsoftware xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
+	<ui_layer>
+		<ui name="frmGroupDetail" title="对象分组详情">
+			<panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
+				<control name="ctlEmp" title="新增分组人员" property="" type="Button"
+					edit="" required="" format="" width="" height="" column="" />
+
+				<control name="ctlBack" title="返回" property="" type="Button"
+					edit="" required="" format="" width="" height="" column="" />
+			</panel>
+			<panel name="pnlDetailGroup" title="详细信息" object="grouplist"
+				type="Group">
+				<control name="ctlId" title="id" property="id" type="Hidden"
+					edit="N" required="N" format="" width="1" height="1" column="1" />
+				<control name="ctlTitle" title="对象分组名称" property="name"
+					type="TextBox" edit="Y" required="" format="" width="1" height=""
+					column="5" />
+			</panel>
+			<panel name="pnlEmp" title="分组人员" object="grouppeople" type="Grid">
+				<control name="id" title="ID" property="id" type="Hidden"
+					edit="" required="" format="" width="" height="" column="" />
+				<control name="ctlEdit" title="编辑" property="" type="Link"
+					edit="" required="" format="" width="" height="" column="" />
+				<control name="ctlDel" title="删除" property="" type="Link"
+					edit="" required="" format="" width="" height="" column="" />
+				<control name="ctlEmpName" title="人员姓名" property="empName" type="TextBox"
+					edit="" required="" format="" width="140" height="" column="" />
+				<control name="ctlOrgName" title="部门" property="orgName"
+					type="TextBox" edit="" required="" format="" width="140" height=""
+					column="" />
+
+			</panel>
+
+
+			<!-- 加载 -->
+			<flow trigger="" event="OnLoad" filter="">
+				<procedure name="getId" server="" logic="DecodeId" ifyes="queryInfo"
+					ifno="">
+					<param name="Out" value="pnlDetailGroup.ctlId"></param>
+				</procedure>
+				<procedure name="queryInfo" logic="QueryById" ifyes="queryEmp"
+					ifno="">
+					<param name="In" value="pnlDetailGroup"></param>
+					<param name="Out" value="pnlDetailGroup"></param>
+					<param name="Sql" value="group/QryGroupList"></param>
+				</procedure>
+				<procedure name="queryEmp" logic="Query" ifyes="" ifno="">
+					<param name="In" value="pnlDetailGroup"></param>
+					<param name="Out" value="pnlEmp"></param>
+					<param name="Sql" value="group/QryGroupPeople"></param>
+				</procedure>
+			</flow>
+
+			<!-- 新增参会人员 -->
+			<flow trigger="pnlDetailTool.ctlEmp" event="OnClick" filter="">
+				<procedure name="jsencodeid" server="" logic="EncodeId"
+					ifyes="jspopup" ifno="">
+					<param name="In" value="pnlDetailGroup.ctlId"></param>
+				</procedure>
+				<procedure name="jspopup" logic="Popup" ifyes="jsquery"
+					ifno="">
+					<param name="To" value="frmGroupPeople" />
+					<param name="Mode" value="Add" />
+					<param name="Window" value="Medium" />
+				</procedure>
+				<procedure name="jsquery" logic="Query" ifyes="" ifno="">
+					<param name="Out" value="pnlEmp" />
+					<param name="Sql" value="group/QryGroupPeople" />
+				</procedure>
+			</flow>
+
+
+			<!-- 返回 -->
+			<flow trigger="pnlDetailTool.ctlBack" event="OnClick" filter="">
+				<procedure name="jsback" logic="Back" ifyes="" ifno="">
+
+				</procedure>
+			</flow>
+
+
+			<!-- 布局 -->
+			<layout>
+				<region location="North" scale="">
+					<subregion panel="pnlDetailTool" location="North" scale="" />
+					<subregion panel="pnlDetailGroup" location="Center"
+						scale="" />
+				</region>
+
+				<region location="Center" scale="">
+					<subregion panel="pnlEmp" location="Center" scale="" />
+				</region>
+			</layout>
+		</ui>
+	</ui_layer>
+</tsoftware>

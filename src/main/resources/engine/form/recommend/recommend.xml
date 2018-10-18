@@ -67,6 +67,5 @@
 		<property name="orgName" type="String" length="20" field=""/>
 		<property name="postName" type="String" length="20" field=""/>
  	</object>  
- 	
 </model_layer>
 </tsoftware>
