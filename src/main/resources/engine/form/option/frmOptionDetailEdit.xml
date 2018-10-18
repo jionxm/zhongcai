@@ -4,14 +4,13 @@
     <ui_layer>
         <ui name="frmOptionDetailEdit" title="选项类型新增">
             <panel name="pForm" title="新增界面" object="type" type="Group">
-                <control name="id" title="id" property="id" type="TextBox" edit="N" required="" format="" width="2"
+                <control name="id" title="id" property="id" type="Hidden" edit="N" required="" format="" width="2"
                          height="" column="1"/>
                 <control name="ctlName" title="选项名称" property="name" type="TextBox" edit="Y" required="Y" format=""
                          width="1" height="1" column="1"/>
-                <control name="ctlChooseId" title="选项类型id" property="chooseId" type="TextBox" edit="Y" required="Y" format=""
+                <control name="ctlChooseId" title="选项类型id" property="chooseId" type="TextBox" edit="" required="Y" format=""
                          width="1" height="1" column="1"/>
-                <control name="ctlScore" title="分值" property="score" type="TextBox" edit="Y" required="Y" format=""
-                         width="1" height="1" column="1"/>
+          
     
                 <control name="ctlcreateTime" title="创建时间" property="createTime" type="Hidden" edit="N" required="N" format="" width="1" height="1" column="1" target="editMode=='Add'?CurrentTime():nil"/>
 				<control name="ctlcreateBy" title="创建人" property="createBy" type="Hidden" edit="N" required="N" format="" width="1" height="1" column="1" target="session.userInfo.empId"/>
@@ -25,7 +24,7 @@
                          height="" column=""/>
             </panel>
             <flow trigger="" event="OnLoad" filter="">
-            	<procedure name="branch" server="" logic="Branch" ifyes="jsDecodeId" ifno="jsclear">
+            	<procedure name="branch" server="" logic="Branch" ifyes="jsDecodeId" ifno="jsDecodeId1">
         			<param name="In" value="getStorage('frmOptionDetailEdit_EditMode')=='Edit'"/>
       			</procedure> 
             	<procedure name="jsDecodeId" logic="DecodeId" ifyes="qid" ifno="">
@@ -36,10 +35,12 @@
 			        <param name="Out" value="pForm" />
 			        <param name="Sql" value="option/QryOptionTypeDetail"/>
       			</procedure>  
-                <procedure name="jsclear" logic="Clear" ifyes="" ifno="" sync="Y">
+                <!-- <procedure name="jsclear" logic="Clear" ifyes="" ifno="jsDecodeId1" sync="">
                     <param name="Out" value="pForm"></param>
+                </procedure> -->
+                <procedure name="jsDecodeId1" logic="DecodeId" ifyes="" ifno="">
+                    <param name="Out" value="pForm.ctlChooseId"></param>
                 </procedure>
-                
             </flow>
             <!-- 取消 -->
             <flow trigger="pToolbar.btnClose" event="OnClick" filter="">

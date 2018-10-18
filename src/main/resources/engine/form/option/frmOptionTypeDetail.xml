@@ -5,7 +5,6 @@
 <ui_layer>
   <ui name="frmOptionTypeDetail" title="选项类型列表"> 
   <panel name="pToolbar" title="工具条" object="" type="Toolbar">
-    <control name="ctlClear" title="清空条件" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlAdd" title="新增" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>
  	<control name="ctlBack" title="返回" property="" type="Button" edit="" required="" format="" width=""
                          height="" column=""/>
@@ -54,14 +53,12 @@
         <param name="Sql" value="option/QryOptionTypeDetail"></param>
       </procedure>   
     </flow>
-    <!-- 清空 -->
-    <flow trigger="pToolbar.ctlClear" event="OnClick" filter="">
-      <procedure name="jsclear"  logic="Clear" ifyes="" ifno="">
-        <param name="Out" value="pCondition"></param>
-      </procedure>
-    </flow>
+ 
     <!-- 新增 -->
     <flow trigger="pToolbar.ctlAdd" event="OnClick" filter="">
+      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
+        <param name="In" value="pCondition1.eq_chooseId"></param>
+      </procedure>
       <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
         <param name="To" value="frmOptionDetailEdit"></param>
         <param name="Mode" value="Add"></param>
