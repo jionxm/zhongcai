@@ -30,14 +30,18 @@
                          height="" column=""/>
                 <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width=""
                          height="" column=""/>
-                <control name="ctlAddGroupNumber" title="编辑主体身份人数" property="" type="Link" edit="" required="" format="" width=""
+                 <control name="ctlAddGroupNumber" title="新增主体身份人数" property="" type="Link" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlEditGroupNumber" title="编辑主体身份人数" property="" type="Link" edit="" required="" format="" width=""
                          height="" column=""/>                
                 <control name="ctlGroupId" title="分组id" property="groupId" type="Hidden" edit="" required=""
                          format="" width="140" height="" column=""/>
                 <control name="ctlGroupName" title="分组" property="groupName" type="TextBox" edit="" required=""
                          format="" width="140" height="" column=""/>
                 <control name="ctlTestName" title="测评表" property="testName" type="TextBox" edit="" required=""
-                         format="" width="140" height="" column=""/>                
+                         format="" width="140" height="" column=""/>
+                <control name="ctlState" title="状态" property="state" type="Hidden" edit="N" required="" format="" width=""
+                         height="" column="1" />                
             </panel>
             
             <!-- 加载 -->
@@ -88,8 +92,8 @@
 		        <param name="Sql" value="project/QryProjectGroup"/>
 		      </procedure>              
 		    </flow>
-            <!--  编辑主体身份人数 -->
-		    <flow trigger="pnlTProjectGroup.ctlAddGroupNumber" event="OnClick" filter="">
+            <!--  新增主体身份人数 -->
+		    <flow trigger="pnlTProjectGroup.ctlAddGroupNumber" event="OnClick" filter="row.state=='1'">
 		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
 		        <param name="In" value="pnlTProjectGroup.id"/>
 		      </procedure>
@@ -98,10 +102,27 @@
 		        <param name="Mode" value="Add"/>
 		         <param name="Window" value="Large"/>
 		      </procedure>
-		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-		        <param name="Out" value="pnlType"/>
-		        <param name="Sql" value="project/QryProjectGroup"/>
-		      </procedure>              
+		      <procedure name="jsquery" logic="Query" ifyes="" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlTProjectGroup"></param>
+                    <param name="Sql" value="project/QryProjectGroup"></param>
+                </procedure>              
+		    </flow>
+		    <!--  编辑主体身份人数 -->
+		    <flow trigger="pnlTProjectGroup.ctlEditGroupNumber" event="OnClick" filter="row.state=='0'">
+		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
+		        <param name="In" value="pnlTProjectGroup.id"/>
+		      </procedure>
+		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
+		        <param name="To" value="frmAddGroupNumber"/>
+		        <param name="Mode" value="Edit"/>
+		         <param name="Window" value="Large"/>
+		      </procedure>
+		      <procedure name="jsquery" logic="Query" ifyes="" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlTProjectGroup"></param>
+                    <param name="Sql" value="project/QryProjectGroup"></param>
+                </procedure>              
 		    </flow>
 		    <!-- 分组删除 -->
 		    <flow trigger="pnlTProjectGroup.ctlDel" event="OnClick" filter="">

@@ -42,6 +42,7 @@
 		<property name="groupId" type="Long" length="20" initial="" field="group_id"/>
 		<property name="projectId" type="Long" length="20" initial="" field="project_id"/>
 		<property name="testId" type="Long" length="20" initial="" field="test_id"/>
+		<property name="state" type="String" length="1" initial="" field="state"/>
 		
 		<property name="createTime" type="Date" length="" validate=""  field="create_time" />		
 		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
