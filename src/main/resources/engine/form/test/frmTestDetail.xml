@@ -6,7 +6,7 @@
 			<panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
 				<control name="ctlQuestion" title="新增指标" property="" type="Button"
 					edit="" required="" format="" width="" height="" column="" />
-				<control name="ctlTester" title="主体权重" property="" type="Button"
+				<control name="ctlTester" title="新增主体权重" property="" type="Button"
 					edit="" required="" format="" width="" height="" column="" />
 
 				<control name="ctlBack" title="返回" property="" type="Button"
@@ -171,7 +171,8 @@
 					ifno="">
 					<param name="To" value="frmTesterEdit"></param>
 					<param name="Mode" value="Add"></param>
-					<param name="Window" value="Medium"></param>
+					<param name="Title" value="新增指标"></param>
+					<param name="Window" value="Small"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
 					<param name="In" value="pnlDetailGroup"></param>
@@ -189,6 +190,7 @@
 					ifno="">
 					<param name="To" value="frmTesterEdit"></param>
 					<param name="Mode" value="Edit"></param>
+					<param name="Title" value="编辑指标"></param>
 					<param name="Window" value="Medium"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
