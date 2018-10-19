@@ -17,12 +17,14 @@
     <control name="ctlEdit" title="编辑" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlStart" title="启动" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
+    <control name="ctlClose" title="关闭" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlName" title="测评项目名称" property="name" type="DataLink" edit="" required="" format="" width="200" height="" column=""/>
     <control name="ctlYear" title="年份" property="year" type="TextBox" edit="" required="" format="" width="80" height="" column=""/>
     <control name="ctlPlanDate" title="计划时间" property="planDate" type="DateBox" edit="" required="" format="" width="100" height="" column=""/>
     <control name="ctlAddress" title="地点" property="address" type="TextBox" edit="" required="" format="" width="150" height="" column=""/>
-    <control name="ctlMessage" title="指导语" property="message" type="TextBox" edit="" required="" format="" width="500" height="" column=""/>        
-    <control name="ctlState" title="状态" property="stateName" type="TextBox" edit="" required="" format="" width="80" height="" column=""/>
+    <control name="ctlMessage" title="指导语" property="message" type="TextBox" edit="" required="" format="" width="500" height="" column=""/>  
+    <control name="ctlState" title="状态" property="state" type="Hidden" edit="" required="" format="" width="80" height="" column=""/>      
+    <control name="ctlStateName" title="状态" property="stateName" type="TextBox" edit="" required="" format="" width="80" height="" column=""/>
   </panel>
     <flow trigger="" event="OnLoad" filter="">
       <procedure name="j1"  logic="Clear" ifyes="j2" ifno="" sync="Y">
@@ -34,6 +36,30 @@
         <param name="Sql" value="project/QryProjectList"></param>
       </procedure>   
     </flow>
+    <!-- 启动 -->
+    <flow trigger="pTable.ctlStart" event="OnClick"  filter="row.state=='stop'">
+		<procedure name ="jssave" logic="SaveCustom" ifyes="j2" ifno="">
+       		<param name="In" value="pTable"/>
+			<param name="Sql" value="project/UpdateProStateStart"/>
+		</procedure>      
+		<procedure name="j2"  logic="Query" ifyes="" ifno="">
+	        <param name="In" value="pCondition"></param>
+	        <param name="Out" value="pTable"></param>
+	        <param name="Sql" value="project/QryProjectList"></param>
+      </procedure>
+	</flow>
+	<!-- 关闭 -->
+    <flow trigger="pTable.ctlClose" event="OnClick"  filter="row.state=='start'||row.state=='teststart'">
+		<procedure name ="jssave" logic="SaveCustom" ifyes="j2" ifno="">
+       		<param name="In" value="pTable"/>
+			<param name="Sql" value="project/UpdateProStateClose"/>
+		</procedure>      
+		<procedure name="j2"  logic="Query" ifyes="" ifno="">
+	        <param name="In" value="pCondition"></param>
+	        <param name="Out" value="pTable"></param>
+	        <param name="Sql" value="project/QryProjectList"></param>
+      </procedure>
+	</flow>
     <!-- 清空 -->
     <flow trigger="pToolbar.ctlClear" event="OnClick" filter="">
       <procedure name="jsclear"  logic="Clear" ifyes="" ifno="">

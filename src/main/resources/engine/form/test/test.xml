@@ -35,7 +35,7 @@
 
 		</object>
 		<!-- 主体权重model -->
-		<object name="tester" table="t_tester" primary="id" unique=""
+		<object name="tester" table="t_tester" primary="id" unique="test_id,name"
 			order="">
 			<property name="id" type="Long" length="20" initial=""
 				field="id" />
