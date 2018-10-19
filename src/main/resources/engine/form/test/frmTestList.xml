@@ -7,7 +7,7 @@
   <panel name="pToolbar" title="工具条" object="" type="Toolbar">
     <control name="ctlQuery" title="查询" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlClear" title="清空条件" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>
-    <control name="ctlAdd" title="新增" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>
+    <control name="ctlAdd" title="新增测评表" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>
   </panel>
   <panel name="pCondition" title="查询条件" object="test" type="Group">
     <control name="lk_title" title="测评表名称" property="title" type="TextBox" edit="Y" required="N" format="" width="1" height="1" column="2"/>

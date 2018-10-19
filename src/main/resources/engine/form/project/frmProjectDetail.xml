@@ -4,21 +4,21 @@
     <ui_layer>
         <ui name="frmProjectDetail" title="测评项目详情">
             <panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
-                <control name="ctlBack" title="返回" property="" type="Button" edit="" required="" format="" width=""
-                         height="" column=""/>
                 <control name="ctlGroup" title="新增测评对象" property="" type="Button" edit="" required="" format=""
                          width="" height="" column=""/>                         
+                <control name="ctlBack" title="返回" property="" type="Button" edit="" required="" format="" width=""
+                         height="" column=""/>
             </panel>
             <panel name="pnlDetailGroup" title="详细信息" object="project" type="Group">                
                 <control name="ctlId" title="项目id" property="id" type="Hidden" edit="N" required="N" format=""
                          width="1" height="1" column=""/>
-                <control name="ctlTName" title="标题" property="name" type="TextBox" edit="Y" required="" format="" width="2"
+                <control name="ctlTName" title="测评项目" property="name" type="TextBox" edit="Y" required="" format="" width="2"
                          height="" column=""/>
+                <control name="ctlYear" title="年份" property="year" type="TextBox" edit="Y" required="N" format=""
+                         width="1" height="1" column=""/>
                 <control name="ctlPlanDate" title="计划日期" property="planDate" type="DateBox" edit="Y" required="Y" format=""
                          width="1" height="1" column=""/>
                 <control name="ctlAddress" title="投票地点" property="address" type="TextBox" edit="Y" required="Y" format=""
-                         width="1" height="1" column=""/>
-                <control name="ctlYear" title="年份" property="year" type="TextBox" edit="Y" required="N" format=""
                          width="1" height="1" column="5"/>
                 <control name="ctlMessage" title="指导语" property="message" type="TextBox" edit="Y" required="N"
                          format="" width="1" height="1" column="1"/>
@@ -36,12 +36,12 @@
                          height="" column=""/>                
                 <control name="ctlGroupId" title="分组id" property="groupId" type="Hidden" edit="" required=""
                          format="" width="140" height="" column=""/>
-                <control name="ctlGroupName" title="分组" property="groupName" type="TextBox" edit="" required=""
+                <control name="ctlGroupName" title="对象分组" property="groupName" type="TextBox" edit="" required=""
                          format="" width="140" height="" column=""/>
                 <control name="ctlTestName" title="测评表" property="testName" type="TextBox" edit="" required=""
-                         format="" width="140" height="" column=""/>
+                         format="" width="200" height="" column=""/>
                 <control name="ctlState" title="状态" property="state" type="Hidden" edit="N" required="" format="" width=""
-                         height="" column="1" />                
+                         height="" column="1" />
             </panel>
             
             <!-- 加载 -->
