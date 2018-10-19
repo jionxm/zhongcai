@@ -3,7 +3,7 @@
       xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
 
 <ui_layer>
-  <ui name="frmOptionTypeDetail" title="选项类型列表"> 
+  <ui name="frmOptionTypeDetail" title="选项值"> 
   <panel name="pToolbar" title="工具条" object="" type="Toolbar">
     <control name="ctlAdd" title="新增" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>
  	<control name="ctlBack" title="返回" property="" type="Button" edit="" required="" format="" width=""
@@ -18,16 +18,16 @@
   </panel> 
   <panel name="pTable" title="查询结果" object="type" type="Grid">
     <control name="id" title="id" property="id" type="Hidden" edit="Y" required="" format="" width="" height="" column=""/>
-    <control name="ctlEdit" title="编辑" property="" type="Link" edit="" required="" format="" width="140" height="" column=""/>
-    <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width="140" height="" column=""/>
+    <control name="ctlEdit" title="编辑" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
+    <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlName" title="选项名称" property="name" type="TextBox" edit="" required="" format="" width="160" height="" column=""/>
-    <control name="ctlChooseId" title="选项类型id" property="chooseId" type="TextBox" edit="" required="" format="" width="160" height="" column=""/>
+    <control name="ctlChooseId" title="选项类型id" property="chooseId" type="Hidden" edit="" required="" format="" width="160" height="" column=""/>
     <control name="ctlScore" title="分值" property="score" type="TextBox" edit="" required="" format="" width="160" height="" column=""/>
     <control name="ctlresource" title="是否填写原因" property="resource" type="Hidden" edit="" required="" format="" width="200" height="" column=""/>
-    <control name="ctlCreateBy" title="创建人" property="createBy" type="TextBox" edit="" required="" format="" width="200" height="" column=""/>
-    <control name="ctlCreateTime" title="创建时间" property="createTime" type="TextBox" edit="" required="" format="" width="200" height="" column=""/>   
-    <control name="ctlUpdateBy" title="更新人" property="updateBy" type="TextBox" edit="" required="" format="" width="200" height="" column=""/>     
-    <control name="ctlUpdateTime" title="更新时间" property="updateTime" type="TextBox" edit="" required="" format="" width="200" height="" column=""/>
+    <control name="ctlCreateBy" title="创建人" property="createBy" type="TextBox" edit="" required="" format="" width="80" height="" column=""/>
+    <control name="ctlCreateTime" title="创建时间" property="createTime" type="TextBox" edit="" required="" format="" width="150" height="" column=""/>   
+    <control name="ctlUpdateBy" title="更新人" property="updateBy" type="TextBox" edit="" required="" format="" width="80" height="" column=""/>     
+    <control name="ctlUpdateTime" title="更新时间" property="updateTime" type="TextBox" edit="" required="" format="" width="150" height="" column=""/>
   </panel>
     <flow trigger="" event="OnLoad" filter="">
       <procedure name="j1"  logic="Clear" ifyes="jsDecodeId" ifno="" sync="Y">
@@ -62,7 +62,7 @@
       <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
         <param name="To" value="frmOptionDetailEdit"></param>
         <param name="Mode" value="Add"></param>
-         <param name="Window" value="Medium"></param>
+         <param name="Window" value="Small"></param>
       </procedure>
       <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
         <param name="In" value="pCondition1"></param>
@@ -94,7 +94,7 @@
       <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
         <param name="To" value="frmOptionDetailEdit"></param>
         <param name="Mode" value="Edit"></param>
-        <param name="Window" value="Medium"></param>
+        <param name="Window" value="Small"></param>
       </procedure>
       <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
         <param name="In" value="pCondition1"></param>
