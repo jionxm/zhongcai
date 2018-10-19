@@ -65,7 +65,7 @@
          <param name="Window" value="Large"></param>
       </procedure>
       <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-        <param name="In" value="pCondition"></param>
+        <param name="In" value="pCondition1"></param>
         <param name="Out" value="pTable"></param>
         <param name="Sql" value="option/QryOptionTypeDetail"></param>
       </procedure>              
