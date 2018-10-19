@@ -13,7 +13,7 @@
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />
 	 </object>
 	 <!-- 分组人员model -->
-	  	<object name="grouppeople" table="t_group_emp" primary="id" unique="" order="">
+	  	<object name="grouppeople" table="t_group_emp" primary="id" unique="group_id,emp_id" order="">
 		<property name="id" type="Long" length="20" initial="" field="id"/>
 		<property name="groupId" type="Long" length="20" initial="" field="group_id"/>
 		<property name="empId" type="Long" length="20" field="emp_id"/>

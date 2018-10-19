@@ -13,12 +13,14 @@
 				type="Group">
 			    <control name="id" title="分组人员编号" property="id" type="Hidden"
 					edit="Y" required="N" format="" width="1" height="" column=""></control>
-				<control name="empid" title="分组人员编号" property="empId" type="Hidden"
+				<control name="groupId" title="分组编号" property="groupId" type="Hidden"
+					edit="Y" required="N" format="" width="1" height="" column="1"></control>
+				<control name="empId" title="分组人员编号" property="empId" type="Hidden"
 					edit="Y" required="N" format="" width="1" height="" column=""></control>
 				<control name="empName" title="分组人员" property="empName"
 					type="PopupBox" edit="Y" required="" format="" width="1" height=""
 					column="2" />
-			</panel>
+				</panel>
 
 			<!-- 控件 -->
 			<panel name="pToolbar" title="控件" object="" type="Toolbar">
@@ -27,17 +29,38 @@
 			</panel>
 
 			<!-- 逻辑加载 -->
-			<flow trigger="" event="OnLoad" filter="">		
-				<procedure name="jBranch" server="" logic="DecodeId" ifyes="qid"
+			<flow trigger="" event="OnLoad" filter="">
+				<!-- <procedure name="jBranch" server="" logic="DecodeId" ifyes="branch"
+					ifno="">
+					<param name="Out" value="pForm.groupId"></param>
+				</procedure> -->
+				<procedure name="jsclear" logic="Clear" ifyes="branch" ifno="" sync="Y">
+                    <param name="Out" value="pForm"></param>
+                </procedure>
+				<procedure name="branch" server="" logic="Branch" ifyes="jEditDecodeId" ifno="jAddDecodeId">
+        			<param name="In" value="getStorage('frmGroupPeople_EditMode')=='Edit'"/>
+      			</procedure>
+      			<procedure name="jEditDecodeId" server="" logic="DecodeId" ifyes="getid"
 					ifno="">
 					<param name="Out" value="pForm.id"></param>
-				</procedure>
-				<procedure name="qid" logic="QueryById" ifyes=""
+				</procedure>	
+				<procedure name="getid" logic="Query" ifyes="qid"
+					ifno="">
+					<param name="In" value="pForm"></param>
+					<param name="Out" value="pForm" />
+					<param name="Sql" value="group/QryGroupId" />
+				</procedure>	
+				<procedure name="qid" logic="Query" ifyes=""
 					ifno="">
 					<param name="In" value="pForm"></param>
 					<param name="Out" value="pForm" />
 					<param name="Sql" value="group/QryGroupPeople" />
 				</procedure>
+				<procedure name="jAddDecodeId" server="" logic="DecodeId" ifyes=""
+					ifno="">
+					<param name="Out" value="pForm.groupId"></param>
+				</procedure>
+				
 			</flow>
 
 			<!-- 分组人员名称 -->
@@ -50,7 +73,7 @@
 					<param name="Sql" value="grouppeople"></param>
 					<param name="Title" value="分组人员名称选择" />
 					<param name="Options" value="$RESET,重置" />
-					<param name="Columns" value="id,分组人员编号,empid|name,分组人员名称,empName"></param>
+					<param name="Columns" value="id,分组人员编号,empId|name,分组人员名称,empName"></param>
 				</procedure>
 			</flow>
 			<!-- 确认 -->

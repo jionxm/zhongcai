@@ -19,7 +19,9 @@
 					column="5" />
 			</panel>
 			<panel name="pnlEmp" title="分组人员" object="grouppeople" type="Grid">
-				<control name="id" title="ID" property="id" type="Hidden"
+				<control name="id" title="编号" property="id" type="Hidden"
+					edit="" required="" format="" width="" height="" column="" />
+				<control name="empId" title="人员编号" property="empId" type="Hidden"
 					edit="" required="" format="" width="" height="" column="" />
 				<control name="ctlEdit" title="编辑" property="" type="Link"
 					edit="" required="" format="" width="" height="" column="" />
@@ -49,7 +51,7 @@
 				<procedure name="queryEmp" logic="Query" ifyes="" ifno="">
 					<param name="In" value="pnlDetailGroup"></param>
 					<param name="Out" value="pnlEmp"></param>
-					<param name="Sql" value="group/QryGroupPeople"></param>
+					<param name="Sql" value="group/QryGroupPeople2"></param>
 				</procedure>
 			</flow>
  <!-- 编辑 -->
@@ -65,7 +67,7 @@
       <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
         <param name="In" value="pnlDetailGroup"></param>
         <param name="Out" value="pnlEmp"></param>
-        <param name="Sql" value="group/QryGroupPeople"></param>
+        <param name="Sql" value="group/QryGroupPeople2"></param>
       </procedure>              
     </flow> 
     <!-- 删除 --> 
@@ -81,7 +83,7 @@
       <procedure name="j2" logic="Query" ifyes="" ifno="">
 					<param name="In" value="pnlDetailGroup"></param>
 					<param name="Out" value="pnlEmp"></param>
-					<param name="Sql" value="group/QryGroupPeople"></param>
+					<param name="Sql" value="group/QryGroupPeople2"></param>
 	</procedure>        
     </flow>
 			<!-- 新增参会人员 -->
@@ -89,16 +91,19 @@
 				<procedure name="jsencodeid" server="" logic="EncodeId"
 					ifyes="jspopup" ifno="">
 					<param name="In" value="pnlDetailGroup.ctlId"></param>
+					
 				</procedure>
 				<procedure name="jspopup" logic="Popup" ifyes="jsquery"
 					ifno="">
 					<param name="To" value="frmGroupPeople" />
 					<param name="Mode" value="Add" />
 					<param name="Window" value="Medium" />
+					<param name="Title" value="新增分组人员"></param>
 				</procedure>
 				<procedure name="jsquery" logic="Query" ifyes="" ifno="">
+				    <param name="In" value="pnlDetailGroup" />
 					<param name="Out" value="pnlEmp" />
-					<param name="Sql" value="group/QryGroupPeople" />
+					<param name="Sql" value="group/QryGroupPeople2" />
 				</procedure>
 			</flow>
 

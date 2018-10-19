@@ -13,5 +13,5 @@ select * from (
 	LEFT JOIN t_employee e ON g.emp_id=e.id
 	LEFT JOIN t_position p ON e.position_id=p.id
 	LEFT JOIN t_org o ON e.org_id=o.id
-	where e.id = #{data.empId }
+	where g.group_id = #{data.ctlId }
  ) a 
