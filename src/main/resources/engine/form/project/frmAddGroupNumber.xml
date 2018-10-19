@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tsoftware xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
+    <ui_layer>
+        <ui name="frmAddGroupNumber" title="编辑主体身份人数">
+        	<panel name="pHidden" title="绑定主体人数" object="projectgroup" type="Hidden">
+                <control name="ctlProGroupId" title="测评对象编号" property="id" type="TextBox" edit="N" required="" format="" width="2"
+                         height="" column="1"/>
+                <control name="ctlState" title="状态" property="state" type="TextBox" edit="N" required="" format="" width="2"
+                         height="" column="1" initial="'0'"/>
+            </panel>
+            <panel name="pForm" title="绑定主体人数" object="testerNumber" type="Grid">
+                <control name="id" title="id" property="id" type="Hidden" edit="N" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlProGroupId" title="测评对象编号" property="proGroupId" type="Hidden" edit="N" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlDimension" title="主体身份编号" property="dimension" type="Hidden" edit="" required="" format=""
+                         width="" height="" column="1"/>
+                <control name="ctlDimensionName" title="主体身份名称" property="dimensionName" type="TextBox" edit="" required="" format=""
+                         width="" height="" column="1"/>
+                <control name="ctlNumber" title="绑定人数" property="number" type="TextBox" edit="Y" required="" format=""
+                         width="" height="" column="1"/>                
+            </panel>
+            <panel name="pToolbar" title="按钮" object="" type="Toolbar">
+                <control name="btnSave" title="保存" property="" type="Button" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="btnClose" title="取消" property="" type="Button" edit="" required="" format="" width=""
+                         height="" column=""/>
+            </panel>
+            <flow trigger="" event="OnLoad" filter="">
+            	<procedure name="jsclear" logic="Clear" ifyes="jsDecodeId" ifno="" sync="Y">
+                    <param name="Out" value="pHidden"></param>
+                </procedure>
+            	<procedure name="jsDecodeId" logic="DecodeId" ifyes="branch" ifno="">
+                    <param name="Out" value="pHidden.ctlProGroupId"></param>
+                </procedure>
+                <procedure name="branch" server="" logic="Branch" ifyes="qid" ifno="qid2">
+        			<param name="In" value="getStorage('frmAddGroupNumber_EditMode')=='Add'"/>
+      			</procedure>
+                <procedure name="qid"  logic="Query" ifyes="" ifno="">
+			        <param name="In" value="pHidden" />
+			        <param name="Out" value="pForm" />
+			        <param name="Sql" value="project/QryDimension"/>
+      			</procedure>
+      			<procedure name="qid2"  logic="Query" ifyes="" ifno="">
+			        <param name="In" value="pHidden" />
+			        <param name="Out" value="pForm" />
+			        <param name="Sql" value="project/QryDimension2"/>
+      			</procedure> 
+      			                 
+            </flow>
+            <!-- 取消 -->
+            <flow trigger="pToolbar.btnClose" event="OnClick" filter="">
+                <procedure name="jsclose" server="" logic="Close" ifyes="" ifno="">
+                    <param name="Refresh" value="false"></param>
+                </procedure>
+            </flow>
+            <!-- 确定 -->
+            <flow trigger="pToolbar.btnSave" event="OnClick" filter="">
+            	 <procedure name="branch" server="" logic="Branch" ifyes="jssave" ifno="jssave2">
+        			<param name="In" value="getStorage('frmAddGroupNumber_EditMode')=='Add'"/>
+      			</procedure>
+                <procedure name="jssave" logic="Save" ifyes="jssave3" ifno="">
+                    <param name="In" value=",pForm"></param>
+                    <!-- <param name="Mode" value="Edit"/> -->
+                    <param name="Msg" value="'保存成功'"></param>
+                </procedure>
+                <procedure name="jssave3" logic="Save" ifyes="jsclose" ifno="">
+                    <param name="In" value="pHidden"></param>
+                    <param name="Mode" value="Edit"/>
+                    <!-- <param name="Msg" value="'保存成功'"></param> -->
+                </procedure>
+                <procedure name="jssave2" logic="Save" ifyes="jsclose" ifno="">
+                    <param name="In" value=",pForm"></param>
+                    <param name="Mode" value="Edit"/>
+                    <param name="Msg" value="'保存成功'"></param>
+                </procedure>
+                <procedure name="jsclose" server="" logic="Close" ifyes="" ifno="">
+                    <param name="Refresh" value="true"></param>
+                </procedure>
+            </flow>
+            <layout>
+            	<region location="North" scale="">
+                    <subregion panel="pHidden" location="North" scale=""/>
+                </region>
+                <region location="South" scale="">
+                    <subregion panel="pToolbar" location="North" scale=""/>
+                </region>
+                <region location="Center" scale="">
+                    <subregion panel="pForm" location="Center" scale=""/>
+                </region>
+            </layout>
+        </ui>
+    </ui_layer>
+</tsoftware>
