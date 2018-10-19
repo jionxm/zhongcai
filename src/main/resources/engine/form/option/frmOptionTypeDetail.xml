@@ -11,7 +11,7 @@
   </panel>
   <panel name="pCondition" title="查询条件" object="option" type="Group">
   <control name="id" title="id" property="id" type="Hidden" edit="Y" required="N" format="" width="1" height="1" column="1"/>
-    <control name="name" title="选项类型名称" property="name" type="TextBox" edit="" required="N" format="" width="1" height="1" column="1"/>
+    <control name="name" title="选项类型名称" property="name" type="TextBox" edit="" required="N" format="" width="1" height="1" column="4"/>
   </panel> 
   <panel name="pCondition1" title="查询条件" object="option" type="Hidden">
      <control name="eq_chooseId" title="id" property="id" type="Hidden" edit="Y" required="N" format="" width="1" height="1" column="1"/>
@@ -23,7 +23,7 @@
     <control name="ctlName" title="选项名称" property="name" type="TextBox" edit="" required="" format="" width="160" height="" column=""/>
     <control name="ctlChooseId" title="选项类型id" property="chooseId" type="TextBox" edit="" required="" format="" width="160" height="" column=""/>
     <control name="ctlScore" title="分值" property="score" type="TextBox" edit="" required="" format="" width="160" height="" column=""/>
-    <control name="ctlresource" title="是否填写原因" property="resource" type="TextBox" edit="" required="" format="" width="200" height="" column=""/>
+    <control name="ctlresource" title="是否填写原因" property="resource" type="Hidden" edit="" required="" format="" width="200" height="" column=""/>
     <control name="ctlCreateBy" title="创建人" property="createBy" type="TextBox" edit="" required="" format="" width="200" height="" column=""/>
     <control name="ctlCreateTime" title="创建时间" property="createTime" type="TextBox" edit="" required="" format="" width="200" height="" column=""/>   
     <control name="ctlUpdateBy" title="更新人" property="updateBy" type="TextBox" edit="" required="" format="" width="200" height="" column=""/>     
@@ -62,7 +62,7 @@
       <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
         <param name="To" value="frmOptionDetailEdit"></param>
         <param name="Mode" value="Add"></param>
-         <param name="Window" value="Large"></param>
+         <param name="Window" value="Medium"></param>
       </procedure>
       <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
         <param name="In" value="pCondition1"></param>
@@ -81,7 +81,7 @@
         <param name="Msg" value="'测评项目已删除'" />
       </procedure>
       <procedure name="j2"  logic="Query" ifyes="" ifno="">
-        <param name="In" value="pCondition"></param>
+        <param name="In" value="pCondition1"></param>
         <param name="Out" value="pTable"></param>
         <param name="Sql" value="option/QryOptionTypeDetail"></param>
       </procedure>          
@@ -94,10 +94,10 @@
       <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
         <param name="To" value="frmOptionDetailEdit"></param>
         <param name="Mode" value="Edit"></param>
-        <param name="Window" value="Large"></param>
+        <param name="Window" value="Medium"></param>
       </procedure>
       <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-        <param name="In" value="pCondition"></param>
+        <param name="In" value="pCondition1"></param>
         <param name="Out" value="pTable"></param>
         <param name="Sql" value="option/QryOptionTypeDetail"></param>
       </procedure>              

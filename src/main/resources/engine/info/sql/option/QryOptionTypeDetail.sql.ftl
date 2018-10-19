@@ -4,12 +4,13 @@ select * from (
 	c.name as name,
 	c.choose_id as chooseId,
 	c.score as score,
-	c.create_by as createBy,	
+	t.name as createBy,	
 	c.create_time as createTime,
-	c.update_by as updateBy,
+	t2.name as updateBy,
 	c.update_time as updateTime
 	
 	from t_choose_value c 
-	
+	LEFT JOIN t_employee t ON t.id=c.create_by 
+	LEFT JOIN t_employee t2 ON t2.id=c.update_by 
  ) a 
 

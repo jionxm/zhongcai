@@ -28,9 +28,15 @@
         			<param name="In" value="getStorage('frmOptionDetailEdit_EditMode')=='Edit'"/>
       			</procedure> 
             	<procedure name="jsDecodeId" logic="DecodeId" ifyes="qid" ifno="">
-                    <param name="Out" value="pForm.ctlChooseId"></param>
-                </procedure>
-                <procedure name="qid"  logic="Query" ifyes="" ifno="">
+                    <param name="Out" value="pForm.id"></param>
+                 </procedure>
+                <!--<procedure name="jsEncode" logic="EncodeId" ifyes="jsDecodeId1" ifno="">
+        			<param name="In" value="pForm.ctlChooseId"></param>
+      			</procedure>
+      			<procedure name="jsDecodeId1" logic="DecodeId" ifyes="qid" ifno="">
+            		<param name="Out" value="pForm.id"></param>
+      			</procedure> -->
+                <procedure name="qid"  logic="QueryById" ifyes="" ifno="">
 			        <param name="In" value="pForm" />
 			        <param name="Out" value="pForm" />
 			        <param name="Sql" value="option/QryOptionTypeDetail"/>

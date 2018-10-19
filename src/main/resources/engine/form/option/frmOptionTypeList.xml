@@ -10,7 +10,7 @@
     <control name="ctlAdd" title="新增" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>
   </panel>
   <panel name="pCondition" title="查询条件" object="option" type="Group">
-    <control name="lk_name" title="选项类型名称" property="name" type="TextBox" edit="Y" required="N" format="" width="1" height="1" column="1"/>
+    <control name="lk_name" title="选项类型名称" property="name" type="TextBox" edit="Y" required="N" format="" width="1" height="1" column="4"/>
   </panel>  
   <panel name="pTable" title="查询结果" object="option" type="Grid">
     <control name="id" title="id" property="id" type="Hidden" edit="Y" required="" format="" width="" height="" column=""/>
@@ -43,7 +43,7 @@
       <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
         <param name="To" value="frmOptionEdit"></param>
         <param name="Mode" value="Add"></param>
-         <param name="Window" value="Large"></param>
+         <param name="Window" value="Medium"></param>
       </procedure>
       <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
         <param name="In" value="pCondition"></param>
@@ -83,7 +83,7 @@
       <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
         <param name="To" value="frmOptionEdit"></param>
         <param name="Mode" value="Edit"></param>
-        <param name="Window" value="Large"></param>
+        <param name="Window" value="Medium"></param>
       </procedure>
       <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
         <param name="In" value="pCondition"></param>
