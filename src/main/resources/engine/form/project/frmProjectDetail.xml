@@ -2,7 +2,7 @@
 <tsoftware xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
     <ui_layer>
-        <ui name="frmProjectDetail" title="推荐详情">
+        <ui name="frmProjectDetail" title="测评项目详情">
             <panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
                 <control name="ctlBack" title="返回" property="" type="Button" edit="" required="" format="" width=""
                          height="" column=""/>
@@ -68,7 +68,8 @@
 		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
 		        <param name="To" value="frmAddGroup"/>
 		        <param name="Mode" value="Add"/>
-		         <param name="Window" value="Large"/>
+		        <param name="Window" value="Medium"/>
+		        <param name="Title" value="新增测评对象"></param>
 		      </procedure>
 		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
 		      	<param name="In" value="pnlDetailGroup"/>
@@ -84,7 +85,8 @@
 		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
 		        <param name="To" value="frmAddGroup"/>
 		        <param name="Mode" value="Edit"/>
-		         <param name="Window" value="Large"/>
+		        <param name="Window" value="Medium"/>
+		        <param name="Title" value="编辑测评对象"></param>
 		      </procedure>
 		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
 		      	<param name="In" value="pnlDetailGroup" />
@@ -100,7 +102,8 @@
 		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
 		        <param name="To" value="frmAddGroupNumber"/>
 		        <param name="Mode" value="Add"/>
-		         <param name="Window" value="Large"/>
+		        <param name="Window" value="Medium"/>
+		        <param name="Title" value="新增主体身份人数"></param>
 		      </procedure>
 		      <procedure name="jsquery" logic="Query" ifyes="" ifno="">
                     <param name="In" value="pnlDetailGroup"></param>
@@ -116,7 +119,8 @@
 		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
 		        <param name="To" value="frmAddGroupNumber"/>
 		        <param name="Mode" value="Edit"/>
-		         <param name="Window" value="Large"/>
+		        <param name="Window" value="Medium"/>
+		        <param name="Title" value="编辑主体身份人数"></param>
 		      </procedure>
 		      <procedure name="jsquery" logic="Query" ifyes="" ifno="">
                     <param name="In" value="pnlDetailGroup"></param>
@@ -142,26 +146,6 @@
 		    </flow>
 		    
 		    
-		    
-		    
-            <!-- 新增教育 
-            <flow trigger="pnlDetailTool.ctlEducation" event="OnClick" filter="">
-                <procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jspopup" ifno="">
-                    <param name="In" value="pnlDetailGroup.ctlId"></param>
-                </procedure>
-                <procedure name="jspopup" logic="Popup" ifyes="queryEducation" ifno="">
-                    <param name="To" value="frmEducation"></param>
-                    <param name="Mode" value="Add"></param>
-                    <param name="Window" value="Medium"></param>
-                </procedure>
-                <procedure name="queryEducation" logic="Query" ifyes="" ifno="">
-                    <param name="In" value="pnlDetailGroup"></param>
-                    <param name="Out" value="pnlEducation"></param>
-                    <param name="Sql" value="QryEducationList"></param>
-                </procedure>
-            </flow>
-             -->
-           
             <!-- 返回 -->
             <flow trigger="pnlDetailTool.ctlBack" event="OnClick" filter="">
                 <procedure name="jsback" logic="Back" ifyes="" ifno="">
