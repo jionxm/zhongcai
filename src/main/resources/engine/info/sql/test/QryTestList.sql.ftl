@@ -3,6 +3,7 @@ select * from (
 	t.id as id,
 	t.title as title,
 	t.type as type,	
+	t.version as version,
 	d1.name as typeName,
 	t.message as message,
 	t.state as state,

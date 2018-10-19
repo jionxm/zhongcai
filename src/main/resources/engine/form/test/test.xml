@@ -13,6 +13,7 @@
 			<property name="scope" type="String" length="20" field="scope" />
 			<property name="message" type="String" length="200" field="message" />
 			<property name="state" type="String" length="20" field="state" />
+			<property name="version" type="Double" length="20.1" field="version" />
 
 			<property name="createTime" type="Date" length="" validate=""
 				field="create_time" />

@@ -6,7 +6,7 @@
 			<panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
 				<control name="ctlQuestion" title="新增指标" property="" type="Button"
 					edit="" required="" format="" width="" height="" column="" />
-				<control name="ctlTester" title="主体权重" property="" type="Button"
+				<control name="ctlTester" title="新增主体权重" property="" type="Button"
 					edit="" required="" format="" width="" height="" column="" />
 
 				<control name="ctlBack" title="返回" property="" type="Button"
@@ -19,10 +19,10 @@
 					edit="Y" required="" format="" width="2" height="" column="" />
 				<control name="ctlTypeName" title="对象类型" property="typeName"
 					type="TextBox" edit="Y" required="Y" format="" width="1" height="1"
-					column="" />
+					column="3" />
 				<control name="ctlMessage" title="说明" property="message"
 					type="TextBox" edit="Y" required="N" format="" width="1" height="1"
-					column="4" />
+					column="1" />
 			</panel>
 			<panel name="pnlQuestion" title="指标" object="questions" type="Grid"><!-- 
 					userrole -->
@@ -36,31 +36,31 @@
 					type="Hidden" edit="" required="" format="" width="140" height=""
 					column="" />
 				<control name="ctlNumber" title="指标号码" property="number"
-					type="TextBox" edit="Y" required="Y" format="" width="40" height="1"
+					type="TextBox" edit="Y" required="Y" format="" width="80" height="1"
 					column="" />
 				<control name="ctlDimension" title="维度" property="dimension"
-					type="TextBox" edit="" required="" format="" width="140" height=""
+					type="TextBox" edit="" required="" format="" width="80" height=""
 					column="" />
 				<control name="ctlQuestion" title="指标" property="question"
-					type="TextBox" edit="" required="" format="" width="140" height=""
+					type="TextBox" edit="" required="" format="" width="400" height=""
 					column="" />
 				<control name="ctlWeight" title="权重" property="weight" type="TextBox"
 					edit="" required="" format="" width="140" height="" column="" />
 				<control name="ctlNtypeName" title="试题类型" property="typeName"
-					type="TextBox" edit="" required="" format="" width="140" height=""
+					type="TextBox" edit="" required="" format="" width="80" height=""
 					column="" />
 				<control name="ctlMustName" title="必填项" property="mustName"
-					type="TextBox" edit="" required="" format="" width="140" height=""
+					type="TextBox" edit="" required="" format="" width="80" height=""
 					column="" />
 				<control name="ctlChooseId" title="选项类型Id" property="chooseId"
 					type="Hidden" edit="" required="" format="" width="" height=""
 					column="" />
 				<control name="ctlChooseName" title="选项类型" property="chooseName"
-					type="TextBox" edit="" required="" format="" width="140" height=""
+					type="TextBox" edit="" required="" format="" width="80" height=""
 					column="" />
 
 				<control name="ctlTextLength" title="文本长度" property="textLength"
-					type="TextBox" edit="Y" required="Y" format="" width="40" height=""
+					type="TextBox" edit="Y" required="Y" format="" width="80" height=""
 					column="" />
 			</panel>
 			<panel name="pnlTester" title="主体权重" object="tester" type="Grid">
@@ -72,10 +72,10 @@
 					edit="" required="" format="" width="" height="" column="" />
 				<control name="ctlDel" title="删除" property="" type="Link"
 					edit="" required="" format="" width="" height="" column="" />
-				<control name="ctlName" title="测评主体" property="name" type="TextBox"
-					edit="" required="" format="" width="140" height="" column="" />
+				<control name="ctlName" title="测评主体身份" property="name" type="TextBox"
+					edit="" required="" format="" width="100" height="" column="" />
 				<control name="ctlDimension" title="主体权重" property="dimension"
-					type="TextBox" edit="" required="" format="" width="140" height=""
+					type="TextBox" edit="" required="" format="" width="80" height=""
 					column="" />
 			</panel>
 
@@ -171,7 +171,8 @@
 					ifno="">
 					<param name="To" value="frmTesterEdit"></param>
 					<param name="Mode" value="Add"></param>
-					<param name="Window" value="Medium"></param>
+					<param name="Title" value="新增指标"></param>
+					<param name="Window" value="Small"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
 					<param name="In" value="pnlDetailGroup"></param>
@@ -189,6 +190,7 @@
 					ifno="">
 					<param name="To" value="frmTesterEdit"></param>
 					<param name="Mode" value="Edit"></param>
+					<param name="Title" value="编辑指标"></param>
 					<param name="Window" value="Medium"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">

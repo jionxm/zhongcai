@@ -18,7 +18,7 @@
                          height="" column=""/>
             </panel>
             <flow trigger="" event="OnLoad" filter="">
-            	<procedure name="branch" server="" logic="Branch" ifyes="jsDecodeId" ifno="jsclear">
+             	<procedure name="branch" server="" logic="Branch" ifyes="jsDecodeId" ifno="jsclear">
         			<param name="In" value="getStorage('frmGroupEdit_EditMode')=='Edit'"/>
       			</procedure> 
             	<procedure name="jsDecodeId" logic="DecodeId" ifyes="qid" ifno="">
@@ -27,11 +27,8 @@
                 <procedure name="qid"  logic="QueryById" ifyes="" ifno="">
 			        <param name="In" value="pForm" />
 			        <param name="Out" value="pForm" />
-			        <param name="Sql" value="project/QryGroupList"/>
-      			</procedure>  
-                <procedure name="jsclear" logic="Clear" ifyes="" ifno="" sync="Y">
-                    <param name="Out" value="pForm"></param>
-                </procedure>
+			        <param name="Sql" value="group/QryGroupList"/>
+      			</procedure>
                 
             </flow>
             <!-- 取消 -->

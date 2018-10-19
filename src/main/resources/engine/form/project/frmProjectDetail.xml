@@ -2,23 +2,23 @@
 <tsoftware xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
     <ui_layer>
-        <ui name="frmProjectDetail" title="推荐详情">
+        <ui name="frmProjectDetail" title="测评项目详情">
             <panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
-                <control name="ctlBack" title="返回" property="" type="Button" edit="" required="" format="" width=""
-                         height="" column=""/>
                 <control name="ctlGroup" title="新增测评对象" property="" type="Button" edit="" required="" format=""
                          width="" height="" column=""/>                         
+                <control name="ctlBack" title="返回" property="" type="Button" edit="" required="" format="" width=""
+                         height="" column=""/>
             </panel>
             <panel name="pnlDetailGroup" title="详细信息" object="project" type="Group">                
                 <control name="ctlId" title="项目id" property="id" type="Hidden" edit="N" required="N" format=""
                          width="1" height="1" column=""/>
-                <control name="ctlTName" title="标题" property="name" type="TextBox" edit="Y" required="" format="" width="2"
+                <control name="ctlTName" title="测评项目" property="name" type="TextBox" edit="Y" required="" format="" width="2"
                          height="" column=""/>
+                <control name="ctlYear" title="年份" property="year" type="TextBox" edit="Y" required="N" format=""
+                         width="1" height="1" column=""/>
                 <control name="ctlPlanDate" title="计划日期" property="planDate" type="DateBox" edit="Y" required="Y" format=""
                          width="1" height="1" column=""/>
                 <control name="ctlAddress" title="投票地点" property="address" type="TextBox" edit="Y" required="Y" format=""
-                         width="1" height="1" column=""/>
-                <control name="ctlYear" title="年份" property="year" type="TextBox" edit="Y" required="N" format=""
                          width="1" height="1" column="5"/>
                 <control name="ctlMessage" title="指导语" property="message" type="TextBox" edit="Y" required="N"
                          format="" width="1" height="1" column="1"/>
@@ -30,14 +30,18 @@
                          height="" column=""/>
                 <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width=""
                          height="" column=""/>
-                <control name="ctlAddGroupNumber" title="编辑主体身份人数" property="" type="Link" edit="" required="" format="" width=""
+                 <control name="ctlAddGroupNumber" title="新增主体身份人数" property="" type="Link" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="ctlEditGroupNumber" title="编辑主体身份人数" property="" type="Link" edit="" required="" format="" width=""
                          height="" column=""/>                
                 <control name="ctlGroupId" title="分组id" property="groupId" type="Hidden" edit="" required=""
                          format="" width="140" height="" column=""/>
-                <control name="ctlGroupName" title="分组" property="groupName" type="TextBox" edit="" required=""
+                <control name="ctlGroupName" title="对象分组" property="groupName" type="TextBox" edit="" required=""
                          format="" width="140" height="" column=""/>
                 <control name="ctlTestName" title="测评表" property="testName" type="TextBox" edit="" required=""
-                         format="" width="140" height="" column=""/>                
+                         format="" width="200" height="" column=""/>
+                <control name="ctlState" title="状态" property="state" type="Hidden" edit="N" required="" format="" width=""
+                         height="" column="1" />
             </panel>
             
             <!-- 加载 -->
@@ -64,7 +68,8 @@
 		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
 		        <param name="To" value="frmAddGroup"/>
 		        <param name="Mode" value="Add"/>
-		         <param name="Window" value="Large"/>
+		        <param name="Window" value="Medium"/>
+		        <param name="Title" value="新增测评对象"></param>
 		      </procedure>
 		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
 		      	<param name="In" value="pnlDetailGroup"/>
@@ -80,7 +85,8 @@
 		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
 		        <param name="To" value="frmAddGroup"/>
 		        <param name="Mode" value="Edit"/>
-		         <param name="Window" value="Large"/>
+		        <param name="Window" value="Medium"/>
+		        <param name="Title" value="编辑测评对象"></param>
 		      </procedure>
 		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
 		      	<param name="In" value="pnlDetailGroup" />
@@ -88,20 +94,39 @@
 		        <param name="Sql" value="project/QryProjectGroup"/>
 		      </procedure>              
 		    </flow>
-            <!--  编辑主体身份人数 -->
-		    <flow trigger="pnlTProjectGroup.ctlAddGroupNumber" event="OnClick" filter="">
+            <!--  新增主体身份人数 -->
+		    <flow trigger="pnlTProjectGroup.ctlAddGroupNumber" event="OnClick" filter="row.state=='1'">
 		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
 		        <param name="In" value="pnlTProjectGroup.id"/>
 		      </procedure>
 		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
 		        <param name="To" value="frmAddGroupNumber"/>
 		        <param name="Mode" value="Add"/>
-		         <param name="Window" value="Large"/>
+		        <param name="Window" value="Medium"/>
+		        <param name="Title" value="新增主体身份人数"></param>
 		      </procedure>
-		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-		        <param name="Out" value="pnlType"/>
-		        <param name="Sql" value="project/QryProjectGroup"/>
-		      </procedure>              
+		      <procedure name="jsquery" logic="Query" ifyes="" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlTProjectGroup"></param>
+                    <param name="Sql" value="project/QryProjectGroup"></param>
+                </procedure>              
+		    </flow>
+		    <!--  编辑主体身份人数 -->
+		    <flow trigger="pnlTProjectGroup.ctlEditGroupNumber" event="OnClick" filter="row.state=='0'">
+		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
+		        <param name="In" value="pnlTProjectGroup.id"/>
+		      </procedure>
+		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
+		        <param name="To" value="frmAddGroupNumber"/>
+		        <param name="Mode" value="Edit"/>
+		        <param name="Window" value="Medium"/>
+		        <param name="Title" value="编辑主体身份人数"></param>
+		      </procedure>
+		      <procedure name="jsquery" logic="Query" ifyes="" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlTProjectGroup"></param>
+                    <param name="Sql" value="project/QryProjectGroup"></param>
+                </procedure>              
 		    </flow>
 		    <!-- 分组删除 -->
 		    <flow trigger="pnlTProjectGroup.ctlDel" event="OnClick" filter="">
@@ -121,26 +146,6 @@
 		    </flow>
 		    
 		    
-		    
-		    
-            <!-- 新增教育 
-            <flow trigger="pnlDetailTool.ctlEducation" event="OnClick" filter="">
-                <procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jspopup" ifno="">
-                    <param name="In" value="pnlDetailGroup.ctlId"></param>
-                </procedure>
-                <procedure name="jspopup" logic="Popup" ifyes="queryEducation" ifno="">
-                    <param name="To" value="frmEducation"></param>
-                    <param name="Mode" value="Add"></param>
-                    <param name="Window" value="Medium"></param>
-                </procedure>
-                <procedure name="queryEducation" logic="Query" ifyes="" ifno="">
-                    <param name="In" value="pnlDetailGroup"></param>
-                    <param name="Out" value="pnlEducation"></param>
-                    <param name="Sql" value="QryEducationList"></param>
-                </procedure>
-            </flow>
-             -->
-           
             <!-- 返回 -->
             <flow trigger="pnlDetailTool.ctlBack" event="OnClick" filter="">
                 <procedure name="jsback" logic="Back" ifyes="" ifno="">

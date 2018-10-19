@@ -11,4 +11,5 @@ select * from (
 	
 	from t_tester t 
 	LEFT JOIN t_dict d ON d.code=t.name 
+	where t.test_id = #{data.ctlId}
  ) a 

@@ -6,12 +6,14 @@
             <panel name="pForm" title="新增界面" object="test" type="Group">
                 <control name="id" title="id" property="id" type="Hidden" edit="N" required="" format="" width="2"
                          height="" column=""/>
-                <control name="ctlTitle" title="名称" property="title" type="TextBox" edit="Y" required="Y" format=""
+                <control name="ctlTitle" title="测评表名称" property="title" type="TextBox" edit="Y" required="Y" format=""
                          width="1" height="1" column="1"/>
+                <control name="ctlVersion" title="版本号" property="version" type="TextBox" edit="N" required="Y" format=""
+                         initial="'1.0'" width="1" height="1" column="1" />
                 <control name="ctlType" title="测评对象类别" property="type" type="ComboBox" edit="Y" required="Y" format=""
                          width="1" height="1" column="1"/>
                 <control name="ctlMessage" title="说明" property="message" type="TextBox" edit="Y" format="" width="1"
-                         initial="" height="1" column="1"/>
+                         initial="" height="5" column="1"/>
                 <control name="ctlState" title="状态" property="state" type="Hidden" edit="Y" required="" format="" width="1"
                          height="1" column="1" initial="'stop'"/>
 
