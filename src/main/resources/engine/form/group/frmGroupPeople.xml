@@ -11,8 +11,7 @@
 			<!-- 分组人员 -->
 			<panel name="pForm" title="测评对象人员表" object="grouppeople"
 				type="Group">
-				<control name="groupId" title="分组编号" property="groupId" type="Hidden"
-					edit="Y" required="N" format="" width="1" height="" column=""></control>
+			
 				<control name="empid" title="分组人员编号" property="empId" type="Hidden"
 					edit="Y" required="N" format="" width="1" height="" column=""></control>
 				<control name="empName" title="分组人员" property="empName"
@@ -32,20 +31,16 @@
 					ifno="">
 					<param name="Out" value="pForm"></param>
 				</procedure>
-				<procedure name="jBranch" logic="Branch" ifyes="j1"
+			
+				<procedure name="jBranch" server="" logic="DecodeId" ifyes="qid"
 					ifno="">
-					<param name="In"
-						value="getStorage('frmGroupPeople_EditMode')=='Add'"></param>
-				</procedure>
-				<procedure name="j1" server="" logic="DecodeId" ifyes="qid"
-					ifno="">
-					<param name="Out" value="pForm.groupId" />
+					<param name="Out" value="pForm.emp" />
 				</procedure>
 				<procedure name="qid" logic="QueryById" ifyes=""
 					ifno="">
 					<param name="In" value="pForm"></param>
 					<param name="Out" value="pForm" />
-					<param name="Sql" value="saleQuery" />
+					<param name="Sql" value="editQuery" />
 				</procedure>
 			</flow>
 
