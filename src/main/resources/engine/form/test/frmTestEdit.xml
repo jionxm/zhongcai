@@ -38,7 +38,7 @@
 			        <param name="Out" value="pForm" />
 			        <param name="Sql" value="test/QryTestList"/>
       			</procedure>  
-                <procedure name="jsclear" logic="Clear" ifyes="list1" ifno="" sync="Y">
+                <procedure name="jsclear" logic="Clear" ifyes="" ifno="" sync="Y">
                     <param name="Out" value="pForm"></param>
                 </procedure>
             </flow>
