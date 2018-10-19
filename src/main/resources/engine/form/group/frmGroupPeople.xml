@@ -18,7 +18,7 @@
 				<control name="empId" title="分组人员编号" property="empId" type="Hidden"
 					edit="Y" required="N" format="" width="1" height="" column=""></control>
 				<control name="empName" title="分组人员" property="empName"
-					type="PopupBox" edit="Y" required="" format="" width="1" height=""
+					type="PopupBox" edit="Y" required="Y" format="" width="1" height=""
 					column="2" />
 				</panel>
 
