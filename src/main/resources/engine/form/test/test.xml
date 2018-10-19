@@ -38,6 +38,8 @@
 			order="">
 			<property name="id" type="Long" length="20" initial=""
 				field="id" />
+			<property name="testId" type="Long" length="20" initial=""
+				field="test_id" />	
 			<property name="name" type="String" length="50" initial=""
 				field="name" />
 			<property name="dimension" type="Long" length="20" field="dimension" />

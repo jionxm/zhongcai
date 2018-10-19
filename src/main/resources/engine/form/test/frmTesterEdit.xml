@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tsoftware xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
+	<ui_layer>
+		<ui name="frmTesterEdit" title="主体权重编辑">
+			<panel name="testerGroup" title="tab1" object="tester"
+				type="Group">
+				<control name="ctlId" title="id" property="id" type="Hidden"
+					edit="Y" required="" format="" width="" height="" column="" />
+				<control name="ctlTestId" title="id" property="testId" type="Hidden"
+					edit="Y" required="Y" format="" width="" height="" column="" />
+					
+				<control name="ctlTesterName" title="主体身份" property="name"
+					type="ComboBox" edit="Y" required="Y" format="" width="1" height="1"
+					column="" />
+				<control name="ctlDimension" title="维度" property="dimension"
+					type="TextBox" edit="Y" required="Y" format="" width="1" height="1"
+					column="2" />
+
+				<control name="updateTime" title="更新日期" property="updateTime"
+					type="Hidden" edit="Y" required="N" target="CurrentTime()" format=""
+					width="1" height="1" column="" />
+				<control name="updateBy" title="更新人" property="updateBy"
+					type="Hidden" edit="Y" required="N" target="session.userInfo.empId"
+					format="" width="1" height="1" column="" />
+				<control name="createTime" title="创建日期" property="createTime"
+					type="Hidden" edit="Y" required="N" target="editMode=='Add'?CurrentTime():nil"
+					format="" width="1" height="1" column="" />
+				<control name="createBy" title="创建人" property="createBy"
+					type="Hidden" edit="Y" required="N"
+					target="editMode=='Add'?session.userInfo.empId:nil" format=""
+					width="1" height="1" column="" />
+			</panel>
+			<panel name="testerDown" title="pnlDown" object="" type="Toolbar">
+				<control name="ctlSave" title="确认" property="" type="Button"
+					edit="" required="" format="" width="" height="" column="" />
+				<control name="ctlCancel" title="取消" property="" type="Button"
+					edit="" required="" format="" width="" height="" column="" />
+			</panel>
+			<flow trigger="" event="OnLoad" filter="">
+				<procedure name="getTesterName" logic="List" ifyes="branch"
+					ifno="">
+					<param name="Out" value="testerGroup.ctlTesterName"></param>
+					<param name="Sql" value="test/testerName"></param>
+				</procedure>
+				<procedure name="branch" server="" logic="Branch" ifyes="getTestId"
+					ifno="getTesterId">
+					<param name="In" value="getStorage('frmTesterEdit_EditMode')=='Add'"></param>
+				</procedure>
+				<procedure name="getTestId" server="" logic="DecodeId"
+					ifyes="" ifno="">
+					<param name="Out" value="testerGroup.ctlTestId"></param>
+				</procedure>
+				<procedure name="getTesterId" server="" logic="DecodeId"
+					ifyes="qid" ifno="">
+					<param name="Out" value="testerGroup.ctlId"></param>
+				</procedure>
+				<procedure name="qid" logic="QueryById" ifyes="" ifno="">
+					<param name="In" value="testerGroup"></param>
+					<param name="Out" value="testerGroup"></param>
+					<param name="Sql" value="test/QryTesterList"></param>
+				</procedure>
+			</flow>
+				
+			<!-- 确认 -->
+			<flow trigger="testerDown.ctlSave" event="OnClick" filter="">
+				<procedure name="jssave" logic="Save" ifyes="jsclose"
+					ifno="">
+					<param name="In" value="testerGroup"></param>
+					<param name="Out" value="testerGroup.ctlId"></param>
+					<param name="Msg" value="'主体权重信息已被保存,详情请查看操作日志'"></param>
+				</procedure>
+				<procedure name="jsclose" server="" logic="Close" ifyes=""
+					ifno="">
+					<param name="Refresh" value="true"></param>
+				</procedure>
+			</flow>
+			<!-- 取消 -->
+			<flow trigger="testerDown.ctlCancel" event="OnClick" filter="">
+				<procedure name="jsclose" server="" logic="Close" ifyes=""
+					ifno="">
+					<param name="Refresh" value="false"></param>
+				</procedure>
+			</flow>
+
+
+
+			<layout>
+				<region location="South" scale="">
+					<subregion panel="testerDown" location="South" scale="" />
+				</region>
+				<region location="Center" scale="">
+					<subregion panel="testerGroup" location="Center" scale="" />
+				</region>
+			</layout>
+		</ui>
+	</ui_layer>
+</tsoftware>
