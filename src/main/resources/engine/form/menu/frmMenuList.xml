@@ -96,11 +96,11 @@
       </procedure>  
       
     	<procedure name="b1"  logic="Branch" ifyes="j1" ifno="b2">
-      	<param name="In" value="getPanelControlValue('pnlGroup.type')=='mainMenu'&amp;&amp;getPanelControlValue('pnlGroup.levels')==2"></param>
+      	<param name="In" value="getPanelControlValue('pnlGroup.type')=='mainMenu'&amp;&amp;getPanelControlValue('pnlGroup.levels')==3"></param>
       </procedure>
       
             <procedure name="j1" server="" logic="InfoMsg" ifyes="" ifno="">
-       <param name="Msg" value="主菜单最多新增三级"></param>
+       <param name="Msg" value="主菜单最多新增四级"></param>
       </procedure>  
       
           	<procedure name="b2"  logic="Branch" ifyes="j2" ifno="b3">

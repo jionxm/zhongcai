@@ -2,34 +2,43 @@
 <%@ page contentType="text/html;charset=UTF-8" isErrorPage="true" %>
 <%@ include file="common/base.jsp" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+<script type="text/javascript"> 
+$(document).ready(function(){ 
+	var theme = "${theme}";
+	if(theme == "client"){
+		$(".panel-title").css("font-size","30px");
+		$(".panel-body").css("font-size","31px");
+		$('.datagrid-cell').css('font-size','31px');//更改的是datagrid中的数据
+		$('.tabs-title').css('font-size','31px');//更改的是datagrid中的数据
+		
+		$('.btn-group-header span a').css('font-size','31px');//更改的是datagrid中的数据
+		
+		$('.accordion-body').css('width','200px');
+		
+		
+		
+		//菜单栏加宽
+	/* 	$('.panel .layout-panel .layout-panel-west .panel-htop').css('width','200px');
+		$('.panel-header').css('width','200px');
+		$('.panel-body layout-body').css('width','200px');
+		$('.easyui-accordion .accordion .easyui-fluid').css('width','200px');
+		$('.panel-header .accordion-header .accordion-header-selected').css('width','200px'); */
+		
+		$(".panel-body").css("font-size","31px");
+		
+		$('.header-right').css('margin-top','-25px;');
+		$('.x-accordion-cont p').css('padding','6');//更改菜单内上下宽度间隔
+		
+	}else{
+		
+	}
+});
+</script> 
 <head>
     <meta charset="UTF-8">
     <title>${baseTitle}</title>
     <link rel="shortcut icon" href="view/common/images/favicon.ico" type="image/vnd.microsoft.icon" />
-    <style>
-            .innerbox{
-            overflow-x: hidden;
-            overflow-y: auto;
-            color: #000;
-            font-size: .7rem;
-            font-family: "\5FAE\8F6F\96C5\9ED1",Helvetica,"黑体",Arial,Tahoma;
-            height: 100%;
-        }
-    .innerbox::-webkit-scrollbar {/*滚动条整体样式*/
-            width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
-            height: 4px;
-        }
-        .innerbox::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
-            border-radius: 5px;
-            -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-            background: #fafafa;
-        }
-        .innerbox::-webkit-scrollbar-track {/*滚动条里面轨道*/
-            -webkit-box-shadow: inset 0 0 5px #2f4258;
-            border-radius: 0;
-            background: #2f4258;
-        }
-    </style>
 </head>
 <div id='Loading'
      style="position:absolute;z-index:1000;top:0px;left:0px;width:100%;height:100%;background:#FFFFFF ;text-align:center;padding-top: 10%;">
@@ -37,53 +46,77 @@
         <image src='${ctx}/view/common/css/plugins/easyui-1.5.2/themes/default/images/loading.gif'/>
         <font color="#15428B" size="2">正在处理，请稍等···</font></h1>
 </div>
-<body>
+<body style="font-size: 22px;" class="easyui-layout js-ui">
 <input type="hidden" id="curUrl"></input>
-<div class="js-test" style="">
     <div class="easyui-layout" fit="true">
         <div data-options="region:'north'" split="true" border="false" class="x-header">
             <div class="header-right">
                 <input id="userId" hidden="hidden" value="${ sessionScope.userInfo.userId}"></input>
+
                 <%--<p class="x-welcome">${ sessionScope.userInfo.userName}，欢迎您！</p>--%>
                 <!--快捷菜单-->
 
                 <p class="btn-group-header">
-                	<span>您好！${ sessionScope.userInfo.empName}</span>
-                	<span>|</span>
                     <c:forEach items="${quickMenuList}" var="quickMenu" varStatus="quickMenuStatus">
                     <span><a href="#"
-                             onclick="openMenu('${quickMenu.name}','${ctx}${quickMenu.url}?token','${quickMenu.code}','${quickMenu.target}','quickMenu')">${quickMenu.name}</a></span>
-                    <span>|</span>
+                             onclick="openMenu('${quickMenu.name}','${ctx}${quickMenu.url}?theme=${typeIsClient}&token','${quickMenu.code}','${quickMenu.target}','quickMenu')">${quickMenu.name}</a></span>
+                    <span>|<span>
                     </c:forEach>
 
                     <span><a onclick="logout()">安全退出</a></span>
                 </p>
 
             </div>
-            <div class="header-left" style="background:#299be4">
-            <span class="tedu-logo"><img src="${ctx}/${logImg}" style="display:block;margin:12px auto"/></span>
-            </div>
+            <span class="tedu-logo"><img src="${ctx}/${logImg}"/></span>
         </div>
-      
-        <div data-options="region:'west',title:'导航菜单'" style="left:-2px;top:49px;width:149px;height:650px">
-            <div style="width: 100%;height:100%; overflow: hidden">
-                <div id="nav_list" class="easyui-accordion" style="width:145px;height:640px;">
+
+        <div data-options="region:'west',title:'导航菜单'" style="width:190px;height:100%">
+                <div id="nav_list" class="easyui-accordion" style="width:100%;height:100%;" data-options="fit:true,border:true">
                     <c:forEach items="${menuParentList}" var="menu1">
-                        <div class="x-accordion-cont innerbox" title="<img src='${ctx}/view/common/images/${menu1}.png'style='width:15px;height:12px;margin-right:8px;' >${menu1}" style="overflow:auto;">
+<%--                         <div class="x-accordion-cont" title="${menu1}" style="overflow:auto;"> --%>
+						<!-- <img src='${ctx}/view/common/images/${menu1}.png'style='width:16px;margin-right:8px;' > -->
+                        <div class="x-accordion-cont innerbox" title="${menu1}" style="overflow:auto;">
                             <c:forEach items="${menuList}" var="menu2">
+                            <c:set var="isMenu3" value=""></c:set>
                                 <c:if test="${menu1==menu2.parentName}">
-                                    <p id="${menu2.code}"
-                                       onclick="openMenu('${menu2.name}','${ctx}${menu2.url}?token','${menu2.code}','${menu2.target}','menu')">
+		                                   
+		                                    <c:forEach items="${menuSonList}" var="menu3">
+					                             <c:if test="${menu2.code==menu3.parent}">
+		                                      		 <c:set var="isMenu3" value="${menu2.code}"></c:set>
+			                                	</c:if>
+		                               		</c:forEach>
+			                               <c:if test="${isMenu3!=''}"> 	
+		                                     <div id="${menu2.code}" class="menu2 has-menu3">
+                                           </c:if>
+			                               <c:if test="${isMenu3==''}"> 	
+		                                     <div id="${menu2.code}" class="menu2" onclick="openMenu('${menu2.name}','${ctx}${menu2.url}?token','${menu2.code}','${menu2.target}','menu')">
+                                           </c:if>
                                             ${menu2.name}
-                                    </p>
+		                                      <c:if test="${isMenu3!=''}">
+		                                      	<c:set var="isMenu3" value=""></c:set>
+		                                      	<img src="${ctx}/view/common/images/new-bottom.png">
+		                                      </c:if>    
+                                      <!-- h3 -->
+                                      	<div class="menu3-list none">
+											<c:forEach items="${menuSonList}" var="menu3">
+			                                	<c:if test="${menu2.code==menu3.parent}">
+			                                		<p id="${menu3.code}" 
+				                                       onclick="openMenu('${menu3.name}','${ctx}${menu3.url}?token','${menu2.code}','${menu3.target}','menu')" 
+				                                       class="detail inactive active menu3">
+			                                           ${menu3.name}</p>
+			                                	</c:if>
+		                               		</c:forEach>
+	                               		</div>
+                                    </div>
+						
+									<!-- end -->                                    
+                                    
                                 </c:if>
                             </c:forEach>
                         </div>
                     </c:forEach>
                 </div>
-            </div>
         </div>
-      
         <div data-options="region:'center'" style="background:#fff;">
             <div data-options="tools:'#tab-tools'" id="center_tab" fit="true" class="easyui-tabs"
                  style="height: 100%;width:100%;">
@@ -92,19 +125,20 @@
             <!--关闭按钮样式-->
             <div id="tab-tools">
                 <a id="close_all" href="javascript:void(0)"
-                   style="display: block;height: 20px;line-height: 20px;text-align: center;padding-top:3px;padding-right: 15px   "><img
-                        src="${ctx}/view/common/images/close.png" style="vertical-align: middle" alt=""/><font
-                        style="vertical-align: middle">&nbsp;关闭全部</font> </a>
+                   style="display: block;height: 20px;line-height: 20px;text-align: center;padding-top:3px;padding-right: 15px  "><img
+                        src="${ctx}/view/common/images/close-button.png" style="vertical-align: middle" alt=""/><font
+                        style="vertical-align: middle">关闭全部</font> </a>
             </div>
         </div>
     </div>
-</div>
 </div>
 <script>
     $(document).ready(function () {
         openIndex();
         setStorage('appStartData', window.localDB.select("appStart"));
         setTimeout("openRedirect()", "1500");//为index tab延迟
+       // $('#nav_list > div:nth-child(1) > div.panel-header.accordion-header.accordion-header-selected > div.panel-tool > a.panel-tool-collapse').css('display','block');
+       // $('#nav_list > div.panel.panel-htop > div.panel-header.accordion-header > div.panel-tool > a.panel-tool-collapse.panel-tool-expand').css('display','block');
     });
 	//外部链接在系统内打开
     function openRedirect(){
@@ -146,6 +180,7 @@
         }
     }
 
+
     var gloableStorage = {};
     var currentUrl = window.location.href;
     //修饰主页面地址导致界面刷新两次
@@ -166,18 +201,19 @@
         framepx2 = 0
     }
     if (window.screen.width < 1200) {
-        width = 1366;
+        width = 1024;
     } else {
         width = document.documentElement.clientWidth + 17;
     }
-    if (window.screen.height < 768) {
-        height = 768;
+    if (window.screen.height < 788) {
+        height = 740;
     } else {
         height = document.documentElement.clientHeight
     }
 
     $(".js-test").width(width);
     $(".js-test").height(height);
+
     //以页签的方式打开菜单
     function addTab(title_, url_, id_, type) {
     	if(url_.indexOf("?")>0){
@@ -261,14 +297,21 @@
     }
 
     function logout() {
-        window.location.href = "${ctx}/logOut";
+    	//alert('${theme}');
+    	var type = 0;
+    	if('${theme}'=='default'){
+    		type = 0;
+    	}else{
+    		type =1;
+    	}
+        window.location.href = "${ctx}/logOut?type="+type;
     }
 
 
     $(function () {
         /*关闭所有tab标签*/
         $('#close_all').click(function () {
-            $(".tabs li").each(function(index, obj) {
+            $(".tabs li").each(function (index, obj) {
                 //获取所有可关闭的选项卡
                 var tab = $(".tabs-closable", this).text();
                 $(".easyui-tabs").tabs('close', tab);
@@ -363,6 +406,24 @@
         if (pc) clearTimeout(pc);
         pc = setTimeout(closes, 0);
     }
+    
+     $(function (){
+    	 $('.menu2').click(function (){
+    		 var _this = $(this)[0];
+    		if(_this.open == true) {
+    			$(this).children(".menu3-list").addClass('none');
+    			$(this).children('img').removeClass('open');
+    			_this.open = false;
+    		} else {
+	     		$(this).children(".menu3-list").removeClass('none');
+    			$(this).children('img').addClass('open');
+	     		_this.open = true;
+    		}
+    	 });
+    	 $('.menu3-list').click(function (){
+    		return false; 
+    	 }); 
+     }); 
 </script>
 </body>
 </html>

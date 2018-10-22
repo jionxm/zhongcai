@@ -128,7 +128,8 @@
 				field="update_time" />
 			<property name="updateBy" type="Long" length="10" validate=""
 				field="update_by" />
-
+		    <property name="questionName" type="Long" length="20" field="" />	
+			<property name="testId" type="Long" length="20" field="" />
 			<property name="stateName" type="String" length="20" field="" />
 			<property name="chooseName" type="String" length="20" field="" />
 		</object>

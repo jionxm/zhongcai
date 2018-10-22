@@ -66,8 +66,8 @@
 			<panel name="pnlTester" title="主体权重" object="tester" type="Grid">
 				<control name="id" title="ID" property="id" type="Hidden"
 					edit="" required="" format="" width="" height="" column="" />
-				<control name="testId" title="ID" property="testId" type="Hidden"
-					edit="" required="" format="" width="" height="" column="" />
+				<control name="ctlGrant" title="授权管理" property="" type="Link"
+					edit="" required="" format="" width="140" height="" column="" />
 				<control name="ctlEdit" title="编辑" property="" type="Link"
 					edit="" required="" format="" width="" height="" column="" />
 				<control name="ctlDel" title="删除" property="" type="Link"
@@ -217,7 +217,24 @@
 					<param name="Sql" value="test/QryTesterList"></param>
 				</procedure>
 			</flow>
-
+	<!-- 主体身份授权 -->
+			<flow trigger="pnlTester.ctlGrant" event="OnClick" filter="">
+				<procedure name="jsencodeid" server="" logic="EncodeId"
+					ifyes="jspopup" ifno="">
+					<param name="In" value="pnlTester.id"></param>
+				</procedure>
+				<procedure name="jspopup" logic="Popup" ifyes="queryTable"
+					ifno="">
+					<param name="To" value="frmGrantEdit"></param>
+					<param name="Mode" value="Edit"></param>
+					<param name="Window" value="Large"></param>
+				</procedure>
+				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
+					<param name="In" value="pnlDetailGroup"></param>
+					<param name="Out" value="pnlQuestion"></param>
+					<param name="Sql" value="test/QryQuestionList"></param>
+				</procedure>
+			</flow>
 
 			<!-- 返回 -->
 			<flow trigger="pnlDetailTool.ctlBack" event="OnClick" filter="">

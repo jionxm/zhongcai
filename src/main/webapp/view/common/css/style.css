@@ -1,17 +1,17 @@
 
-.x-header{overflow: hidden; height: 54px !important;background-color:#fff; color: #fff;padding: 0 5px;}
+.x-header{overflow: hidden; height: 50px;/*  background-image: url("../images/banner.png"); */
+background:#2f4258;color: #fff;padding: 0 5px;}
 .west_nav{ width:200px;}
 .welcom{ padding:80px 100px; font-size:16px; text-align:center;}
-#nav_list p{cursor: pointer;}
-p.current,#nav_list p:hover{ color:#fff!important;}
-.header-right{margin-top:8px;margin-right:20px;float: right; text-align: right}
-.header-left{margin-top:0px;margin-left:-5px;float: left;height:54px;width:147px}
-.tedu-logo{margin-top:0px;margin-left:2px;float: left;height:50px;width:147px}
+#nav_list p{cursor: pointer;color:#E0ECFF;}
+p.current,#nav_list p:hover{ color:#E0ECFF;}
+.header-right{margin-top:8px;margin-right:20px;float: right; text-align: right}  /*为了适应客户端字体被盖住 将margin-top:8px; 修改*/
 a{text-decoration: none; color: #000;}
 a:hover,a:active{color: #000}
 
 .tedu-logo{
     display: inline-block;
+    margin-top: 14px;
 }
 
 body {
@@ -27,23 +27,23 @@ body {
     color: #000;
 }
 .btn-group-header span a {
-    cursor: pointer;    
-    color: #000;
+    cursor: pointer;
+    font-family: "Microsoft YaHei" ! important;
+    color: white;
     font-size: 12px;
     margin-bottom: 6px
 }
 
 .btn-group-header span a:hover,a:active{
-    color: #1de5ff;
+    color: #4fb4f5;
 }
 .btn-group-header span  {
-    color: #000;
+    color: white;
 }
 .btn-group {
     padding: 8px 0;
-    color: black;
     /*border-bottom:2px solid #eee;*/
-    border-bottom:1px solid #f3f3f3;
+    border-bottom:1px solid #95B8E7;
 }
 .input-box {
     padding-top: 12px;
@@ -67,7 +67,6 @@ body {
 .input-group-inline .textbox .textbox-text{
     display: inline-block;
     border-radius:0;
-    background-color: #f9f9f9;
 }
 .x-win-bottom {
     -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;
@@ -81,35 +80,61 @@ body {
     line-height: 40px;
     background: #fafafa;
 }
-.x-accordion-cont p{
+.x-accordion-cont .menu2 {
     -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    margin: 0 10px;
+    padding: 6;
     line-height:26px;
-    padding-left:30px;    
+    padding-left:20px;
+    border-bottom:1px solid rgb(255,255,255,0.1);
+    cursor: pointer;
+    color: #A1B7D4;
 }
 .validatebox-invalid,.textbox-invalid{
     background-color: transparent;
 }
 
-/**wangdanfeng updated:toolbar鏄痙atagrid鐨勬暣浣擄紝鍗曠嫭瀹氫箟鍑烘潵鏃舵棤娉曞噯纭喅瀹氶珮搴︼紝鍥犳灏唗oolbar閮ㄥ垎鐨勬牱寮忚皟鎴愬敖閲忓拰璁捐鏍峰紡涓�鑷达紝骞朵粛鏃ч噰鐢╠atagrid toolbar瀹炵幇**/
+/**wangdanfeng updated:toolbar閺勭棛atagrid閻ㄥ嫭鏆ｆ担鎿勭礉閸楁洜瀚�规矮绠熼崙鐑樻降閺冭埖妫ゅ▔鏇炲櫙绾喖鍠呯�规岸鐝惔锔肩礉閸ョ姵顒濈亸鍞梠olbar闁劌鍨庨惃鍕壉瀵繗鐨熼幋鎰晼闁插繐鎷扮拋鎹愵吀閺嶅嘲绱℃稉锟介懛杈剧礉楠炴湹绮涢弮褔鍣伴悽鈺燼tagrid toolbar鐎圭偟骞�**/
 .datagrid-toolbar, .datagrid-pager {
     background: #fff;
 }
-/**杩欎釜鎵嶆槸鎺у埗tabpanel涓庡唴閮ㄧ粍浠剁殑杈圭紭鐣欑櫧鐨勶紝涓嶆槸.panel-body **/
+/**鏉╂瑤閲滈幍宥嗘Ц閹貉冨煑tabpanel娑撳骸鍞撮柈銊х矋娴犲墎娈戞潏鍦喘閻ｆ瑧娅ч惃鍕剁礉娑撳秵妲�.panel-body **/
 .tabs-panels .panel{
-    padding:6px;
+    padding:0px;
+    padding-top:4px;
 }
 
 .input-group-inline label{
 	display: inline-block;
 	width:90px;
-	color:#000;
 	text-align:right;
 	padding-right:6px;
 }
-#nav_list p {
-    cursor: pointer;
-    color: #A1B7D4;
+
+/**Chart瀹瑰櫒鍏敤鏍峰紡**/
+#nav_list>p>img{
+	height:16px;
+	width:16px;
 }
-/**Chart容器公用样式**/
+
+.x-accordion-cont .has-menu3 img {
+	margin-left: 5px;
+}
+.x-accordion-cont .has-menu3 .open {
+	transform: rotateZ(180deg);
+}
+.x-accordion-cont .has-menu3 .menu3-list {
+	overflow: hidden;
+	max-height: 30px;
+	transition: all .3s;
+}
+.x-accordion-cont .has-menu3 .menu3-list.none {
+	max-height: 0px;
+}
+.x-accordion-cont .has-menu3 .menu3{
+	margin: 0;
+	padding: 0;
+	padding-right:20px;
+	padding-left:20px;
+	color: #E0ECFF;
+}
