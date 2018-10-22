@@ -21,6 +21,8 @@
     <control name="ctlCreateTime" title="创建时间" property="createTime" type="TextBox" edit="" required="" format="" width="150" height="" column=""/>   
     <control name="ctlUpdateBy" title="更新人" property="updateBy" type="TextBox" edit="" required="" format="" width="100" height="" column=""/>     
     <control name="ctlUpdateTime" title="更新时间" property="updateTime" type="TextBox" edit="" required="" format="" width="150" height="" column=""/>
+    
+    <control name="det" title="det" property="det" type="Hidden" edit="" required="" format="" width="" height="" column=""/>
   </panel>
     <flow trigger="" event="OnLoad" filter="">
       <procedure name="j1"  logic="Clear" ifyes="j2" ifno="" sync="Y">
@@ -70,7 +72,7 @@
       </procedure>              
     </flow> 
     <!-- 删除 --> 
-     <flow trigger="pTable.ctlDel" event="OnClick" filter="">
+     <flow trigger="pTable.ctlDel" event="OnClick" filter="row.det==1">
       <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">
        <param name="Title" value="删除提示" />
        <param name="Msg" value="确认删除当前数据吗?" />

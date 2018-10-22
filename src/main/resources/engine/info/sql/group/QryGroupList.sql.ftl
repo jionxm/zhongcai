@@ -1,5 +1,7 @@
 select * from (
 	select 
+	case when(select count(id) from t_test where group_id=g.id) >=1 then 0 
+	when(select count(id) from t_project_group where group_id=g.id ) >=1 then 0 else 1 end as det,
 	g.id as id,
 	g.name as name,
 	t.name as createBy,
