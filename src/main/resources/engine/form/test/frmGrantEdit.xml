@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tsoftware xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
+    <ui_layer>
+        <ui name="frmGrantEdit" title="主体身份授权">
+        <panel name="pToolBar" title="工具栏" object="" type="Toolbar">
+                <control name="btnAdd" title="指标授权" property="" type="Button"
+					edit="Y" required="" format="" width="" height="" column="" />
+            </panel>
+         <panel name="testerGroup" title="主体身份详情信息" object="tester" type="Group">
+                <control name="ztqzId" title="id" property="id" type="Hidden"
+					edit="Y" required="" format="" width="" height="" column="" /> 
+		        <control name="ctlTestId" title="testId" property="testId" type="Hidden"
+					edit="Y" required="" format="" width="" height="" column="" /> 
+				<control name="ctlTesterName" title="主体身份" property="name"
+					type="ComboBox" edit="N" required="Y" format="" width="1" height="1"
+					column="" />
+				<control name="ctlDimension" title="维度" property="dimension"
+					type="TextBox" edit="N" required="Y" format="" width="1" height="1"
+					column="2" />
+				<control name="questionId" title="指标ID" property="" type="Hidden" edit="" required="" format="" width="1" height="1" column="1" />
+           </panel>
+            
+            
+           
+           
+            <panel name="authorizeGroup" title="授权列表" object="authorize" type="Grid">
+				<control name="ztqzId" title="ztqzId" property="ztqzId" type="Hidden" edit="" required="" format="" width="" height="" column="" />
+				<control name="id" title="id" property="id" type="Hidden" edit="" required="" format="" width="" height="" column="" />
+			    <control name="ctlCancel" title="取消授权" property="" type="Link" edit="" required="" format="" width="120" height="" column=""/>
+				<control name="questionName" title="授权指标名称" property="questionName" type="TextBox" edit="" required="" format="" width="200" height="1" column="1" />
+				<control name="updateTime" title="更新日期" property="updateTime" type="TextBox" edit="" required="" target="" format="" width="80" height="1" column="" />
+				<control name="updateBy" title="更新人" property="updateBy" type="TextBox" edit="" required="" target="" format="" width="80" height="1" column="" />
+				<control name="createTime" title="创建日期" property="createTime" type="TextBox" edit="" required="" target="" format="" width="80" height="1" column="" />
+				<control name="createBy" title="创建人" property="createBy" type="TextBox" edit="" required="" target="" format="" width="80" height="1" column="" />
+			</panel>
+			<panel name="pTable3" title="批量添加授权" object="authorize" type="HiddenTable">
+				<control name="id" title="id" property="id" type="Hidden" edit="" required="" format="" width="120" height="" column=""/>
+				<control name="ztqzId" title="ztqzId" property="ztqzId" type="TextBox" edit="" required="" format="" width="" height="" column="" />
+				<control name="questionId" title="指标ID" property="questionId" type="TextBox" edit="" required="" format="" width="200" height="1" column="1" />
+				<control name="updateTime" title="更新日期" property="updateTime" type="Hidden" edit="Y" required="N" target="CurrentTime()" format="" width="1" height="1" column="1"  />
+				<control name="updateBy" title="更新人" property="updateBy" type="Hidden" edit="Y" required="N" target="session.userInfo.empId" format="" width="1" height="1" column="1"  />		
+				<control name="createTime" title="创建日期" property="createTime" type="Hidden" edit="Y" required="N" target="CurrentTime()" format="" width="1" height="1" column="1"  />
+				<control name="createBy" title="创建人" property="createBy" type="Hidden" edit="Y" required="N" target="session.userInfo.empId" format="" width="1" height="1" column="1"  />
+			</panel>	
+			
+         <!-- 页面加载 -->
+            <flow trigger="" event="OnLoad" filter="">
+				
+				<procedure name="getTesterId" server="" logic="DecodeId"
+					ifyes="qid" ifno="">
+					<param name="Out" value="testerGroup.ztqzId"></param>
+				</procedure>
+				<procedure name="qid" logic="QueryById" ifyes="getAuthorize" ifno="">
+					<param name="In" value="testerGroup"></param>
+					<param name="Out" value="testerGroup"></param>
+					<param name="Sql" value="test/QryTesterListById"></param>
+				</procedure>
+				
+				
+				<procedure name="getAuthorize" logic="Query" ifyes="" ifno="">
+					<param name="In" value="testerGroup"></param>
+					<param name="Out" value="authorizeGroup"></param>
+					<param name="Sql" value="test/QryAuthorizeList"></param>
+				</procedure>
+				
+			</flow>
+			 <!-- 取消授权 -->
+            <flow trigger="authorizeGroup.ctlCancel" event="OnClick" filter="">
+             <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">
+		       <param name="Title" value="权限撤销" />
+		       <param name="Msg" value="确认撤销选中数据授权?" />
+		      </procedure>
+		      <procedure name="j1"  logic="Delete" ifyes="getAuthorize" ifno="">
+		        <param name="In" value="authorizeGroup" />
+		        <param name="Msg" value="'授权撤销成功！'" />
+		      </procedure>
+				
+				
+				<procedure name="getAuthorize" logic="Query" ifyes="" ifno="">
+					<param name="In" value="testerGroup"></param>
+					<param name="Out" value="authorizeGroup"></param>
+					<param name="Sql" value="test/QryAuthorizeList"></param>
+				</procedure>
+				
+			</flow>
+			<flow trigger="pToolBar.btnAdd" event="OnClick" filter="">
+					<procedure name="findChoose" logic="Find" ifyes="jsDetail1"
+						ifno="">
+						<param name="In" value="testerGroup.ztqzId"></param>
+						<param name="Out" value="testerGroup"></param>
+						<param name="Sql" value="ChooseQuestion"></param>
+						<param name="Title" value="指标选择"></param>
+						<param name="Multi" value="Y"/>
+						<param name="Columns" value="questionId,指标ID,questionId|question,指标名称"></param>
+						<param name="Window" value="Large"></param>
+					</procedure>
+				
+				 	  <procedure name="jsDetail1"  logic="Master2Detail" ifyes="jssave" ifno="">
+				      	<param name="In" value="testerGroup.questionId"/>
+				        <param name="Out" value="pTable3"/>
+				      </procedure>  
+				     
+				          
+				       <procedure name="jssave" logic="Save" ifyes="getAuthorize" ifno="">
+				        <param name="In" value=",pTable3"/>
+				        <param name="Mode" value="Add"/>
+				        <param name="Msg" value="'身份授权成功'"/>
+				      </procedure>  
+				      <procedure name="getAuthorize" logic="Query" ifyes="" ifno="">
+						<param name="In" value="testerGroup"></param>
+						<param name="Out" value="authorizeGroup"></param>
+						<param name="Sql" value="test/QryAuthorizeList"></param>
+					  </procedure>               
+			</flow>
+			
+           
+            <layout>
+                 <region location="Center" scale="">
+                    <subregion panel="authorizeGroup" location="Center" scale=""/>
+                     <subregion panel="testerGroup" location="North" scale=""/>
+                </region>
+                <region location="North" scale="">
+                    <subregion panel="pToolBar" location="South" scale=""/>
+                </region>
+            </layout>
+        </ui>
+    </ui_layer>
+</tsoftware>
