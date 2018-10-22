@@ -15,6 +15,7 @@
   <panel name="pTable" title="查询结果" object="test" type="Grid">
     <control name="id" title="id" property="id" type="Hidden" edit="Y" required="" format="" width="" height="" column=""/>
     <control name="ctlEdit" title="编辑" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
+    <control name="ctlStartEdit" title="编辑" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlStart" title="启动" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlClose" title="关闭" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
@@ -81,12 +82,29 @@
       </procedure>              
     </flow>
     <!-- 编辑 -->
-    <flow trigger="pTable.ctlEdit" event="OnClick" filter="">
+    <flow trigger="pTable.ctlEdit" event="OnClick" filter="row.state=='stop'">
       <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
         <param name="In" value="pTable.id"></param>
       </procedure>
       <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
         <param name="To" value="frmTestEdit"></param>
+        <param name="Mode" value="Edit"></param>
+        <param name="Window" value="Medium"></param>
+        <param name="Title" value="编辑测评表"></param>
+      </procedure>
+      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
+        <param name="In" value="pCondition"></param>
+        <param name="Out" value="pTable"></param>
+        <param name="Sql" value="test/QryTestList"></param>
+      </procedure>              
+    </flow>
+    <!-- 启动编辑 -->
+    <flow trigger="pTable.ctlStartEdit" event="OnClick" filter="row.state=='start'">
+      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
+        <param name="In" value="pTable.id"></param>
+      </procedure>
+      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
+        <param name="To" value="frmTestEdit2"></param>
         <param name="Mode" value="Edit"></param>
         <param name="Window" value="Medium"></param>
         <param name="Title" value="编辑测评表"></param>
