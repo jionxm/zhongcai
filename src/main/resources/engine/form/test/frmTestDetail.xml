@@ -228,6 +228,7 @@
 					<param name="To" value="frmGrantEdit"></param>
 					<param name="Mode" value="Edit"></param>
 					<param name="Window" value="Large"></param>
+					<param name="Title" value="身份授权管理"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
 					<param name="In" value="pnlDetailGroup"></param>
