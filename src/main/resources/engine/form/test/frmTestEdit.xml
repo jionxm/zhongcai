@@ -12,11 +12,21 @@
                          initial="'1.0'" width="1" height="1" column="1" />
                 <control name="ctlType" title="测评对象类别" property="type" type="ComboBox" edit="Y" required="Y" format=""
                          width="1" height="1" column="1"/>
+                <control name="ctlGroupId" title="分组id" property="groupId" type="Hidden" edit="Y" required="N" format=""
+                         width="1" height="1" column="1"/>
+                <control name="ctlGroupName" title="测评分组名称" property="groupName" type="PopupBox" edit="Y" required="N" format=""
+                         width="1" height="1" column="1"/>
                 <control name="ctlMessage" title="说明" property="message" type="TextBox" edit="Y" format="" width="1"
                          initial="" height="5" column="1"/>
                 <control name="ctlState" title="状态" property="state" type="Hidden" edit="Y" required="" format="" width="1"
                          height="1" column="1" initial="'stop'"/>
 
+				<control name="updateTime" title="更新日期" property="updateTime" type="Hidden" edit="Y" required="N" target="CurrentTime()" format="" width="2" height="1" column="2"  />
+				<control name="updateBy" title="更新人" property="updateBy" type="Hidden" edit="Y" required="N" target="session.userInfo.empId" format="" width="2" height="1" column="2"  />		
+				<control name="createTime" title="创建日期" property="createTime" type="Hidden" edit="Y" required="N" target="editMode=='Add'?CurrentTime():nil" format="" width="2" height="1" column="2"  />
+				<control name="createBy" title="创建人" property="createBy" type="Hidden" edit="Y" required="N" target="editMode=='Add'?session.userInfo.empId:nil" format="" width="2" height="1" column="2"  />
+            
+			
             </panel>
             <panel name="pToolbar" title="按钮" object="" type="Toolbar">
                 <control name="btnSave" title="确认" property="" type="Button" edit="" required="" format="" width=""
@@ -44,6 +54,19 @@
                     <param name="Out" value="pForm"></param>
                 </procedure>
             </flow>
+            <!-- 分组名称 -->
+			<flow trigger="pForm.ctlGroupName" event="OnClick"
+				filter="">
+				<procedure name="Querypresalses" logic="Find" ifyes=""
+					ifno="">
+					<param name="In" value="pForm"></param>
+					<param name="Out" value="pForm"></param>
+					<param name="Sql" value="groupName"></param>
+					<param name="Title" value="分组选择" />
+					<param name="Options" value="$RESET,重置" />
+					<param name="Columns" value="id,分组编号,ctlGroupId|name,分组名称,ctlGroupName"></param>
+				</procedure>
+			</flow>
             <!-- 取消 -->
             <flow trigger="pToolbar.btnClose" event="OnClick" filter="">
                 <procedure name="jsclose" server="" logic="Close" ifyes="" ifno="">
@@ -52,8 +75,16 @@
             </flow>
             <!-- 确定 -->
             <flow trigger="pToolbar.btnSave" event="OnClick" filter="">
+                <procedure name="branch" server="" logic="Branch" ifyes="insert" ifno="jssave">
+        			<param name="In" value="getStorage('frmTestEdit_EditMode')=='Edit'"/>
+      			</procedure> 
                 <procedure name="jssave" logic="Save" ifyes="jsclose" ifno="">
                     <param name="In" value="pForm"></param>
+                    <param name="Msg" value="'保存成功'"></param>
+                </procedure>
+                <procedure name="insert" logic="SaveCustom" ifyes="jsclose" ifno="">
+                    <param name="In" value="pForm"></param>
+                    <param name="Sql" value="test/insertTest"/>
                     <param name="Msg" value="'保存成功'"></param>
                 </procedure>
                 <procedure name="jsclose" server="" logic="Close" ifyes="" ifno="">

@@ -4,12 +4,13 @@
 	<model_layer>
 		<!-- 测评项目model -->
 		<object name="test" table="t_test" primary="id" unique=""
-			order="">
+			order="title,version">
 			<property name="id" type="Long" length="20" initial=""
 				field="id" />
 			<property name="type" type="String" length="20" initial=""
 				field="type" />
 			<property name="title" type="String" length="20" field="title" />
+			<property name="groupId" type="Long" length="20" field="group_id" />
 			<property name="scope" type="String" length="20" field="scope" />
 			<property name="message" type="String" length="200" field="message" />
 			<property name="state" type="String" length="20" field="state" />
@@ -25,6 +26,8 @@
 				field="update_by" />
 
 			<property name="typeName" type="String" length="20"
+				validate="" field="" />
+			<property name="groupName" type="String" length="20"
 				validate="" field="" />
 			<property name="scopeName" type="String" length="20"
 				validate="" field="" />
