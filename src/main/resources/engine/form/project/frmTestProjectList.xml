@@ -18,6 +18,7 @@
     <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlStart" title="启动" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlClose" title="关闭" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
+    <control name="ctlQr" title="发放二维码" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlName" title="测评项目名称" property="name" type="DataLink" edit="" required="" format="" width="200" height="" column=""/>
     <control name="ctlState" title="状态" property="state" type="Hidden" edit="" required="" format="" width="80" height="" column=""/>      
     <control name="ctlStateName" title="状态" property="stateName" type="TextBox" edit="" required="" format="" width="80" height="" column=""/>
@@ -33,7 +34,7 @@
       <procedure name="j2"  logic="Query" ifyes="" ifno="">
         <param name="In" value="pCondition"></param>
         <param name="Out" value="pTable"></param>
-        <param name="Sql" value="project/QryProjectList"></param>
+        <param name="Sql" value="project/QryProjectId"></param>
       </procedure>   
     </flow>
     <!-- 启动 -->
@@ -95,6 +96,16 @@
       </procedure>
       <procedure name="jsgoto"  logic="Transition" ifyes="" ifno="">
         <param name="To" value="frmProjectDetail"></param>
+        <param name="Mode" value="Readonly"></param>
+      </procedure>
+    </flow>
+    <!-- 点击发放二维码 -->
+   <flow trigger="pTable.ctlQr" event="OnClick" filter="">
+      <procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jsgoto" ifno="">
+        <param name="In" value="pTable.id"></param>
+      </procedure>
+      <procedure name="jsgoto"  logic="Transition" ifyes="" ifno="">
+        <param name="To" value="frmProjectQrDetail"></param>
         <param name="Mode" value="Readonly"></param>
       </procedure>
     </flow>
