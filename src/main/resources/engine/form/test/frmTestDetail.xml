@@ -29,23 +29,23 @@
 				<control name="id" title="ID" property="id" type="Hidden"
 					edit="" required="" format="" width="" height="" column="" />
 				<control name="ctlEdit" title="编辑" property="" type="Link"
-					edit="" required="" format="" width="" height="" column="" />
+					edit="" required="" format="" width="100" height="" column="" />
 				<control name="ctlDel" title="删除" property="" type="Link"
-					edit="" required="" format="" width="" height="" column="" />
+					edit="" required="" format="" width="100" height="" column="" />
 				<control name="ctlTestId" title="测评表id" property="testId"
 					type="Hidden" edit="" required="" format="" width="140" height=""
 					column="" />
 				<control name="ctlNumber" title="指标号码" property="number"
-					type="TextBox" edit="Y" required="Y" format="" width="80" height="1"
+					type="TextBox" edit="Y" required="Y" format="" width="40" height="1"
 					column="" />
 				<control name="ctlDimension" title="维度" property="dimension"
-					type="TextBox" edit="" required="" format="" width="80" height=""
+					type="TextBox" edit="" required="" format="" width="200" height=""
 					column="" />
 				<control name="ctlQuestion" title="指标" property="question"
-					type="TextBox" edit="" required="" format="" width="400" height=""
+					type="TextBox" edit="" required="" format="" width="800" height=""
 					column="" />
 				<control name="ctlWeight" title="权重" property="weight" type="TextBox"
-					edit="" required="" format="" width="140" height="" column="" />
+					edit="" required="" format="" width="60" height="" column="" />
 				<control name="ctlNtypeName" title="试题类型" property="typeName"
 					type="TextBox" edit="" required="" format="" width="80" height=""
 					column="" />
