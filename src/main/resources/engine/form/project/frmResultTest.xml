@@ -8,8 +8,8 @@
     <control name="ctlQuery" title="查询" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlClear" title="清空条件" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>    
   </panel>
-  <panel name="pCondition" title="查询条件" object="project" type="Group">
-    <control name="lk_projectId" title="测评项目" property="projectId" type="TextBox" edit="Y" required="N" format="" width="1" height="1" column="3"/>
+  <panel name="pCondition" title="查询条件" object="qr" type="Group">
+    <control name="lk_projectId" title="测评项目" property="projectId" type="ComboBox" edit="Y" required="N" format="" width="1" height="1" column="3"/>
   </panel>  
   <panel name="pTable" title="查询结果" object="project" type="Grid">
     <control name="id" title="id" property="id" type="Hidden" edit="Y" required="" format="" width="" height="" column=""/>
