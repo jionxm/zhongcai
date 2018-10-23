@@ -21,14 +21,14 @@
 					type="TextBox" edit="Y" required="Y" format="" width="1" height="1"
 					column="" />
 				<control name="ctlType" title="试题类型" property="type" type="ComboBox"
-					edit="Y" required="" format="" width="1" height="1" column="" />	
+					edit="Y" required="" format="" width="1" height="1" column="2" />	
 				<control name="ctlWeight" title="权重" property="weight" type="TextBox"
-					edit="Y" required="" format="" width="1" height="1" column="3" />	
+					edit="Y" required="" format="" width="1" height="1" column="" />	
 					
 				<control name="ctlMust" title="是否必填" property="must" type="ComboBox"
-					edit="Y" required="" format="" width="1" height="1" column="" />
+					edit="Y" required="" format="" width="1" height="1" column="2" />
 				<control name="ctlDimension" title="维度" property="dimension"
-					type="TextBox" edit="Y" required="" format="" width="1" height="1"
+					type="TextBox" edit="Y" required="" format="" width="2" height="1"
 					column="2" />
 					
 				<control name="ctlQuestion" title="指标" property="question"
