@@ -26,9 +26,9 @@
             <panel name="authorizeGroup" title="人员列表" object="grouppeople" type="Grid">
 				<control name="ztqzId" title="小组Id" property="groupId" type="Hidden" edit="" required="" format="" width="" height="" column="" />
 				<control name="id" title="id" property="id" type="Hidden" edit="" required="" format="" width="" height="" column="" />
-			    <control name="ctlCancel" title="删除" property="" type="Link" edit="" required="" format="" width="120" height="" column=""/>
-				<control name="peopleName" title="分组人员名称" property="empName" type="TextBox" edit="" required="" format="" width="200" height="1" column="1" />
-				<control name="orgName" title="部门" property="orgName" type="TextBox" edit="" required="" format="" width="200" height="1" column="1" />
+			    <control name="ctlCancel" title="删除" property="" type="Link" edit="" required="" format="" width="40" height="" column=""/>
+				<control name="peopleName" title="分组人员名称" property="empName" type="TextBox" edit="" required="" format="" width="120" height="1" column="1" />
+				<control name="orgName" title="部门" property="orgName" type="TextBox" edit="" required="" format="" width="100" height="1" column="1" />
 				<!-- <control name="updateTime" title="更新日期" property="updateTime" type="TextBox" edit="" required="" target="" format="" width="80" height="1" column="" />
 				<control name="updateBy" title="更新人" property="updateBy" type="TextBox" edit="" required="" target="" format="" width="80" height="1" column="" />
 				<control name="createTime" title="创建日期" property="createTime" type="TextBox" edit="" required="" target="" format="" width="80" height="1" column="" />

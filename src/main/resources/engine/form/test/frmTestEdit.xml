@@ -8,7 +8,7 @@
                          height="" column=""/>
                 <control name="ctlTitle" title="测评表名称" property="title" type="TextBox" edit="Y" required="Y" format=""
                          width="1" height="1" column="1"/>
-                <control name="ctlVersion" title="版本号" property="version" type="Hidden" edit="N" required="Y" format=""
+                <control name="ctlVersion" title="版本号" property="version" type="Hidden" edit="N" required="N" format=""
                          initial="" width="1" height="1" column="1" />
                 <control name="ctlType" title="测评对象类别" property="type" type="ComboBox" edit="Y" required="Y" format=""
                          width="1" height="1" column="1"/>
