@@ -98,6 +98,9 @@
 		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />	
 		
+		<property name="testerName" type="String" length="20" initial="" field=""/>
+		<property name="groupName" type="String" length="20" initial="" field=""/>
+		<property name="projectName" type="String" length="20" initial="" field=""/>
 		<property name="stateName" type="String" length="20" initial="" field=""/>
  	</object>  
  	
