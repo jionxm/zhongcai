@@ -22,9 +22,10 @@
 					type="TextBox" edit="Y" required="N" format="" width="2" height="3"
 					column="2" />
 					
-						
-				<control name="ctlType" title="试题类型" property="type" type="ComboBox"
-					edit="Y" required="" format="" width="1" height="1" column="" />
+				<control name="ctlTypeId" title="id" property="type" type="Hidden"
+					edit="Y" required="N" format="" width="" height="" initial="'completion'" column=""/>		
+				<control name="ctlType" title="试题类型" property="" type="TextBox"
+					edit="N" required="" format="" width="1" height="1" initial="'填空题'" column="" />
 						
 				<control name="ctlTextLength" title="文本长度" property="textLength"
 					type="TextBox" edit="Y" required="" format="" width="1" height="1"
@@ -62,10 +63,9 @@
 					edit="" required="" format="" width="" height="" column="" />
 			</panel>
 			<flow trigger="" event="OnLoad" filter="">
-				<procedure name="getType" logic="List" ifyes="getMust"
+				<procedure name="getClear" logic="Clear" ifyes="getMust"
 					ifno="">
-					<param name="Out" value="questionGroup.ctlType"></param>
-					<param name="Sql" value="test/blaQuestionType"></param>
+					<param name="Out" value="questionGroup"></param>
 				</procedure>
 				<procedure name="getMust" logic="List" ifyes="branch"
 					ifno="">
