@@ -35,7 +35,7 @@
 					type="TextBox" edit="Y" required="N" format="" width="1" height="3"
 					column="1" />
 				<control name="ctlChooseName" title="选项类型" property="chooseName"
-					type="PopupBox" edit="Y" required="Y" format="" width="1" height="1"
+					type="PopupBox" edit="Y" required="N" format="" width="1" height="1"
 					column="" />
 				<control name="ctlTextLength" title="文本长度" property="textLength"
 					type="TextBox" edit="Y" required="" format="" width="1" height="1"
