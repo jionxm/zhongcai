@@ -9,7 +9,7 @@
                 <control name="ctlState" title="状态" property="state" type="TextBox" edit="N" required="" format="" width="2"
                          height="" column="1" initial="'0'"/>
             </panel>
-            <panel name="pForm" title="绑定主体人数" object="testerNumber" type="Grid">
+            <panel name="pForm" title="绑定主体人数" object="testerNumber" type="Grid" page="0">
                 <control name="id" title="id" property="id" type="Hidden" edit="N" required="" format="" width=""
                          height="" column=""/>
                 <control name="ctlProGroupId" title="测评对象编号" property="proGroupId" type="Hidden" edit="N" required="" format="" width=""
@@ -85,14 +85,15 @@
             </flow>
             <layout>
             	<region location="North" scale="">
-                    <subregion panel="pHidden" location="North" scale=""/>
+                    <!-- <subregion panel="pHidden" location="North" scale=""/> -->
+                    <subregion panel="pForm" location="North" scale="280px"/>
                 </region>
                 <region location="South" scale="">
                     <subregion panel="pToolbar" location="North" scale=""/>
                 </region>
-                <region location="Center" scale="">
+               <!--  <region location="Center" scale="">
                     <subregion panel="pForm" location="Center" scale=""/>
-                </region>
+                </region> -->
             </layout>
         </ui>
     </ui_layer>

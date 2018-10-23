@@ -21,7 +21,7 @@
                 <control name="ctlAddress" title="投票地点" property="address" type="TextBox" edit="Y" required="Y" format=""
                          width="1" height="1" column="5"/>
                 <control name="ctlMessage" title="指导语" property="message" type="TextBox" edit="Y" required="N"
-                         format="" width="1" height="1" column="1"/>
+                         format="" width="1" height="2" column="2"/>
             </panel>
             <panel name="pnlTProjectGroup" title="测评对象分组" object="projectgroup" type="Grid"><!-- userrole -->
                 <control name="id" title="ID" property="id" type="Hidden" edit="" required="" format="" width=""
@@ -102,7 +102,7 @@
 		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
 		        <param name="To" value="frmAddGroupNumber"/>
 		        <param name="Mode" value="Add"/>
-		        <param name="Window" value="Medium"/>
+		        <param name="Window" value="Small"/>
 		        <param name="Title" value="新增主体身份人数"></param>
 		      </procedure>
 		      <procedure name="jsquery" logic="Query" ifyes="" ifno="">
@@ -119,7 +119,7 @@
 		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
 		        <param name="To" value="frmAddGroupNumber"/>
 		        <param name="Mode" value="Edit"/>
-		        <param name="Window" value="Medium"/>
+		        <param name="Window" value="Small"/>
 		        <param name="Title" value="编辑主体身份人数"></param>
 		      </procedure>
 		      <procedure name="jsquery" logic="Query" ifyes="" ifno="">
