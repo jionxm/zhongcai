@@ -20,6 +20,6 @@ select * from (
 	from t_qr q
 	LEFT JOIN t_project p ON q.project_id=p.id
 	LEFT JOIN t_tester t ON q.tester_id=t.id
-	LEFT JOIN t_group g ON g.id = q.proj_group_id
+	LEFT JOIN t_group g ON g.id = (select group_id from t_project_group where id= q.proj_group_id)
 	LEFT JOIN t_dict d ON d.code = t.name and d.cata_code="t_employee.identity"
  ) a 

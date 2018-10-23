@@ -12,6 +12,7 @@
 		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />
 		
+		<property name="empName" type="String" length="20" field=""/>
 		<property name="det" type="String" length="20" field=""/>
 	 </object>
 	 <!-- 分组人员model -->
