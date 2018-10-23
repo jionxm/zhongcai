@@ -29,23 +29,23 @@
 				<control name="id" title="ID" property="id" type="Hidden"
 					edit="" required="" format="" width="" height="" column="" />
 				<control name="ctlEdit" title="编辑" property="" type="Link"
-					edit="" required="" format="" width="" height="" column="" />
+					edit="" required="" format="" width="100" height="" column="" />
 				<control name="ctlDel" title="删除" property="" type="Link"
-					edit="" required="" format="" width="" height="" column="" />
+					edit="" required="" format="" width="100" height="" column="" />
 				<control name="ctlTestId" title="测评表id" property="testId"
 					type="Hidden" edit="" required="" format="" width="140" height=""
 					column="" />
 				<control name="ctlNumber" title="指标号码" property="number"
-					type="TextBox" edit="Y" required="Y" format="" width="80" height="1"
+					type="TextBox" edit="Y" required="Y" format="" width="40" height="1"
 					column="" />
 				<control name="ctlDimension" title="维度" property="dimension"
-					type="TextBox" edit="" required="" format="" width="80" height=""
+					type="TextBox" edit="" required="" format="" width="200" height=""
 					column="" />
 				<control name="ctlQuestion" title="指标" property="question"
-					type="TextBox" edit="" required="" format="" width="400" height=""
+					type="TextBox" edit="" required="" format="" width="800" height=""
 					column="" />
 				<control name="ctlWeight" title="权重" property="weight" type="TextBox"
-					edit="" required="" format="" width="140" height="" column="" />
+					edit="" required="" format="" width="60" height="" column="" />
 				<control name="ctlNtypeName" title="试题类型" property="typeName"
 					type="TextBox" edit="" required="" format="" width="80" height=""
 					column="" />
@@ -117,6 +117,7 @@
 					<param name="To" value="frmQuestionsEdit"></param>
 					<param name="Mode" value="Add"></param>
 					<param name="Window" value="Large"></param>
+					<param name="Title" value="新增指标"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
 					<param name="In" value="pnlDetailGroup"></param>
@@ -135,6 +136,7 @@
 					<param name="To" value="frmQuestionsEdit"></param>
 					<param name="Mode" value="Edit"></param>
 					<param name="Window" value="Large"></param>
+					<param name="Title" value="编辑指标"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
 					<param name="In" value="pnlDetailGroup"></param>
@@ -171,7 +173,7 @@
 					ifno="">
 					<param name="To" value="frmTesterEdit"></param>
 					<param name="Mode" value="Add"></param>
-					<param name="Title" value="新增主题权重"></param>
+					<param name="Title" value="新增主体权重"></param>
 					<param name="Window" value="Small"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
@@ -190,7 +192,7 @@
 					ifno="">
 					<param name="To" value="frmTesterEdit"></param>
 					<param name="Mode" value="Edit"></param>
-					<param name="Title" value="编辑主题权重"></param>
+					<param name="Title" value="编辑主体权重"></param>
 					<param name="Window" value="Medium"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
@@ -228,6 +230,7 @@
 					<param name="To" value="frmGrantEdit"></param>
 					<param name="Mode" value="Edit"></param>
 					<param name="Window" value="Large"></param>
+					<param name="Title" value="身份授权管理"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
 					<param name="In" value="pnlDetailGroup"></param>

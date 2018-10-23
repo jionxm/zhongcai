@@ -27,7 +27,7 @@
             <panel name="authorizeGroup" title="授权列表" object="authorize" type="Grid">
 				<control name="ztqzId" title="ztqzId" property="ztqzId" type="Hidden" edit="" required="" format="" width="" height="" column="" />
 				<control name="id" title="id" property="id" type="Hidden" edit="" required="" format="" width="" height="" column="" />
-			    <control name="ctlCancel" title="取消授权" property="" type="Link" edit="" required="" format="" width="120" height="" column=""/>
+			    <control name="ctlCancel" title="取消授权" property="" type="Link" edit="" required="" format="" width="80" height="" column=""/>
 				<control name="questionName" title="授权指标名称" property="questionName" type="TextBox" edit="" required="" format="" width="400" height="1" column="1" />
 				<control name="updateTime" title="更新日期" property="updateTime" type="TextBox" edit="" required="" target="" format="" width="160" height="1" column="" />
 				<control name="updateBy" title="更新人" property="updateBy" type="TextBox" edit="" required="" target="" format="" width="80" height="1" column="" />
