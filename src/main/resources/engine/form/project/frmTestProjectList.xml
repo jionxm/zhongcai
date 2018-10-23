@@ -24,7 +24,7 @@
     <control name="ctlYear" title="年份" property="year" type="TextBox" edit="" required="" format="" width="80" height="" column=""/>
     <control name="ctlPlanDate" title="计划时间" property="planDate" type="DateBox" edit="" required="" format="" width="100" height="" column=""/>
     <control name="ctlAddress" title="地点" property="address" type="TextBox" edit="" required="" format="" width="150" height="" column=""/>
-    <control name="ctlMessage" title="指导语" property="message" type="TextBox" edit="" required="" format="" width="550" height="" column=""/>  
+    <control name="ctlMessage" title="指导语" property="message" type="TextBox" edit="" required="" format="" width="500" height="" column=""/>  
   </panel>
     <flow trigger="" event="OnLoad" filter="">
       <procedure name="j1"  logic="Clear" ifyes="j2" ifno="" sync="Y">

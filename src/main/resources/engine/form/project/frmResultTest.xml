@@ -9,21 +9,21 @@
     <control name="ctlClear" title="清空条件" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>    
   </panel>
   <panel name="pCondition" title="查询条件" object="qr" type="Group">
-    <control name="lk_projectId" title="测评项目" property="projectId" type="ComboBox" edit="Y" required="N" format="" width="1" height="1" column="3"/>
+  	<control name="eq_projectId" title="测评项目id" property="projectId" type="Hidden" edit="Y" required="N" format="" width="1" height="1" column="3"/>
+    <control name="ctlProjectName" title="测评项目" property="projectName" type="PopupBox" edit="Y" required="N" format="" width="1" height="1" column="3"/>
   </panel>  
-  <panel name="pTable" title="查询结果" object="project" type="Grid">
+  <panel name="pTable" title="查询结果" object="qr" type="Grid">
     <control name="id" title="id" property="id" type="Hidden" edit="Y" required="" format="" width="" height="" column=""/>
-    <control name="ctlEdit" title="编辑" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
-    <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
-    <control name="ctlStart" title="启动" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
-    <control name="ctlClose" title="关闭" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
-    <control name="ctlName" title="测评项目名称" property="name" type="DataLink" edit="" required="" format="" width="200" height="" column=""/>
+    <control name="ctlProjectId" title="测评项目id" property="projectId" type="Hidden" edit="" required="" format="" width="200" height="" column=""/>
+    <control name="ctlProjectName" title="测评项目名称" property="projectName" type="TextBox" edit="" required="" format="" width="200" height="" column=""/>
+    <control name="ctlQRCode" title="二维码uuid" property="QRCode" type="DataLink" edit="" required="" format="" width="200" height="" column=""/>
+    <control name="ctlGroupId" title="测评对象id" property="projGroupId" type="Hidden" edit="" required="" format="" width="200" height="" column=""/>
+    <control name="ctlGroupName" title="测评对象" property="groupName" type="TextBox" edit="" required="" format="" width="200" height="" column=""/>
+    <control name="ctlTesterId" title="主体id" property="testerId" type="Hidden" edit="" required="" format="" width="200" height="" column=""/>
+    <control name="ctlTesterName" title="主体" property="testerName" type="TextBox" edit="" required="" format="" width="200" height="" column=""/>
+    
     <control name="ctlState" title="状态" property="state" type="Hidden" edit="" required="" format="" width="80" height="" column=""/>      
     <control name="ctlStateName" title="状态" property="stateName" type="TextBox" edit="" required="" format="" width="80" height="" column=""/>
-    <control name="ctlYear" title="年份" property="year" type="TextBox" edit="" required="" format="" width="80" height="" column=""/>
-    <control name="ctlPlanDate" title="计划时间" property="planDate" type="DateBox" edit="" required="" format="" width="100" height="" column=""/>
-    <control name="ctlAddress" title="地点" property="address" type="TextBox" edit="" required="" format="" width="150" height="" column=""/>
-    <control name="ctlMessage" title="指导语" property="message" type="TextBox" edit="" required="" format="" width="500" height="" column=""/>  
   </panel>
     <flow trigger="" event="OnLoad" filter="">
       <procedure name="j1"  logic="Clear" ifyes="j2" ifno="" sync="Y">
@@ -32,104 +32,42 @@
       <procedure name="j2"  logic="Query" ifyes="" ifno="">
         <param name="In" value="pCondition"></param>
         <param name="Out" value="pTable"></param>
-        <param name="Sql" value="project/QryProjectList"></param>
+        <param name="Sql" value="project/QryQRList"></param>
       </procedure>   
-    </flow>
-    <!-- 启动 -->
-    <flow trigger="pTable.ctlStart" event="OnClick"  filter="row.state=='stop'">
-		<procedure name ="jssave" logic="SaveCustom" ifyes="j2" ifno="">
-       		<param name="In" value="pTable"/>
-			<param name="Sql" value="project/UpdateProStateStart"/>
-		</procedure>      
-		<procedure name="j2"  logic="Query" ifyes="" ifno="">
-	        <param name="In" value="pCondition"></param>
-	        <param name="Out" value="pTable"></param>
-	        <param name="Sql" value="project/QryProjectList"></param>
-      </procedure>
-	</flow>
-	<!-- 关闭 -->
-    <flow trigger="pTable.ctlClose" event="OnClick"  filter="row.state=='start'||row.state=='teststart'">
-		<procedure name ="jssave" logic="SaveCustom" ifyes="j2" ifno="">
-       		<param name="In" value="pTable"/>
-			<param name="Sql" value="project/UpdateProStateClose"/>
-		</procedure>      
-		<procedure name="j2"  logic="Query" ifyes="" ifno="">
-	        <param name="In" value="pCondition"></param>
-	        <param name="Out" value="pTable"></param>
-	        <param name="Sql" value="project/QryProjectList"></param>
-      </procedure>
-	</flow>
+    </flow>    
     <!-- 清空 -->
     <flow trigger="pToolbar.ctlClear" event="OnClick" filter="">
       <procedure name="jsclear"  logic="Clear" ifyes="" ifno="">
         <param name="Out" value="pCondition"></param>
       </procedure>
-    </flow>
-    <!-- 新增 -->
-    <flow trigger="pToolbar.ctlAdd" event="OnClick" filter="">
-      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
-        <param name="To" value="frmProjectEdit"></param>
-        <param name="Mode" value="Add"></param>
-         <param name="Window" value="Medium"></param>
-         <param name="Title" value="新增测评项目"></param>
-      </procedure>
-      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-        <param name="In" value="pCondition"></param>
-        <param name="Out" value="pTable"></param>
-        <param name="Sql" value="project/QryProjectList"></param>
-      </procedure>              
-    </flow>
+    </flow>    
     <!-- 查询 -->
     <flow trigger="pToolbar.ctlQuery" event="OnClick" filter="">
       <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
         <param name="In" value="pCondition"></param>
         <param name="Out" value="pTable"></param>
-        <param name="Sql" value="project/QryProjectList"></param>
+        <param name="Sql" value="project/QryQRList"></param>
       </procedure>              
     </flow>  
     <!-- 点击标题 -->
-    <flow trigger="pTable.ctlName" event="OnClick" filter="">
+    <flow trigger="pTable.ctlQRCode" event="OnClick" filter="">
       <procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jsgoto" ifno="">
         <param name="In" value="pTable.id"></param>
       </procedure>
       <procedure name="jsgoto"  logic="Transition" ifyes="" ifno="">
-        <param name="To" value="frmProjectDetail"></param>
+        <param name="To" value="frmResultTestDetail"></param>
         <param name="Mode" value="Readonly"></param>
       </procedure>
-    </flow>
-    <!-- 删除 --> 
-     <flow trigger="pTable.ctlDel" event="OnClick" filter="">
-      <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">
-       <param name="Title" value="删除提示" />
-       <param name="Msg" value="确认删除当前数据吗?" />
-      </procedure>
-      <procedure name="j1"  logic="Delete" ifyes="j2" ifno="">
-        <param name="In" value="pTable" />
-        <param name="Msg" value="'测评项目已删除'" />
-      </procedure>
-      <procedure name="j2"  logic="Query" ifyes="" ifno="">
-        <param name="In" value="pCondition"></param>
-        <param name="Out" value="pTable"></param>
-        <param name="Sql" value="project/QryProjectList"></param>
-      </procedure>          
-    </flow>  
-    <!-- 编辑 -->
-    <flow trigger="pTable.ctlEdit" event="OnClick" filter="">
-      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
-        <param name="In" value="pTable.id"></param>
-      </procedure>
-      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
-        <param name="To" value="frmProjectEdit"></param>
-        <param name="Mode" value="Edit"></param>
-        <param name="Window" value="Medium"></param>
-        <param name="Title" value="编辑测评项目"></param>
-      </procedure>
-      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-        <param name="In" value="pCondition"></param>
-        <param name="Out" value="pTable"></param>
-        <param name="Sql" value="project/QryProjectList"></param>
-      </procedure>              
-    </flow> 
+    </flow>    
+    <!-- 测评项目 -->
+    <flow trigger="pCondition.ctlProjectName" event="OnClick" filter="" >
+	<procedure name="search"  logic="Find" ifyes="" ifno="">
+		<param name="Out" value="pCondition"/>
+		<param name="Sql" value="project1"/>
+		<param name="Title" value="测评项目选择"/>
+		<param name="Columns" value="id,测评项目编码,eq_projectId|name,测评项目名称,ctlProjectName"/>
+	</procedure>
+	</flow>
     
     <layout>
       <region location ="North" scale="">
