@@ -87,7 +87,7 @@
  	<object name="qr" table="t_qr" primary="id" unique="" order="">
 		<property name="id" type="Long" length="20" initial="" field="id"/>
 		<property name="projectId" type="Long" length="20" initial="" field="project_id"/>
-		<property name="QRCode" type="Long" length="20" initial="" field="QR_code"/>
+		<property name="QRCode" type="String" length="20" initial="" field="QR_code"/>
 		<property name="projGroupId" type="Long" length="20" initial="" field="proj_group_id"/>
 		<property name="state" type="String" length="1" initial="" field="state"/>
 		<property name="testerId" type="Long" length="20" initial="" field="tester_id"/>

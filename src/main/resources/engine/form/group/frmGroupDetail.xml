@@ -23,8 +23,8 @@
 					edit="" required="" format="" width="" height="" column="" />
 				<control name="empId" title="人员编号" property="empId" type="Hidden"
 					edit="" required="" format="" width="" height="" column="" />
-				<control name="ctlEdit" title="编辑" property="" type="Link"
-					edit="" required="" format="" width="" height="" column="" />
+				<!-- <control name="ctlEdit" title="编辑" property="" type="Link"
+					edit="" required="" format="" width="" height="" column="" /> -->
 				<control name="ctlDel" title="删除" property="" type="Link"
 					edit="" required="" format="" width="" height="" column="" />
 				<control name="ctlEmpName" title="人员姓名" property="empName" type="TextBox"
@@ -55,7 +55,7 @@
 				</procedure>
 			</flow>
  <!-- 编辑 -->
-    <flow trigger="pnlEmp.ctlEdit" event="OnClick" filter="">
+   <!--  <flow trigger="pnlEmp.ctlEdit" event="OnClick" filter="">
       <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
         <param name="In" value="pnlEmp.id"></param>
       </procedure>
@@ -69,7 +69,7 @@
         <param name="Out" value="pnlEmp"></param>
         <param name="Sql" value="group/QryGroupPeople2"></param>
       </procedure>              
-    </flow> 
+    </flow>  -->
     <!-- 删除 --> 
      <flow trigger="pnlEmp.ctlDel" event="OnClick" filter="">
       <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">
@@ -86,7 +86,7 @@
 					<param name="Sql" value="group/QryGroupPeople2"></param>
 	</procedure>        
     </flow>
-			<!-- 新增参会人员 -->
+			<!-- 新增分组人员  -->
 			<flow trigger="pnlDetailTool.ctlEmp" event="OnClick" filter="">
 				<procedure name="jsencodeid" server="" logic="EncodeId"
 					ifyes="jspopup" ifno="">
@@ -95,7 +95,7 @@
 				</procedure>
 				<procedure name="jspopup" logic="Popup" ifyes="jsquery"
 					ifno="">
-					<param name="To" value="frmGroupPeople" />
+					<param name="To" value="frmAddGroup" />
 					<param name="Mode" value="Add" />
 					<param name="Window" value="Medium" />
 					<param name="Title" value="新增分组人员"></param>
