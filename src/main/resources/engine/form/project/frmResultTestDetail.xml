@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tsoftware xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
+    <ui_layer>
+        <ui name="frmResultTestDetail" title="答题结果详情">
+            <panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
+                <control name="ctlSave" title="保存" property="" type="Button" edit="" required="" format=""
+                         width="" height="" column=""/>                         
+                <control name="ctlBack" title="返回" property="" type="Button" edit="" required="" format="" width=""
+                         height="" column=""/>
+            </panel>
+            <panel name="pnlDetailGroup" title="详细信息" object="qr" type="Group"> 
+            	<control name="ctlId" title="二维码编号" property="id" type="TextBox" edit="" required="" format=""
+                         width="1" height="" column="1"/>               
+                <control name="ctlQRCode" title="二维码UI编号" property="QRCode" type="Hidden" edit="" required="" format=""
+                         width="1" height="" column=""/>
+                <control name="ctlProjectId" title="测评项目编号" property="projectId" type="Hidden" edit="" required="" format="" width="1"
+                         height="" column=""/>
+                <control name="ctlProjGroupId" title="测评对象编号" property="projGroupId" type="Hidden" edit="" required="" format="" width="1"
+                         height="" column=""/>
+                <control name="ctlTesterId" title="主体身份编号" property="testerId" type="Hidden" edit="" required="" format="" width="1"
+                         height="" column=""/>
+                <control name="ctlProjectName" title="测评项目名称" property="projectName" type="TextBox" edit="" required="" format="" width="1"
+                         height="" column=""/>
+                <control name="ctlGroupName" title="测评对象名称" property="groupName" type="TextBox" edit="" required="" format="" width="1"
+                         height="" column="2"/>
+            </panel>
+            <panel name="pTable" title="具体题目及结果" object="result" type="Grid">
+                <control name="ctlQRId" title="二维码编号" property="QRId" type="Hidden" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <!-- <control name="ctlChooseName" title="选项类型名称" property="chooseName" type="TextBox" edit="" required="" format="" width="100"
+                         height="" column=""/> -->
+                <control name="ctlQuestionNumber" title="题目编号" property="questionNumber" type="TextBox" edit="" required="" format="" width="80"
+                         height="2" column=""/>
+                <control name="ctlQuestion" title="题目" property="questionName" type="TextBox" edit="" required="" format="" width="500"
+                         height="2" column=""/>
+                <control name="ctlResult" title="选项值" property="result" type="TextBox" edit="Y" required="" format="" width=""
+                         height="" column=""/>
+                <control name="updateTime" title="更新日期" property="updateTime" type="Hidden" edit="Y" required="N" target="CurrentTime()" format="" width="2" height="1" column="2"  />
+				<control name="updateBy" title="更新人" property="updateBy" type="Hidden" edit="Y" required="N" target="session.userInfo.empId" format="" width="2" height="1" column="2"  />		
+				<control name="createTime" title="创建日期" property="createTime" type="Hidden" edit="Y" required="N" target="editMode=='Add'?CurrentTime():nil" format="" width="2" height="1" column="2"  />
+				<control name="createBy" title="创建人" property="createBy" type="Hidden" edit="Y" required="N" target="editMode=='Add'?session.userInfo.empId:nil" format="" width="2" height="1" column="2"  />                
+            </panel>
+            
+            <!-- 加载 -->
+            <flow trigger="" event="OnLoad" filter="">
+                <procedure name="getId" server="" logic="DecodeId" ifyes="queryInfo" ifno="">
+                    <param name="Out" value="pnlDetailGroup.ctlId"></param>
+                </procedure>                
+                <procedure name="queryInfo" logic="QueryById" ifyes="queryGrid" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlDetailGroup"></param>
+                    <param name="Sql" value="project/QryQrDetail"></param>
+                </procedure>
+                <procedure name="queryGrid" logic="Query" ifyes="" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pTable"></param>
+                    <param name="Sql" value="project/QryQrQuestion"></param>
+                </procedure>                             
+            </flow>
+		    
+		    
+             <!-- 取消 -->
+            <flow trigger="pnlDetailTool.ctlBack" event="OnClick" filter="">
+                <procedure name="jsclose" server="" logic="Back" ifyes="" ifno="">
+                    <param name="Refresh" value="True"></param>
+                </procedure>
+            </flow>
+            <!-- 确定 -->
+            <flow trigger="pnlDetailTool.ctlSave" event="OnClick" filter="">
+                <procedure name="jssave" logic="Save" ifyes="jsclose3" ifno="">
+                    <param name="In" value=",pTable"></param>
+                    <!-- <param name="Mode" value="Edit"/> -->
+                    <param name="Msg" value="'保存成功'"></param>
+                </procedure>
+                <procedure name="jsclose3" server="" logic="Close" ifyes="" ifno="">
+                    <param name="Refresh" value="true"></param>
+                </procedure>
+            </flow>
+
+            
+            <!-- 布局 -->
+            <layout>
+                <region location="North" scale="">
+                    <subregion panel="pnlDetailGroup" location="Center" scale=""/>
+                    <subregion panel="pnlDetailTool" location="North" scale=""/>
+                </region>
+
+                <region location="Center" scale="">
+                    <subregion panel="pTable" location="Center" scale=""/>
+                </region>
+                <!-- <region location="South" scale="">
+                    <subregion panel="pnlDetailTool" location="Center" scale=""/>
+                </region> -->
+            </layout>
+        </ui>
+    </ui_layer>
+</tsoftware>

@@ -80,7 +80,7 @@
 		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
 		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />	
-		
+		<property name="questionName" type="String" length="500" initial="" field=""/>
  	</object>  
  	
  	<!-- 二维码表model -->

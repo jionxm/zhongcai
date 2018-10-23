@@ -56,7 +56,7 @@
       </procedure>
       <procedure name="jsgoto"  logic="Transition" ifyes="" ifno="">
         <param name="To" value="frmResultTestDetail"></param>
-        <param name="Mode" value="Readonly"></param>
+        <param name="Mode" value="Add"></param>
       </procedure>
     </flow>    
     <!-- 测评项目 -->
