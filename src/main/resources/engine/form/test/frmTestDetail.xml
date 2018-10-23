@@ -4,7 +4,9 @@
 	<ui_layer>
 		<ui name="frmTestDetail" title="测评表详情">
 			<panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
-				<control name="ctlQuestion" title="新增指标" property="" type="Button"
+				<control name="ctlQuestionSelect" title="选择类型指标新增" property="" type="Button"
+					edit="" required="" format="" width="" height="" column="" />
+				<control name="ctlQuestionBlank" title="填空类型指标新增" property="" type="Button"
 					edit="" required="" format="" width="" height="" column="" />
 				<control name="ctlTester" title="新增主体权重" property="" type="Button"
 					edit="" required="" format="" width="" height="" column="" />
@@ -105,8 +107,8 @@
 				</procedure>
 			</flow>
 
-			<!-- 新增指标 -->
-			<flow trigger="pnlDetailTool.ctlQuestion" event="OnClick"
+			<!-- 填空类型指标新增 -->
+			<flow trigger="pnlDetailTool.ctlQuestionBlank" event="OnClick"
 				filter="">
 				<procedure name="jsencodeid" server="" logic="EncodeId"
 					ifyes="jspopup" ifno="">
@@ -114,10 +116,30 @@
 				</procedure>
 				<procedure name="jspopup" server="" logic="Popup" ifyes="queryTable"
 					ifno="">
-					<param name="To" value="frmQuestionsEdit"></param>
+					<param name="To" value="frmQuestionsBlaEdit"></param>
 					<param name="Mode" value="Add"></param>
 					<param name="Window" value="Large"></param>
-					<param name="Title" value="新增指标"></param>
+					<param name="Title" value="填空类型指标新增"></param>
+				</procedure>
+				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
+					<param name="In" value="pnlDetailGroup"></param>
+					<param name="Out" value="pnlQuestion"></param>
+					<param name="Sql" value="test/QryQuestionList"></param>
+				</procedure>
+			</flow>
+				<!-- 选择类型新增指标 -->
+			<flow trigger="pnlDetailTool.ctlQuestionSelect" event="OnClick"
+				filter="">
+				<procedure name="jsencodeid" server="" logic="EncodeId"
+					ifyes="jspopup" ifno="">
+					<param name="In" value="pnlDetailGroup.ctlId"></param>
+				</procedure>
+				<procedure name="jspopup" server="" logic="Popup" ifyes="queryTable"
+					ifno="">
+					<param name="To" value="frmQuestionsSelEdit"></param>
+					<param name="Mode" value="Add"></param>
+					<param name="Window" value="Large"></param>
+					<param name="Title" value="选择类型指标新增"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
 					<param name="In" value="pnlDetailGroup"></param>
@@ -128,15 +150,34 @@
 			<!-- 编辑指标 -->
 			<flow trigger="pnlQuestion.ctlEdit" event="OnClick" filter="">
 				<procedure name="jsencodeid" server="" logic="EncodeId"
-					ifyes="jspopup" ifno="">
+					ifyes="branch" ifno="">
 					<param name="In" value="pnlQuestion.id"></param>
 				</procedure>
-				<procedure name="jspopup" logic="Popup" ifyes="queryTable"
+				
+				
+				
+				<procedure name="branch" server="" logic="Branch" ifyes="jspopupBla"
+					ifno="jspopupSel">
+					<param name="In" value="getPanelControlValue('pnlQuestion.typeName')=='填空题'"></param>
+				</procedure>
+				
+				
+				
+				
+				<procedure name="jspopupBla" logic="Popup" ifyes="queryTable"
 					ifno="">
-					<param name="To" value="frmQuestionsEdit"></param>
+					<param name="To" value="frmQuestionsBlaEdit"></param>
 					<param name="Mode" value="Edit"></param>
 					<param name="Window" value="Large"></param>
-					<param name="Title" value="编辑指标"></param>
+					<param name="Title" value="编辑填空类型指标"></param>
+				</procedure>
+				
+				<procedure name="jspopupSel" logic="Popup" ifyes="queryTable"
+					ifno="">
+					<param name="To" value="frmQuestionsSelEdit"></param>
+					<param name="Mode" value="Edit"></param>
+					<param name="Window" value="Large"></param>
+					<param name="Title" value="编辑选择类型指标"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
 					<param name="In" value="pnlDetailGroup"></param>

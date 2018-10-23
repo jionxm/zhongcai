@@ -2,7 +2,7 @@
 <tsoftware xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
 	<ui_layer>
-		<ui name="frmQuestionsEdit" title="指标编辑">
+		<ui name="frmQuestionsSelEdit" title="指标编辑">
 			<!-- <panel name="pnlHidden" title="查询条件" object="test" type="Hidden"> 
 				<control name="eq_id" title="id" property="id" type="Hidden" edit="" required="" 
 				format="" width="" height="" column="" /> </panel> -->
@@ -20,26 +20,29 @@
 				<control name="ctlNumber" title="指标号码" property="number"
 					type="TextBox" edit="Y" required="Y" format="" width="1" height="1"
 					column="" />
-				<control name="ctlType" title="试题类型" property="type" type="ComboBox"
-					edit="Y" required="" format="" width="1" height="1" column="2" />	
-				<control name="ctlWeight" title="权重" property="weight" type="TextBox"
-					edit="Y" required="" format="" width="1" height="1" column="" />	
-					
-				<control name="ctlMust" title="是否必填" property="must" type="ComboBox"
-					edit="Y" required="" format="" width="1" height="1" column="2" />
 				<control name="ctlDimension" title="维度" property="dimension"
-					type="TextBox" edit="Y" required="" format="" width="2" height="1"
-					column="2" />
-					
-				<control name="ctlQuestion" title="指标" property="question"
-					type="TextBox" edit="Y" required="N" format="" width="1" height="3"
-					column="1" />
-				<control name="ctlChooseName" title="选项类型" property="chooseName"
-					type="PopupBox" edit="Y" required="N" format="" width="1" height="1"
-					column="" />
-				<control name="ctlTextLength" title="文本长度" property="textLength"
 					type="TextBox" edit="Y" required="" format="" width="1" height="1"
 					column="2" />
+						
+				<control name="ctlQuestion" title="指标" property="question"
+					type="TextBox" edit="Y" required="N" format="" width="2" height="3"
+					column="2" />
+					
+				<control name="ctlType" title="试题类型" property="type" type="ComboBox"
+					edit="Y" required="" format="" width="1" height="1" column="" />	
+				<control name="ctlChooseName" title="选项类型" property="chooseName"
+					type="PopupBox" edit="Y" required="N" format="" width="1" height="1"
+					column="2" />	
+					
+					
+				<control name="ctlWeight" title="权重" property="weight" type="TextBox"
+					edit="Y" required="" format="" width="1" height="1" column="" />		
+				<control name="ctlMust" title="是否必填" property="must" type="ComboBox"
+					edit="Y" required="" format="" width="1" height="1" column="2" />
+				
+					
+				
+			
 
 				
 
@@ -67,7 +70,7 @@
 				<procedure name="getType" logic="List" ifyes="getMust"
 					ifno="">
 					<param name="Out" value="questionGroup.ctlType"></param>
-					<param name="Sql" value="test/questionType"></param>
+					<param name="Sql" value="test/sleQuestionType"></param>
 				</procedure>
 				<procedure name="getMust" logic="List" ifyes="branch"
 					ifno="">
@@ -78,7 +81,7 @@
 
 				<procedure name="branch" server="" logic="Branch" ifyes="getTestId"
 					ifno="getQuestionId">
-					<param name="In" value="getStorage('frmQuestionsEdit_EditMode')=='Add'"></param>
+					<param name="In" value="getStorage('frmQuestionsSelEdit_EditMode')=='Add'"></param>
 				</procedure>
 				<procedure name="getTestId" server="" logic="DecodeId"
 					ifyes="" ifno="">
