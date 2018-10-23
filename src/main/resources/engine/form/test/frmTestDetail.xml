@@ -174,7 +174,7 @@
 					<param name="To" value="frmTesterEdit"></param>
 					<param name="Mode" value="Add"></param>
 					<param name="Title" value="新增主体权重"></param>
-					<param name="Window" value="Small"></param>
+					<param name="Window" value="Medium"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
 					<param name="In" value="pnlDetailGroup"></param>

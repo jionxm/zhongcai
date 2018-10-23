@@ -22,5 +22,4 @@ select * from (
 	LEFT JOIN t_dict d1 ON t.type=d1.code and d1.cata_code="t_questions.type"
 	LEFT JOIN t_dict d3 ON t.must=d3.code and d3.cata_code="t_questions.must"
 	LEFT JOIN t_choose c ON t.choose_id = c.id 
-	where t.test_id=#{data.ctlId}
  ) a 

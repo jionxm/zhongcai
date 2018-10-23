@@ -58,7 +58,7 @@
 				<procedure name="qid" logic="QueryById" ifyes="" ifno="">
 					<param name="In" value="testerGroup"></param>
 					<param name="Out" value="testerGroup"></param>
-					<param name="Sql" value="test/QryTesterList"></param>
+					<param name="Sql" value="test/QryTesterListById"></param>
 				</procedure>
 			</flow>
 				
