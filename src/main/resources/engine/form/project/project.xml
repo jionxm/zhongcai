@@ -69,5 +69,37 @@
 		<property name="dimensionName" type="Long" length="20" initial="" field=""/>
  	</object>  
  	
+ 	<!-- 测评结果表model -->
+ 	<object name="result" table="t_result" primary="id" unique="" order="">
+		<property name="id" type="Long" length="20" initial="" field="id"/>
+		<property name="QRId" type="Long" length="20" initial="" field="QR_id"/>
+		<property name="questionNumber" type="Long" length="20" initial="" field="question_number"/>
+		<property name="result" type="String" length="500" initial="" field="result"/>
+		
+		<property name="createTime" type="Date" length="" validate=""  field="create_time" />
+		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
+		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
+		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />	
+		
+ 	</object>  
+ 	
+ 	<!-- 二维码表model -->
+ 	<object name="qr" table="t_qr" primary="id" unique="" order="">
+		<property name="id" type="Long" length="20" initial="" field="id"/>
+		<property name="projectId" type="Long" length="20" initial="" field="project_id"/>
+		<property name="QRCode" type="Long" length="20" initial="" field="QR_code"/>
+		<property name="projGroupId" type="Long" length="20" initial="" field="proj_group_id"/>
+		<property name="state" type="String" length="1" initial="" field="state"/>
+		<property name="testerId" type="Long" length="20" initial="" field="tester_id"/>
+		<property name="fileId" type="Long" length="20" initial="" field="file_id"/>
+		
+		<property name="createTime" type="Date" length="" validate=""  field="create_time" />
+		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
+		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
+		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />	
+		
+		<property name="stateName" type="String" length="20" initial="" field=""/>
+ 	</object>  
+ 	
 </model_layer>
 </tsoftware>
