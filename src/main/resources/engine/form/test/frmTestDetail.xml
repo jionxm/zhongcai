@@ -117,6 +117,7 @@
 					<param name="To" value="frmQuestionsEdit"></param>
 					<param name="Mode" value="Add"></param>
 					<param name="Window" value="Large"></param>
+					<param name="Title" value="新增指标"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
 					<param name="In" value="pnlDetailGroup"></param>
@@ -135,6 +136,7 @@
 					<param name="To" value="frmQuestionsEdit"></param>
 					<param name="Mode" value="Edit"></param>
 					<param name="Window" value="Large"></param>
+					<param name="Title" value="编辑指标"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
 					<param name="In" value="pnlDetailGroup"></param>
@@ -171,7 +173,7 @@
 					ifno="">
 					<param name="To" value="frmTesterEdit"></param>
 					<param name="Mode" value="Add"></param>
-					<param name="Title" value="新增主题权重"></param>
+					<param name="Title" value="新增主体权重"></param>
 					<param name="Window" value="Small"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
@@ -190,7 +192,7 @@
 					ifno="">
 					<param name="To" value="frmTesterEdit"></param>
 					<param name="Mode" value="Edit"></param>
-					<param name="Title" value="编辑主题权重"></param>
+					<param name="Title" value="编辑主体权重"></param>
 					<param name="Window" value="Medium"></param>
 				</procedure>
 				<procedure name="queryTable" logic="Query" ifyes="" ifno="">
