@@ -51,7 +51,7 @@
                 <procedure name="queryInfo" logic="QueryById" ifyes="queryGroup" ifno="">
                     <param name="In" value="pnlDetailGroup"></param>
                     <param name="Out" value="pnlDetailGroup"></param>
-                    <param name="Sql" value="project/QryProjectQr"></param>
+                    <param name="Sql" value="project/QryProjectList"></param>
                 </procedure>
                 <procedure name="queryGroup" logic="Query" ifyes="" ifno="">
                     <param name="In" value="pnlDetailGroup"></param>

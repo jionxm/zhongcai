@@ -34,7 +34,7 @@
       <procedure name="j2"  logic="Query" ifyes="" ifno="">
         <param name="In" value="pCondition"></param>
         <param name="Out" value="pTable"></param>
-        <param name="Sql" value="project/QryProjectId"></param>
+        <param name="Sql" value="project/QryProjectList"></param>
       </procedure>   
     </flow>
     <!-- 启动 -->
