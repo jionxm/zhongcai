@@ -15,11 +15,11 @@
 			<panel name="pnlDetailGroup" title="详细信息" object="test" type="Group">
 				<control name="ctlId" title="id" property="id" type="Hidden"
 					edit="N" required="N" format="" width="1" height="1" column="" />
-				<control name="ctlTitle" title="标题" property="title" type="TextBox"
-					edit="Y" required="" format="" width="2" height="" column="" />
-				<control name="ctlTypeName" title="对象类型" property="typeName"
+				<control name="ctlTitle" title="测评表名称" property="title" type="TextBox"
+					edit="Y" required="" format="" width="1" height="1" column="" />
+				<control name="ctlTypeName" title="测评对象类别" property="typeName"
 					type="TextBox" edit="Y" required="Y" format="" width="1" height="1"
-					column="3" />
+					column="2" />
 				<control name="ctlMessage" title="说明" property="message"
 					type="TextBox" edit="Y" required="N" format="" width="1" height="1"
 					column="1" />
