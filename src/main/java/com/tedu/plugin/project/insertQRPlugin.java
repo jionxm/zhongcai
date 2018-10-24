@@ -69,7 +69,7 @@ public class insertQRPlugin implements ILogicPlugin {
 	    		qp.getData().put("progroupId", progroupId);
 	    		qp.setQueryParam("project/QryTesterNumber");//查询主体人数
 	    		List<Map<String,Object>> numberlist = formService.queryBySqlId(qp);
-	    		log.info("numberlist"+numberlist);
+	    		//log.info("numberlist"+numberlist);
 	    		for(int i=0;i<numberlist.size();i++){
 	    			Object number =0;
 	    			Map<String,Object> mapnumber = numberlist.get(i);
