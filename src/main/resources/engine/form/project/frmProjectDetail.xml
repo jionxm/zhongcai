@@ -4,6 +4,8 @@
     <ui_layer>
         <ui name="frmProjectDetail" title="测评项目详情">
             <panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
+            	<control name="ctlAdd" title="生成二维码" property="" type="Button" edit="" required="" format=""
+                         width="" height="" column=""/>
                 <control name="ctlGroup" title="新增测评对象" property="" type="Button" edit="" required="" format=""
                          width="" height="" column=""/>                         
                 <control name="ctlBack" title="返回" property="" type="Button" edit="" required="" format="" width=""
@@ -128,6 +130,25 @@
                     <param name="Sql" value="project/QryProjectGroup"></param>
                 </procedure>              
 		    </flow>
+		    <!-- 生成二维码 -->
+            <flow trigger="pnlDetailTool.ctlAdd" event="OnClick" filter="">
+                <procedure name="jssave" logic="Save" ifyes="jsdel" ifno="">
+			   	  <param name="In" value="pnlDetailGroup"></param>
+			   	  <param name="Plugin" value="insertQRPlugin"></param>
+			   	  <param name="Msg" value="二维码已生成"></param>
+   	  			</procedure>
+   	  			<procedure name="jsdel" logic="SaveCustom" ifyes="jsencodeid" ifno="">
+			   	  <param name="In" value="pnlDetailGroup"></param>
+			   	  <param name="Sql" value="project/DelProject"></param>
+   	  			</procedure>
+   	  			<procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jsgoto" ifno="">
+			       <param name="In" value="pnlDetailGroup.ctlId"></param>
+			    </procedure>
+			    <procedure name="jsgoto"  logic="Transition" ifyes="" ifno="">
+			       <param name="To" value="frmProjectQrDetail"></param>
+			       <param name="Mode" value="Readonly"></param>
+			    </procedure>
+            </flow>
 		    <!-- 分组删除 -->
 		    <flow trigger="pnlTProjectGroup.ctlDel" event="OnClick" filter="">
 		      <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">

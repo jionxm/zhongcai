@@ -1,0 +1,1 @@
+delete from t_project where state is null
