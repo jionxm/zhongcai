@@ -1,6 +1,6 @@
 select * from (
 	select 
-	q.id as id,
+	q.id as id,t.test_id as testId,
 	q.project_id as projectId,
 	p.name as projectName,
 	q.QR_code as QRCode,	

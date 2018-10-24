@@ -102,6 +102,7 @@
 		<property name="groupName" type="String" length="20" initial="" field=""/>
 		<property name="projectName" type="String" length="20" initial="" field=""/>
 		<property name="stateName" type="String" length="20" initial="" field=""/>
+		<property name="testId" type="Long" length="20" initial="" field=""/>
  	</object>  
  	
 </model_layer>
