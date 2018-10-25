@@ -18,7 +18,7 @@
     <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlStart" title="启动" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlClose" title="关闭" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
-    <control name="ctlQr" title="发放二维码" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
+    <!-- <control name="ctlQr" title="发放二维码" property="" type="Link" edit="" required="" format="" width="" height="" column=""/> -->
     <control name="ctlName" title="测评项目名称" property="name" type="DataLink" edit="" required="" format="" width="200" height="" column=""/>
     <control name="ctlState" title="状态" property="state" type="Hidden" edit="" required="" format="" width="80" height="" column=""/>      
     <control name="ctlStateName" title="状态" property="stateName" type="TextBox" edit="" required="" format="" width="80" height="" column=""/>
