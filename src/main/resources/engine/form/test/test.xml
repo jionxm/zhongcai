@@ -4,7 +4,7 @@
 	<model_layer>
 		<!-- 测评项目model -->
 		<object name="test" table="t_test" primary="id" unique=""
-			order="title,version">
+			order="">
 			<property name="id" type="Long" length="20" initial=""
 				field="id" />
 			<property name="type" type="String" length="20" initial=""
