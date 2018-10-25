@@ -9,5 +9,5 @@ INSERT INTO `t_qr`
  `create_by`, 
  `update_time`,
  `update_by`  )
- VALUES ( #{data.projectId}, #{data.QRCode},  #{data.proGroupId},"0", #{data.testerId},
+ VALUES ( #{data.projectId}, #{data.QRCode},  #{data.proGroupId},"1", #{data.testerId},
  now(),#{data.empId},now(),#{data.empId});

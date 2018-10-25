@@ -8,6 +8,8 @@ select * from (
 	p.message as message,
 	p.state as state,
 	d3.name as stateName,
+	p.qrstate as qrState,
+	case when p.qrstate = 1 then "已生成" when p.qrstate = 0 then "未生成" end as qrStateName,
 	p.update_by as updateBy,
 	p.create_by as createBy,
 	p.update_time as updateTime,

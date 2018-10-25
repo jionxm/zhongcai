@@ -7,7 +7,7 @@ select * from (
 	q.proj_group_id as projGroupId,
 	g.name as groupName,
 	q.state as state,
-	case when q.state = 1 then "不可用" when q.state = 0 then "可用" end as stateName,
+	case when q.state = 1 then "可用" when q.state = 0 then "不可用" end as stateName,
 	q.tester_id as testerId,
 	t.name as testerName1,
 	d.name as testerName,

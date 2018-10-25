@@ -13,6 +13,7 @@
 		<property name="message" type="String" length="200" field="message"/>
 		<property name="state" type="String" length="20" field="state"/>
 		<property name="version" type="Long" length="20" field="version"/>
+		<property name="qrState" type="String" length="20" field="qrstate"/>
 		
 		<property name="createTime" type="Date" length="" validate=""  field="create_time" />		
 		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
@@ -20,6 +21,7 @@
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />
 		
 		<property name="stateName" type="String" length="20" validate=""  field="" />
+		<property name="qrStateName" type="String" length="20" validate=""  field="" />
 		<property name="scopeName" type="String" length="20" validate=""  field="" />
  	</object>  
  	<!-- 测评对象分组model -->

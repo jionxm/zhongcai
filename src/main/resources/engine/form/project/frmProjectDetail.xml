@@ -24,6 +24,8 @@
                          width="1" height="1" column="5"/>
                 <control name="ctlMessage" title="指导语" property="message" type="TextBox" edit="Y" required="N"
                          format="" width="1" height="2" column="2"/>
+                <control name="ctlQrState" title="二维码生成状态" property="qrState" type="Hidden" edit="Y" required="" format="" width="1"
+                         height="1" column="1"/>
             </panel>
             <panel name="pnlTProjectGroup" title="测评对象分组" object="projectgroup" type="Grid"><!-- userrole -->
                 <control name="id" title="ID" property="id" type="Hidden" edit="" required="" format="" width=""
@@ -132,14 +134,25 @@
 		    </flow>
 		    <!-- 生成二维码 -->
             <flow trigger="pnlDetailTool.ctlAdd" event="OnClick" filter="">
+            	<procedure name="branch" server="" logic="Branch" ifyes="jssave" ifno="jsmsg">
+        			<param name="In" value="getPanelControlValue('pnlDetailGroup.ctlQrState')=='0'"/>
+      			</procedure> 
+      			<procedure name="jsmsg" server="" logic="ConfirmMsg" ifyes="jsencodeid" ifno="">
+		       		<param name="Title" value="删除提示" />
+		       		<param name="Msg" value="该项目已经生成二维码,点击跳转至二维码列表" />
+		      	</procedure>
                 <procedure name="jssave" logic="Save" ifyes="jsdel" ifno="">
 			   	  <param name="In" value="pnlDetailGroup"></param>
 			   	  <param name="Plugin" value="insertQRPlugin"></param>
 			   	  <param name="Msg" value="二维码已生成"></param>
    	  			</procedure>
-   	  			<procedure name="jsdel" logic="SaveCustom" ifyes="jsencodeid" ifno="">
+   	  			<procedure name="jsdel" logic="SaveCustom" ifyes="jsupdate" ifno="">
 			   	  <param name="In" value="pnlDetailGroup"></param>
 			   	  <param name="Sql" value="project/DelProject"></param>
+   	  			</procedure>
+   	  			<procedure name="jsupdate" logic="SaveCustom" ifyes="jsencodeid" ifno="">
+			   	  <param name="In" value="pnlDetailGroup"></param>
+			   	  <param name="Sql" value="project/UpdateProjectQrState"></param>
    	  			</procedure>
    	  			<procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jsgoto" ifno="">
 			       <param name="In" value="pnlDetailGroup.ctlId"></param>

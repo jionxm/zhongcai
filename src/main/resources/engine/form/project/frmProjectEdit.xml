@@ -18,6 +18,8 @@
                          initial="'尊敬的评委....'" height="5" column="1"/>
                 <control name="ctlState" title="状态" property="state" type="Hidden" edit="Y" required="" format="" width="1"
                          height="1" column="1" initial="'stop'"/>
+				<control name="ctlQrState" title="二维码生成状态" property="qrState" type="Hidden" edit="Y" required="" format="" width="1"
+                         height="1" column="1" initial="'0'"/>
 
 				<control name="updateTime" title="更新日期" property="updateTime" type="Hidden" edit="Y" required="N" target="CurrentTime()" format="" width="2" height="1" column="2"  />
 				<control name="updateBy" title="更新人" property="updateBy" type="Hidden" edit="Y" required="N" target="session.userInfo.empId" format="" width="2" height="1" column="2"  />		
