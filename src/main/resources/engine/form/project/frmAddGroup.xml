@@ -68,9 +68,9 @@
 		    <!-- 测评表绑定 -->
             <flow trigger="pForm.ctlTestName" event="OnClick" filter="" >
 		        <procedure name="search"  logic="Find" ifyes="" ifno="">
-			      	<param name="In" value="pForm.id"/>
-			        <param name="Out" value="pForm"/>
+			      	<param name="In" value="pForm.ctlGroup"/>
 			        <param name="Sql" value="test"/>
+			        <param name="Out" value="pForm"/>
 			        <param name="Title" value="测评表选择"/>
 			        <param name="Columns" value="id,测评表编码,ctlTestId|title,测评表名称,ctlTestName"/>
 		        </procedure>

@@ -13,7 +13,7 @@
                 <control name="ctlType" title="测评对象类别" property="type" type="ComboBox" edit="Y" required="Y" format=""
                          width="1" height="1" column="1"/>
                 <control name="ctlGroupId" title="分组id" property="groupId" type="Hidden" edit="Y" required="N" format=""
-                         width="1" height="1" column="1"/>
+                         width="1" height="1" initial="'0'" column="1"/>
                 <control name="ctlGroupName" title="测评分组名称" property="groupName" type="PopupBox" edit="Y" required="N" format=""
                          width="1" height="1" column="1"/>
                 <control name="ctlMessage" title="说明" property="message" type="TextBox" edit="Y" format="" width="1"
