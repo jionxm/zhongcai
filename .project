@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>tpms-web</name>
+	<name>zc_test</name>
 	<comment></comment>
 	<projects>
 		<project>tpms-core</project>
