@@ -140,14 +140,14 @@
         			<param name="In" value="getPanelControlValue('pnlDetailGroup.ctlState')=='stop'"/>
       			</procedure>
       			<procedure name="jsmsgstate" server="" logic="ConfirmMsg" ifyes="" ifno="">
-		       		<param name="Title" value="删除提示" />
+		       		<param name="Title" value="提示" />
 		       		<param name="Msg" value="该项目未启动,请启动项目" />
 		      	</procedure>
             	<procedure name="branch" server="" logic="Branch" ifyes="jssave" ifno="jsmsg">
         			<param name="In" value="getPanelControlValue('pnlDetailGroup.ctlQrState')=='0'"/>
       			</procedure> 
       			<procedure name="jsmsg" server="" logic="ConfirmMsg" ifyes="jsencodeid" ifno="">
-		       		<param name="Title" value="删除提示" />
+		       		<param name="Title" value="提示" />
 		       		<param name="Msg" value="该项目已经生成二维码,点击跳转至二维码列表" />
 		      	</procedure>
                 <procedure name="jssave" logic="Save" ifyes="jsdel" ifno="">

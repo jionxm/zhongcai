@@ -27,6 +27,8 @@
 
 			<property name="typeName" type="String" length="20"
 				validate="" field="" />
+			<property name="det" type="String" length="20"
+				validate="" field="" />
 			<property name="groupName" type="String" length="20"
 				validate="" field="" />
 			<property name="scopeName" type="String" length="20"

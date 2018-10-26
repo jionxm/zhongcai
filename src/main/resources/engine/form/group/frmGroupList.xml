@@ -9,9 +9,9 @@
     <control name="ctlClear" title="清空条件" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlAdd" title="新增" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>
   </panel>
-  <panel name="pCondition" title="查询条件" object="test" type="Group">
-    <control name="lk_title" title="分组名称" property="title" type="TextBox" edit="Y" required="N" format="" width="1" height="1" column="3"/>
-  </panel>  
+  <panel name="pCondition" title="查询条件" object="grouplist" type="Group">
+    <control name="lk_name" title="分组名称" property="name" type="TextBox" edit="Y" required="N" format="" width="1" height="1" column="3"/>
+  </panel>
   <panel name="pTable" title="查询结果" object="grouplist" type="Grid">
     <control name="id" title="id" property="id" type="Hidden" edit="Y" required="" format="" width="" height="" column=""/>
     <control name="ctlPeopleAdd" title="人员管理" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
