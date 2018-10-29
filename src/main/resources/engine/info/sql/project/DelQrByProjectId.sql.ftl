@@ -1,0 +1,1 @@
+delete from t_qr where project_id=#{data.id}

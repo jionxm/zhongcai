@@ -1,12 +1,14 @@
 <html lang="en">
 
 <head>
+	<#assign ctx=request.contextPath>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
     <title>测评页面</title>
-    <link href="../css/normalize.css" rel="stylesheet" type="text/css">
-    <link href="../css/Selection.css" rel="stylesheet" type="text/css">
+    <link href="${ctx}/view/common/assets/h5/css/normalize.css" rel="stylesheet" type="text/css">
+    <link href="${ctx}/view/common/assets/h5/css/Selection.css" rel="stylesheet" type="text/css">
+    
 </head>
 
 <body style="background-color: #fff;">
@@ -150,8 +152,8 @@
         <span class="hrefBtn notHrefBtn"  onclick="goto()"><p>您有未完成的题目</p></span>
     </footer>
 
-    <script type="text/javascript" src="../js/base/jquery-1.11.0.min.js" ></script>
-    <script type="text/javascript" src="../js/page/Selection.js"></script>
+    <script type="text/javascript" src="${ctx}/view/common/assets/h5/js/base/jquery-1.11.0.min.js" ></script>
+    <script type="text/javascript" src="${ctx}/view/common/assets/h5/js/page/Selection.js"></script>
     <script type="text/javascript">
      function popPage() {
             window.history.go(-1);
