@@ -3,7 +3,7 @@
 			xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
 <model_layer> 
  	 <!-- 测评对象分组model -->
- 	 	<object name="grouplist" table="t_group" primary="id" unique="" order="">
+ 	 	<object name="grouplist" table="t_group" primary="id" unique="name" order="">
 		<property name="id" type="Long" length="20" initial="" field="id"/>
 		<property name="name" type="String" length="20" field="name"/>
 		

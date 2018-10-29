@@ -67,7 +67,7 @@
       </procedure>
       <procedure name="j1"  logic="Delete" ifyes="j2" ifno="">
         <param name="In" value="pTable" />
-        <param name="Msg" value="'测评项目已删除'" />
+        <param name="Msg" value="'选项类型已删除'" />
       </procedure>
       <procedure name="j2"  logic="Query" ifyes="" ifno="">
         <param name="In" value="pCondition"></param>

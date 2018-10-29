@@ -3,7 +3,7 @@
 			xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
 <model_layer>
 <!-- 选项类型model -->
-	<object name="option" table="t_choose" primary="id" unique="" order="">
+	<object name="option" table="t_choose" primary="id" unique="name" order="">
 		<property name="id" type="Long" length="20" initial="" field="id"/>
 		<property name="name" type="String" length="50" initial="" field="name"/>
 		<property name="createBy" type="Long" length="20" field="create_by"/>
@@ -12,7 +12,7 @@
 		<property name="updateTime" type="Date" length="" field="update_time"/>
  	</object>  
  	<!-- 选项值model -->
- 	<object name="type" table="t_choose_value" primary="id" unique="" order="">
+ 	<object name="type" table="t_choose_value" primary="id" unique="name" order="">
 		<property name="id" type="Long" length="20" initial="" field="id"/>
 		<property name="name" type="String" length="50" initial="" field="name"/>
 		<property name="chooseId" type="Long" length="20" field="choose_id"/>

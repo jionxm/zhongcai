@@ -19,7 +19,7 @@
 					column="2" />
 						
 				<control name="ctlQuestion" title="指标" property="question"
-					type="TextBox" edit="Y" required="N" format="" width="2" height="3"
+					type="TextBox" edit="Y" required="Y" format="" width="2" height="3"
 					column="2" />
 					
 				<control name="ctlTypeId" title="id" property="type" type="Hidden"
@@ -28,7 +28,7 @@
 					edit="N" required="" format="" width="1" height="1" initial="'填空题'" column="" />
 						
 				<control name="ctlTextLength" title="文本长度" property="textLength"
-					type="TextBox" edit="Y" required="" format="" width="1" height="1"
+					type="TextBox" edit="Y" required="Y" format="" width="1" height="1"
 					column="2" />	
 				
 					<control name="ctlWeight" title="权重" property="weight" type="TextBox"

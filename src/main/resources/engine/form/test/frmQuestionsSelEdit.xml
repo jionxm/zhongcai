@@ -25,13 +25,13 @@
 					column="2" />
 						
 				<control name="ctlQuestion" title="指标" property="question"
-					type="TextBox" edit="Y" required="N" format="" width="2" height="3"
+					type="TextBox" edit="Y" required="Y" format="" width="2" height="3"
 					column="2" />
 					
 				<control name="ctlType" title="试题类型" property="type" type="ComboBox"
-					edit="Y" required="" format="" width="1" height="1" column="" />	
+					edit="Y" required="Y" format="" width="1" height="1" column="" />	
 				<control name="ctlChooseName" title="选项类型" property="chooseName"
-					type="PopupBox" edit="Y" required="N" format="" width="1" height="1"
+					type="PopupBox" edit="Y" required="Y" format="" width="1" height="1"
 					column="2" />	
 					
 					

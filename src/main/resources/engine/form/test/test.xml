@@ -80,7 +80,7 @@
 		</object>
 		<!-- 试题model -->
 		<object name="questions" table="t_questions" primary="id"
-			unique="" order="">
+			unique="test_id,number" order="">
 			<property name="id" type="Long" length="20" initial=""
 				field="id" />
 			<property name="number" type="Long" length="20" initial=""
