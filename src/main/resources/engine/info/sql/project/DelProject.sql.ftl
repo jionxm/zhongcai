@@ -1,1 +1,1 @@
-delete from t_project where state is null
+delete from t_project where name=#{data.ctlTName1} and id>#{data.ctlId}
