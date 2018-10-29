@@ -51,6 +51,13 @@
     </flow>  
     <!-- 点击标题 -->
     <flow trigger="pTable.ctlQRCode" event="OnClick" filter="">
+      <procedure name="branch" server="" logic="Branch" ifyes="jsmsg" ifno="jsencodeid">
+        <param name="In" value="$('#pTable').datagrid('getSelected').state==0"/>
+      </procedure> 
+      <procedure name="jsmsg" server="" logic="ConfirmMsg" ifyes="" ifno="">
+		<param name="Title" value="提示" />
+		<param name="Msg" value="该二维码已被使用过" />
+	  </procedure>
       <procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jsgoto" ifno="">
         <param name="In" value="pTable.id"></param>
       </procedure>

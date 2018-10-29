@@ -12,7 +12,7 @@
             <panel name="pnlDetailGroup" title="详细信息" object="qr" type="Group"> 
             	<control name="ctlId" title="二维码编号" property="id" type="Hidden" edit="" required="" format=""
                          width="1" height="" column="1"/>               
-                <control name="ctlQRCode" title="二维码UI编号" property="QRCode" type="Hidden" edit="" required="" format=""
+                <control name="ctlQRCode" title="二维码UUID编号" property="QRCode" type="Hidden" edit="" required="" format=""
                          width="1" height="" column=""/>
                 <control name="ctlProjectId" title="测评项目编号" property="projectId" type="Hidden" edit="" required="" format="" width="1"
                          height="" column=""/>
@@ -26,6 +26,8 @@
                          height="" column=""/>
                 <control name="ctlGroupName" title="测评对象名称" property="groupName" type="TextBox" edit="" required="" format="" width="1"
                          height="" column="2"/>
+                <control name="ctlState" title="二维码状态" property="state" type="Hidden" edit="" required="" format="" width="1"
+                         height="" column="1"/>
             </panel>
             <panel name="pTable" title="具体题目及结果" object="result" type="Grid">
                 <control name="ctlQRId" title="二维码编号" property="QRId" type="Hidden" edit="" required="" format="" width=""
@@ -68,16 +70,43 @@
                     <param name="Refresh" value="True"></param>
                 </procedure>
             </flow>
-            <!-- 确定 -->
+            <!-- 保存数据按钮 -->
             <flow trigger="pnlDetailTool.ctlSave" event="OnClick" filter="">
-                <procedure name="jssave" logic="Save" ifyes="jsclose3" ifno="">
+            	<procedure name="queryInfo" logic="QueryById" ifyes="branch" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlDetailGroup"></param>
+                    <param name="Sql" value="project/QryQrDetail"></param>
+                </procedure>
+                <procedure name="branch" server="" logic="Branch" ifyes="jssave" ifno="resultMsg">
+        			<param name="In" value="getPanelControlValue('pnlDetailGroup.ctlState')==1"/>
+      			</procedure>
+                <procedure name="jssave" logic="Save" ifyes="jssave2" ifno="">
                     <param name="In" value=",pTable"></param>
                     <!-- <param name="Mode" value="Edit"/> -->
                     <param name="Msg" value="'保存成功'"></param>
                 </procedure>
-                <procedure name="jsclose3" server="" logic="Close" ifyes="" ifno="">
-                    <param name="Refresh" value="true"></param>
+                <procedure name="jssave2" logic="SaveCustom" ifyes="queryInfo2" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Sql" value="project/UpdateState"/>
+                    <!-- <param name="Msg" value="'保存成功'"></param> -->
                 </procedure>
+                <procedure name="resultMsg" logic="ConfirmMsg" ifyes="queryInfo2" ifno="">
+                    <param name="Msg" value="该二维码已经被人优先占用成功"/>
+                    <param name="Title" value="提交提示"/>
+                </procedure>
+                <procedure name="queryInfo2" logic="QueryById" ifyes="queryResult" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlDetailGroup"></param>
+                    <param name="Sql" value="project/QryQrDetail"></param>
+                </procedure>
+                <procedure name="queryResult" logic="Query" ifyes="" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pTable"></param>
+                    <param name="Sql" value="project/QryQrResult"></param>
+                </procedure>
+                <!-- <procedure name="jsclose" server="" logic="Close" ifyes="" ifno="">
+                    <param name="Refresh" value="true"></param>
+                </procedure> -->
             </flow>
 
             
