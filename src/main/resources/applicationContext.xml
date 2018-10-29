@@ -136,6 +136,8 @@
 			<mvc:exclude-mapping path="/uc-index" />
 			<mvc:exclude-mapping path="/uc" />
 			<mvc:exclude-mapping path="/contact-us" />
+			<!-- 二维码接口 -->
+			<mvc:exclude-mapping path="/qr/view" />
 			<!-- <mvc:exclude-mapping path="/*/edit/*/*"/>目前没有一个明确规律匹配到view，先以已知的为准 -->
 			<bean class="com.tedu.base.auth.FormTokenInterceptor"></bean>
 		</mvc:interceptor>

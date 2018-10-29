@@ -105,7 +105,8 @@
 						/uc-login,
 						/uc-index,
 						/uc,
-						/contact-us
+						/contact-us,
+						/qr/view
 			</param-value>
 		</init-param>
 		<init-param>
