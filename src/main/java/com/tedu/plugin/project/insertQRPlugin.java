@@ -103,12 +103,12 @@ public class insertQRPlugin implements ILogicPlugin {
 	    		List<Map<String, Object>> qr_List = formService.queryBySqlId(qp);
 	    		for(Map<String,Object> qr_Map:qr_List){
 	    			//获取二维码ID
-	    			String qr_id = qr_Map.get("id").toString();
+	    			String qrCode = qr_Map.get("qrCode").toString();
 	    			
 	    			//获取qr_id的base64值
-	    			String file_id = (String) qrCodeService.getCodeUrl(qr_id);
+	    			String file_id = (String) qrCodeService.getCodeUrl(qrCode);
 	    			Map sqlMap = new HashMap();
-	    			sqlMap.put("id", qr_id);
+	    			sqlMap.put("id",  qr_Map.get("id").toString());
 	    			sqlMap.put("file_id",file_id);
 	    			CustomFormModel customFormModel = new CustomFormModel("", "", sqlMap);
 	    			customFormModel.setSqlId("project/UpdateQR");

@@ -40,12 +40,12 @@ public class QRCodeController {
 
 	@RequestMapping(value = "/view")
 	public String getView(HttpServletRequest request,Model model,FormModel formModel) {
-		String qr_id = request.getParameter("id");
+		String qr_code = request.getParameter("qr_code");
 	
 		Map<String,Object> map =  formModel.getData();
 		QueryPage qp = new QueryPage();
 		qp.setParamsByMap(map);
-		qp.getData().put("id", qr_id);
+		qp.getData().put("id", qr_code);
 		qp.setQueryParam("project/QryTestByQrId");//查询主体id
 		List<Map<String,Object>> projectList = formService.queryBySqlId(qp);
 		model.addAttribute("ctx", request.getContextPath());

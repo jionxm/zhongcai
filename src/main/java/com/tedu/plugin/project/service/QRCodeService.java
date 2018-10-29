@@ -93,7 +93,7 @@ public class QRCodeService implements ILogicPlugin{
 	}
 	
 	public String getUrl(String ctlId){
-		return weburl+"/qr/view?id="+ctlId;
+		return weburl+"qr/view?qr_code="+ctlId;
 	}
 	
 	/**

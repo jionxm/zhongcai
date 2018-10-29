@@ -25,7 +25,7 @@
         <p class="notice">温馨提示：你的身份是
             <span>${data.groupName}</span>
         </p>
-        <a href="${ctx}/selection">
+        <a href="${ctx}/selection?qr_code=${data.qr_code}">
             <button>开始</button>
         </a>
     </div>
