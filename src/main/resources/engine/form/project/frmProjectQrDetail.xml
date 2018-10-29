@@ -28,18 +28,18 @@
                          height="" column=""/>	              
                 <control name="ctlprojectId" title="测评项目id" property="projectId" type="Hidden" edit="" required=""
                          format="" width="140" height="" column=""/>
-                <control name="ctlQRCode" title="二维码UUID" property="QRCode" type="TextBox" edit="" required=""
+                <control name="ctlQRCode" title="二维码UUID" property="QRCode" type="Hidden" edit="" required=""
                          format="" width="250" height="" column=""/>
+                <control name="ctlfileId" title="二维码" property="fileId" type="TextBox" edit="" required=""
+                         format="" width="100" height="" column=""/>
                 <control name="ctlprojGroupId" title="测评对象id" property="projGroupId" type="Hidden" edit="" required=""
                          format="" width="200" height="" column=""/>
                 <control name="ctlprojGroupName" title="测评对象" property="groupName" type="TextBox" edit="" required=""
                          format="" width="100" height="" column=""/>
                 <control name="ctlstate" title="状态" property="state" type="Hidden" edit="" required=""
                          format="" width="200" height="" column=""/>
-                         <control name="ctlstateName" title="状态" property="stateName" type="Hidden" edit="" required=""
+                <control name="ctlstateName" title="状态" property="stateName" type="Hidden" edit="" required=""
                          format="" width="200" height="" column=""/>
-                <control name="ctlfileId" title="二维码图片id" property="fileId" type="TextBox" edit="" required=""
-                         format="" width="100" height="" column=""/>
                 <control name="ctlCreateBy" title="创建人" property="createBy" type="TextBox" edit="" required="" format="" width="80" height="" column=""/>
    				<control name="ctlCreateTime" title="创建时间" property="createTime" type="TextBox" edit="" required="" format="" width="150" height="" column=""/>   
    				<control name="ctlUpdateBy" title="更新人" property="updateBy" type="TextBox" edit="" required="" format="" width="80" height="" column=""/>     
