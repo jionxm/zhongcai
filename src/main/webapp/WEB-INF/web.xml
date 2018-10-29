@@ -110,6 +110,12 @@
 			</param-value>
 		</init-param>
 		<init-param>
+			<param-name>excAllow</param-name>
+			<param-value>
+			/qr/view
+			</param-value>
+		</init-param>
+		<init-param>
 			<param-name>defaultLoginPage</param-name>
 			<param-value>/</param-value>
 		</init-param>
