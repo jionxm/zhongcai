@@ -24,6 +24,7 @@ import com.tedu.base.engine.model.FormEngineResponse;
 import com.tedu.base.engine.model.FormModel;
 import com.tedu.base.engine.service.FormService;
 import com.tedu.base.task.SpringUtils;
+import com.tedu.plugin.project.service.QRCodeService;
 
 @Service("insertQRPlugin")
 public class insertQRPlugin implements ILogicPlugin {	
@@ -37,8 +38,8 @@ public class insertQRPlugin implements ILogicPlugin {
 		return formModel;
 	}
 		
-		
-	
+	@Resource
+	QRCodeService qrCodeService;
 	
 
 	@Override
@@ -96,7 +97,23 @@ public class insertQRPlugin implements ILogicPlugin {
 	    			
 	    			
 	    		}
-	    		
+	    		// 生成二维码信息
+	    		qp.getData().put("project_Id", formModel.getData().get("id"));
+	    		qp.setQueryParam("project/QryQrByProjectId");// 查询主体id
+	    		List<Map<String, Object>> qr_List = formService.queryBySqlId(qp);
+	    		for(Map<String,Object> qr_Map:qr_List){
+	    			//获取二维码ID
+	    			String qr_id = qr_Map.get("id").toString();
+	    			
+	    			//获取qr_id的base64值
+	    			String file_id = (String) qrCodeService.getCodeUrl(qr_id);
+	    			Map sqlMap = new HashMap();
+	    			sqlMap.put("id", qr_id);
+	    			sqlMap.put("file_id",file_id);
+	    			CustomFormModel customFormModel = new CustomFormModel("", "", sqlMap);
+	    			customFormModel.setSqlId("project/UpdateQR");
+	    			formMapper.saveCustom(customFormModel);
+	    		}
 	    	}
 		}
 		
