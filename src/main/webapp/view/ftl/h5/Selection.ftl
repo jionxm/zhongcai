@@ -8,7 +8,7 @@
     <title>测评页面</title>
     <link href="${ctx}/view/common/assets/h5/css/normalize.css" rel="stylesheet" type="text/css">
     <link href="${ctx}/view/common/assets/h5/css/Selection.css" rel="stylesheet" type="text/css">
-    
+    <#include "base.ftl">
 </head>
 
 <body style="background-color: #fff;">
