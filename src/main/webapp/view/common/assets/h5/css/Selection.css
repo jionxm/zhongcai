@@ -1,0 +1,213 @@
+﻿/**
+ * 答题页面
+ * @style
+ * 2018/10/23
+ */
+
+ .title{
+    height: 49px;
+    background-color: #69abfa;
+    text-align: center;
+    color: #fff;
+    line-height: 49px;
+    font-size: 20px;
+    /* position: relative; */
+}
+@media (max-width: 992px) {
+    .r_return { 
+        position: absolute;
+        left: 20px; 
+        top: 0px; 
+        width: 30px; 
+        height: 45px; 
+        padding-right:33px; 
+        display:inline-block; 
+        background:url(../image/r_icon7.png)  center no-repeat; 
+        background-size: 30px 30px;
+    }
+}
+
+ /* .answer { 
+    width:100%;
+    padding:0 30px; 
+    padding-bottom: 20px;
+    margin: 10px auto; 
+    overflow:hidden;
+    border-bottom: 2px solid #eee; 
+    position: relative;
+}
+.answer .top{
+    margin: 10px 0;
+    line-height: 25px;
+     font-size: 14px; 
+}
+.answer .top b{
+        color:#69abfa;
+        margin-right:5px;
+}
+.answer dt { 
+    line-height:30px; 
+    font-size:17px;
+}
+.answer dd { 
+    height:30px; 
+    line-height:30px; 
+    font-size:14px;
+} */
+hr{margin: 20px auto;background-color: #eee;}
+.answers .box label{width: 100%;}
+
+
+/* 底部 */
+.hrefBtn { 
+    height:43px; 
+    line-height:43px; 
+    background-color:#1d8aff; 
+    font-size:18px; 
+    color:#fff; 
+    text-align:center; 
+    border-radius:5px; 
+    width:90%; 
+    margin:20px auto; 
+    display:block;
+}
+.notHrefBtn { 
+    background-color:#e94c0f;
+}
+.notHrefBtn p { 
+    padding-right:33px; 
+    display:inline-block;
+    background:url(../image/notHrefBtn.png) right center no-repeat; 
+    background-size:23px auto;
+}
+
+
+/*弹出层*/
+.renameResumeWrap { 
+    font-size:18px; 
+    position:absolute; 
+    left:0px; top:0px; 
+    background-color: rgba(000,000,000,0.7); 
+    z-index:100; 
+    width:100%; 
+    height:100%;
+}
+.renameResume { 
+    top:50%; 
+    margin-top:-93px; 
+    left:50%; 
+    margin-left:-45%;  
+    width:90%; 
+    position:fixed; 
+    background-color:#fff; 
+    border-radius:5px; 
+    display:block; 
+    z-index:101;
+}
+.renameResume h4 { 
+    border-radius:5px 5px 0 0; 
+    height:45px; 
+    background-color:#1d8aff; 
+    text-align:center; 
+    color:#fff; 
+    line-height:45px;
+}
+.renameResume p { 
+    height:90px; 
+    line-height:90px; 
+    color:#2a2a2a; 
+    text-align:center;
+}
+.renameResume1 p { 
+    height:40px; 
+    line-height:40px; 
+    color:#2a2a2a; 
+    text-align:center;
+}
+.renameResume ul { 
+    height:50px; 
+    border-radius:0 0 5px 5px; 
+    padding:0 5%; 
+    background-color:#e8e8e8;
+}
+.renameResume ul li { 
+    height:36px; 
+    line-height:36px; 
+    margin-top:7px; 
+    margin-right: 5%;
+    border-radius:3px; 
+    width:45%; 
+    background-color:#1d8aff; 
+    color:#fff; 
+    float:right; 
+    text-align:center; 
+    color:#fff;
+}
+.renameResumeClose{ float:left;}
+.answer{
+    width:100%;
+    padding:0 30px; 
+    padding-bottom: 20px;
+    margin: 10px auto; 
+    overflow:hidden;
+    border-bottom: 2px solid #eee; 
+}
+.answer .top{
+    margin: 10px 0;
+    line-height: 25px;
+     font-size: 14px; 
+}
+.answer .top b{
+        color:#69abfa;
+        margin-right:5px;
+} 
+.box{
+    
+    line-height: 30px;
+    margin-top: 10px;
+}
+input{
+    display: none;
+}
+
+label{
+    width: 20%;
+    display: inline-block;
+    position: relative;
+    line-height:30px;
+    padding-left:20px;
+}
+label:active{
+    background: #EEEEEE;
+}
+label:after{
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #bfbfbf;
+    position: absolute;
+    top: 8px;
+    left: 0px;
+    border-radius: 20px;
+}
+
+input:checked+label:after{
+    background-color: #69abfa;
+    border: none;
+}
+.usered{
+    width: 80%;
+    line-height: 25px;
+    display: inline-block;
+    border: none;
+    border-bottom: 1px solid #888;
+    margin-left: 5px;
+    font-size: 13px;
+}
+.usertext{
+    width: 100%;
+    margin: 10px auto;
+    height: 200px;
+    padding: 10px;
+}
