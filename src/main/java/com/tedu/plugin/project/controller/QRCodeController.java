@@ -40,21 +40,18 @@ public class QRCodeController {
 
 	@RequestMapping(value = "/view")
 	public String getView(HttpServletRequest request,Model model,FormModel formModel) {
-		String ctlId = request.getParameter("id");
-/*		
+		String qr_id = request.getParameter("id");
+	
 		Map<String,Object> map =  formModel.getData();
 		QueryPage qp = new QueryPage();
 		qp.setParamsByMap(map);
-		qp.getData().put("qr_id", ctlId);
-		qp.setQueryParam("project/QryTesterId");//查询主体id
-		List<Map<String,Object>> testerlist = formService.queryBySqlId(qp);*/
-		
-	/*	Map<String,Object> viewMap = getParams("project/QryEmpList", "eq_id", ctlId).get(0);
+		qp.getData().put("id", qr_id);
+		qp.setQueryParam("project/QryTestByQrId");//查询主体id
+		List<Map<String,Object>> projectList = formService.queryBySqlId(qp);
 		model.addAttribute("ctx", request.getContextPath());
-		model.addAttribute("data",viewMap);*/
-		model.addAttribute("code",qRCodeService.getBase64Code(ctlId,400,400));
+		model.addAttribute("data",projectList.size()>0?projectList.get(0):"projectName=未查询到相关记录");
 		
-		return "m/main";
+		return "h5/Identity";
 	}
 	
 	
