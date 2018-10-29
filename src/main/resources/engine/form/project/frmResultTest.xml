@@ -21,7 +21,7 @@
     <control name="ctlGroupName" title="测评对象" property="groupName" type="TextBox" edit="" required="" format="" width="150" height="" column=""/>
     <control name="ctlTesterId" title="主体id" property="testerId" type="Hidden" edit="" required="" format="" width="200" height="" column=""/>
     <control name="ctlTesterName" title="主体" property="testerName" type="TextBox" edit="" required="" format="" width="80" height="" column=""/>
-    
+    <control name="ctlfileId" title="二维码" property="fileId" type="TextBox" edit="" required="" format="" width="110" height="" column=""/>
     <control name="ctlState" title="状态" property="state" type="Hidden" edit="" required="" format="" width="80" height="" column=""/>      
     <control name="ctlStateName" title="状态" property="stateName" type="TextBox" edit="" required="" format="" width="80" height="" column=""/>
   </panel>
