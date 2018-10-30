@@ -62,7 +62,7 @@
       <procedure name="jsencodeid" server="" logic="EncodeId" ifyes="branchperson" ifno="">
         <param name="In" value="pTable.id"></param>
       </procedure>
-      <procedure name="branchperson" server="" logic="Branch" ifyes="jsgotoperson" ifno="jsgoto">
+      <procedure name="branchperson" server="" logic="Branch" ifyes="jsgotoperson" ifno="jsgotoperson">
         <param name="In" value="$('#pTable').datagrid('getSelected').testType=='person'"/>
       </procedure> 
       <procedure name="jsgotoperson"  logic="Transition" ifyes="" ifno="">

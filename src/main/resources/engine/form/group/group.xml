@@ -3,10 +3,10 @@
 			xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
 <model_layer> 
  	 <!-- 测评对象分组model -->
- 	 	<object name="grouplist" table="t_group" primary="id" unique="name" order="">
+ 	 	<object name="grouplist" table="t_group" primary="id" unique="name,dept_code" order="">
 		<property name="id" type="Long" length="20" initial="" field="id"/>
 		<property name="name" type="String" length="20" field="name"/>
-		
+		<property name="deptCode" type="String" length="20" field="dept_code"/>
 		<property name="createTime" type="Date" length="" validate=""  field="create_time" />		
 		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
 		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
