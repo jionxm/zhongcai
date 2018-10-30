@@ -2,7 +2,7 @@
 <tsoftware xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
     <ui_layer>
-        <ui name="frmResultTestDetail" title="单位组答题结果详情">
+        <ui name="frmResultTestPerson" title="个人组答题结果详情">
             <panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
                 <control name="ctlSave" title="保存" property="" type="Button" edit="" required="" format=""
                          width="" height="" column=""/>                         
@@ -22,6 +22,8 @@
                          height="" column=""/>
                 <control name="ctlTestId" title="测评表编号" property="testId" type="Hidden" edit="" required="" format="" width="1"
                          height="" column=""/>
+                <control name="ctlTestType" title="表类别" property="testType" type="Hidden" edit="" required="" format="" width="1"
+                         height="" column="1"/>
                 <control name="ctlProjectName" title="测评项目名称" property="projectName" type="TextBox" edit="" required="" format="" width="1"
                          height="" column=""/>
                 <control name="ctlGroupName" title="测评对象名称" property="groupName" type="TextBox" edit="" required="" format="" width="1"
@@ -34,7 +36,11 @@
                          height="" column=""/>
                 <!-- <control name="ctlChooseName" title="选项类型名称" property="chooseName" type="TextBox" edit="" required="" format="" width="100"
                          height="" column=""/> -->
-                <control name="ctlTestType" title="表类型" property="testType" type="Hidden" edit="" required="" format="" width="80"
+                <control name="ctlTestType" title="表类别" property="testType" type="Hidden" edit="" required="" format="" width="80"
+                         height="2" column=""/>
+                <control name="ctlEmpId" title="测评对象id" property="empId" type="Hidden" edit="" required="" format="" width="80"
+                         height="2" column=""/>
+                <control name="ctlEmpName" title="测评对象姓名" property="empName" type="TextBox" edit="" required="" format="" width="80"
                          height="2" column=""/>
                 <control name="ctlQuestionNumber" title="题目编号" property="questionNumber" type="TextBox" edit="" required="" format="" width="80"
                          height="2" column=""/>
@@ -61,7 +67,7 @@
                 <procedure name="queryGrid" logic="Query" ifyes="" ifno="">
                     <param name="In" value="pnlDetailGroup"></param>
                     <param name="Out" value="pTable"></param>
-                    <param name="Sql" value="project/QryQrQuestion"></param>
+                    <param name="Sql" value="project/QryQrQuestionPerson"></param>
                 </procedure>                             
             </flow>
 		    
@@ -84,6 +90,7 @@
       			</procedure>
                 <procedure name="jssave" logic="Save" ifyes="jssave2" ifno="">
                     <param name="In" value=",pTable"></param>
+                    <!-- <param name="Mode" value="Edit"/> -->
                     <param name="Msg" value="'保存成功'"></param>
                 </procedure>
                 <procedure name="jssave2" logic="SaveCustom" ifyes="queryInfo2" ifno="">
@@ -103,7 +110,7 @@
                 <procedure name="queryResult" logic="Query" ifyes="" ifno="">
                     <param name="In" value="pnlDetailGroup"></param>
                     <param name="Out" value="pTable"></param>
-                    <param name="Sql" value="project/QryQrResult"></param>
+                    <param name="Sql" value="project/QryQrQuestionPerson"></param>
                 </procedure>
                 <!-- <procedure name="jsclose" server="" logic="Close" ifyes="" ifno="">
                     <param name="Refresh" value="true"></param>

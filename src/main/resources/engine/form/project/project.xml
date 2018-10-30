@@ -82,12 +82,15 @@
 		<property name="QRId" type="Long" length="20" initial="" field="QR_id"/>
 		<property name="questionNumber" type="Long" length="20" initial="" field="question_number"/>
 		<property name="result" type="String" length="500" initial="" field="result"/>
-		
+		<property name="testType" type="String" length="20" initial="" field="test_type"/>
+		<property name="empId" type="Long" length="20" initial="" field="emp_id"/>
+				
 		<property name="createTime" type="Date" length="" validate=""  field="create_time" />
 		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
 		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />	
 		<property name="questionName" type="String" length="500" initial="" field=""/>
+		<property name="empName" type="String" length="20" initial="" field=""/>
  	</object>  
  	
  	<!-- 二维码表model -->
@@ -105,6 +108,7 @@
 		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />	
 		
+		<property name="testType" type="String" length="20" initial="" field=""/>
 		<property name="testerName" type="String" length="20" initial="" field=""/>
 		<property name="groupName" type="String" length="20" initial="" field=""/>
 		<property name="projectName" type="String" length="20" initial="" field=""/>
