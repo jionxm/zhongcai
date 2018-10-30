@@ -26,6 +26,7 @@
     <control name="ctlPlanDate" title="计划时间" property="planDate" type="TextBox" edit="N" required="" format="" width="100" height="" column=""/>
     <control name="ctlAddress" title="地点" property="address" type="TextBox" edit="N" required="" format="" width="150" height="" column=""/>
     <control name="ctlMessage" title="指导语" property="message" type="TextBox" edit="N" required="" format="" width="500" height="" column=""/>  
+    <control name="qrStateName" title="qrStateName" property="qrStateName" type="Hidden" edit="N" required="" format="" width="100" height="" column=""/>  
   </panel>
     <flow trigger="" event="OnLoad" filter="">
       <procedure name="j1"  logic="Clear" ifyes="j2" ifno="" sync="Y">
@@ -38,7 +39,7 @@
       </procedure>
     </flow>
     <!-- 启动 -->
-    <flow trigger="pTable.ctlStart" event="OnClick"  filter="row.state=='stop'">
+    <flow trigger="pTable.ctlStart" event="OnClick"  filter="row.state=='stop' &amp;&amp; row.qrStateName=='未生成'">
 		<procedure name ="jssave" logic="SaveCustom" ifyes="j2" ifno="">
        		<param name="In" value="pTable"/>
 			<param name="Sql" value="project/UpdateProStateStart"/>
@@ -50,7 +51,7 @@
       </procedure>
 	</flow>
 	<!-- 关闭 -->
-    <flow trigger="pTable.ctlClose" event="OnClick"  filter="row.state=='start'||row.state=='teststart'">
+    <flow trigger="pTable.ctlClose" event="OnClick"  filter="(row.state=='start'||row.state=='teststart') &amp;&amp; row.qrStateName=='未生成'">
 		<procedure name ="jssave" logic="SaveCustom" ifyes="j2" ifno="">
        		<param name="In" value="pTable"/>
 			<param name="Sql" value="project/UpdateProStateClose"/>
@@ -110,10 +111,10 @@
       </procedure>
     </flow>
     <!-- 删除 --> 
-     <flow trigger="pTable.ctlDel" event="OnClick" filter="row.state=='stop'">
+     <flow trigger="pTable.ctlDel" event="OnClick" filter="">
       <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">
        <param name="Title" value="删除提示" />
-       <param name="Msg" value="确认删除当前数据吗?" />
+       <param name="Msg" value="删除将会删掉该项目下所有数据，是否确认删除当前数据吗?" />
       </procedure>
       <procedure name="j1"  logic="Delete" ifyes="j2" ifno="">
         <param name="In" value="pTable" />
@@ -127,7 +128,7 @@
       </procedure>          
     </flow>  
     <!-- 编辑 -->
-    <flow trigger="pTable.ctlEdit" event="OnClick" filter="">
+    <flow trigger="pTable.ctlEdit" event="OnClick" filter="row.qrStateName=='未生成'">
       <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
         <param name="In" value="pTable.id"></param>
       </procedure>
