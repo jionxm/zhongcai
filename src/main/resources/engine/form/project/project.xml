@@ -51,6 +51,7 @@
 		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />
 		
+		<property name="qrState" type="String" length="20" validate=""  field="" />
 		<property name="projectName" type="String" length="20" validate=""  field="" />
 		<property name="createByName" type="Long" length="10" validate=""  field="" />
 		<property name="createTimeName" type="Long" length="10" validate=""  field="" />

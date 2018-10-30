@@ -48,6 +48,8 @@
                          format="" width="200" height="" column=""/>
                 <control name="ctlState" title="状态" property="state" type="Hidden" edit="N" required="" format="" width=""
                          height="" column="1" />
+                <control name="qrState" title="状态" property="qrState" type="Hidden" edit="N" required="" format="" width=""
+                         height="" column="1" />
             </panel>
             
             <!-- 加载 -->
@@ -67,7 +69,7 @@
                 </procedure>                             
             </flow>
             <!--  新增测评对象 -->
-		    <flow trigger="pnlDetailTool.ctlGroup" event="OnClick" filter="">
+		    <flow trigger="pnlDetailTool.ctlGroup" event="OnClick" filter="model.pnlDetailGroup.ctlQrState=='0'">
 		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
 		        <param name="In" value="pnlDetailGroup.ctlId"/>
 		      </procedure>
@@ -84,7 +86,7 @@
 		      </procedure>              
 		    </flow>
 		    <!--  编辑 -->
-		    <flow trigger="pnlTProjectGroup.ctlEdit" event="OnClick" filter="">
+		    <flow trigger="pnlTProjectGroup.ctlEdit" event="OnClick" filter="row.qrState=='0'">
 		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
 		        <param name="In" value="pnlTProjectGroup.id"/>
 		      </procedure>		      
@@ -118,7 +120,7 @@
                 </procedure>              
 		    </flow>
 		    <!--  编辑主体身份人数 -->
-		    <flow trigger="pnlTProjectGroup.ctlEditGroupNumber" event="OnClick" filter="row.state=='0'">
+		    <flow trigger="pnlTProjectGroup.ctlEditGroupNumber" event="OnClick" filter="row.state=='0' &amp;&amp; row.qrState=='0'">
 		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
 		        <param name="In" value="pnlTProjectGroup.id"/>
 		      </procedure>
@@ -172,7 +174,7 @@
 			    </procedure>
             </flow>
 		    <!-- 分组删除 -->
-		    <flow trigger="pnlTProjectGroup.ctlDel" event="OnClick" filter="">
+		    <flow trigger="pnlTProjectGroup.ctlDel" event="OnClick" filter="row.qrState=='0'">
 		      <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">
 		       <param name="Title" value="删除提示" />
 		       <param name="Msg" value="确认删除当前数据吗?" />
