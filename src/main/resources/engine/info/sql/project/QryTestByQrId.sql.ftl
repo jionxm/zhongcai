@@ -5,5 +5,6 @@ select
 	t.message as message,
 	qr.file_id as file_id,
 	qr.qr_code,
-	(select g.`name` from T_PROJECT_GROUP pg INNER JOIN t_group g on g.id=pg.group_id where pg.id=qr.proj_group_id) as groupName
-from t_project t inner join t_qr qr on qr.project_id=t.id  where qr.QR_code=#{data.id}
+	qr.state,
+	(select  td.`name` from t_tester te INNER JOIN t_dict td on td.code = te.`name` where te.id=qr.tester_id) as groupName
+from t_project t inner join t_qr qr on qr.project_id=t.id  where qr.QR_code=#{data.id} and qr.state='1'

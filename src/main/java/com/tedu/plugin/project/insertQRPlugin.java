@@ -61,7 +61,6 @@ public class insertQRPlugin implements ILogicPlugin {
 		//log.info("grouplist"+grouplist);
 		for(Map testermap:testerlist){
 			String testerId =  testermap.get("id").toString();
-			
 	    	for(Map groupmap:grouplist){
 	    		String progroupId =  groupmap.get("id").toString();
 	    		//log.info("testerId"+testerId);
