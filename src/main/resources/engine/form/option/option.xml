@@ -10,6 +10,7 @@
 		<property name="createTime" type="Date" length="" field="create_time"/>
 		<property name="updateBy" type="Long" length="20" field="update_by"/>
 		<property name="updateTime" type="Date" length="" field="update_time"/>
+		<property name="det" type="String" length="20" field=""/>
  	</object>  
  	<!-- 选项值model -->
  	<object name="type" table="t_choose_value" primary="id" unique="name" order="">
@@ -23,7 +24,7 @@
 		<property name="updateBy" type="Long" length="20" field="update_by"/>
 		<property name="updateTime" type="Date" length="" field="update_time"/>
 		<property name="chooseName" type="String" length="50" field=""/>
-		
+		<property name="det" type="String" length="20" field=""/>
  	</object>  
  	
  	

@@ -20,6 +20,7 @@
     <control name="id" title="id" property="id" type="Hidden" edit="Y" required="" format="" width="" height="" column=""/>
     <control name="ctlEdit" title="编辑" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
+    <control name="det" title="det" property="det" type="Hidden" edit="" required="" format="" width="160" height="" column=""/>
     <control name="ctlName" title="选项名称" property="name" type="TextBox" edit="" required="" format="" width="160" height="" column=""/>
     <control name="ctlChooseId" title="选项类型id" property="chooseId" type="Hidden" edit="" required="" format="" width="160" height="" column=""/>
     <control name="ctlScore" title="分值" property="score" type="TextBox" edit="" required="" format="" width="160" height="" column=""/>
@@ -71,7 +72,7 @@
       </procedure>              
     </flow>
     <!-- 删除 --> 
-     <flow trigger="pTable.ctlDel" event="OnClick" filter="">
+     <flow trigger="pTable.ctlDel" event="OnClick" filter="row.det=='1'">
       <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">
        <param name="Title" value="删除提示" />
        <param name="Msg" value="确认删除当前数据吗?" />

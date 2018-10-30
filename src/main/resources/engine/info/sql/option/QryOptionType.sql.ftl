@@ -1,5 +1,6 @@
 select * from (
 	select 
+	case when (select count(id) from t_questions where choose_id = c.id) >=1 then '0' else '1' end as det,
 	c.id as id,
 	c.name as name,
 	t.name as createBy,	
