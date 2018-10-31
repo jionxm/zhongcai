@@ -484,7 +484,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>tpms_test</finalName>
+        <finalName>zc_test</finalName>
         <filters>
             <filter>src/main/resources/${profiles.active}/system.properties</filter>
         </filters>
