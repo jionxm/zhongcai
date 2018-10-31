@@ -39,7 +39,7 @@
  	</object>  
  	
  	<!-- 测评对象表model -->
- 	<object name="projectgroup" table="t_project_group" primary="id" unique="project_id,group_id" order="">
+ 	<object name="projectgroup" table="t_project_group" primary="id" unique="project_id,group_id,test_id" order="">
 		<property name="id" type="Long" length="20" initial="" field="id"/>
 		<property name="groupId" type="Long" length="20" initial="" field="group_id"/>
 		<property name="projectId" type="Long" length="20" initial="" field="project_id"/>
