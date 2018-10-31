@@ -68,7 +68,7 @@
                     <param name="In" value="pnlDetailGroup"></param>
                     <param name="Out" value="pTable"></param>
                     <param name="Sql" value="project/QryQrQuestionPerson"></param>
-                </procedure>                             
+                </procedure>
             </flow>
 		    
 		    
