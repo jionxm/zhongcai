@@ -1,0 +1,1 @@
+delete from t_project_group where project_id = #{data.id}
