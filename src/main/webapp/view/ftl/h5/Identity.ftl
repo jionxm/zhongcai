@@ -11,6 +11,8 @@
 </head>
 
 <body>
+
+	<#if size!=0>
     <header>
         <p>${data.projectName}</p>
     </header>
@@ -29,8 +31,17 @@
             <button>开始</button>
         </a>
     </div>
-
-    
+	</#if>
+	<#if size==0>
+	<div  class="container " style="margin-top:45%">
+		 
+		 <p class="notice">温馨提示：
+            <span>
+            	对不起，该二维码已经失效或者测评结束，请联系相关人员！
+            </span>
+        </p>
+	</#if>
+    </div>
 </body>
 
 </html>
