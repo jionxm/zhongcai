@@ -14,11 +14,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tedu.base.auth.login.controller.LoginController;
 import com.tedu.base.common.error.ErrorCode;
 import com.tedu.base.common.error.ServiceException;
 import com.tedu.base.common.page.QueryPage;
+import com.tedu.base.common.utils.ResponseJSON;
 import com.tedu.base.common.utils.SessionUtils;
 import com.tedu.base.engine.model.FormModel;
 import com.tedu.base.engine.service.FormService;
@@ -37,6 +39,7 @@ public class SelectionController {
 	
 	@RequestMapping(value = "")
 	public String QueryQuestions(Model model,HttpServletRequest request,FormModel formModel) {
+
 		String qrCode = request.getParameter("qr_code");
 		Map<String,Object> map =  formModel.getData();
 		QueryPage qp = new QueryPage();
@@ -70,6 +73,15 @@ public class SelectionController {
 			return "h5/Selection";
 		}
 		return "h5/Selection";
+	}
+	@RequestMapping("/question")
+	@ResponseBody
+	public ResponseJSON resourceSync(Model model, HttpServletRequest request) {
+		
+		ResponseJSON result = new ResponseJSON();
+		result.setStatus(200);
+		result.setMsg("cg");
+		return result;
 	}
 	
 }

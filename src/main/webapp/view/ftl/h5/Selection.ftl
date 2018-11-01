@@ -2,13 +2,13 @@
 
 <head>
 	<#assign ctx=request.contextPath>
+    <#include "h5/base.ftl">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
     <title>测评页面</title>
     <link href="${ctx}/view/common/assets/h5/css/normalize.css" rel="stylesheet" type="text/css">
     <link href="${ctx}/view/common/assets/h5/css/Selection.css" rel="stylesheet" type="text/css">
-    <#include "h5/base.ftl">
 </head>
 
 <body style="background-color: #fff;">
@@ -28,14 +28,14 @@
             <#list total as t>
             <p>${x}/${t.total }</p>
             </#list>
-            <p class="top"><b>#${q.dimension}</b>${q.questionName}</p>
+            <p class="top"><b>#${q.dimension}</b><font name="${q.questionNumber}">${q.questionName}</font></p>
             <dl>
                 <!-- <dt id="0">张大大</dt> -->
                 
-                <dd  class="box"onclick="ddClick(this)">
+                <dd  class="box">
                     <#list cList as c>
                 	<#if q.questionId == c.questionId && c.chooseType == "single">
-                    <input  type="radio" name="q${x}" id="radio0${c_index }">
+                    <input  type="radio" name="q${x}" id="radio0${c_index }" value="${c.valueName}">
                     <label for="radio0${c_index }">&nbsp;${c.valueName}</label>
                     </#if>
                 	</#list>
@@ -117,12 +117,12 @@
 		            </#list>
 		            <p id="i${r }" hidden>d${x}</p>
 		            <#assign r=r+1 />
-                    <p class="top"><b>#${q.dimension}</b>${q.questionName}（可多选）</p>
+                    <p class="top"><b>#${q.dimension}</b><font name="${q.questionNumber}" >${q.questionName}（可多选）</font></p>
                     <dl onclick="dc(this)">
                         <dd class="box">
 		                    <#list cList as c>
 		                	<#if q.questionId == c.questionId && c.chooseType == "multi">
-                            <input  type="checkbox" name="d${x}" id="checkbox${c_index }">
+                            <input  type="checkbox" name="d${x}" id="checkbox${c_index }" value="${c.valueName}">
                             <label for="checkbox${c_index }">&nbsp;${c.valueName}</label>
 		                    </#if>
 		                	</#list>
@@ -170,7 +170,7 @@
 		            <#list total as t>
 		            <p>${x}/${t.total }</p>
 		            </#list>
-                    <p class="top"><b>#${q.dimension}</b>${q.questionName}</p>
+                    <p class="top"><b>#${q.dimension}</b><font name="${q.questionNumber}">${q.questionName}</font></p>
                     <textarea class="usertext" placeholder="请填写您的意见" ></textarea>
                     </#if>
                     </#list>
@@ -193,16 +193,26 @@
         <span class="hrefBtn notHrefBtn"  onclick="goto()"><p>您有未完成的题目</p></span>
     </footer>
 
-    <script type="text/javascript" src="${ctx}/view/common/assets/h5/js/base/jquery-1.11.0.min.js" ></script>
     <script type="text/javascript">
      function popPage() {
             window.history.go(-1);
         }
-     var sTotal = $("#i").html();
-     var r = $("#sum").html();
-     for(var j=0;j<r;j++){
+     var sTotal = $("#i").html(); 
+     var r = $("#sum").html();console.log(r);
+     var radioNum=${sTotal };
+     console.log(radioNum);
+     <#list test as t>
+     var QRId = ${t.QRId}
+     var projectGroupId = ${t.projectGroupId}
+     var ztqzId = ${t.ztqzId}
+     var testId = ${t.testId}
+     var type = ${t.type}
+     </#list>
+     
+     
+     /* for(var j=0;j<r;j++){
      	var qNumber = $("#i"+j).html();
-     }
+     } */
     </script>
     <script type="text/javascript" src="${ctx}/view/common/assets/h5/js/page/Selection.js"></script>
     
