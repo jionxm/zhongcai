@@ -130,7 +130,7 @@
   font-size: 12px;
   font-weight: bold;
   color: #A1B7D4;
-  height: 16px;
+  height: 30px;
   line-height: 16px;
   padding-left:4px;
 }
@@ -3285,6 +3285,7 @@ tr:nth-child(even){
 	/* border-bottom:1px solid rgba(255,255,255,0.05); */
 	border-width:1px;
 	border-bottom-width:0px;
+	padding-top: 20px;
 }
 .js-test.panel-noscroll>.easyui-layout.layout.easyui-fluid>.panel.layout-panel.layout-panel-west.panel-htop>.panel-header>.panel-title{
 	line-height:33px;
