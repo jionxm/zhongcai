@@ -50,6 +50,8 @@
                          height="" column="1" />
                 <control name="qrState" title="状态" property="qrState" type="Hidden" edit="N" required="" format="" width=""
                          height="" column="1" />
+                <control name="testerCount" title="主体人数" property="testerCount" type="Hidden" edit="N" required="" format="" width=""
+                         height="" column="1" />
             </panel>
             
             <!-- 加载 -->
@@ -138,20 +140,43 @@
 		    </flow>
 		    <!-- 生成二维码 -->
             <flow trigger="pnlDetailTool.ctlAdd" event="OnClick" filter="">
-            	<procedure name="branchstate" server="" logic="Branch" ifyes="jsmsgstate" ifno="branch">
+            
+                <procedure name="branch" server="" logic="Branch" ifyes="branchstate" ifno="jsmsg">
+        			<param name="In" value="getPanelControlValue('pnlDetailGroup.ctlQrState')=='0'"/>
+      			</procedure> 
+      			<procedure name="jsmsg" server="" logic="ConfirmMsg" ifyes="jsencodeid" ifno="">
+		       		<param name="Title" value="提示" />
+		       		<param name="Msg" value="该项目已经生成二维码,点击跳转至二维码列表" />
+		      	</procedure> 
+		      	
+            	<procedure name="branchstate" server="" logic="Branch" ifyes="jsmsgstate" ifno="branchGroup">
         			<param name="In" value="getPanelControlValue('pnlDetailGroup.ctlState')=='stop'"/>
       			</procedure>
       			<procedure name="jsmsgstate" server="" logic="ConfirmMsg" ifyes="" ifno="">
 		       		<param name="Title" value="提示" />
 		       		<param name="Msg" value="该项目未启动,请启动项目" />
 		      	</procedure>
-            	<procedure name="branch" server="" logic="Branch" ifyes="jssave" ifno="jsmsg">
-        			<param name="In" value="getPanelControlValue('pnlDetailGroup.ctlQrState')=='0'"/>
-      			</procedure> 
-      			<procedure name="jsmsg" server="" logic="ConfirmMsg" ifyes="jsencodeid" ifno="">
+		      	
+		      
+      			
+		      	
+		      	<procedure name="branchGroup" server="" logic="Branch" ifyes="noGroupMsg" ifno="branchTester">
+        			<param name="In" value="getRows('pnlTProjectGroup')=='0'"/>
+      			</procedure>
+      			<procedure name="noGroupMsg" server="" logic="ConfirmMsg" ifyes="" ifno="">
 		       		<param name="Title" value="提示" />
-		       		<param name="Msg" value="该项目已经生成二维码,点击跳转至二维码列表" />
+		       		<param name="Msg" value="测评对象不能为空，请添加测评对象！" />
 		      	</procedure>
+		      	
+		      	<!-- testerCount -->
+		        <procedure name="branchTester" server="" logic="Branch" ifyes="jssave" ifno="noTesterMsg">
+        			<param name="In" value="getRowsValueTrue('pnlTProjectGroup','testerCount')"/>
+      			</procedure>
+      			<procedure name="noTesterMsg" server="" logic="ConfirmMsg" ifyes="" ifno="">
+		       		<param name="Title" value="提示" />
+		       		<param name="Msg" value="请确认是否所有测评对象都已添加主体人数？" />
+		      	</procedure>
+		      	
                 <procedure name="jssave" logic="Save" ifyes="jsdel" ifno="">
 			   	  <param name="In" value="pnlDetailGroup"></param>
 			   	  <param name="Plugin" value="insertQRPlugin"></param>
