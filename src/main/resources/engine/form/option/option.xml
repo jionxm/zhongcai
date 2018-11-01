@@ -13,7 +13,7 @@
 		<property name="det" type="String" length="20" field=""/>
  	</object>  
  	<!-- 选项值model -->
- 	<object name="type" table="t_choose_value" primary="id" unique="name" order="">
+ 	<object name="type" table="t_choose_value" primary="id" unique="name,choose_id" order="">
 		<property name="id" type="Long" length="20" initial="" field="id"/>
 		<property name="name" type="String" length="50" initial="" field="name"/>
 		<property name="chooseId" type="Long" length="20" field="choose_id"/>
