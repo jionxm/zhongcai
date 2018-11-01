@@ -59,6 +59,8 @@
 		<property name="updateByName" type="Long" length="10" validate=""  field="" />
 		<property name="groupName" type="String" length="20" validate=""  field="" />
 		<property name="testName" type="String" length="50" initial="" field=""/>
+		<!-- 主体人数 -->
+		<property name="testerCount" type="String" length="50" initial="" field=""/>
  	</object>   	
  	
  	<!-- 测评对象人数表model -->

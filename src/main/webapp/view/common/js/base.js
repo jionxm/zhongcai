@@ -501,3 +501,27 @@ function getTransitionUrl(token, type, puid,EditMode, from, code, ToTitle, To, u
 	setNav(ToTitle, To);
 	return url+To+"?token="+token+"&type="+type+"&puid="+puid+"&EditMode="+EditMode+"&from="+from+"&code="+code;
 }
+
+function getRows(panelName){
+	var rowCount = $("#"+panelName).datagrid('getRows').length;
+	return rowCount;
+	
+}
+
+function getRowsValueTrue(panelName,controlName){
+	debugger
+	var rows = $("#"+panelName).datagrid('getRows');
+	var len = rows.length;
+	var flag = true;
+	var ids = [];
+	for(i=0;i<len;i++){
+	    value = rows[i][controlName];
+		console.log(value);
+		if(value=='0'){
+			flag =  false;
+			return flag;
+		}
+	}
+	return flag;
+	
+}

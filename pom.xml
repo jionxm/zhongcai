@@ -8,7 +8,7 @@
  <repositories>
     <repository>
         <id>nexus</id>
-        <url>http://114.115.209.116:8011/repository/maven-public/</url>
+        <url>http://maven.tedus.cn/repository/maven-public/</url>
     </repository>    
     </repositories> 
 <properties>
@@ -484,7 +484,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>tpms_test</finalName>
+        <finalName>zc_test</finalName>
         <filters>
             <filter>src/main/resources/${profiles.active}/system.properties</filter>
         </filters>
