@@ -50,7 +50,7 @@
                     <label for="radio03">&nbsp;差</label> -->
                 </dd>
                 
-                <hr>
+                <!-- <hr> -->
                 <!-- <dt id="1">杨大伟</dt>
                 <dd class="box"onclick="ddClick(this)">
                     <input   type="radio" name="q1"id="radio10">
@@ -206,7 +206,7 @@
      var projectGroupId = ${t.projectGroupId}
      var ztqzId = ${t.ztqzId}
      var testId = ${t.testId}
-     var type = ${t.type}
+     var type = "${t.type}"
      </#list>
      
      

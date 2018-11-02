@@ -144,7 +144,7 @@ function submit() {
 				"questionNumber":title1,
 				"result":value,
 				"QRId":QRId,
-				"testType": testType,
+				"testType": type,
 				"ztqzId": ztqzId,
 				"projectGroupId": projectGroupId, 
 				"testId": testId
@@ -172,14 +172,38 @@ function okBtn() {
 		}
 		
 	});*/
-	ajaxPost(APIS.frmResultTestDetail.save, 
+	ajaxPost(APIS.frmResultTestDetail.queryById, 
 	         {
-				Mode:"Add",
-				pTable:retarr1
-	         }, function(data) {
-	        	 console.log(data);
+				eq_id:QRId
+	         }, function(queryResult) {
+	        	 debugger;
+	        	 console.log("111"+queryResult);
+	        	 if(queryResult.data.ctlState==1){
+	        		 ajaxPost(APIS.frmResultTestDetail.save, 
+	        				 {
+	        			 Mode:"Add",
+	        			 pTable:retarr1
+	        				 }, function(data) {
+	        					 ajaxPost(APIS.frmResultTestDetail.saveCustom, 
+	        							 {
+	        						 Mode:"Add",
+	        						 state:0,
+	        						 ctlId:QRId
+	        							 }, function(result) {
+	        								 alert("提交成功");
+	        								 window.location.reload(-1);
+	        							 }
+	        					 );
+	        				 }
+	        		 );
+	        			
+	        		}else{
+	        			alert("该二维码已被使用并提交了答案");
+	        			window.location.reload(-1);
+	        		}
 	          }
 	        );
+	
 }
 
 function Close() {
