@@ -80,10 +80,10 @@
  	</object>  
  	
  	<!-- 测评结果表model -->
- 	<object name="result" table="t_result" primary="id" unique="" order="">
+ 	<object name="result" table="t_result" primary="id" unique="QR_id,question_id,emp_id" order="">
 		<property name="id" type="Long" length="20" initial="" field="id"/>
 		<property name="QRId" type="Long" length="20" initial="" field="QR_id"/>
-		<property name="questionNumber" type="Long" length="20" initial="" field="question_number"/>
+		<property name="questionId" type="Long" length="20" initial="" field="question_id"/>
 		<property name="result" type="String" length="500" initial="" field="result"/>
 		<property name="testType" type="String" length="20" initial="" field="test_type"/>
 		<property name="empId" type="Long" length="20" initial="" field="emp_id"/>

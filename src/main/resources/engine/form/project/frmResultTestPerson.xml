@@ -42,7 +42,7 @@
                          height="2" column=""/>
                 <control name="ctlEmpName" title="测评对象姓名" property="empName" type="TextBox" edit="" required="" format="" width="80"
                          height="2" column=""/>
-                <control name="ctlQuestionNumber" title="题目编号" property="questionNumber" type="TextBox" edit="" required="" format="" width="80"
+                <control name="ctlQuestionId" title="题目编号" property="questionId" type="TextBox" edit="" required="" format="" width="80"
                          height="2" column=""/>
                 <control name="ctlQuestion" title="题目" property="questionName" type="TextBox" edit="" required="" format="" width="500"
                          height="2" column=""/>

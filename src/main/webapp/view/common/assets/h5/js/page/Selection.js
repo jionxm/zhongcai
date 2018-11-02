@@ -141,7 +141,7 @@ function submit() {
 				value=value.join('&');
 			}
 			var obj={
-				"questionNumber":title1,
+				"questionId":title1,
 				"result":value,
 				"QRId":QRId,
 				"testType": type,
@@ -172,37 +172,43 @@ function okBtn() {
 		}
 		
 	});*/
-	ajaxPost(APIS.frmResultTestDetail.queryById, 
+	/*ajaxPost(APIS.frmResultTestDetail.queryById, 
 	         {
 				eq_id:QRId
 	         }, function(queryResult) {
 	        	 debugger;
 	        	 console.log("111"+queryResult);
-	        	 if(queryResult.data.ctlState==1){
+	        	 if(queryResult.data.ctlState==1){*/
 	        		 ajaxPost(APIS.frmResultTestDetail.save, 
 	        				 {
 	        			 Mode:"Add",
 	        			 pTable:retarr1
 	        				 }, function(data) {
-	        					 ajaxPost(APIS.frmResultTestDetail.saveCustom, 
-	        							 {
-	        						 Mode:"Add",
-	        						 state:0,
-	        						 ctlId:QRId
-	        							 }, function(result) {
-	        								 alert("提交成功");
-	        								 window.location.reload(-1);
-	        							 }
-	        					 );
+	        					 if(data.code==904){
+	        						 alert("该二维码已经被使用并提交答案");
+	        						 window.location.reload(-1);
+	        					 }else{
+	        						 ajaxPost(APIS.frmResultTestDetail.saveCustom, 
+	        								 {
+	        							 Mode:"Add",
+	        							 state:0,
+	        							 ctlId:QRId
+	        								 }, function(result) {
+	        									 alert("提交成功");
+	        									 window.location.reload(-1);
+	        								 }
+	        						 );
+	        						 
+	        					 }
 	        				 }
 	        		 );
 	        			
-	        		}else{
+	        		/*}else{
 	        			alert("该二维码已被使用并提交了答案");
 	        			window.location.reload(-1);
 	        		}
 	          }
-	        );
+	        );*/
 	
 }
 

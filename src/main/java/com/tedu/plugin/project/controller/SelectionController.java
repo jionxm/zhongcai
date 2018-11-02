@@ -74,7 +74,7 @@ public class SelectionController {
 		}
 		return "h5/Selection";
 	}
-	@RequestMapping("/question")
+	/*@RequestMapping("/question")
 	@ResponseBody
 	public ResponseJSON resourceSync(Model model, HttpServletRequest request) {
 		
@@ -82,6 +82,6 @@ public class SelectionController {
 		result.setStatus(200);
 		result.setMsg("cg");
 		return result;
-	}
+	}*/
 	
 }

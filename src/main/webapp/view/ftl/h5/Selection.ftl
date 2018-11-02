@@ -28,7 +28,7 @@
             <#list total as t>
             <p>${x}/${t.total }</p>
             </#list>
-            <p class="top"><b>#${q.dimension}</b><font name="${q.questionNumber}">${q.questionName}</font></p>
+            <p class="top"><b>#${q.dimension}</b><font name="${q.questionId}">${q.questionName}</font></p>
             <dl>
                 <!-- <dt id="0">张大大</dt> -->
                 
@@ -117,7 +117,7 @@
 		            </#list>
 		            <p id="i${r }" hidden>d${x}</p>
 		            <#assign r=r+1 />
-                    <p class="top"><b>#${q.dimension}</b><font name="${q.questionNumber}" >${q.questionName}（可多选）</font></p>
+                    <p class="top"><b>#${q.dimension}</b><font name="${q.questionId}" >${q.questionName}（可多选）</font></p>
                     <dl onclick="dc(this)">
                         <dd class="box">
 		                    <#list cList as c>
@@ -170,7 +170,7 @@
 		            <#list total as t>
 		            <p>${x}/${t.total }</p>
 		            </#list>
-                    <p class="top"><b>#${q.dimension}</b><font name="${q.questionNumber}">${q.questionName}</font></p>
+                    <p class="top"><b>#${q.dimension}</b><font name="${q.questionId}">${q.questionName}</font></p>
                     <textarea class="usertext" placeholder="请填写您的意见" ></textarea>
                     </#if>
                     </#list>
