@@ -51,7 +51,7 @@
                 <procedure name="procTransform"  logic="Transform" ifyes="" ifno="">
                     <param name="In" value="pnlCondition" />
                     <param name="Out" value="pnlList" />
-                    <param name="Plugin" value=" com.tedu.plugin.flowResource.FlowList" />
+                    <param name="Plugin" value="com.tedu.plugin.flowResource.FlowList" />
                 </procedure>
             </flow>
             <flow trigger="pnlToolbar.ctlExport" event="OnClick" filter="">

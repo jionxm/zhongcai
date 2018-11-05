@@ -123,6 +123,7 @@ public class insertQRPlugin implements ILogicPlugin {
 	    			CustomFormModel customFormModel = new CustomFormModel("", "", sqlMap);
 	    			customFormModel.setSqlId("project/UpdateQR");
 	    			formMapper.saveCustom(customFormModel);
+	    			
 	    		}
 	    	}
 	    	
@@ -192,11 +193,11 @@ public class insertQRPlugin implements ILogicPlugin {
 		try {
 			
 			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-			boolean flag = excelExportUtil.exportQrImage(resultlist,excelPath+uuid.substring(0, 2)+separator,fileName);
+			boolean flag = excelExportUtil.exportQrImage(resultlist,excelPath+uuid.substring(0, 2)+separator,uuid);
 			//创建成功后删除无用数据并且存入附件表中
 			if(flag){
 				Map sqlMap = new HashMap();
-		    	sqlMap.put("uuid", uuid);
+		    	sqlMap.put("uuid",uuid);
 		    	sqlMap.put("filename", fileName);
 		    	sqlMap.put("file_type", "xlsx");
 		    	sqlMap.put("length", 0);
@@ -212,6 +213,25 @@ public class insertQRPlugin implements ILogicPlugin {
 		    	formMapper.saveCustom(csmd);
 		    	File qrFile = new File(qrfilePath); 
 		    	deleteDir(qrFile);
+		    	
+		    	//获取附件信息并更新到project中
+		    	QueryPage qrfile = new QueryPage();
+		    	qrfile.setParamsByMap(map);
+		    	qrfile.getData().put("id",uuid);
+		    	qrfile.setQueryParam("project/QueryFile");//查询qr
+		    	List<Map<String,Object>> fileList = new ArrayList<Map<String,Object>>();
+		    	fileList = formService.queryBySqlId(qrfile);
+		    	String fileId = "";
+		    	if(fileList.size()>0){
+		    		Map fileMap = fileList.get(0);
+		    		fileId = fileMap.get("id").toString();
+		    	}
+		        sqlMap = new HashMap();
+    			sqlMap.put("id",formModel.getData().get("id"));
+    			sqlMap.put("file_id",fileId);
+    			CustomFormModel customFormModel = new CustomFormModel("", "", sqlMap);
+    			customFormModel.setSqlId("project/UpdateProjectFile");
+    			formMapper.saveCustom(customFormModel);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -20,6 +20,7 @@
 		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />
 		
+		<property name="fileId" type="String" length="20" validate=""  field="file_id" />
 		<property name="stateName" type="String" length="20" validate=""  field="" />
 		<property name="qrStateName" type="String" length="20" validate=""  field="" />
 		<property name="scopeName" type="String" length="20" validate=""  field="" />

@@ -12,6 +12,8 @@
             <panel name="pnlDetailGroup" title="详细信息" object="project" type="Group">                
                 <control name="ctlId" title="项目id" property="id" type="Hidden" edit="N" required="N" format=""
                          width="1" height="1" column=""/>
+                <control name="fileId" title="项目二维码附件id" property="fileId" type="Hidden" edit="N" required="N" format=""
+                         width="1" height="1" column=""/>
                 <control name="ctlTName" title="测评项目" property="name" type="TextBox" edit="Y" required="" format="" width="2"
                          height="" column=""/>
                 <control name="ctlYear" title="年份" property="year" type="TextBox" edit="Y" required="N" format=""
@@ -65,15 +67,14 @@
             </flow>
 		    <!--  导出 -->
 		    <flow trigger="pnlDetailTool.ctlQrExport" event="OnClick" filter="">
-		      <procedure name="branch" logic="BatchUpdate" ifyes="queryGroup" ifno="">
-		      			<param name="In" value="pnlDetailGroup"></param>
-		      			<param name="Plugin" value="DownLoadQr"></param>
+		      <procedure name="branch" logic="Branch" ifyes="" ifno="sucMsg">
+		      		<param name="In" value="downFileQr('pnlDetailGroup.fileId')"></param>
 		      </procedure>
-		       <procedure name="queryGroup" logic="Query" ifyes="" ifno="">
-                    <param name="In" value="pnlDetailGroup"></param>
-                    <param name="Out" value="pnlTProjectGroup"></param>
-                    <param name="Sql" value="project/QryProjectQr"></param>
+		       <procedure name="sucMsg" logic="ConfirmMsg" ifyes="" ifno="">
+                    <param name="Title" value="提示"></param>
+                    <param name="Msg" value="数据错误！请联系相关技术人员！"></param>
                 </procedure>   
+               
 		    </flow>
 		    
 		    

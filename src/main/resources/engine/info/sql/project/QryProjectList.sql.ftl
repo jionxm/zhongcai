@@ -13,8 +13,8 @@ select * from (
 	p.update_by as updateBy,
 	p.create_by as createBy,
 	p.update_time as updateTime,
-	p.create_time as createTime  
-	
+	p.create_time as createTime,  
+	p.file_id as fileId
 	from t_project p 
 	LEFT JOIN t_dict d3 ON p.state=d3.code and d3.cata_code="t_recommend.state"
  ) a 
