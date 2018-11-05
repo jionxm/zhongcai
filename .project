@@ -3,7 +3,7 @@
 	<name>zc_test</name>
 	<comment></comment>
 	<projects>
-		<project>tpms-core</project>
+		<project>zc_test</project>
 		<project>base-core</project>
 	</projects>
 	<buildSpec>

@@ -50,7 +50,7 @@ public class QRCodeController {
 		List<Map<String,Object>> projectList = formService.queryBySqlId(qp);
 		model.addAttribute("ctx", request.getContextPath());
 		model.addAttribute("data",projectList.size()>0?projectList.get(0):"projectName=未查询到相关记录");
-		
+		model.addAttribute("size", projectList.size());
 		return "h5/Identity";
 	}
 	

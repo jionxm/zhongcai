@@ -106,13 +106,14 @@
 						/uc-index,
 						/uc,
 						/contact-us,
-						/qr/view
+						/qr/view,
+						/selection
 			</param-value>
 		</init-param>
 		<init-param>
 			<param-name>excAllow</param-name>
 			<param-value>
-			/qr/view
+			/qr/view,/selection
 			</param-value>
 		</init-param>
 		<init-param>

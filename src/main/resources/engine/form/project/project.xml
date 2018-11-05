@@ -20,6 +20,7 @@
 		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />
 		
+		<property name="fileId" type="String" length="20" validate=""  field="file_id" />
 		<property name="stateName" type="String" length="20" validate=""  field="" />
 		<property name="qrStateName" type="String" length="20" validate=""  field="" />
 		<property name="scopeName" type="String" length="20" validate=""  field="" />
@@ -39,7 +40,7 @@
  	</object>  
  	
  	<!-- 测评对象表model -->
- 	<object name="projectgroup" table="t_project_group" primary="id" unique="project_id,group_id" order="">
+ 	<object name="projectgroup" table="t_project_group" primary="id" unique="project_id,group_id,test_id" order="">
 		<property name="id" type="Long" length="20" initial="" field="id"/>
 		<property name="groupId" type="Long" length="20" initial="" field="group_id"/>
 		<property name="projectId" type="Long" length="20" initial="" field="project_id"/>
@@ -51,6 +52,7 @@
 		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />
 		
+		<property name="qrState" type="String" length="20" validate=""  field="" />
 		<property name="projectName" type="String" length="20" validate=""  field="" />
 		<property name="createByName" type="Long" length="10" validate=""  field="" />
 		<property name="createTimeName" type="Long" length="10" validate=""  field="" />
@@ -58,6 +60,8 @@
 		<property name="updateByName" type="Long" length="10" validate=""  field="" />
 		<property name="groupName" type="String" length="20" validate=""  field="" />
 		<property name="testName" type="String" length="50" initial="" field=""/>
+		<!-- 主体人数 -->
+		<property name="testerCount" type="String" length="50" initial="" field=""/>
  	</object>   	
  	
  	<!-- 测评对象人数表model -->
@@ -77,17 +81,20 @@
  	</object>  
  	
  	<!-- 测评结果表model -->
- 	<object name="result" table="t_result" primary="id" unique="" order="">
+ 	<object name="result" table="t_result" primary="id" unique="QR_id,question_id,emp_id" order="">
 		<property name="id" type="Long" length="20" initial="" field="id"/>
 		<property name="QRId" type="Long" length="20" initial="" field="QR_id"/>
-		<property name="questionNumber" type="Long" length="20" initial="" field="question_number"/>
+		<property name="questionId" type="Long" length="20" initial="" field="question_id"/>
 		<property name="result" type="String" length="500" initial="" field="result"/>
-		
+		<property name="testType" type="String" length="20" initial="" field="test_type"/>
+		<property name="empId" type="Long" length="20" initial="" field="emp_id"/>
+				
 		<property name="createTime" type="Date" length="" validate=""  field="create_time" />
 		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
 		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />	
 		<property name="questionName" type="String" length="500" initial="" field=""/>
+		<property name="empName" type="String" length="20" initial="" field=""/>
  	</object>  
  	
  	<!-- 二维码表model -->
@@ -105,6 +112,7 @@
 		<property name="updateTime" type="Date" length="" validate=""  field="update_time" />
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />	
 		
+		<property name="testType" type="String" length="20" initial="" field=""/>
 		<property name="testerName" type="String" length="20" initial="" field=""/>
 		<property name="groupName" type="String" length="20" initial="" field=""/>
 		<property name="projectName" type="String" length="20" initial="" field=""/>

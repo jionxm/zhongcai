@@ -8,6 +8,8 @@
                          height="" column="1"/>
                 <control name="ctlName" title="分组名称" property="name" type="TextBox" edit="Y" required="Y" format=""
                          width="1" height="1" column="1"/>
+                <control name="ctlDeptCode" title="单位编码" property="deptCode" type="TextBox" edit="Y" required="N" format=""
+                         width="1" height="1" column="1"/>
                 <control name="ctlcreateTime" title="创建时间" property="createTime" type="Hidden" edit="N" required="N" format="" width="1" height="1" column="1" target="editMode=='Add'?CurrentTime():nil"/>
 				<control name="ctlcreateBy" title="创建人" property="createBy" type="Hidden" edit="N" required="N" format="" width="1" height="1" column="1" target="session.userInfo.empId"/>
 				<control name="ctlupdateTime" title="更新日期" property="updateTime" type="Hidden" edit="N" required="N" target="CurrentTime()" format="" width="1" height="1" column="1"  />

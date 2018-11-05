@@ -501,3 +501,63 @@ function getTransitionUrl(token, type, puid,EditMode, from, code, ToTitle, To, u
 	setNav(ToTitle, To);
 	return url+To+"?token="+token+"&type="+type+"&puid="+puid+"&EditMode="+EditMode+"&from="+from+"&code="+code;
 }
+
+function getRows(panelName){
+	var rowCount = $("#"+panelName).datagrid('getRows').length;
+	return rowCount;
+	
+}
+
+
+function getRowsValueTrue(panelName,controlName){
+	debugger
+	var rows = $("#"+panelName).datagrid('getRows');
+	var len = rows.length;
+	var flag = true;
+	var ids = [];
+	for(i=0;i<len;i++){
+	    value = rows[i][controlName];
+		console.log(value);
+		if(value=='0'){
+			flag =  false;
+			return flag;
+		}
+	}
+	return flag;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+function downFileQr(fileId){
+	var id = getPanelControlValue(fileId);
+	if(id!=null&&id!=""&&id!=undefined){
+		location.href = getRootPath_web() +"/localDownload?fileId="+id+"&methodType=export";
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function getRootPath_web() {
+    //获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
+    var curWwwPath = window.document.location.href;
+    //获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+    var pathName = window.document.location.pathname;
+    var pos = curWwwPath.indexOf(pathName);
+    //获取主机地址，如： http://localhost:8083
+    var localhostPaht = curWwwPath.substring(0, pos);
+    //获取带"/"的项目名，如：/uimcardprj
+    var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+    return (localhostPaht + projectName);
+}
+

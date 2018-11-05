@@ -4,13 +4,15 @@
     <ui_layer>
         <ui name="frmProjectQrDetail" title="二维码">
             <panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
-                <!-- <control name="ctlGroup" title="新增测评对象" property="" type="Button" edit="" required="" format=""
-                         width="" height="" column=""/>      -->                    
+                <control name="ctlQrExport" title="二维码导出" property="" type="Button" edit="" required="" format=""
+                         width="" height="" column=""/>                      
                 <control name="ctlBack" title="返回" property="" type="Button" edit="" required="" format="" width=""
                          height="" column=""/>
             </panel>
             <panel name="pnlDetailGroup" title="详细信息" object="project" type="Group">                
                 <control name="ctlId" title="项目id" property="id" type="Hidden" edit="N" required="N" format=""
+                         width="1" height="1" column=""/>
+                <control name="fileId" title="项目二维码附件id" property="fileId" type="Hidden" edit="N" required="N" format=""
                          width="1" height="1" column=""/>
                 <control name="ctlTName" title="测评项目" property="name" type="TextBox" edit="Y" required="" format="" width="2"
                          height="" column=""/>
@@ -63,89 +65,16 @@
                     <param name="Sql" value="project/QryProjectQr"></param>
                 </procedure>                             
             </flow>
-            <!--  新增测评对象 -->
-		    <flow trigger="pnlDetailTool.ctlGroup" event="OnClick" filter="">
-		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
-		        <param name="In" value="pnlDetailGroup.ctlId"/>
+		    <!--  导出 -->
+		    <flow trigger="pnlDetailTool.ctlQrExport" event="OnClick" filter="">
+		      <procedure name="branch" logic="Branch" ifyes="" ifno="sucMsg">
+		      		<param name="In" value="downFileQr('pnlDetailGroup.fileId')"></param>
 		      </procedure>
-		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
-		        <param name="To" value="frmAddGroup"/>
-		        <param name="Mode" value="Add"/>
-		        <param name="Window" value="Medium"/>
-		        <param name="Title" value="新增测评对象"></param>
-		      </procedure>
-		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-		      	<param name="In" value="pnlDetailGroup"/>
-		        <param name="Out" value="pnlTProjectGroup"/>
-		        <param name="Sql" value="project/QryProjectGroup"/>
-		      </procedure>              
-		    </flow>
-		    <!--  编辑 -->
-		    <flow trigger="pnlTProjectGroup.ctlEdit" event="OnClick" filter="">
-		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
-		        <param name="In" value="pnlTProjectGroup.id"/>
-		      </procedure>		      
-		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
-		        <param name="To" value="frmAddGroup"/>
-		        <param name="Mode" value="Edit"/>
-		        <param name="Window" value="Medium"/>
-		        <param name="Title" value="编辑测评对象"></param>
-		      </procedure>
-		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-		      	<param name="In" value="pnlDetailGroup" />
-		        <param name="Out" value="pnlTProjectGroup"/>
-		        <param name="Sql" value="project/QryProjectGroup"/>
-		      </procedure>              
-		    </flow>
-            <!--  新增主体身份人数 -->
-		    <flow trigger="pnlTProjectGroup.ctlAddGroupNumber" event="OnClick" filter="row.state=='1'">
-		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
-		        <param name="In" value="pnlTProjectGroup.id"/>
-		      </procedure>
-		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
-		        <param name="To" value="frmAddGroupNumber"/>
-		        <param name="Mode" value="Add"/>
-		        <param name="Window" value="Medium"/>
-		        <param name="Title" value="新增主体身份人数"></param>
-		      </procedure>
-		      <procedure name="jsquery" logic="Query" ifyes="" ifno="">
-                    <param name="In" value="pnlDetailGroup"></param>
-                    <param name="Out" value="pnlTProjectGroup"></param>
-                    <param name="Sql" value="project/QryProjectGroup"></param>
-                </procedure>              
-		    </flow>
-		    <!--  编辑主体身份人数 -->
-		    <flow trigger="pnlTProjectGroup.ctlEditGroupNumber" event="OnClick" filter="row.state=='0'">
-		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
-		        <param name="In" value="pnlTProjectGroup.id"/>
-		      </procedure>
-		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
-		        <param name="To" value="frmAddGroupNumber"/>
-		        <param name="Mode" value="Edit"/>
-		        <param name="Window" value="Medium"/>
-		        <param name="Title" value="编辑主体身份人数"></param>
-		      </procedure>
-		      <procedure name="jsquery" logic="Query" ifyes="" ifno="">
-                    <param name="In" value="pnlDetailGroup"></param>
-                    <param name="Out" value="pnlTProjectGroup"></param>
-                    <param name="Sql" value="project/QryProjectGroup"></param>
-                </procedure>              
-		    </flow>
-		    <!-- 分组删除 -->
-		    <flow trigger="pnlTProjectGroup.ctlDel" event="OnClick" filter="">
-		      <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">
-		       <param name="Title" value="删除提示" />
-		       <param name="Msg" value="确认删除当前数据吗?" />
-		      </procedure>
-		      <procedure name="j1"  logic="Delete" ifyes="jsquery" ifno="">
-		        <param name="In" value="pnlTProjectGroup" />
-		        <param name="Msg" value="'数据已删除'" />
-		      </procedure>
-		      <procedure name="jsquery" logic="Query" ifyes="" ifno="">
-                	<param name="In" value="pnlDetailGroup"></param>
-                    <param name="Out" value="pnlTProjectGroup"></param>
-                    <param name="Sql" value="project/QryProjectGroup"></param>
-               </procedure>               
+		       <procedure name="sucMsg" logic="ConfirmMsg" ifyes="" ifno="">
+                    <param name="Title" value="提示"></param>
+                    <param name="Msg" value="数据错误！请联系相关技术人员！"></param>
+                </procedure>   
+               
 		    </flow>
 		    
 		    

@@ -1,0 +1,1 @@
+delete from t_tester_number where pro_group_id in (select id from t_project_group where project_id=#{data.id })

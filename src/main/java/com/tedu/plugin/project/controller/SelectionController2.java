@@ -14,13 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tedu.base.auth.login.controller.LoginController;
 import com.tedu.base.common.error.ErrorCode;
 import com.tedu.base.common.error.ServiceException;
 import com.tedu.base.common.page.QueryPage;
-import com.tedu.base.common.utils.ResponseJSON;
 import com.tedu.base.common.utils.SessionUtils;
 import com.tedu.base.engine.model.FormModel;
 import com.tedu.base.engine.service.FormService;
@@ -31,16 +29,15 @@ import com.tedu.base.engine.util.FormLogger;
  *
  */
 @Controller
-@RequestMapping ("/selection")
-public class SelectionController {
+@RequestMapping ("/selection1")
+public class SelectionController2 {
 	
     @Resource
     private FormService formService;
 	
 	@RequestMapping(value = "")
 	public String QueryQuestions(Model model,HttpServletRequest request,FormModel formModel) {
-
-		String qrCode = request.getParameter("qr_code");
+		/*String qrCode = request.getParameter("qr_code");
 		Map<String,Object> map =  formModel.getData();
 		QueryPage qp = new QueryPage();
 		qp.setParamsByMap(map);
@@ -71,17 +68,8 @@ public class SelectionController {
 			List<Map<String,Object>> chooseList = formService.queryBySqlId(qp3);
 			model.addAttribute("cList", chooseList);
 			return "h5/Selection";
-		}
-		return "h5/Selection";
+		}*/
+		return "h5/Selection1";
 	}
-	/*@RequestMapping("/question")
-	@ResponseBody
-	public ResponseJSON resourceSync(Model model, HttpServletRequest request) {
-		
-		ResponseJSON result = new ResponseJSON();
-		result.setStatus(200);
-		result.setMsg("cg");
-		return result;
-	}*/
 	
 }

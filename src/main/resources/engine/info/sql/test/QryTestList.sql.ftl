@@ -1,6 +1,7 @@
 select * from (
 	select 
-	case when (select count(id) from t_project_group where test_id=t.id) >=1 then '0' else '1' end as det,
+	case when (select count(id) from t_project_group where test_id=t.id) >=1
+	or (t.state='start') then '0' else '1' end as det,
 	t.id as id,
 	t.title as title,
 	t.type as type,	

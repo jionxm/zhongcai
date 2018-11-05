@@ -71,7 +71,7 @@ public class QRCodeService implements ILogicPlugin{
         String  codeUrl = "";
 		try {			
 			codeUrl = "<img width='100' height='100' src='data:image/png;base64," 
-		              +getCodeByUrl(createImage(url,300,300)) 
+		              +getCodeByUrl(createImage(url,200,200)) 
 		              + "' />";
 		}catch(Exception e){
 			FormLogger.logFlow(e.getMessage(), FormLogger.LOG_TYPE_ERROR);

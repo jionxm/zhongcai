@@ -47,7 +47,7 @@
         <param name="To" value="frmGroupEdit"></param>
         <param name="Mode" value="Add"></param>
          <param name="Window" value="small"></param>
-         <param name="Title" value="新增测评对象分组"></param>
+         <param name="Title" value="新增分组"></param>
       </procedure>
       <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
         <param name="In" value="pCondition"></param>
