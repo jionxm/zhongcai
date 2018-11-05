@@ -3,7 +3,7 @@
       xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
 
 <ui_layer>
-  <ui name="frmTestSituation" title="综合测评管理"> 
+  <ui name="frmTestSituation" title="测评项目统计"> 
   <panel name="pToolbar" title="工具条" object="" type="Toolbar">
     <control name="ctlQuery" title="查询" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlClear" title="清空条件" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>    
