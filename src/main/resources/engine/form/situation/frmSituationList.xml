@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tsoftware  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+      xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
+
+<ui_layer>
+  <ui name="frmTestSituation" title="综合测评管理"> 
+  <panel name="pToolbar" title="工具条" object="" type="Toolbar">
+    <control name="ctlQuery" title="查询" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>
+    <control name="ctlClear" title="清空条件" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>    
+  </panel>
+  <panel name="pCondition" title="查询条件" object="situation" type="Group">
+  	<control name="eq_testid" title="测评项目id" property="testid" type="Hidden" edit="Y" required="N" format="" width="1" height="1" column=""/>
+    <control name="ctltest" title="测评项目" property="test" type="PopupBox" edit="Y" required="N" format="" width="1" height="1" column=""/> 
+    <control name="eq_groupid" title="测评对象" property="groupid" type="ComboBox" edit="Y" required="N" format="" width="1" height="1" column="3"/> 
+  </panel>  
+  <panel name="pTable" title="查询结果" object="situation" type="Grid">
+    <control name="id" title="id" property="id" type="Hidden" edit="Y" required="" format="" width="" height="" column=""/>
+    <control name="ctlName" title="人员类别" property="name" type="TextBox" edit="" required="" format="" width="200" height="" column=""/>
+    <control name="ctlTestid" title="测评表id" property="testid" type="Hidden" edit="" required="" format="" width="300" height="" column=""/>
+    <control name="ctlGroupid" title="测评对象id" property="groupid" type="Hidden" edit="" required="" format="" width="300" height="" column=""/>
+    <control name="ctlNumber" title="人数" property="number" type="TextBox" edit="" required="" format="" width="300" height="" column=""/>
+    <control name="ctldimension" title="权重" property="dimension" type="TextBox" edit="" required="" format="" width="300" height="" column=""/>
+    
+  </panel>
+    <flow trigger="" event="OnLoad" filter="">
+      <procedure name="j1"  logic="Clear" ifyes="j2" ifno="" sync="Y">
+           <param name="Out" value="pCondition"></param>
+      </procedure>  
+      <procedure name="j2"  logic="Query" ifyes="" ifno="">
+        <param name="In" value="pCondition"></param>
+        <param name="Out" value="pTable"></param>
+        <param name="Sql" value="situation/QrysituationtList"></param>
+      </procedure>   
+    </flow>    
+    <!-- 清空 -->
+    <flow trigger="pToolbar.ctlClear" event="OnClick" filter="">
+      <procedure name="jsclear"  logic="Clear" ifyes="" ifno="">
+        <param name="Out" value="pCondition"></param>
+      </procedure>
+    </flow>    
+    <!-- 查询 -->
+    <flow trigger="pToolbar.ctlQuery" event="OnClick" filter="">
+      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
+        <param name="In" value="pCondition"></param>
+        <param name="Out" value="pTable"></param>
+        <param name="Sql" value="situation/QrysituationtList"></param>
+      </procedure>              
+    </flow>  
+    <!-- 测评项目 -->
+    <flow trigger="pCondition.ctltest" event="OnClick" filter="" >
+	<procedure name="search"  logic="Find" ifyes="search2" ifno="">
+		<param name="Out" value="pCondition"/>
+		<param name="Sql" value="situation"/>
+		<param name="Title" value="测评表选择"/>
+		<param name="Columns" value="id,测评表id,eq_testid|name,测评表名称,ctltest"/>
+	</procedure>
+		<procedure name="search2"  logic="List" ifyes="" ifno="">
+		<param name="In" value="pCondition"/>
+		<param name="Out" value="pCondition.eq_groupid"/>
+		<param name="Sql" value="siuation"/>
+		
+	</procedure>
+	</flow>
+    
+    <layout>
+      <region location ="North" scale="">
+        <subregion panel="pToolbar" location="South" scale="" />
+      </region>
+      <region location ="Center" scale="">
+      	<subregion panel="pCondition" location="North" scale="" />
+        <subregion panel="pTable" location="Center" scale="" />
+      </region>      
+    </layout>
+  </ui>
+</ui_layer>
+</tsoftware>
