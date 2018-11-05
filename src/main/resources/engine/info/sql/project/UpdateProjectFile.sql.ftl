@@ -1,0 +1,1 @@
+update t_project t set t.file_id=#{data.file_id} where t.id=#{data.id}

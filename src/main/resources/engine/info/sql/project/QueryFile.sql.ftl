@@ -1,0 +1,1 @@
+select t.id from t_file_index t where t.uuid = #{data.id}

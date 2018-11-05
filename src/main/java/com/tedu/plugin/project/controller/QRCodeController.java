@@ -16,10 +16,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tedu.base.auth.login.model.UserModel;
+import com.tedu.base.common.error.ErrorCode;
+import com.tedu.base.common.error.ServiceException;
 import com.tedu.base.common.page.QueryPage;
+import com.tedu.base.common.utils.ConstantUtil;
 import com.tedu.base.common.utils.SessionUtils;
+import com.tedu.base.engine.model.FormEngineResponse;
 import com.tedu.base.engine.model.FormModel;
 import com.tedu.base.engine.service.FormService;
+import com.tedu.base.engine.util.FormLogger;
 import com.tedu.plugin.project.service.QRCodeService;
 
 
@@ -40,6 +46,14 @@ public class QRCodeController {
 
 	@RequestMapping(value = "/view")
 	public String getView(HttpServletRequest request,Model model,FormModel formModel) {
+		
+		 if (SessionUtils.getUserInfo() == null ||(SessionUtils.getUserInfo()!=null && SessionUtils.getUserInfo().getUserId()!=-1l)) {
+	            UserModel user = new UserModel();
+	            user.setUserId(-1l);
+	            user.setName(UserModel.ANONYMOUS);
+	            SessionUtils.setAttrbute(ConstantUtil.USER_INFO, user);
+	            initResource();
+	     }
 		String qr_code = request.getParameter("qr_code");
 	
 		Map<String,Object> map =  formModel.getData();
@@ -53,6 +67,32 @@ public class QRCodeController {
 		model.addAttribute("size", projectList.size());
 		return "h5/Identity";
 	}
-	
+	  /**
+     * token拦截器需要将所有可访问资源初始在内存中
+     * ShiroFilerChainManager中的查询不正确。
+     * 暂用此方式代替
+     */
+    public void initResource() {
+        //load accessible url
+        QueryPage queryPage = new QueryPage();
+        queryPage.setQueryParam("ACLU");//所有当前用户可访问的url资源：满足授权的和不需授权的url
+        List<Map<String, Object>> listUrl = formService.queryBySqlId(queryPage);
+//    	//不限定权限的资源
+        SessionUtils.setAccessibleUrl(listUrl);
+        //load accessible control list
+        try {
+            queryPage = new QueryPage();
+            queryPage.setQueryParam("ACL");
+            List<Map<String, Object>> controlList = formService.queryBySqlId(queryPage);
+            if (controlList != null) {
+                Map<String, String> userControlMap = new HashMap<>();
+                controlList.forEach(e -> userControlMap.put(ObjectUtils.toString(e.get("url")), ObjectUtils.toString(e.get("id"))));//"ui.panel.controlName"
+                SessionUtils.setACL(userControlMap);
+                FormLogger.logBegin(String.format("装载用户可访问组件{%s}个", controlList.size()));
+            }
+        } catch (Exception e) {
+            throw new ServiceException(ErrorCode.ACL_LOAD_FAILED, e.getMessage());
+        }
+    }
 	
 }
