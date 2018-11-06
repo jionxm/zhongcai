@@ -230,10 +230,9 @@
 		    
             <!-- 返回 -->
             <flow trigger="pnlDetailTool.ctlBack" event="OnClick" filter="">
-                 <procedure name="jsgoto"  logic="Transition" ifyes="" ifno="">
-			        <param name="To" value="frmTestProjectList"></param>
-			        <param name="Mode" value="Readonly"></param>
-			      </procedure>
+                <procedure name="jsback" logic="Back" ifyes="" ifno="">
+
+                </procedure>
             </flow>
 
             
