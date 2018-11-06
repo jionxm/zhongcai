@@ -1,11 +1,10 @@
-// function ddClick(me) {
-//     var totle = 0;
-//     $(me).find("input").attr("checked", true);
-//     radionClick();
-//     notHrefBtnClick();
-//     isCheckAll();
-//     console.log(totle+'first');
-// }
+function ddClick(me) {
+    var totle = 0;
+    $(me).attr("checked", true);
+    var i = $(me).parent().attr("id");
+    window.location.href="#"+i;
+}
+
 //单选题目完成量
 var totle1 = 0;
 //多选勾选量

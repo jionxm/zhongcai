@@ -32,10 +32,10 @@
             <dl>
                 <!-- <dt id="0">张大大</dt> -->
                 
-                <dd  class="box">
+                <dd  class="box" id="${x}">
                     <#list cList as c>
                 	<#if q.questionId == c.questionId && c.chooseType == "single">
-                    <input  type="radio" name="q${x}" id="radio0${c_index }" value="${c.valueName}">
+                    <input  type="radio" name="q${x}" id="radio0${c_index }" value="${c.valueName}" onclick="ddClick(this)">
                     <label for="radio0${c_index }">&nbsp;${c.valueName}</label>
                     </#if>
                 	</#list>
