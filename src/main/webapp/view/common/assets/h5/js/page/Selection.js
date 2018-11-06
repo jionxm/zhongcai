@@ -1,10 +1,22 @@
-function ddClick(me) {
+/*function ddClick(me) {
     var totle = 0;
     $(me).attr("checked", true);
     var i = $(me).parent().attr("id");
     window.location.href="#"+i;
-}
-
+}*/
+$(function(){
+    $('.blanks').bind('input propertychange',function(){
+        var obj = $(this);
+        var text_length = obj.val().length;  //获取当前长度
+        if(text_length > 0){
+             var width = parseInt(text_length)*14; //该12是改变前的宽度除以当前字符串的长度，算出每个字符的长度
+        obj.css('width',width+'px');
+        }else{
+            obj.css('width',160+'px');
+        }
+       
+    });
+})
 //单选题目完成量
 var totle1 = 0;
 //多选勾选量

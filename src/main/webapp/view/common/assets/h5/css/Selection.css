@@ -26,7 +26,14 @@
         background-size: 30px 30px;
     }
 }
-
+.blanks{
+    max-width: 90%;
+    line-height: 25px;
+    display: inline-block;
+    border: none;
+    border-bottom: 1px solid #888;
+}
+dt{margin-top: 10px;}
  /* .answer { 
     width:100%;
     padding:0 30px; 
@@ -153,7 +160,7 @@ hr{margin: 20px auto;background-color: #eee;}
     border-bottom: 2px solid #eee; 
 }
 .answer .top{
-    margin: 10px 0;
+    margin: 10px 0 0 0;
     line-height: 25px;
      font-size: 14px; 
 }

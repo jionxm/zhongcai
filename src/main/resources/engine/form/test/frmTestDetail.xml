@@ -54,6 +54,9 @@
 				<control name="ctlMustName" title="必填项" property="mustName"
 					type="TextBox" edit="" required="" format="" width="80" height=""
 					column="" />
+				<control name="ctlStatsName" title="是否统计" property="statsName"
+					type="TextBox" edit="Y" required="Y" format="" width="80" height=""
+					column="" />
 				<control name="ctlChooseId" title="选项类型Id" property="chooseId"
 					type="Hidden" edit="" required="" format="" width="" height=""
 					column="" />

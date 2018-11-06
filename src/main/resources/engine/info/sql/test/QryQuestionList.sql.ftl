@@ -13,6 +13,8 @@ select * from (
 	t.choose_id as chooseId,
 	c.name as chooseName,
 	t.number as number,
+	t.stats as stats,
+	d4.name as statsName,
 	t.update_by as updateBy,
 	t.create_by as createBy,
 	t.update_time as updateTime,
@@ -21,6 +23,7 @@ select * from (
 	from t_questions t 
 	LEFT JOIN t_dict d1 ON t.type=d1.code and d1.cata_code="t_questions.type"
 	LEFT JOIN t_dict d3 ON t.must=d3.code and d3.cata_code="t_questions.must"
+	LEFT JOIN t_dict d4 ON t.stats=d4.code and d4.cata_code="t_questions.stats"
 	LEFT JOIN t_choose c ON t.choose_id = c.id 
 	where t.test_id=#{data.ctlId}
  ) a 
