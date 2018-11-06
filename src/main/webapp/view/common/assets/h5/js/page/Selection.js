@@ -1,9 +1,9 @@
-/*function ddClick(me) {
+function ddClick(me) {
     var totle = 0;
     $(me).attr("checked", true);
     var i = $(me).parent().attr("id");
     window.location.href="#"+i;
-}*/
+}
 $(function(){
     $('.blanks').bind('input propertychange',function(){
         var obj = $(this);
