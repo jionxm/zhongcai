@@ -15,7 +15,7 @@
                 <control name="ctlAddress" title="投票地点" property="address" type="TextBox" edit="Y"
                          required="N" format="" width="1" height="1" column="1"/>
                 <control name="ctlMessage" title="指导语" property="message" type="TextBox" edit="Y" format="" width="1"
-                         initial="'尊敬的评委....'" height="5" column="1"/>
+                         height="5" column="1"/>
                 <control name="ctlState" title="状态" property="state" type="Hidden" edit="Y" required="" format="" width="1"
                          height="1" column="1" initial="'stop'"/>
 				<control name="ctlQrState" title="二维码生成状态" property="qrState" type="Hidden" edit="Y" required="" format="" width="1"
