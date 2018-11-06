@@ -80,9 +80,13 @@
 		    
             <!-- 返回 -->
             <flow trigger="pnlDetailTool.ctlBack" event="OnClick" filter="">
-                <procedure name="jsback" logic="Back" ifyes="" ifno="">
-
-                </procedure>
+                 <procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jsgoto" ifno="">
+			        <param name="In" value="pnlDetailGroup.ctlId"></param>
+			      </procedure>
+			      <procedure name="jsgoto"  logic="Transition" ifyes="" ifno="">
+			        <param name="To" value="frmProjectDetail"></param>
+			        <param name="Mode" value="Readonly"></param>
+			      </procedure>
             </flow>
 
             
