@@ -58,11 +58,11 @@ public class ExcelExportUtil {
 
 	public final Logger logger = Logger.getLogger(this.getClass());
 
-	public  boolean exportQrImage(List<List<Map<String,String>>> list,String outPath,String fileName) throws IOException {
+	public  boolean exportQrImage(List<List<List<Map<String,String>>>> list,String outPath,String fileName) throws IOException {
 		boolean flag = true;
 		long startTime=System.currentTimeMillis();
 		XSSFWorkbook input_work = new XSSFWorkbook();
-		XSSFSheet inpub_sheet = input_work.createSheet("二维码");
+		
 		// 设置样式
 		XSSFCellStyle textStyle10 = input_work.createCellStyle();
 		textStyle10.setAlignment(XSSFCellStyle.ALIGN_CENTER); // 居中
@@ -90,59 +90,68 @@ public class ExcelExportUtil {
 		fontText.setFontHeightInPoints((short) 18);
 		fontText.setBoldweight(XSSFFont.BOLDWEIGHT_BOLD);// 加粗
 		textStyle.setFont(fontText);
-		
-		XSSFRow input_row1 = null;
-		XSSFRow input_row2 = null;
-		XSSFRow input_row3 = null;
-		XSSFRow input_row4 = null;
+	
 		//第一个list是行
-		for(int i=0;i<list.size();i++){
-			List<Map<String,String>> mapList = list.get(i);
-			//标题行
-			input_row1 = inpub_sheet.createRow(i*4);
-			inpub_sheet.addMergedRegion(new CellRangeAddress(i*4, i*4, 0, mapList.size()-1));
-			input_row1.setHeight(Short.parseShort(200*3+""));
-			Cell titleCell= input_row1.createCell(0);
-			titleCell.setCellStyle(textStyle);
+		for(int a = 0 ;a<list.size();a++){
 			
-			titleCell.setCellValue(mapList.get(0).get("testerName"));
-			input_row2 = inpub_sheet.createRow(i*4+1);
-			input_row2.setHeight(Short.parseShort(200*16+""));
-			input_row3 = inpub_sheet.createRow(i*4+2);
-			input_row4 = inpub_sheet.createRow(i*4+3);
-			//获取的是列
-			for(int j = 0; j< mapList.size(); j++){
-				inpub_sheet.setColumnWidth(j, 256*30);
-				Map<String, String> map = mapList.get(j);
-				String imagePath = map.get("qrImagePath").toString();
-				String testerName = map.get("testerName").toString();
-				//插入图片
-				BufferedImage  inStream = ImageIO.read(new File(imagePath)); // 得到流对象
-				ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();  
-				ImageIO.write(inStream, "png", byteArrayOut);
-				int pictureIdx = input_work.addPicture(byteArrayOut.toByteArray(), input_work.PICTURE_TYPE_PNG);// 向excel中插入图片
-				XSSFDrawing drawing = inpub_sheet.createDrawingPatriarch(); // 创建绘图对象
-				// XSSFClientAnchor的参数说明：
-				// 参数 说明
-				// dx1 第1个单元格中x轴的偏移量
-				// dy1 第1个单元格中y轴的偏移量
-				// dx2 第2个单元格中x轴的偏移量
-				// dy2 第2个单元格中y轴的偏移量
-				// col1 第1个单元格的列号
-				// row1 第1个单元格的行号
-				// col2 第2个单元格的列号
-				// row2 第2个单元格的行号
-				XSSFClientAnchor anchor = new XSSFClientAnchor(1000, 0, 100, 0, (short)j, i*4+1, (short) j,i*4+1);// 定位图片的位置
-				XSSFPicture pict = drawing.createPicture(anchor, pictureIdx);
-				pict.resize();
+			XSSFRow input_row1 = null;
+			XSSFRow input_row2 = null;
+			XSSFRow input_row3 = null;
+			XSSFRow input_row4 = null;
+			List<List<Map<String,String>>> lists = list.get(a);
+			String groupName = lists.get(0).get(0).get("groupName").toString();
+			//创建所对应的组的sheet
+			XSSFSheet inpub_sheet = input_work.createSheet(groupName);
+			for(int i=0;i<lists.size();i++){
+
+				List<Map<String,String>> mapList =  lists.get(i);
+				//标题行
+				input_row1 = inpub_sheet.createRow(i*4);
+				inpub_sheet.addMergedRegion(new CellRangeAddress(i*4, i*4, 0, mapList.size()-1));
+				input_row1.setHeight(Short.parseShort(200*3+""));
+				Cell titleCell= input_row1.createCell(0);
+				titleCell.setCellStyle(textStyle);
 				
-				//写入主体身份名称
-				Cell testerNameCell= input_row3.createCell(j);
-				testerNameCell.setCellStyle(textStyle10);
-				testerNameCell.setCellValue(mapList.get(0).get("testerName"));
+				titleCell.setCellValue(mapList.get(0).get("testerName"));
+				input_row2 = inpub_sheet.createRow(i*4+1);
+				input_row2.setHeight(Short.parseShort(200*16+""));
+				input_row3 = inpub_sheet.createRow(i*4+2);
+				input_row4 = inpub_sheet.createRow(i*4+3);
+				//获取的是列
+				for(int j = 0; j< mapList.size(); j++){
+					inpub_sheet.setColumnWidth(j, 256*30);
+					Map<String, String> map = mapList.get(j);
+					String imagePath = map.get("qrImagePath").toString();
+					String testerName = map.get("testerName").toString();
+					//插入图片
+					BufferedImage  inStream = ImageIO.read(new File(imagePath)); // 得到流对象
+					ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();  
+					ImageIO.write(inStream, "png", byteArrayOut);
+					int pictureIdx = input_work.addPicture(byteArrayOut.toByteArray(), input_work.PICTURE_TYPE_PNG);// 向excel中插入图片
+					XSSFDrawing drawing = inpub_sheet.createDrawingPatriarch(); // 创建绘图对象
+					// XSSFClientAnchor的参数说明：
+					// 参数 说明
+					// dx1 第1个单元格中x轴的偏移量
+					// dy1 第1个单元格中y轴的偏移量
+					// dx2 第2个单元格中x轴的偏移量
+					// dy2 第2个单元格中y轴的偏移量
+					// col1 第1个单元格的列号
+					// row1 第1个单元格的行号
+					// col2 第2个单元格的列号
+					// row2 第2个单元格的行号
+					XSSFClientAnchor anchor = new XSSFClientAnchor(1000, 0, 100, 0, (short)j, i*4+1, (short) j,i*4+1);// 定位图片的位置
+					XSSFPicture pict = drawing.createPicture(anchor, pictureIdx);
+					pict.resize();
+					
+					//写入主体身份名称
+					Cell testerNameCell= input_row3.createCell(j);
+					testerNameCell.setCellStyle(textStyle10);
+					testerNameCell.setCellValue(mapList.get(0).get("testerName"));
+				}
+			
 			}
-		
 		}
+		
 		try {
 			File file = new File(outPath ); // 指定存放目录
 			if(!file.exists()){
