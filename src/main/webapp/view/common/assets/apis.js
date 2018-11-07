@@ -31,8 +31,26 @@ var APIS = {
 	            needLogin: true,	//不用改
 	            tokenKey: 'OnClick_pnlDetailTool_ctlSave_frmResultTestDetail_queryInfo' //xml的点击事件_panel名称_按钮名称_UIname_逻辑名称
 	    	},*/
-	    }
+	    },
 	    
+	  //参考例子
+	    frmResultTestPerson: {	//uiname        
+	    	save: {	    //自己命名    
+	            url: '/api/save',	//执行的逻辑和xml小写
+	            needLogin: true,	//不用改
+	            tokenKey: 'OnClick_pnlDetailTool_ctlSave_frmResultTestPerson_jssave' //xml的点击事件_panel名称_按钮名称_UIname_逻辑名称
+	    	},
+	    	saveCustom: {	    //自己命名    
+	            url: '/api/savecustom',	//执行的逻辑和xml小写
+	            needLogin: true,	//不用改
+	            tokenKey: 'OnClick_pnlDetailTool_ctlSave_frmResultTestPerson_jssave2' //xml的点击事件_panel名称_按钮名称_UIname_逻辑名称
+	    	},
+	    	/*queryById: {	    //自己命名    
+	            url: '/api/querybyid',	//执行的逻辑和xml小写
+	            needLogin: true,	//不用改
+	            tokenKey: 'OnClick_pnlDetailTool_ctlSave_frmResultTestDetail_queryInfo' //xml的点击事件_panel名称_按钮名称_UIname_逻辑名称
+	    	},*/
+	    }
 		
 		//ftl ajax代码参考
 /*		<script type="text/javascript">
