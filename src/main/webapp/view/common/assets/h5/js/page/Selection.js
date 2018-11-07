@@ -196,8 +196,20 @@ function okBtn() {
 	        			 pTable:retarr1
 	        				 }, function(data) {
 	        					 if(data.code==904){
-	        						 alert("该二维码已经被使用并提交答案");
-	        						 window.location.reload(-1);
+	        						 Close();
+	        						 if(M.dialog2){
+										    return M.dialog2.show();
+										}
+										M.dialog2 = jqueryAlert({
+										    'content' : '该二维码已经被使用并已提交答案',
+										    'modal'   : true,
+										    'buttons' :{
+										        '确定' : function(){
+										            M.dialog2.close();
+										            window.location.reload(-1);
+										        }
+										    }
+										})
 	        					 }else{
 	        						 ajaxPost(APIS.frmResultTestDetail.saveCustom, 
 	        								 {
@@ -205,22 +217,26 @@ function okBtn() {
 	        							 state:0,
 	        							 ctlId:QRId
 	        								 }, function(result) {
-	        									 alert("提交成功");
-	        									 window.location.reload(-1);
+	        									 Close();
+	        									 if(M.dialog2){
+	        										    return M.dialog2.show();
+	        										}
+	        										M.dialog2 = jqueryAlert({
+	        										    'content' : '提交成功',
+	        										    'modal'   : true,
+	        										    'buttons' :{
+	        										        '确定' : function(){
+	        										            M.dialog2.close();
+	        										            window.location.reload(-1);
+	        										        }
+	        										    }
+	        										})
 	        								 }
 	        						 );
-	        						 
 	        					 }
 	        				 }
 	        		 );
 	        			
-	        		/*}else{
-	        			alert("该二维码已被使用并提交了答案");
-	        			window.location.reload(-1);
-	        		}
-	          }
-	        );*/
-	
 }
 
 function Close() {

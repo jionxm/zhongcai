@@ -9,6 +9,7 @@
     <title>测评页面</title>
     <link href="${ctx}/view/common/assets/h5/css/normalize.css" rel="stylesheet" type="text/css">
     <link href="${ctx}/view/common/assets/h5/css/Selection.css" rel="stylesheet" type="text/css">
+    <link href="${ctx}/view/common/assets/h5/css/alert.css" rel="stylesheet" type="text/css">
 </head>
 
 <body style="background-color: #fff;">
@@ -207,6 +208,7 @@
      var ztqzId = ${t.ztqzId}
      var testId = ${t.testId}
      var type = "${t.type}"
+     var M={};
      </#list>
      
      
@@ -215,7 +217,7 @@
      } */
     </script>
     <script type="text/javascript" src="${ctx}/view/common/assets/h5/js/page/Selection.js"></script>
-    
+    <script type="text/javascript" src="${ctx}/view/common/assets/h5/js/page/alert.min.js"></script>
 </body>
 
 </html>
