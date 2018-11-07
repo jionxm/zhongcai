@@ -31,16 +31,12 @@
 					type="TextBox" edit="Y" required="Y" format="" width="1" height="1"
 					column="2" />	
 				
-					<control name="ctlWeight" title="权重" property="weight" type="TextBox"
-					edit="Y" required="" format="" width="1" height="1" column="" />		
+				<control name="ctlWeight" title="权重" property="weight" type="TextBox"
+					edit="Y" required="" format="" width="2" height="1" column="" />		
 				<control name="ctlMust" title="是否必填" property="must" type="ComboBox"
-					edit="Y" required="" format="" width="1" height="1" column="2" />
-				
-					
-				
-				
-
-				
+					edit="Y" required="" format="" width="1" height="1" column="" />
+				<control name="ctlStats" title="是否统计" property="stats" type="ComboBox"
+					edit="Y" required="" format="" width="1" height="1" column="4" />
 
 				<control name="updateTime" title="更新日期" property="updateTime"
 					type="Hidden" edit="Y" required="N" target="CurrentTime()" format=""
@@ -67,13 +63,16 @@
 					ifno="">
 					<param name="Out" value="questionGroup"></param>
 				</procedure>
-				<procedure name="getMust" logic="List" ifyes="branch"
+				<procedure name="getMust" logic="List" ifyes="getStats"
 					ifno="">
 					<param name="Out" value="questionGroup.ctlMust"></param>
 					<param name="Sql" value="test/questionMust"></param>
 				</procedure>
-				
-
+				<procedure name="getStats" logic="List" ifyes="branch"
+					ifno="">
+					<param name="Out" value="questionGroup.ctlStats"></param>
+					<param name="Sql" value="test/sleQuestionStats"></param>
+				</procedure>
 				<procedure name="branch" server="" logic="Branch" ifyes="getTestId"
 					ifno="getQuestionId">
 					<param name="In" value="getStorage('frmQuestionsBlaEdit_EditMode')=='Add'"></param>

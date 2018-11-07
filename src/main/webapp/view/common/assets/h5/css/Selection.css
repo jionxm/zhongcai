@@ -1,5 +1,5 @@
-Ôªø/**
- * Á≠îÈ¢òÈ°µÈù¢
+/**
+ * ¥Ã‚“≥√Ê
  * @style
  * 2018/10/23
  */
@@ -26,7 +26,14 @@
         background-size: 30px 30px;
     }
 }
-
+.blanks{
+    max-width: 90%;
+    line-height: 25px;
+    display: inline-block;
+    border: none;
+    border-bottom: 1px solid #888;
+}
+dt{margin-top: 10px;}
  /* .answer { 
     width:100%;
     padding:0 30px; 
@@ -58,7 +65,7 @@ hr{margin: 20px auto;background-color: #eee;}
 .answers .box label{width: 100%;}
 
 
-/* Â∫ïÈÉ® */
+/* µ◊≤ø */
 .hrefBtn { 
     height:43px; 
     line-height:43px; 
@@ -82,7 +89,7 @@ hr{margin: 20px auto;background-color: #eee;}
 }
 
 
-/*ÂºπÂá∫Â±Ç*/
+/*µØ≥ˆ≤„*/
 .renameResumeWrap { 
     font-size:18px; 
     position:absolute; 
@@ -153,7 +160,7 @@ hr{margin: 20px auto;background-color: #eee;}
     border-bottom: 2px solid #eee; 
 }
 .answer .top{
-    margin: 10px 0;
+    margin: 10px 0 0 0;
     line-height: 25px;
      font-size: 14px; 
 }

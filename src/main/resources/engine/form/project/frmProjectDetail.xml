@@ -4,6 +4,8 @@
     <ui_layer>
         <ui name="frmProjectDetail" title="测评项目详情">
             <panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
+            	<control name="ctlView" title="查看二维码" property="" type="Button" edit="" required="" format=""
+                         width="" height="" column=""/>
             	<control name="ctlAdd" title="生成二维码" property="" type="Button" edit="" required="" format=""
                          width="" height="" column=""/>
                 <control name="ctlGroup" title="新增测评对象" property="" type="Button" edit="" required="" format=""
@@ -139,7 +141,7 @@
                 </procedure>              
 		    </flow>
 		    <!-- 生成二维码 -->
-            <flow trigger="pnlDetailTool.ctlAdd" event="OnClick" filter="">
+            <flow trigger="pnlDetailTool.ctlAdd" event="OnClick" filter="model.pnlDetailGroup.ctlQrState=='0'">
             
                 <procedure name="branch" server="" logic="Branch" ifyes="branchstate" ifno="jsmsg">
         			<param name="In" value="getPanelControlValue('pnlDetailGroup.ctlQrState')=='0'"/>
@@ -191,6 +193,16 @@
 			   	  <param name="Sql" value="project/UpdateProjectQrState"></param>
    	  			</procedure>
    	  			<procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jsgoto" ifno="">
+			       <param name="In" value="pnlDetailGroup.ctlId"></param>
+			    </procedure>
+			    <procedure name="jsgoto"  logic="Transition" ifyes="" ifno="">
+			       <param name="To" value="frmProjectQrDetail"></param>
+			       <param name="Mode" value="Readonly"></param>
+			    </procedure>
+            </flow>
+            <!-- 查看二维码 -->
+            <flow trigger="pnlDetailTool.ctlView" event="OnClick" filter="model.pnlDetailGroup.ctlQrState=='1'">
+            	<procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jsgoto" ifno="">
 			       <param name="In" value="pnlDetailGroup.ctlId"></param>
 			    </procedure>
 			    <procedure name="jsgoto"  logic="Transition" ifyes="" ifno="">

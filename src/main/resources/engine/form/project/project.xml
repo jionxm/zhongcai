@@ -24,6 +24,8 @@
 		<property name="stateName" type="String" length="20" validate=""  field="" />
 		<property name="qrStateName" type="String" length="20" validate=""  field="" />
 		<property name="scopeName" type="String" length="20" validate=""  field="" />
+		
+		<property name="question" type="String" length="20" validate=""  field="" />
  	</object>  
  	<!-- 测评对象分组model -->
  	<object name="group" table="t_group" primary="id" unique="" order="">
@@ -95,6 +97,8 @@
 		<property name="updateBy" type="Long" length="10" validate=""  field="update_by" />	
 		<property name="questionName" type="String" length="500" initial="" field=""/>
 		<property name="empName" type="String" length="20" initial="" field=""/>
+		<property name="question" type="String" length="500" initial="" field=""/>
+		<property name="testerName" type="String" length="20" initial="" field=""/>
  	</object>  
  	
  	<!-- 二维码表model -->

@@ -5,6 +5,7 @@ encoding//src/main/resources/dev/system.properties=UTF-8
 encoding//src/main/resources/engine/conf/base.properties=UTF-8
 encoding//src/main/resources/engine/conf/redis.properties=UTF-8
 encoding//src/main/resources/engine/i18n/message.properties=UTF-8
+encoding//src/main/webapp/view/common/assets/h5/css/answer.css=UTF-8
 encoding//src/main/webapp/view/common/css/style.css=UTF-8
 encoding//src/main/webapp/view/common/dlgFindSingle.jsp=UTF-8
 encoding//src/main/webapp/view/loginSSO.jsp=UTF-8

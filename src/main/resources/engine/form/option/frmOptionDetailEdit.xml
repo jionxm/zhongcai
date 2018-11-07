@@ -8,6 +8,8 @@
                          height="" column="1"/>
                 <control name="ctlName" title="选项名称" property="name" type="TextBox" edit="Y" required="Y" format=""
                          width="1" height="1" column="1"/>
+                <control name="ctlScore" title="选项分值" property="score" type="TextBox" edit="Y" required="Y" format=""
+                         width="1" height="1" column="1"/>
                 <control name="ctlChooseId" title="选项类型id" property="chooseId" type="Hidden" edit="" required="Y" format=""
                          width="1" height="1" column="1"/>
           
