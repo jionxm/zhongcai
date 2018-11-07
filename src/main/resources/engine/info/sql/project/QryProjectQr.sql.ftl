@@ -12,10 +12,12 @@ select * from (
 	t.name as createBy,	
 	q.create_time as createTime,
 	t2.name as updateBy,
-	q.update_time as updateTime
+	q.update_time as updateTime,
+	t1.name as testerName
 	
 	
 	from t_qr q
+	LEFT JOIN t_tester t1 ON t1.id=q.tester_id
 	LEFT JOIN t_employee t ON t.id=q.create_by 
 	LEFT JOIN t_employee t2 ON t2.id=q.update_by 
 	LEFT JOIN t_group g ON g.id = (select group_id from t_project_group where id= q.proj_group_id)
