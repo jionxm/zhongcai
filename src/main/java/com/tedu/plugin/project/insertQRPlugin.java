@@ -135,13 +135,6 @@ public class insertQRPlugin implements ILogicPlugin {
     	/***
     	 * 生成二维码对应excel文件
     	**/
-    	
-		QueryPage qp1 = new QueryPage();
-		qp1.setParamsByMap(map);
-		qp1.getData().put("id", formModel.getData().get("ctlId"));
-		String fileName = formModel.getData().get("ctlTName1").toString();
-		qp1.setQueryParam("project/QryQrById");//查询qr
-		List<Map<String,Object>> qrList = formService.queryBySqlId(qp1);
 		String date = DateUtils.getDateToStr("YYYYMMdd", new Date());
 		String separator = File.separator;
 		if(!rootPath.endsWith("/")&&!rootPath.endsWith("\\")){
@@ -152,48 +145,63 @@ public class insertQRPlugin implements ILogicPlugin {
 		String qrfilePath = filePath + UUID.randomUUID().toString().replaceAll("-", "") + separator;
 		
 		String excelPath = filePath + "excel" + separator;
-		Map<String,String> tempMap = null;
+		List<List<List<Map<String,String>>>>list = new ArrayList<List<List<Map<String,String>>>>();
+		String fileName = formModel.getData().get("ctlTName1").toString();
+		//通过分组生成对应的每个分组的sheet
+    	for(Map<String, Object> maps:grouplist){
+    		String projGroupId = maps.get("id").toString();
+    		QueryPage qp1 = new QueryPage();
+    		qp1.setParamsByMap(map);
+    		qp1.getData().put("id", formModel.getData().get("ctlId"));
+    		qp1.getData().put("projGroupId", projGroupId);
+    		qp1.setQueryParam("project/QryQrById");//查询qr
+    		List<Map<String,Object>> qrList = formService.queryBySqlId(qp1);
+    		Map<String,String> tempMap = null;
+    		
+    		List<List<Map<String,String>>> resultlist = new ArrayList<List<Map<String,String>>>();
+    		
+    		List<Map<String,String>> tempList = null;
+    		String temp = "";
+    		if(qrList.size()>0){
+    			for(int i = 0 ;i<qrList.size(); i++){
+    				try {
+    					Map qrMap = qrList.get(i);
+    					String QRCode = qrMap.get("QRCode").toString();
+    					
+    					tempMap = new HashMap<String,String>();
+    					String testerName = qrMap.get("testerName").toString();
+    					String groupName = qrMap.get("groupName").toString();
+    					if("".equals(temp)||!temp.equals(testerName)){
+    						if(tempList!=null&&tempList.size()>0){
+    						  resultlist.add(tempList);
+    						}
+    						tempList = new ArrayList<Map<String,String>>();
+    					}
+    					temp = testerName;
+    					ImageUtil.Base64ToImage(qrCodeService.getBase64Code(QRCode, 200, 200), qrfilePath,QRCode+".png");
+    					tempMap.put("qrImagePath", qrfilePath+QRCode+".png");
+    					tempMap.put("testerName", testerName);
+    					tempMap.put("groupName", groupName);
+    					tempList.add(tempMap);
+    					if(i==qrList.size()-1){
+    						resultlist.add(tempList);
+    					}
+    				} catch (IOException e) {
+    					System.err.println(e.getMessage());
+    				}
+    			}
+    			
+    		}
+    		list.add(resultlist);
+    	}
 		
-		List<List<Map<String,String>>> resultlist = new ArrayList<List<Map<String,String>>>();
 		
-		List<Map<String,String>> tempList = null;
-		String temp = "";
-		if(qrList.size()>0){
-			for(int i = 0 ;i<qrList.size(); i++){
-				try {
-					Map qrMap = qrList.get(i);
-					String QRCode = qrMap.get("QRCode").toString();
-					
-					tempMap = new HashMap<String,String>();
-					String testerName = qrMap.get("testerName").toString();
-					if("".equals(temp)||!temp.equals(testerName)){
-						if(tempList!=null&&tempList.size()>0){
-						  resultlist.add(tempList);
-						}
-						tempList = new ArrayList<Map<String,String>>();
-					}
-					temp = testerName;
-					ImageUtil.Base64ToImage(qrCodeService.getBase64Code(QRCode, 200, 200), qrfilePath,QRCode+".png");
-					tempMap.put("qrImagePath", qrfilePath+QRCode+".png");
-					tempMap.put("testerName", testerName);
-					tempList.add(tempMap);
-					if(i==qrList.size()-1){
-						resultlist.add(tempList);
-					}
-				} catch (IOException e) {
-					System.err.println(e.getMessage());
-				}
-			}
-			
-		}
-		
-		ExcelExportUtil excelExportUtil = new ExcelExportUtil();
 		
 		
 		try {
-			
+			ExcelExportUtil excelExportUtil = new ExcelExportUtil();
 			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-			boolean flag = excelExportUtil.exportQrImage(resultlist,excelPath+uuid.substring(0, 2)+separator,uuid);
+			boolean flag = excelExportUtil.exportQrImage(list,excelPath+uuid.substring(0, 2)+separator,uuid);
 			//创建成功后删除无用数据并且存入附件表中
 			if(flag){
 				Map sqlMap = new HashMap();
