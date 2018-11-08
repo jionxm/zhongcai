@@ -44,45 +44,26 @@ public class CountListController {
 		QueryPage qp = new QueryPage();
 		qp.setParamsByMap(map);
 		qp.getData().put("projId", projId);
+		/*qp.setQueryParam("count/QryQuestionSql");
+		List<Map<String,Object>> sql = formService.queryBySqlId(qp);//拼接sql
+		String questionsql = sql.get(0).get("questionsql").toString();
+		log.info("拼接用sql----:"+questionsql);*/
+		log.info("qp1----:"+qp);
 		qp.setQueryParam("count/QryQuestionById");
 		List<Map<String,Object>> question = formService.queryBySqlId(qp);//查询该项目下所有的题目
 		log.info("项目下所有题目----:"+question);
 		model.addAttribute("question", question);
 		
+		QueryPage qp1 = new QueryPage();
+		qp1.setParamsByMap(map);
+		qp1.getData().put("id", projId);
+		log.info("qp1----:"+qp1);
+//		qp.getData().put("questionsql", questionsql);
+		qp1.setQueryParam("count/QryQuestionResult");
+		List<Map<String,Object>> result = formService.queryBySqlId(qp1);//查询该项目下所有的题目
+		log.info("答题结果----:"+result);
+		model.addAttribute("result", result);
 		
-		
-		/*String qrCode = request.getParameter("qr_code");
-		Map<String,Object> map =  formModel.getData();
-		QueryPage qp = new QueryPage();
-		qp.setParamsByMap(map);
-		qp.getData().put("id", qrCode);
-		qp.setQueryParam("project/QryQrCode");
-		List<Map<String,Object>> qrCodeList = formService.queryBySqlId(qp);
-		model.addAttribute("test", qrCodeList);
-		if (!qrCodeList.isEmpty()) {
-			Map<String, Object> idsMap = formModel.getData();
-			QueryPage qp2 = new QueryPage();
-			qp2.setParamsByMap(idsMap);
-			qp2.getData().put("ctlId",qrCodeList.get(0).get("QRId"));
-			qp2.getData().put("ctlTestId",qrCodeList.get(0).get("testId"));
-			qp2.getData().put("ctlProjectId",qrCodeList.get(0).get("projectId"));
-			qp2.getData().put("ctlTesterId",qrCodeList.get(0).get("ztqzId"));
-			qp2.getData().put("ctlProjGroupId",qrCodeList.get(0).get("projectGroupId"));
-			qp2.setQueryParam("project/QryQrQuestion2");
-			List<Map<String,Object>> questionsList = formService.queryBySqlId(qp2);
-			model.addAttribute("qList", questionsList);
-			qp2.setQueryParam("project/QryQrQTotal");
-			List<Map<String,Object>> questionsTotal = formService.queryBySqlId(qp2);
-			model.addAttribute("total", questionsTotal);
-			Map<String,Object> chooseMap =  formModel.getData();
-			QueryPage qp3 = new QueryPage();
-			qp3.setParamsByMap(chooseMap);
-			qp3.getData().put("",null );
-			qp3.setQueryParam("project/QryQrChoose");
-			List<Map<String,Object>> chooseList = formService.queryBySqlId(qp3);
-			model.addAttribute("cList", chooseList);
-			return "h5/Selection";
-		}*/
 		return "CountList";
 	}
 	

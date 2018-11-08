@@ -23,15 +23,25 @@
 <body>
 <p class="list" >
     <a class="job">统计列表</a>
-<button class="btn-icundefine" style="width:100px;height:50px;float:right;" onclick="oneKeyUndefine()">一键销毁</button>
+<button class="btn-icundefine" style="width:100px;height:50px;float:right;" onclick="javascript:history.go(-2);">返回</button>
 <button class="btn-icquery" style="width:100px;height:50px;float:right;" onclick="query()">查询</button>
 </p>
 	<table border="1" width="50%" align="center" >
 		<tr id="domain">
-	<#list question as q>
+			<th>主体名称</th>
+			<#list question as q>
 			<th>${q.question }</th>
-	</#list>
+			</#list>
 		</tr>
+		<#list result as r>
+		<tr id="domain">
+			
+			<th>${r.name }</th>
+			<#list question as q>
+			<th>${r['${q.question}'] }</th>
+			</#list>
+		</tr>
+		</#list>
 	</table>
 
 </body>
