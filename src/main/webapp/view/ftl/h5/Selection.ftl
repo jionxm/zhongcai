@@ -36,7 +36,7 @@
                 <dd  class="box" id="${x}">
                     <#list cList as c>
                 	<#if q.questionId == c.questionId && c.chooseType == "single">
-                    <input  type="radio" name="q${x}" id="radio0${c_index }" value="${c.valueName}" onclick="ddClick(this)">
+                    <input  type="radio" name="q${x}" id="radio0${c_index }" value="${c.score}" onclick="ddClick(this)">
                     <label for="radio0${c_index }">&nbsp;${c.valueName}</label>
                     </#if>
                 	</#list>
@@ -123,7 +123,7 @@
                         <dd class="box">
 		                    <#list cList as c>
 		                	<#if q.questionId == c.questionId && c.chooseType == "multi">
-                            <input  type="checkbox" name="d${x}" id="checkbox${c_index }" value="${c.valueName}">
+                            <input  type="checkbox" name="d${x}" id="checkbox${c_index }" value="${c.score}">
                             <label for="checkbox${c_index }">&nbsp;${c.valueName}</label>
 		                    </#if>
 		                	</#list>
@@ -172,11 +172,14 @@
 		            <p>${x}/${t.total }</p>
 		            </#list>
                     <p class="top"><b>#${q.dimension}</b><font name="${q.questionId}">${q.questionName}</font></p>
-                    <textarea class="usertext" placeholder="请填写您的意见" ></textarea>
+                    <#if q.textLength gt 10>
+                    <textarea class="usertext textarea" placeholder="请填写您的意见" ></textarea>
+                    <#else>
+                    <input type="text" class="blanks textarea">
+                    </#if>
                     </#if>
                     </#list>
             </div>
-      
 
         <div class="renameResumeWrap">
             <div class="renameResume">

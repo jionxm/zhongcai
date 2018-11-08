@@ -41,7 +41,8 @@ $('.box').click(function(e){
 	var titlearr=[];
 	if($(e.target).is('input')){
 		$("input[type='radio']:checked").each(function(index,item){
-				arr.push(item.value);				
+				arr.push(item.value);
+				console.log("测试"+item.value);
 		});
 		totle1=arr.length;
 //		if($("input[type='checkbox']:checked").length>0){
@@ -142,7 +143,7 @@ function submit() {
         $(".renameResumeWrap").css("height", $("body").css("height"));
         $(".renameResumeWrap").show();
         
-        $('textarea').each(function(index,item){
+        $('.textarea').each(function(index,item){
         	arr1.push($(item).val());
         });
         for(var i=0;i<titlearr1.length;i++){

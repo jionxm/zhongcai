@@ -9,7 +9,9 @@ select * from (
 		b.projectGroupId,
 		b.dimension,
 		b.questionId,
-		b.chooseType
+		b.chooseType,
+		b.textLength,
+		b.must
 	from (
 		SELECT
 			g.test_id as testId,
@@ -20,7 +22,9 @@ select * from (
 			q.number as questionNumber,
 			q.question as questionName,
 			q.dimension as dimension,
-			q.type as chooseType
+			q.type as chooseType,
+			q.text_length as textLength,
+			q.must as must
 		from t_questions q
 			LEFT JOIN t_project_group g on g.test_id = q.test_id
 			LEFT JOIN t_question_authorize ta on ta.question_id = q.id
