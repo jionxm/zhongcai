@@ -7,7 +7,7 @@ function ddClick(me,i,j) {
 
 //单选题目完成量
 var totle1 = 0;
-
+var sTotal = 30; 
 //多选勾选量
 var flag = false;
 //单选点击事件
@@ -22,6 +22,7 @@ var flag = false;
 
 var retarr1=[];
 var arr1=[];
+var totaltext=0;
 //var resultarr=[];
 
 $('.box').click(function(e){
@@ -81,8 +82,14 @@ $('.box').click(function(e){
 }
 });
 
+var textNum = "";
 $('textarea').change(function(e){
-	
+	var id = $(this).prev().attr("id");
+	if(textNum.search(id)==-1){
+		textNum = textNum+","+id;
+		totaltext = totaltext + 1;
+	}
+	console.log("textNum="+textNum);
 	notHrefBtnClick();
 })
 //多选点击事件
@@ -116,10 +123,11 @@ function notHrefBtnClick() {
 	console.log("totle1:"+totle1);
 	console.log("sTotal:"+sTotal);
 	console.log(flag);
-	if(r==0){
+	/*if(r==0){
 		flag=true;
-	}
-    if ((totle1 == sTotal) && flag){
+	}*/
+	
+    if ((totle1+totaltext) == sTotal){
 //        console.log(1);
         $($(".hrefBtn")[1]).hide();
         $($(".hrefBtn")[0]).show();

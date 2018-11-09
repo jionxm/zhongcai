@@ -21,6 +21,9 @@
     </header>
     
     <div class="container">
+		<#list test as t>
+        <input type="hidden" id="totalQuestion" value="${t.total}">
+        </#list>
         <div class="answer">
             <#assign y=0 />
             <#assign x=0 />
@@ -37,10 +40,10 @@
             	<#if e.questionId == q.questionId> 
             	<#assign y=y+1 />
                 <dt id="${e.empId}">${e.empName}</dt>
-                <dd  class="box" >
+                <dd  class="box" id="${x}${y}">
                     <#list cList as c>
                 	<#if q.questionId == c.questionId && c.chooseType == "single"> 
-                    <input  type="radio" name="q${y}" id="radio0${c_index}${y}" value="${c.valueName}" >
+                    <input  type="radio" name="q${x}${y}" id="radio0${c_index}${y}" value="${c.valueName}" onclick="ddClick(this,'${x}','${y}')">
                     <label for="radio0${c_index }${y}">&nbsp;${c.valueName}</label>
                     </#if> 
                 	</#list>
@@ -128,7 +131,7 @@
      function popPage() {
             window.history.go(-1);
         }
-     var sTotal = $("#i").html(); 
+    
      var r = $("#sum").html();console.log(r);
      var radioNum=${sTotal };
      console.log(radioNum);
