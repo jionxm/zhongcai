@@ -10,7 +10,8 @@ select DISTINCT * from (
 			g.project_id as projectId,
 			g.id as projectGroupId,
 			qr.id as QRId,	
-			t.type			
+			t.type	,
+			q.must		
 		from t_questions q
 			LEFT JOIN t_question_authorize ta on ta.question_id = q.id
 			LEFT JOIN t_project_group g on g.test_id = q.test_id

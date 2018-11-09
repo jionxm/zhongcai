@@ -7,7 +7,7 @@ function ddClick(me,i,j) {
 
 //单选题目完成量
 var totle1 = 0;
-var sTotal = 30; 
+
 //多选勾选量
 var flag = false;
 //单选点击事件
@@ -23,13 +23,18 @@ var flag = false;
 var retarr1=[];
 var arr1=[];
 var totaltext=0;
+var radioNum=0;
+var checkNum=0;
+var checkBoxIds = "";
+var textareaIds = "";
+
 //var resultarr=[];
 
 $('.box').click(function(e){
 	
 	var retarr=[];
 	var arr=[];
-	
+	radioNum = 0;
 	if($(e.target).is('input')){
 		$("input[type='radio']:checked").each(function(index,item){
 			    var empId = $(item).parent().prev().attr('id');
@@ -38,9 +43,12 @@ $('.box').click(function(e){
 				var questionName = $(item).parent().parent().prev().children("font").html();
 			    var questionNumber = $(item).parent().parent().prev().children("font").attr("name");
 			    arr.push(questionId +"&"+item.value +"&"+ empId +"&"+ empName + "&"  + questionName+ "&" + questionNumber);
+			    var must = $(item).parent().prev().attr("class");
+			    if(must=="must"){
+			    	radioNum+=1;
+			    }
 
 		});
-		totle1=arr.length;
 		console.log("arr:"+arr);
 //		if($("input[type='checkbox']:checked").length>0){
 //			console.log($("input[type='checkbox']:checked").length);
@@ -64,6 +72,7 @@ $('.box').click(function(e){
 					checkboxarr.push(questionId + "&" + item.value + "&" + empId + "&" + empName + "&" +questionName+ "&" + questionNumber);	
 				});
 				
+				
 				console.log("checkboxarr" + checkboxarr);
 				arr.push(checkboxarr);
 			})
@@ -81,16 +90,46 @@ $('.box').click(function(e){
 		 
 }
 });
+var checkBoxIds = "";
+var textareaIds = "";
+function changeCheckbox(obj){
+	/*var must = $(item).prev().attr("class");
+	if(must=="must"){
+		checkNum+=1;
+	}*/
+	var name = $(obj).attr("name");
+	var clazz = $(obj).parent().prev().attr("class");
+	if(checkBoxIds.search(name)==-1&&clazz.search("must")!=-1){
+		checkBoxIds = checkBoxIds+","+name;
+		checkNum = checkNum + 1;
+	}else if(checkBoxIds.search(name)!=-1){
+		var f=false;
+		console.log("选择的长度"+$(":checkbox[name='"+name+"']:checked").length);
+		if($(":checkbox[name='"+name+"']:checked").length>0){
+			f=true;
+		}
+		if(!f){
+			checkBoxIds = checkBoxIds.replace(","+name, "");
+			checkNum = checkNum - 1;
+		}
+		
+	}
+	console.log("checkBoxIds="+checkBoxIds);
+	notHrefBtnClick();
+}
 
-var textNum = "";
+
 $('textarea').change(function(e){
 	var id = $(this).prev().attr("id");
-	var clazz = $(this).attr("class");
-	if(textNum.search(id)==-1&&clazz.search("must")!=-1){
-		textNum = textNum+","+id;
+	var clazz = $(this).prev().attr("class");
+	if(textareaIds.search(id)==-1&&clazz.search("must")!=-1&&$(this).val()!=""){
+		textareaIds = textareaIds+","+id;
 		totaltext = totaltext + 1;
+	}else if(textareaIds.search(id)!=-1&&$(this).val()==""){
+		textareaIds = textareaIds.replace(","+id, "");
+		totaltext = totaltext - 1;
 	}
-	console.log("textNum="+textNum);
+	console.log("textareaIds="+textareaIds);
 	notHrefBtnClick();
 })
 //多选点击事件
@@ -121,14 +160,17 @@ function dc(me) {
 
 //试题完成度校验事件
 function notHrefBtnClick() {
+	totle1 = totaltext + radioNum + checkNum;     
+	console.log("radioNum:"+radioNum);
+	console.log("checkNum:"+checkNum);
+	console.log("totaltext:"+totaltext);
 	console.log("totle1:"+totle1);
 	console.log("sTotal:"+sTotal);
 	console.log(flag);
 	/*if(r==0){
 		flag=true;
 	}*/
-	
-    if ((totle1+totaltext) == sTotal){
+    if ((totle1) == sTotal){
 //        console.log(1);
         $($(".hrefBtn")[1]).hide();
         $($(".hrefBtn")[0]).show();
