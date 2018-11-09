@@ -28,17 +28,17 @@
 				<#list total as t>
 				<p>${x}/${t.total }</p>
 				</#list> 
-            <p class="top"><b>#${q.dimension}</b><font name="${q.questionNumber}">${q.questionName}</font></p>
+            <p class="top"><b>#${q.dimension}</b><font id="${q.questionId}" name="${q.questionNumber}">${q.questionName}</font></p>
             <dl>
             	<#assign y=0 />
             	<#list empList as e>
             	<#if e.questionId == q.questionId> 
             	<#assign y=y+1 />
-                <dt id="${y}">${e.empName}</dt>
+                <dt id="${e.empId}">${e.empName}</dt>
                 <dd  class="box" >
                     <#list cList as c>
                 	<#if q.questionId == c.questionId && c.chooseType == "single"> 
-                    <input  type="radio" name="q${y}" id="radio0${c_index}${y}">
+                    <input  type="radio" name="q${y}" id="radio0${c_index}${y}" value="${c.valueName}" >
                     <label for="radio0${c_index }${y}">&nbsp;${c.valueName}</label>
                     </#if> 
                 	</#list>
@@ -49,7 +49,7 @@
             </#if> 
             </#list>
         </div>
-        <#assign sTotal=x />
+        <#assign sTotal=y />
         <p id="i" hidden>${sTotal }</p>
 		
             <div class="answer answers">	
@@ -62,20 +62,20 @@
 		            </#list>
 		            <p id="i${r }" hidden>d${x}</p>
 		            <#assign r=r+1 />
-                    <p class="top"><b>#${q.dimension}</b><font name="${q.questionNumber}" >${q.questionName}（可多选）</font></p>
-                    <dl>
+                    <p class="top"><b>#${q.dimension}</b><font id="${q.questionId}" name="${q.questionNumber}">${q.questionName}</font></p>
+                    <dl onclick="dc(this)"> 
                     	<#assign y=0 />
             			<#list empList as e>
             			<#if e.questionId == q.questionId>
             			<#assign y=y+1 />
-                		<dt id="${y}">${e.empName}</dt>
+                		<dt id="${e.empId}">${e.empName}</dt>
                 		<dd  class="box">
-							<#list cList as c>
-							<#if q.questionId == c.questionId && c.chooseType == "multi">
-							<input  type="checkbox" name="d${y}" id="checkbox0${c_index }${y}">
-							<label for="checkbox0${c_index }${y}">&nbsp;${c.valueName}</label>
-							</#if>
-							</#list>
+                		<#list cList as c>
+						<#if q.questionId == c.questionId && c.chooseType == "multi">
+							<input  type="checkbox" name="d${y}" id="checkbox0${c_index }${y}" value="${c.valueName}">
+							<label for="checkbox0${c_index }${y}">&nbsp;${c.valueName}</label>	
+						</#if>
+						</#list>
 						</dd>
 						</#if>
 						</#list>                         
@@ -132,18 +132,21 @@
      console.log(radioNum);
      <#list test as t>
      var QRId = ${t.QRId}
+     var projectId = ${t.projectId};
      var projectGroupId = ${t.projectGroupId}
      var ztqzId = ${t.ztqzId}
      var testId = ${t.testId}
      var type = "${t.type}"
      </#list>
+     var empArr = [];
+     
      
      
      /* for(var j=0;j<r;j++){
      	var qNumber = $("#i"+j).html();
      } */
     </script>
-    <script type="text/javascript" src="${ctx}/view/common/assets/h5/js/page/Selection.js"></script>
+    <script type="text/javascript" src="${ctx}/view/common/assets/h5/js/page/Selection1.js"></script>
     
 </body>
 
