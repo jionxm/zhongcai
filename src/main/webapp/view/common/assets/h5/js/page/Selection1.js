@@ -131,7 +131,7 @@ function notHrefBtnClick() {
     }
 
 }
-function goto() {
+function gotoask() {
 //    console.log("first");
     for (var i = 1; i < 3; i++) {
         if ($("input:radio[name='q" + i + "']:checked").val() == null) {
@@ -147,8 +147,15 @@ function submit() {
         $(".renameResumeWrap").css("height", $("body").css("height"));
         $(".renameResumeWrap").show();
         
-        $('textarea').each(function(index,item){
-        	arr1.push($(item).val());
+        $('textarea').each(function(index,item){        	
+        	var empId = $(item).prev().attr('id');
+        	var empName = $(item).prev().html();
+        	var questionId = $(item).parent().prev().children("font").attr("id");
+        	var questionName = $(item).parent().prev().children("font").html();
+        	var questionNumber = $(item).parent().prev().children("font").attr("name");
+        	         
+        	arr1.push(questionId + "&" + $(item).val() + "&" + empId + "&" + empName + "&" +questionName+ "&" + questionNumber);
+        	//arr1.push($(item).val());
         });
         for(var i=0;i<arr1.length;i++){
 			var empSValue=[];
@@ -182,52 +189,51 @@ function submit() {
 				}
 					
 				obj={
-						"QRId":300,
+						"QRId":QRId,
 						"editing":true,
-						"empId" : 1,
+						"empId" : eEmp,
 						"empName":empName,
-						"projectGroupId": 111,
-						"projectId":123,
-						"questionId":333,
+						"projectGroupId": projectGroupId,
+						"projectId":projectId,
+						"questionId":parseInt(questionId),
 						"questionName":questionName,
-						"questionNumber":33,
+						"questionNumber":questionNumber,
 						"result":mValue,
-						"testId": 34,
+						"testId": testId,
 						"testType": type,
-						"ztqzId": 54
+						"ztqzId": ztqzId
 					};	
 
 				
 			}else{
 				empSValue = arr1[i].split("&");
 				obj={
-					"QRId":300,
+					"QRId":QRId,
 					"editing":true,
-					"empId" : 1,
+					"empId" : empSValue[2],
 					"empName":empSValue[3],
-					"projectGroupId": 111,
-					"projectId":123,
-					"questionId":333,
+					"projectGroupId": projectGroupId,
+					"projectId":projectId,
+					"questionId":parseInt(empSValue[0]),
 					"questionName":empSValue[4],
-					"questionNumber":33,
+					"questionNumber":empSValue[5],
 					"testType": type,
 					
 					
 					"result":empSValue[1],
-					"ztqzId": 54,
+					"ztqzId": ztqzId,
 					 
-					"testId": 34
+					"testId": testId
 					
 					
 				};
 			}
-			console.log("obj" + obj);
+			//console.log("obj" + obj);
 			
 			retarr1.push(obj);
 		}
  
-		console.log(retarr1);
-		
+		//console.log(retarr1);
 	}
 }
 
@@ -256,9 +262,22 @@ function okBtn() {
 	        			 Mode:"Add",
 	        			 pTable:retarr1
 	        				 }, function(data) {
+	        					 console.log(data);
 	        					 if(data.code==904){
-//	        						 alert("该二维码已经被使用并提交答案");
-	        						 /*window.location.reload(-1);*/
+	        						 Close();
+	        						 if(M.dialog2){
+										    return M.dialog2.show();
+										}
+										M.dialog2 = jqueryAlert({
+										    'content' : '该二维码已经被使用并已提交答案',
+										    'modal'   : true,
+										    'buttons' :{
+										        '确定' : function(){
+										            M.dialog2.close();
+										            window.location.reload(-1);
+										        }
+										    }
+										})
 	        					 }else{
 	        						 ajaxPost(APIS.frmResultTestPerson.saveCustom, 
 	        								 {
@@ -266,8 +285,20 @@ function okBtn() {
 	        							 state:0,
 	        							 ctlId:QRId
 	        								 }, function(result) {
-//	        									 alert("提交成功");
-//	        									 window.location.reload(-1);
+	        									 Close();
+	        									 if(M.dialog2){
+	        										    return M.dialog2.show();
+	        										}
+	        										M.dialog2 = jqueryAlert({
+	        										    'content' : '提交成功',
+	        										    'modal'   : true,
+	        										    'buttons' :{
+	        										        '确定' : function(){
+	        										            M.dialog2.close();
+	        										            window.location.reload(-1);
+	        										        }
+	        										    }
+	        										})
 	        								 }
 	        						 );
 	        						 

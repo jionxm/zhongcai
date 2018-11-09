@@ -8,6 +8,7 @@
     <title>测评页面</title>
     <link href="${ctx}/view/common/assets/h5/css/normalize.css" rel="stylesheet" type="text/css">
     <link href="${ctx}/view/common/assets/h5/css/Selection.css" rel="stylesheet" type="text/css">
+    <link href="${ctx}/view/common/assets/h5/css/alert.css" rel="stylesheet" type="text/css">
     <#include "h5/base.ftl">
 </head>
 
@@ -91,13 +92,13 @@
 		            <#list total as t>
 		            <p>${x}/${t.total }</p>
 		            </#list>
-                    <p class="top"><b>#${q.dimension}</b><font name="${q.questionNumber}">${q.questionName}</font></p>
+                    <p class="top"><b>#${q.dimension}</b><font id="${q.questionId}" name="${q.questionNumber}">${q.questionName}</font></p>
 					<dl>
 						<#assign y=0 />
 						<#list empList as e>
 						<#if e.questionId == q.questionId>
 						<#assign y=y+1 />
-						<dt id="${y}">${e.empName}</dt>
+						<dt id="${e.empId}">${e.empName}</dt>
 						<textarea class="usertext" placeholder="请填写您的意见" ></textarea>
 						</#if>
 						</#list>  
@@ -119,7 +120,7 @@
     </div>
     <footer>
         <span class="hrefBtn"  onclick="submit()">提交试卷</span>
-        <span class="hrefBtn notHrefBtn"  onclick="goto()"><p>您有未完成的题目</p></span>
+        <span class="hrefBtn notHrefBtn"  onclick="gotoask()"><p>您有未完成的题目</p></span>
     </footer>
 
     <script type="text/javascript">
@@ -137,6 +138,7 @@
      var ztqzId = ${t.ztqzId}
      var testId = ${t.testId}
      var type = "${t.type}"
+     var M={};
      </#list>
      var empArr = [];
      
@@ -147,7 +149,7 @@
      } */
     </script>
     <script type="text/javascript" src="${ctx}/view/common/assets/h5/js/page/Selection1.js"></script>
-    
+    <script type="text/javascript" src="${ctx}/view/common/assets/h5/js/page/alert.min.js"></script>
 </body>
 
 </html>
