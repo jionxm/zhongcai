@@ -43,8 +43,8 @@
                          width="140" height="" column=""/>
                 <control name="ctlNumberMax" title="最多推荐名额" property="numberMax" type="TextBox" edit="" required=""
                          format="" width="140" height="" column=""/>
-                <control name="ctlBasic" title="基本条件" property="" type="Link" edit="" required=""
-                         format="" width="140" height="" column=""/>
+               <!--  <control name="ctlBasic" title="基本条件" property="" type="Link" edit="" required=""
+                         format="" width="140" height="" column=""/> -->
             </panel>
             <panel name="pnlEmp" title="参会人员" object="participants" type="Grid">
                 <control name="id" title="ID" property="id" type="Hidden" edit="" required="" format="" width=""
@@ -116,7 +116,9 @@
 		    </flow>
 		    <!-- 新增参会人员-->
 		    <flow trigger="pnlDetailTool.ctlEmp" event="OnClick" filter="">
-		    
+		    <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
+		        <param name="In" value="pnlDetailGroup.ctlId"/>
+		      </procedure>
 		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
 		        <param name="To" value="frmParticipants"/>
 		        <param name="Mode" value="Add"/>

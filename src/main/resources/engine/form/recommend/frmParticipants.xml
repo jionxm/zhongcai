@@ -1,92 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tsoftware xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
-	<ui_layer>
-		<ui name="frmParticipants" title="参会人员">
-			<!-- 参会人员 -->
-			<panel name="pForm" title="参会人员表" object="participants"
-				type="Group">
-
-                <control name="id" title="参会人员编号" property="id" type="Hidden"
-					edit="Y" required="N" format="" width="1" height="" column=""></control>
-				<control name="empid" title="参会人员编号" property="empId" type="Hidden"
-					edit="Y" required="N" format="" width="1" height="" column=""></control>
-				<control name="empName" title="参会人员" property="empName"
-					type="PopupBox" edit="Y" required="" format="" width="1" height=""
+           xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
+    <ui_layer>
+        <ui name="frmParticipants" title="新增参会人员">
+        <panel name="pToolBar" title="工具栏" object="" type="Toolbar">
+                <control name="btnAdd" title="新增人员" property="" type="Button"
+					edit="Y" required="" format="" width="" height="" column="" />
+            </panel>
+         <panel name="RecGroup" title="推荐项目" object="recommend1" type="Group">
+                <control name="recId" title="id" property="id" type="Hidden"
+					edit="Y" required="" format="" width="1" height="" column="1" /> 
+				<control name="ctlRecTitle" title="推荐项目名称" property="title"
+					type="TextBox" edit="N" required="Y" format="" width="1" height="1"
 					column="2" />
+				<control name="empId" title="人员ID" property="" type="Hidden" edit="" required="" format="" width="1" height="1" column="1" />
+           </panel>
+            <panel name="EmpGroup" title="参会人员列表" object="participants" type="Grid">
+				<control name="RecId" title="推荐Id" property="recommendId" type="TextBox" edit="" required="" format="" width="" height="" column="" />
+				<control name="id" title="id" property="id" type="TextBox" edit="" required="" format="" width="" height="" column="" />
+			    <control name="ctlCancel" title="删除" property="" type="Link" edit="" required="" format="" width="40" height="" column=""/>
+				<control name="peopleName" title="参会人员名称" property="empName" type="TextBox" edit="" required="" format="" width="120" height="1" column="1" />
+				<control name="orgName" title="部门" property="orgName" type="TextBox" edit="" required="" format="" width="100" height="1" column="1" />
 			</panel>
-
-			<!-- 控件 -->
-			<panel name="pToolbar" title="控件" object="" type="Toolbar">
-				<control name="ctlSave" title="确认" property="" type="Button"></control>
-				<control name="ctlCancle" title="取消" property="" type="Button"></control>
-			</panel>
-
-			<!-- 逻辑加载 -->
-			<flow trigger="" event="OnLoad" filter="">
-				<procedure name="jclear" logic="Clear" ifyes="jBranch"
-					ifno="">
-					<param name="Out" value="pForm"></param>
+ 			<panel name="pTable3" title="批量添加人员" object="participants" type="HiddenTable">
+				<control name="id" title="id" property="id" type="Hidden" edit="" required="" format="" width="120" height="" column=""/>
+				<control name="recId" title="推荐Id" property="recommendId" type="TextBox" edit="" required="" format="" width="" height="" column="" />
+				<control name="empId" title="人员ID" property="empId" type="TextBox" edit="" required="" format="" width="200" height="1" column="1" />
+			</panel>	
+			
+         <!-- 页面加载 -->
+            <flow trigger="" event="OnLoad" filter="">
+				
+				<procedure name="getRecId" server="" logic="DecodeId"
+					ifyes="qid" ifno="">
+					<param name="Out" value="RecGroup.recId"></param>
 				</procedure>
-				<procedure name="jBranch" logic="Branch" ifyes=""
-					ifno="j1">
-					<param name="In"
-						value="getStorage('frmParticipants_EditMode')=='Add'"></param>
+				<procedure name="qid" logic="QueryById" ifyes="getAuthorize" ifno="">
+					<param name="In" value="RecGroup"></param>
+					<param name="Out" value="RecGroup"></param>
+					<param name="Sql" value="recommend/QryRecommendList"></param>
 				</procedure>
-				<procedure name="j1" server="" logic="DecodeId" ifyes="qid"
-					ifno="">
-					<param name="Out" value="pForm.id" />
-				</procedure>
-				<procedure name="qid" logic="QueryById" ifyes=""
-					ifno="">
-					<param name="In" value="pForm"></param>
-					<param name="Out" value="pForm" />
-					<param name="Sql" value="saleQuery" />
-				</procedure>
+				<procedure name="getAuthorize" logic="Query" ifyes="" ifno="">
+					<param name="In" value="RecGroup"></param>
+					<param name="Out" value="EmpGroup"></param>
+					<param name="Sql" value="recommend/QryEmpList"></param>
+				</procedure>				
 			</flow>
-
-			<!-- 参会人员名称 -->
-			<flow trigger="pForm.empName" event="OnClick"
-				filter="">
-				<procedure name="Querypresalses" logic="Find" ifyes=""
-					ifno="">
-					<param name="In" value="pForm.id"></param>
-					<param name="Out" value="pForm"></param>
-					<param name="Sql" value="participants"></param>
-					<param name="Title" value="参会人员名称选择" />
-					<param name="Options" value="$RESET,重置" />
-					<param name="Columns" value="id,参会人员编号,empid|name,参会人员名称,empName"></param>
+			 <!--  取消授权
+            <flow trigger="authorizeGroup.ctlCancel" event="OnClick" filter="">
+             <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">
+		       <param name="Title" value="人员删除" />
+		       <param name="Msg" value="确认删除选中人员?" />
+		      </procedure>
+		      <procedure name="j1"  logic="Delete" ifyes="getAuthorize" ifno="">
+		        <param name="In" value="authorizeGroup" />
+		        <param name="Msg" value="'人员删除成功！'" />
+		      </procedure>
+				
+				
+				<procedure name="getAuthorize" logic="Query" ifyes="" ifno="">
+					<param name="In" value="testerGroup"></param>
+					<param name="Out" value="authorizeGroup"></param>
+					<param name="Sql" value="group/QryAuthorizeList"></param>
 				</procedure>
+				
+			</flow> -->
+			<!-- 新增参会人员 -->
+			<flow trigger="pToolBar.btnAdd" event="OnClick" filter="">
+					<procedure name="findChoose" logic="Find" ifyes="jsDetail1"
+						ifno="">
+						<param name="In" value="RecGroup.recId"></param>
+						<param name="Out" value="RecGroup"></param>
+						<param name="Sql" value="ChooseEmp"></param>
+						<param name="Title" value="人员选择"></param>
+						<param name="Multi" value="Y"/>
+						<param name="Columns" value="id,分组人员编号,empId|name,分组人员名称,empName"></param>
+						<param name="Window" value="Large"></param>
+					</procedure>
+				
+				 	  <procedure name="jsDetail1"  logic="Master2Detail" ifyes="jssave" ifno="">
+				      	<param name="In" value="RecGroup.empId"/>
+				        <param name="Out" value="pTable3"/>
+				      </procedure>
+				     
+				          
+				       <procedure name="jssave" logic="Save" ifyes="getEmp" ifno="">
+				        <param name="In" value=",pTable3"/>
+				        <param name="Mode" value="Add"/>
+				        <param name="Msg" value="'人员新增成功'"/>
+				      </procedure>  
+				      <procedure name="getEmp" logic="Query" ifyes="" ifno="">
+						<param name="In" value="RecGroup"></param>
+						<param name="Out" value="EmpGroup"></param>
+						<param name="Sql" value="recommend/QryEmpList"></param>
+					  </procedure>               
 			</flow>
-			<!-- 确认 -->
-			<flow trigger="pToolbar.ctlSave" event="OnClick" filter="">
-				<procedure name="jsave" logic="Save" ifyes="jclose" ifno="">
-					<param name="In" value="pForm"></param>
-					<param name="Msg" value="信息保存成功"></param>
-				</procedure>
-				<procedure name="jclose" logic="Close">
-					<param name="Refresh" value="true"></param>
-				</procedure>
-			</flow>
-
-			<!-- 取消 -->
-			<flow trigger="pToolbar.ctlCancle" event="OnClick" filter="">
-				<procedure name="jsclose" server="" logic="Close" ifyes=""
-					ifno="">
-					<param name="Refresh" value="false"></param>
-				</procedure>
-			</flow>
-
-
-			<!-- 布局 -->
-			<layout>
-				<region location="Center" scale="">
-					<subregion panel="pForm" location="Center" scale=""></subregion>
-				</region>
-				<region location="South" scale="">
-					<subregion panel="pToolbar" location="South" scale=""></subregion>
-				</region>
-			</layout>
-		</ui>
-	</ui_layer>
-</tsoftware> 
+			
+           
+            <layout>
+                 <region location="Center" scale="">
+                    <subregion panel="EmpGroup" location="Center" scale=""/>
+                     <subregion panel="RecGroup" location="North" scale=""/>
+                </region>
+                <region location="North" scale="">
+                    <subregion panel="pToolBar" location="South" scale=""/>
+                </region>
+            </layout>
+        </ui>
+    </ui_layer>
+</tsoftware>
