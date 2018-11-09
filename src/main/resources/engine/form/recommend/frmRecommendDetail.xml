@@ -60,8 +60,6 @@
                 <control name="ctlPostName" title="单位名称" property="postName" type="TextBox" edit="" required="" format=""
                          width="140" height="" column=""/>
             </panel>
-            
-
             <!-- 加载 -->
             <flow trigger="" event="OnLoad" filter="">
                 <procedure name="getId" server="" logic="DecodeId" ifyes="queryInfo" ifno="">
@@ -129,27 +127,21 @@
 		        <param name="Sql" value="recommend/QryParticipants"/>
 		      </procedure>              
 		    </flow>
-		    
-		    
-		    
-            <!-- 新增教育 
-            <flow trigger="pnlDetailTool.ctlEducation" event="OnClick" filter="">
-                <procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jspopup" ifno="">
-                    <param name="In" value="pnlDetailGroup.ctlId"></param>
-                </procedure>
-                <procedure name="jspopup" logic="Popup" ifyes="queryEducation" ifno="">
-                    <param name="To" value="frmEducation"></param>
-                    <param name="Mode" value="Add"></param>
-                    <param name="Window" value="Medium"></param>
-                </procedure>
-                <procedure name="queryEducation" logic="Query" ifyes="" ifno="">
-                    <param name="In" value="pnlDetailGroup"></param>
-                    <param name="Out" value="pnlEducation"></param>
-                    <param name="Sql" value="QryEducationList"></param>
-                </procedure>
-            </flow>
-             -->
-           
+		    <!-- 编辑推荐类别-->
+		    <flow trigger="pnlType.ctlEdit" event="OnClick" filter="">
+		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
+		        <param name="In" value="pnlType.id"/>
+		      </procedure>
+		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
+		        <param name="To" value="frmRecTypeEdit"/>
+		        <param name="Mode" value="Edit"/>
+		         <param name="Window" value="Large"/>
+		      </procedure>
+		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
+		        <param name="Out" value="pnlType"/>
+		        <param name="Sql" value="recommend/QryTypeList"/>
+		      </procedure>              
+		    </flow>
             <!-- 返回 -->
             <flow trigger="pnlDetailTool.ctlBack" event="OnClick" filter="">
                 <procedure name="jsback" logic="Back" ifyes="" ifno="">

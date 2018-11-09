@@ -5,9 +5,9 @@
         <ui name="frmRecTypeEdit" title="新增推荐类别">
             <panel name="pForm" title="新增界面" object="recommendType" type="Group">
                 <control name="id" title="推荐类别编号" property="id" type="Hidden" edit="N" required="" format="" width="1"
-                         height="" column=""/>
+                         height="" column="1"/>
                 <control name="ctlRecommendId" title="推荐项目编号" property="recommendId" type="Hidden" edit="N" required="" format="" width="1"
-                         height="" column=""/>
+                         height="" column="1"/>
                 <control name="ctlPost" title="推荐岗位类别" property="post" type="Hidden" edit="Y" required="" format=""
                          width="1" height="1" column="1"/>
                 <control name="ctlPostName" title="推荐岗位类别" property="postName" type="PopupBox" edit="Y" required="Y" format=""
@@ -28,16 +28,27 @@
                          height="" column=""/>
             </panel>
             <flow trigger="" event="OnLoad" filter="">
+                <procedure name="list1" logic="List" ifyes="branch" ifno="">
+                    <param name="Out" value="pForm.ctlMode"/>
+                    <param name="Sql" value="recommendMode"/>
+                </procedure>
+                <procedure name="branch" server="" logic="Branch" ifyes="jsDecodeId2" ifno="jsclear">
+        			<param name="In" value="getStorage('frmRecTypeEdit_EditMode')=='Edit'"/>
+      			</procedure> 
                 <procedure name="jsclear" logic="Clear" ifyes="jsDecodeId" ifno="" sync="Y">
                     <param name="Out" value="pForm"></param>
                 </procedure>
                 <procedure name="jsDecodeId" logic="DecodeId" ifyes="list1" ifno="">
                     <param name="Out" value="pForm.ctlRecommendId"></param>
                 </procedure>
-                <procedure name="list1" logic="List" ifyes="list2" ifno="">
-                    <param name="Out" value="pForm.ctlMode"/>
-                    <param name="Sql" value="recommendMode"/>
+                <procedure name="jsDecodeId2" logic="DecodeId" ifyes="qid" ifno="">
+                    <param name="Out" value="pForm.id"></param>
                 </procedure>
+                <procedure name="qid"  logic="QueryById" ifyes="" ifno="">
+			        <param name="In" value="pForm" />
+			        <param name="Out" value="pForm" />
+			        <param name="Sql" value="recommend/QryTypeById"/>
+      			</procedure>  
             </flow>
             
             <!-- 推荐岗位选择 -->
@@ -59,7 +70,7 @@
             </flow>
             <!-- 确定 -->
             <flow trigger="pToolbar.btnSave" event="OnClick" filter="">
-                <procedure name="jssave" logic="Save" ifyes="jsclose" ifno="">
+                <procedure name="jssave" logic="Save" ifyes="jsEncode" ifno="">
                     <param name="In" value="pForm"></param>
                     <param name="Msg" value="'保存成功'"></param>
                 </procedure>

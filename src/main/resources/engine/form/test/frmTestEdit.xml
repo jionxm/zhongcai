@@ -4,7 +4,7 @@
     <ui_layer>
         <ui name="frmTestEdit" title="推荐新增">
             <panel name="pForm" title="新增界面" object="test" type="Group">
-                <control name="id" title="id" property="id" type="Hidden" edit="N" required="" format="" width="2"
+                <control name="ctlId" title="id" property="id" type="Hidden" edit="N" required="" format="" width="2"
                          height="" column=""/>
                 <control name="ctlTitle" title="测评表名称" property="title" type="TextBox" edit="Y" required="Y" format=""
                          width="1" height="1" column="1"/>
