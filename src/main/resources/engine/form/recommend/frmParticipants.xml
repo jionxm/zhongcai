@@ -6,6 +6,8 @@
         <panel name="pToolBar" title="工具栏" object="" type="Toolbar">
                 <control name="btnAdd" title="新增人员" property="" type="Button"
 					edit="Y" required="" format="" width="" height="" column="" />
+				<!-- <control name="btnBack" title="返回" property="" type="Button"
+					edit="Y" required="" format="" width="" height="" column="" /> -->
             </panel>
          <panel name="RecGroup" title="推荐项目" object="recommend1" type="Group">
                 <control name="recId" title="id" property="id" type="Hidden"
@@ -16,8 +18,8 @@
 				<control name="empId" title="人员ID" property="" type="Hidden" edit="" required="" format="" width="1" height="1" column="1" />
            </panel>
             <panel name="EmpGroup" title="参会人员列表" object="participants" type="Grid">
-				<control name="RecId" title="推荐Id" property="recommendId" type="TextBox" edit="" required="" format="" width="" height="" column="" />
-				<control name="id" title="id" property="id" type="TextBox" edit="" required="" format="" width="" height="" column="" />
+				<control name="RecId" title="推荐Id" property="recommendId" type="Hidden" edit="" required="" format="" width="" height="" column="" />
+				<control name="id" title="id" property="id" type="Hidden" edit="" required="" format="" width="" height="" column="" />
 			    <control name="ctlCancel" title="删除" property="" type="Link" edit="" required="" format="" width="40" height="" column=""/>
 				<control name="peopleName" title="参会人员名称" property="empName" type="TextBox" edit="" required="" format="" width="120" height="1" column="1" />
 				<control name="orgName" title="部门" property="orgName" type="TextBox" edit="" required="" format="" width="100" height="1" column="1" />
@@ -46,25 +48,22 @@
 					<param name="Sql" value="recommend/QryEmpList"></param>
 				</procedure>				
 			</flow>
-			 <!--  取消授权
-            <flow trigger="authorizeGroup.ctlCancel" event="OnClick" filter="">
+			 <!--  取消授权 -->
+            <flow trigger="EmpGroup.ctlCancel" event="OnClick" filter="">
              <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">
 		       <param name="Title" value="人员删除" />
 		       <param name="Msg" value="确认删除选中人员?" />
 		      </procedure>
 		      <procedure name="j1"  logic="Delete" ifyes="getAuthorize" ifno="">
-		        <param name="In" value="authorizeGroup" />
+		        <param name="In" value="EmpGroup" />
 		        <param name="Msg" value="'人员删除成功！'" />
 		      </procedure>
-				
-				
-				<procedure name="getAuthorize" logic="Query" ifyes="" ifno="">
-					<param name="In" value="testerGroup"></param>
-					<param name="Out" value="authorizeGroup"></param>
-					<param name="Sql" value="group/QryAuthorizeList"></param>
-				</procedure>
-				
-			</flow> -->
+			<procedure name="getAuthorize" logic="Query" ifyes="" ifno="">
+					<param name="In" value="EmpGroup"></param>
+					<param name="Out" value="EmpGroup"></param>
+					<param name="Sql" value="recommend/QryEmpList"></param>
+			</procedure>
+			</flow>
 			<!-- 新增参会人员 -->
 			<flow trigger="pToolBar.btnAdd" event="OnClick" filter="">
 					<procedure name="findChoose" logic="Find" ifyes="jsDetail1"
@@ -76,26 +75,27 @@
 						<param name="Multi" value="Y"/>
 						<param name="Columns" value="id,分组人员编号,empId|name,分组人员名称,empName"></param>
 						<param name="Window" value="Large"></param>
-					</procedure>
-				
-				 	  <procedure name="jsDetail1"  logic="Master2Detail" ifyes="jssave" ifno="">
+					</procedure>				
+				 	 <procedure name="jsDetail1"  logic="Master2Detail" ifyes="jssave" ifno="">
 				      	<param name="In" value="RecGroup.empId"/>
 				        <param name="Out" value="pTable3"/>
-				      </procedure>
-				     
-				          
+				     </procedure>
 				       <procedure name="jssave" logic="Save" ifyes="getEmp" ifno="">
 				        <param name="In" value=",pTable3"/>
 				        <param name="Mode" value="Add"/>
 				        <param name="Msg" value="'人员新增成功'"/>
 				      </procedure>  
-				      <procedure name="getEmp" logic="Query" ifyes="" ifno="">
+				      <procedure name="getEmp" logic="Query" ifyes="jsclose" ifno="">
 						<param name="In" value="RecGroup"></param>
 						<param name="Out" value="EmpGroup"></param>
 						<param name="Sql" value="recommend/QryEmpList"></param>
-					  </procedure>               
+					  </procedure>
 			</flow>
-			
+			<!-- <flow trigger="pToolBar.btnBack" event="OnClick" filter="">
+				<procedure name="jsclose" server="" logic="Close" ifyes="" ifno="">
+                    <param name="Refresh" value="true"></param>
+                </procedure>
+			</flow> -->
            
             <layout>
                  <region location="Center" scale="">
