@@ -1,8 +1,8 @@
-function ddClick(me) {
+function ddClick(me,i,j) {
     var totle = 0;
     $(me).attr("checked", true);
-    var i = $(me).parent().attr("id");
-    window.location.href="#"+i;
+    var jum = i+j;
+    window.location.href="#"+jum;
 }
 
 //单选题目完成量
