@@ -22,6 +22,7 @@
     
     <div class="container">
         <div class="answer">
+            <#assign y=0 />
             <#assign x=0 />
             <#list qList as q>
             <#if q.chooseType == "single"> 
@@ -53,7 +54,7 @@
         <#assign sTotal=y />
         <p id="i" hidden>${sTotal }</p>
 		
-            <div class="answer answers">	
+            <div class="answer answers">
                     <#assign r=0 />
                     <#list qList as q>
                     <#if q.chooseType == "multi">
