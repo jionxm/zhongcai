@@ -11,7 +11,14 @@
     <link href="${ctx}/view/common/assets/h5/css/Selection.css" rel="stylesheet" type="text/css">
     <link href="${ctx}/view/common/assets/h5/css/alert.css" rel="stylesheet" type="text/css">
 </head>
-
+<!-- <style>
+    .no{
+       display:none;
+    }
+    .show{
+       display:show;
+    }
+</style> -->
 <body style="background-color: #fff;">
     <header class="title">
         <a class="r_return" onclick="popPage()"></a>
@@ -29,7 +36,14 @@
             <#list total as t>
             <p>${x}/${t.total }</p>
             </#list>
-            <p class="top"><b>#${q.dimension}</b><font name="${q.questionId}">${q.questionName}</font></p>
+            <p class="top"><b>#${q.dimension}</b><font name="${q.questionId}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
+            <div class="bounced">
+				<div class="bounced-con">
+				   <span onclick="Close()">X</span>
+				   <h4>详情</h4>
+				   <p>${q.standard }</p>
+				</div>
+			</div>
             <dl>
                 <!-- <dt id="0">张大大</dt> -->
                 
@@ -118,7 +132,14 @@
 		            </#list>
 		            <p id="i${r }" hidden>d${x}</p>
 		            <#assign r=r+1 />
-                    <p class="top"><b>#${q.dimension}</b><font name="${q.questionId}" >${q.questionName}（可多选）</font></p>
+                    <p class="top"><b>#${q.dimension}</b><font name="${q.questionId}" >${q.questionName}（可多选）</font><a onclick="bounced(this)">(查看评价标准)</a></p>
+                    <div class="bounced">
+				        <div class="bounced-con">
+				            <span onclick="Close()">X</span>
+				            <h4>详情</h4>
+				            <p>${q.standard }</p>
+				        </div>
+			    	</div>
                     <dl onclick="dc(this)">
                         <dd class="box">
 		                    <#list cList as c>
@@ -171,7 +192,14 @@
 		            <#list total as t>
 		            <p>${x}/${t.total }</p>
 		            </#list>
-                    <p class="top"><b>#${q.dimension}</b><font name="${q.questionId}">${q.questionName}</font></p>
+                    <p class="top"><b>#${q.dimension}</b><font name="${q.questionId}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
+                    <div class="bounced">
+				        <div class="bounced-con">
+				            <span onclick="Close()">X</span>
+				            <h4>详情</h4>
+				            <p>${q.standard }</p>
+				        </div>
+			    	</div>
                     <#if q.textLength gt 10>
                     <textarea class="usertext textarea" placeholder="请填写您的意见" ></textarea>
                     <#else>
