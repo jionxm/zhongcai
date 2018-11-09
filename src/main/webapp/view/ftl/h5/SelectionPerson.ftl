@@ -148,7 +148,7 @@
      	var qNumber = $("#i"+j).html();
      } */
     </script>
-    <script type="text/javascript" src="${ctx}/view/common/assets/h5/js/page/Selection1.js"></script>
+    <script type="text/javascript" src="${ctx}/view/common/assets/h5/js/page/SelectionPerson.js"></script>
     <script type="text/javascript" src="${ctx}/view/common/assets/h5/js/page/alert.min.js"></script>
 </body>
 
