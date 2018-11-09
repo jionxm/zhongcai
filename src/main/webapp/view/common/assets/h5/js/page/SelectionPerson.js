@@ -85,7 +85,8 @@ $('.box').click(function(e){
 var textNum = "";
 $('textarea').change(function(e){
 	var id = $(this).prev().attr("id");
-	if(textNum.search(id)==-1){
+	var clazz = $(this).attr("class");
+	if(textNum.search(id)==-1&&clazz.search("must")!=-1){
 		textNum = textNum+","+id;
 		totaltext = totaltext + 1;
 	}
