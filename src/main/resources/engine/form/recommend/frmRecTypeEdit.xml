@@ -32,13 +32,13 @@
                     <param name="Out" value="pForm.ctlMode"/>
                     <param name="Sql" value="recommendMode"/>
                 </procedure>
-                <procedure name="branch" server="" logic="Branch" ifyes="jsDecodeId2" ifno="jsclear">
+                <procedure name="branch" server="" logic="Branch" ifyes="jsDecodeId2" ifno="jsDecodeId">
         			<param name="In" value="getStorage('frmRecTypeEdit_EditMode')=='Edit'"/>
       			</procedure> 
                 <procedure name="jsclear" logic="Clear" ifyes="jsDecodeId" ifno="" sync="Y">
                     <param name="Out" value="pForm"></param>
                 </procedure>
-                <procedure name="jsDecodeId" logic="DecodeId" ifyes="list1" ifno="">
+                <procedure name="jsDecodeId" logic="DecodeId" ifyes="" ifno="">
                     <param name="Out" value="pForm.ctlRecommendId"></param>
                 </procedure>
                 <procedure name="jsDecodeId2" logic="DecodeId" ifyes="qid" ifno="">
@@ -70,7 +70,7 @@
             </flow>
             <!-- 确定 -->
             <flow trigger="pToolbar.btnSave" event="OnClick" filter="">
-                <procedure name="jssave" logic="Save" ifyes="jsEncode" ifno="">
+                <procedure name="jssave" logic="Save" ifyes="jsclose" ifno="">
                     <param name="In" value="pForm"></param>
                     <param name="Msg" value="'保存成功'"></param>
                 </procedure>
