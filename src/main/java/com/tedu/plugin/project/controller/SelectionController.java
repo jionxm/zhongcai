@@ -103,7 +103,7 @@ public class SelectionController {
 				   qp3.setQueryParam("project/QryQrChoose");
 				   List<Map<String,Object>> chooseList = formService.queryBySqlId(qp3);
 				   model.addAttribute("cList", chooseList);
-				   return "h5/Selection1";
+				   return "h5/SelectionPerson";
 			}
 		}
 		return null;

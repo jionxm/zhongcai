@@ -83,7 +83,7 @@
 					edit="" required="" format="" width="" height="" column="" />
 				<control name="ctlDel" title="删除" property="" type="Link"
 					edit="" required="" format="" width="" height="" column="" />
-				<control name="ctltestState" title="測評表狀態" property="testState" type="TextBox"
+				<control name="ctltestState" title="測評表狀態" property="testState" type="Hidden"
 					edit="" required="" format="" width="100" height="" column="" />
 				<control name="ctlName" title="测评主体身份" property="name" type="TextBox"
 					edit="" required="" format="" width="100" height="" column="" />
