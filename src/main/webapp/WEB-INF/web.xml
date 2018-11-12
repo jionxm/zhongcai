@@ -107,7 +107,8 @@
 						/uc,
 						/contact-us,
 						/qr/view,
-						/selection
+						/selection,
+						/project/*
 			</param-value>
 		</init-param>
 		<init-param>
