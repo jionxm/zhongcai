@@ -550,6 +550,29 @@ function downFileQr(fileId){
 	}
 }
 
+
+//报告导出调用
+function funToController(url,panelId){
+	var id = getPanelControlValue(panelId);
+	if(url!=null&&url!=""&&url!=undefined){
+			 $.ajax({
+			        type: "post",
+			        url: getRootPath_web()+"/"+url+"?id="+id,
+			        dataType: 'text',
+			        success: function(result) {
+			        	if(result=='success'){
+			        		return true;
+			        	}else{
+			        		return false;
+			        	}
+			        }
+			        	
+			    })
+	}else{
+		return false;
+	}
+	
+}
 function getRootPath_web() {
 	debugger
     //获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
