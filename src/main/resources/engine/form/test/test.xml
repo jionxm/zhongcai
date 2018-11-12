@@ -58,6 +58,8 @@
 				field="update_time" />
 			<property name="updateBy" type="Long" length="10" validate=""
 				field="update_by" />
+				
+		   	<property name="testState" type="String" length="20" field="" />
 		</object>
 
 		<!-- 选项类型model -->
@@ -96,6 +98,7 @@
 			<property name="textLength" type="Long" length="20" field="text_length" />
 			<property name="chooseId" type="Long" length="20" field="choose_id" />
 			<property name="stats" type="String" length="20" field="stats" />
+			<property name="standard" type="String" length="500" field="standard" />
 
 			<property name="createTime" type="Date" length="" validate=""
 				field="create_time" />
@@ -109,8 +112,8 @@
 			<property name="statsName" type="String" length="20" field="" />
 			<property name="typeName" type="String" length="20" field="" />
 			<property name="mustName" type="String" length="20" field="" />
-			<property name="chooseName" type="String" length="200"
-				field="" />
+			<property name="chooseName" type="String" length="200" field="" />
+			<property name="testState" type="String" length="20" field="" />
 		</object>
 
 		<!-- 指标授权model -->

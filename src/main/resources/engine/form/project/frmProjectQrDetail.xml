@@ -38,6 +38,8 @@
                          format="" width="200" height="" column=""/>
                 <control name="ctlprojGroupName" title="测评对象" property="groupName" type="TextBox" edit="" required=""
                          format="" width="100" height="" column=""/>
+                <control name="ctlSubjectIdentity" title="主体身份" property="testerName" type="TextBox" edit="" required=""
+                         format="" width="100" height="" column=""/>
                 <control name="ctlstate" title="状态" property="state" type="Hidden" edit="" required=""
                          format="" width="200" height="" column=""/>
                 <control name="ctlstateName" title="状态" property="stateName" type="Hidden" edit="" required=""

@@ -1,5 +1,5 @@
 /**
- * ´ðÌâÒ³Ãæ
+ * ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½
  * @style
  * 2018/10/23
  */
@@ -65,7 +65,7 @@ hr{margin: 20px auto;background-color: #eee;}
 .answers .box label{width: 100%;}
 
 
-/* µ×²¿ */
+/* ï¿½×²ï¿½ */
 .hrefBtn { 
     height:43px; 
     line-height:43px; 
@@ -89,7 +89,7 @@ hr{margin: 20px auto;background-color: #eee;}
 }
 
 
-/*µ¯³ö²ã*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 .renameResumeWrap { 
     font-size:18px; 
     position:absolute; 
@@ -172,13 +172,17 @@ hr{margin: 20px auto;background-color: #eee;}
     
     line-height: 30px;
     margin-top: 10px;
+    display: flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
 }
 input{
     display: none;
 }
 
 label{
-    width: 20%;
+   /*  width: 20%; */
+    margin-right:10px;
     display: inline-block;
     position: relative;
     line-height:30px;
@@ -217,4 +221,46 @@ input:checked+label:after{
     margin: 10px auto;
     height: 200px;
     padding: 10px;
+}
+.bounced{
+    position:absolute; 
+    left:0px; top:0px; 
+    background-color: rgba(000,000,000,0.7); 
+    z-index:100; 
+    width:100%; 
+    height:100%;
+}
+.bounced-con{
+	 top:50%; 
+    margin-top:-93px; 
+    left:50%; 
+    margin-left:-45%;  
+    width:90%; 
+    position:fixed; 
+    background-color:#fff; 
+    border-radius:5px; 
+    display:block; 
+    z-index:101;
+}
+.bounced-con h4 { 
+    border-radius:5px 5px 0 0; 
+    height:45px; 
+    background-color:#1d8aff; 
+    text-align:center; 
+    color:#fff; 
+    line-height:45px;
+}
+.bounced-con p { 
+	
+	padding: 10px;
+    color:#2a2a2a; 
+    text-align:center;
+    
+    
+}
+.bounced-con span{
+    float: right;
+    display: block;
+    line-height: 45px;
+    margin-right: 10px;
 }

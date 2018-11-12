@@ -41,7 +41,8 @@ $('.box').click(function(e){
 	var titlearr=[];
 	if($(e.target).is('input')){
 		$("input[type='radio']:checked").each(function(index,item){
-				arr.push(item.value);				
+				arr.push(item.value);
+				console.log("测试"+item.value);
 		});
 		totle1=arr.length;
 //		if($("input[type='checkbox']:checked").length>0){
@@ -84,7 +85,9 @@ $('textarea').change(function(e){
 //多选点击事件
 function dc(me) {
     var names = $(me).find("input[type='checkbox']:checked");
+//    var names = $(me).chilrdren("input[type='checkbox']:checked");
     //标记判断是否选中一个       
+    console.log(names);
     if(names.length>0){
     	for (var i = 0; i < names.length; i++) {
             if (names[i].checked) {
@@ -137,12 +140,20 @@ function goto() {
     }
 }
 
+function bounced(e) {
+	console.log(e);
+	  $(".bounced").css("height", $("body").css("height"));
+	  $(e).parent().next(".bounced").show();
+//	  $(".renameResume").removeClass("no");
+//	  $(".renameResume").addClass("show");
+	 }
+
 function submit() {
     if (notHrefBtnClick()) {
         $(".renameResumeWrap").css("height", $("body").css("height"));
         $(".renameResumeWrap").show();
         
-        $('textarea').each(function(index,item){
+        $('.textarea').each(function(index,item){
         	arr1.push($(item).val());
         });
         for(var i=0;i<titlearr1.length;i++){
@@ -240,11 +251,13 @@ function okBtn() {
 }
 
 function Close() {
-    $(".renameResumeWrap").hide();
+    $(".renameResumeWrap").hide();$(".bounced").hide();
     retarr1=[];
+//	  $(".renameResume").removeClass("show");
+//	  $(".renameResume").addClass("no");
 }
 $(document).ready(function () {
-    $(".renameResumeWrap").hide();
+    $(".renameResumeWrap").hide();$(".bounced").hide();
     $(".notHrefBtn").bind("click", notHrefBtnClick);
     $(".hrefBtn").hide();
     $(".notHrefBtn").show();

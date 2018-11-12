@@ -13,7 +13,7 @@ select * from (
 	r.update_time as updateTime,
 	r.create_time as createTime
 	
-	from t_recommend_emp r  
+	from t_participants r  
 	LEFT JOIN t_employee e ON r.emp_id=e.id
 	LEFT JOIN t_position p ON e.position_id=p.id
 	LEFT JOIN t_org o ON e.org_id=o.id

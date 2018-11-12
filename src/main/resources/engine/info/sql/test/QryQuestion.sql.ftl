@@ -6,6 +6,7 @@ select * from (
 	t.question as question,	
 	t.weight as weight,
 	t.type as type,
+	t.standard as standard,
 	d1.name as typeName,
 	t.must as must,
 	d3.name as mustName,

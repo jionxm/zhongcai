@@ -4,6 +4,8 @@
     <ui_layer>
         <ui name="frmProjectDetail" title="测评项目详情">
             <panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
+            	<control name="ctlCount" title="得票统计" property="" type="Button" edit="" required="" format=""
+                         width="" height="" column=""/>
             	<control name="ctlView" title="查看二维码" property="" type="Button" edit="" required="" format=""
                          width="" height="" column=""/>
             	<control name="ctlAdd" title="生成二维码" property="" type="Button" edit="" required="" format=""
@@ -226,7 +228,17 @@
                     <param name="Sql" value="project/QryProjectGroup"></param>
                </procedure>               
 		    </flow>
-		    
+		    <!--  得票统计 -->
+		    <flow trigger="pnlDetailTool.ctlCount" event="OnClick" filter="">
+		      <procedure name="branch" logic="Branch" ifyes="" ifno="sucMsg">
+		      		<param name="In" value="count('pnlDetailGroup.ctlId')"></param>
+		      </procedure>
+		       <procedure name="sucMsg" logic="ConfirmMsg" ifyes="" ifno="">
+                    <param name="Title" value="提示"></param>
+                    <param name="Msg" value="数据错误！请联系相关技术人员！"></param>
+                </procedure>   
+               
+		    </flow>
 		    
             <!-- 返回 -->
             <flow trigger="pnlDetailTool.ctlBack" event="OnClick" filter="">

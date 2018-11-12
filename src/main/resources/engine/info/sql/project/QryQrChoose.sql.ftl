@@ -5,7 +5,8 @@ select * from (
 		c.id as typeId,
 		c.name as typeName,
 		cv.name as valueName,
-		q.type as chooseType
+		q.type as chooseType,
+		cv.score as score
 		
 	from t_choose c
 		LEFT JOIN t_choose_value cv ON c.id = cv.choose_id

@@ -11,4 +11,4 @@
 	LEFT JOIN t_tester t ON q.tester_id=t.id
 	LEFT JOIN t_test tt ON tt.id = t.test_id
 	LEFT JOIN t_group g ON g.id = (select group_id from t_project_group where id= q.proj_group_id)
-	LEFT JOIN t_dict d ON d.code = t.name and d.cata_code="t_employee.identity" where p.id=#{data.id} order by d.`name`
+	LEFT JOIN t_dict d ON d.code = t.name and d.cata_code="t_employee.identity" where p.id=#{data.id} and q.proj_group_id=#{data.projGroupId} order by d.`name`

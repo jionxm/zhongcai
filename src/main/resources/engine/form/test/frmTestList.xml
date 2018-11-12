@@ -83,7 +83,7 @@
       </procedure>              
     </flow>
     <!-- 编辑 -->
-    <flow trigger="pTable.ctlEdit" event="OnClick" filter="">
+    <flow trigger="pTable.ctlEdit" event="OnClick" filter="row.state=='stop'">
       <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
         <param name="In" value="pTable.id"></param>
       </procedure>

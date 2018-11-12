@@ -530,13 +530,15 @@ function getRowsValueTrue(panelName,controlName){
 
 
 
-
-
-
-
-
-
-
+function count(projId){
+	var id = getPanelControlValue(projId);
+	if(id!=null&&id!=""&&id!=undefined){
+		location.href = getRootPath_web()+"/count?projId="+id;
+		return true;
+	}else{
+		return false;
+	}
+}
 
 function downFileQr(fileId){
 	var id = getPanelControlValue(fileId);
