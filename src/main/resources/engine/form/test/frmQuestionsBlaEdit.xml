@@ -28,7 +28,7 @@
 				<control name="ctlWeight" title="权重" property="weight" type="TextBox"
 					edit="Y" required="" format="" width="2" height="1" column="" />		
 				<control name="ctlMust" title="是否必填" property="must" type="ComboBox"
-					edit="Y" required="" format="" width="1" height="1" column="" />
+					edit="Y" required="Y" format="" width="1" height="1" column="" />
 				<control name="ctlStats" title="是否统计" property="stats" type="ComboBox"
 					edit="Y" required="" format="" width="1" height="1" column="4" />
 				<control name="ctlStandard" title="评价标准" property="standard" type="TextBox"
