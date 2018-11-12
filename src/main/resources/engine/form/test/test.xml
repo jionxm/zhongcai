@@ -98,7 +98,7 @@
 			<property name="textLength" type="Long" length="20" field="text_length" />
 			<property name="chooseId" type="Long" length="20" field="choose_id" />
 			<property name="stats" type="String" length="20" field="stats" />
-			<property name="standard" type="String" length="200" field="standard" />
+			<property name="standard" type="String" length="500" field="standard" />
 
 			<property name="createTime" type="Date" length="" validate=""
 				field="create_time" />
