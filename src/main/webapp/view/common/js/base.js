@@ -552,6 +552,11 @@ function downFileQr(fileId){
 
 
 //报告导出调用
+/**
+ * url 对应Controller中的方法请求
+ * 
+ * panelId 如pTable.id
+ * */
 function funToController(url,panelId){
 	var id = getPanelControlValue(panelId);
 	if(url!=null&&url!=""&&url!=undefined){
