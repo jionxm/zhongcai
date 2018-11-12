@@ -44,7 +44,7 @@
             	<procedure name="jsDecodeId" logic="DecodeId" ifyes="qid" ifno="">
                     <param name="Out" value="pForm.id"></param>
                 </procedure>
-                <procedure name="qid"  logic="QueryById" ifyes="" ifno="">
+                <procedure name="qid"  logic="Query" ifyes="" ifno="">
 			        <param name="In" value="pForm" />
 			        <param name="Out" value="pForm" />
 			        <param name="Sql" value="test/QryTestList"/>
