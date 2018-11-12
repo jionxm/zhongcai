@@ -39,11 +39,11 @@
             	<#list empList as e>
             	<#if e.questionId == q.questionId> 
             	<#assign y=y+1 />
-                <dt id="${e.empId}">${e.empName}</dt>
+                <dt id="${e.empId}" class="${q.must}" >${e.empName}</dt>
                 <dd  class="box" id="${x}${y}">
                     <#list cList as c>
                 	<#if q.questionId == c.questionId && c.chooseType == "single"> 
-                    <input  type="radio" name="q${x}${y}" id="radio0${c_index}${y}" value="${c.valueName}" onclick="ddClick(this,'${x}','${y}')">
+                    <input type="radio" name="q${x}${y}" id="radio0${c_index}${y}" value="${c.valueName}" onclick="ddClick(this,'${x}','${y}')">
                     <label for="radio0${c_index }${y}">&nbsp;${c.valueName}</label>
                     </#if> 
                 	</#list>
@@ -73,11 +73,11 @@
             			<#list empList as e>
             			<#if e.questionId == q.questionId>
             			<#assign y=y+1 />
-                		<dt id="${e.empId}">${e.empName}</dt>
+                		<dt id="${e.empId}" class="${q.must}" >${e.empName}</dt>
                 		<dd  class="box">
                 		<#list cList as c>
 						<#if q.questionId == c.questionId && c.chooseType == "multi">
-							<input  type="checkbox" name="d${y}" id="checkbox0${c_index }${y}" value="${c.valueName}">
+							<input  type="checkbox" name="d${x}${y}" id="checkbox0${c_index }${y}" value="${c.valueName}" onchange="changeCheckbox(this)">
 							<label for="checkbox0${c_index }${y}">&nbsp;${c.valueName}</label>	
 						</#if>
 						</#list>
@@ -102,7 +102,7 @@
 						<#list empList as e>
 						<#if e.questionId == q.questionId>
 						<#assign y=y+1 />
-						<dt id="${e.empId}">${e.empName}</dt>
+						<dt id="${e.empId}" class="${q.must}">${e.empName}</dt>
 						<textarea class="usertext" placeholder="请填写您的意见" ></textarea>
 						</#if>
 						</#list>  
@@ -131,7 +131,7 @@
      function popPage() {
             window.history.go(-1);
         }
-    
+     var sTotal = $(".must").length; 
      var r = $("#sum").html();console.log(r);
      var radioNum=${sTotal };
      console.log(radioNum);
