@@ -93,13 +93,13 @@ public class ProjectController  {
 		HSSFRow row = sheet.createRow(0);
 		//创建HSSFCell对象
 		HSSFCell cell=row.createCell(0);
-		cell.setCellValue(fileName);
+		cell.setCellValue(projName.get(0).get("name").toString()+"数据统计");
 		sheet.addMergedRegion(new CellRangeAddress(0,0,0,3));
 		//设置单元格的值
 		HSSFRow row1 = sheet.createRow(1);
 		row1.createCell(0).setCellValue("单位");
 		for(int i=0;i<question.size();i++){
-			String questionName = (String) question.get(i).get("question");
+			String questionName = question.get(i).get("question").toString();
 			row1.createCell(i+1).setCellValue(questionName);			
 		}
 		
@@ -107,7 +107,7 @@ public class ProjectController  {
 	    for(int j=0;j<result.size();j++){
 	    	rows[j] = sheet.createRow(j+2);
 	    	String resultName = null;
-	    	String testerName = (String) result.get(j).get("name");
+	    	String testerName = result.get(j).get("name").toString();
 	    	for(int k=0;k<question.size();k++){
 	    		String quesName = question.get(k).get("question").toString();
 	    		resultName = (String) result.get(j).get(quesName);
