@@ -66,6 +66,15 @@
 		<property name="empName" type="String" length="20" field=""/>
 		<property name="orgName" type="String" length="20" field=""/>
 		<property name="postName" type="String" length="20" field=""/>
+	</object> 
+	<!-- 分组类别model -->
+ 	<object name="groupType" table="t_participants" primary="id" unique="group_id" order="">
+		<property name="id" type="Long" length="20" initial="" field="id"/>
+		<property name="number" type="Long" length="20" initial="" field="number"/>
+<!-- 		<property name="recommendId" type="Long" length="20" initial="" field="recommend_id"/> -->
+		<property name="groupId" type="Long" length="20" validate=""  field="group_id" />
+		
+		<property name="groupName" type="String" length="20" validate=""  field="" />
  	</object>  
 </model_layer>
 </tsoftware>

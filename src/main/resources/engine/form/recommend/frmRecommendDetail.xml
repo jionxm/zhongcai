@@ -46,19 +46,19 @@
                <!--  <control name="ctlBasic" title="基本条件" property="" type="Link" edit="" required=""
                          format="" width="140" height="" column=""/> -->
             </panel>
-            <panel name="pnlEmp" title="参会人员" object="participants" type="Grid">
-                <control name="id" title="ID" property="id" type="Hidden" edit="" required="" format="" width=""
+            <panel name="pnlEmp" title="参会人员" object="groupType" type="Grid">
+                <control name="id" title="ID" property="id" type="TextBox" edit="" required="" format="" width=""
                          height="" column=""/>
                 <control name="ctlEdit" title="编辑" property="" type="Link" edit="" required="" format="" width=""
                          height="" column=""/>
                 <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width=""
                          height="" column=""/>
-                <control name="ctlEmp" title="人员姓名" property="empName" type="TextBox" edit="" required=""
+                <control name="ctlEmp" title="参会人员分组" property="groupName" type="TextBox" edit="" required=""
                          format="" width="140" height="" column=""/>
-                <control name="ctlOrgName" title="部门" property="orgName" type="TextBox" edit="" required=""
+                 <control name="ctlOrgName" title="人数" property="number" type="TextBox" edit="" required=""
                          format="" width="140" height="" column=""/>
-                <control name="ctlPostName" title="单位名称" property="postName" type="TextBox" edit="" required="" format=""
-                         width="140" height="" column=""/>
+<!--                 <control name="ctlPostName" title="单位名称" property="postName" type="TextBox" edit="" required="" format=""
+                         width="140" height="" column=""/> -->
             </panel>
             <!-- 加载 -->
             <flow trigger="" event="OnLoad" filter="">
@@ -123,8 +123,40 @@
 		         <param name="Window" value="Medium"/>
 		      </procedure>
 		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-		        <param name="Out" value="pnlType"/>
-		        <param name="Sql" value="recommend/QryParticipants"/>
+		        <param name="Out" value="pnlEmp"/>
+		        <param name="Sql" value="recommend/QryEmpList"/>
+		      </procedure>              
+		    </flow>
+		     <!-- 参会删除 -->
+		    <flow trigger="pnlEmp.ctlDel" event="OnClick" filter="">
+		      <procedure name="j00" server="" logic="ConfirmMsg" ifyes="j11" ifno="">
+		       <param name="Title" value="删除提示" />
+		       <param name="Msg" value="确认删除当前数据吗?" />
+		      </procedure>
+		      <procedure name="j11"  logic="Delete" ifyes="jsquery" ifno="">
+		        <param name="In" value="pnlEmp" />
+		        <param name="Msg" value="'数据已删除'" />
+		      </procedure>
+		      <procedure name="jsquery" logic="Query" ifyes="" ifno="">
+                	<param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlEmp"></param>
+                    <param name="Sql" value="recommend/QryEmpList"></param>
+               </procedure>               
+		    </flow>
+		    <!-- 编辑参会人员-->
+		    <flow trigger="pnlEmp.ctlEdit" event="OnClick" filter="">
+		      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
+		        <param name="In" value="pnlEmp.id"/>
+		      </procedure>
+		      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
+		        <param name="To" value="frmParticipants"/>
+		        <param name="Mode" value="Edit"/>
+		         <param name="Window" value="Large"/>
+		      </procedure>
+		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
+		      	<param name="In" value="pnlDetailGroup"/>
+		        <param name="Out" value="pnlEmp"/>
+		        <param name="Sql" value="recommend/QryEmpList"/>
 		      </procedure>              
 		    </flow>
 		    <!-- 编辑推荐类别-->
@@ -146,10 +178,8 @@
             <!-- 返回 -->
             <flow trigger="pnlDetailTool.ctlBack" event="OnClick" filter="">
                 <procedure name="jsback" logic="Back" ifyes="" ifno="">
-
                 </procedure>
             </flow>
-
             
             <!-- 布局 -->
             <layout>
