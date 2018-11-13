@@ -54,7 +54,7 @@
             <!-- 推荐岗位选择 -->
             <flow trigger="pForm.ctlPostName" event="OnClick" filter="" >
 		        <procedure name="search"  logic="Find" ifyes="" ifno="">
-			      	<param name="In" value="pForm.id"/>
+			      	<param name="In" value="pForm.ctlRecommendId"/>
 			        <param name="Out" value="pForm"/>
 			        <param name="Sql" value="recPosition"/>
 			        <!-- <param name="Multi" value="Y"/> -->

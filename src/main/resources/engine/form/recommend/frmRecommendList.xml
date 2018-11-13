@@ -71,7 +71,7 @@
         <param name="Mode" value="Add"></param>
          <param name="Window" value="Large"></param>
       </procedure>
-      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
+      <procedure name="jsquery"  logic="QueryByid" ifyes="" ifno="">
         <param name="In" value="pCondition"></param>
         <param name="Out" value="pTable"></param>
         <param name="Sql" value="recommend/QryRecommendList"></param>

@@ -1,10 +1,7 @@
 select * from (
 	select 
 	p.id as post,
-	p.name as postName,
-	p.update_by as updateBy,
-	p.create_by as createBy,
-	p.update_time as updateTime,
-	p.create_time as createTime  
+	p.name as postName
 	from t_position p  
+	where p.id not IN (select post from t_recommend_type where recommend_id=#{data.id})
  ) a 
