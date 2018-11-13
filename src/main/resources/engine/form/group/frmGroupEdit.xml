@@ -71,7 +71,7 @@
                 <region location="South" scale="">
                     <subregion panel="pToolbar" location="North" scale=""/>
                 </region>
-                <region location="North" scale="">
+                <region location="Center" scale="">
                     <subregion panel="pForm" location="Center" scale=""/>
                 </region>
             </layout>
