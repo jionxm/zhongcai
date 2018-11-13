@@ -22,6 +22,9 @@ var flag = false;
 
 var retarr1=[];
 var arr1=[];
+var titlearr1 = [];
+var checkboxarr1 = [];
+var gaparr1 = [];
 var totaltext=0;
 var radioNum=0;
 var checkNum=0;
@@ -31,18 +34,17 @@ var textareaIds = "";
 //var resultarr=[];
 
 $('.box').click(function(e){
-	
+	var titlearr=[];
 	var retarr=[];
 	var arr=[];
 	radioNum = 0;
 	if($(e.target).is('input')){
 		$("input[type='radio']:checked").each(function(index,item){
-			    var empId = $(item).parent().prev().attr('id');
-			    var empName = $(item).parent().prev().html();
-			    var questionId = $(item).parent().parent().prev().children("font").attr("id"); 		    
-				var questionName = $(item).parent().parent().prev().children("font").html();
-			    var questionNumber = $(item).parent().parent().prev().children("font").attr("name");
-			    arr.push(questionId +"&"+item.value +"&"+ empId +"&"+ empName + "&"  + questionName+ "&" + questionNumber);
+			var empId = $(item).parent().prev().attr('id');
+			var questionId = $(item).parent().parent().prev()
+					.children("font").attr("id");
+			arr.push(item.value);
+			titlearr.push(questionId + "&" + empId);
 			    var must = $(item).parent().prev().attr("class");
 			    if(must=="must"){
 			    	radioNum+=1;
@@ -58,7 +60,7 @@ $('.box').click(function(e){
 //			});
 //			arr.push(checkboxarr);
 //		}
-		if($("input[type='checkbox']:checked").length>0){
+		/*if($("input[type='checkbox']:checked").length>0){
 			$('.answers dl .box').each(function(index,item){
 				var checkboxarr=[];
 				var result=[];
@@ -77,7 +79,7 @@ $('.box').click(function(e){
 				arr.push(checkboxarr);
 			})
 //			flag=true;
-		}
+		}*/
 		
 		 
 		
@@ -86,7 +88,7 @@ $('.box').click(function(e){
 		notHrefBtnClick();
 		 retarr1=retarr;
 		 arr1=arr;
-		 
+		 titlearr1 = titlearr;
 		 
 }
 });
@@ -198,89 +200,86 @@ function submit() {
         $(".renameResumeWrap").css("height", $("body").css("height"));
         $(".renameResumeWrap").show();
         
-        $('textarea').each(function(index,item){        	
-        	var empId = $(item).prev().attr('id');
-        	var empName = $(item).prev().html();
-        	var questionId = $(item).parent().prev().children("font").attr("id");
-        	var questionName = $(item).parent().prev().children("font").html();
-        	var questionNumber = $(item).parent().prev().children("font").attr("name");
-        	         
-        	arr1.push(questionId + "&" + $(item).val() + "&" + empId + "&" + empName + "&" +questionName+ "&" + questionNumber);
-        	//arr1.push($(item).val());
-        });
-        for(var i=0;i<arr1.length;i++){
-			var empSValue=[];
-			var value=arr1[i];
-			var mValue = [];
-			var eEmp;
-			var empName;
-			var questionId;
-			var questionName;
-			var questionNumber;
-			var obj ={};
-			if(Array.isArray(value)){
-				for(var j=0;j<value.length;j++){
-					var reValue= value[j].split("&");
-					if(j == 0){
-						mValue = reValue[1] + "&";
-					}else if( j == value.length - 1){
-						mValue =mValue + reValue[1];
-						eEmp = reValue[2];
-						questionId = reValue[0];
-						empName = reValue[3];
-						questionName =reValue[4] ;
-						questionNumber = reValue[5];
-						
-					}
-					else{
-						mValue =mValue + reValue[1] +"&";
-					}
-					
-					
-				}
-					
-				obj={
-						"QRId":QRId,
-						"editing":true,
-						"empId" : eEmp,
-						"empName":empName,
-						"projectGroupId": projectGroupId,
-						"projectId":projectId,
-						"questionId":parseInt(questionId),
-						"questionName":questionName,
-						"questionNumber":questionNumber,
-						"result":mValue,
-						"testId": testId,
-						"testType": type,
-						"ztqzId": ztqzId
-					};	
+        $('.answers dl .box').each(function(index,item){
+			var checkboxarr = [];
+			$(item).find("input[type='checkbox']:checked").each(
+				function(index, item) {
+					checkboxarr.push(item.value);
+				});
+		checkboxarr1.push(checkboxarr);
+		});
+		console.log("checkboxarr1" + checkboxarr1);
+		
+		$('.answers dl .box').each(function(index,item){
+			var empId = $(item).prev().attr('id');
+			var questionId = $(item).parent()
+			.prev().children("font").attr("id");
+			titlearr1.push(questionId + "&" + empId);
+		});
+		console.log("titlearr:" + titlearr1);
+		
+		$('textarea').each(
+				function(index, item) {
+					var empId = $(item).prev().attr('id');
+					var questionId = $(item).parent().prev().children("font")
+							.attr("id");
+					console.log("empId" + empId + "questionId" + questionId);
+					gaparr1.push($(item).val());
+					titlearr1.push(questionId + "&" + empId);
 
-				
-			}else{
-				empSValue = arr1[i].split("&");
-				obj={
-					"QRId":QRId,
-					"editing":true,
-					"empId" : empSValue[2],
-					"empName":empSValue[3],
-					"projectGroupId": projectGroupId,
-					"projectId":projectId,
-					"questionId":parseInt(empSValue[0]),
-					"questionName":empSValue[4],
-					"questionNumber":empSValue[5],
-					"testType": type,
-					
-					
-					"result":empSValue[1],
-					"ztqzId": ztqzId,
-					 
-					"testId": testId
-					
-					
-				};
-			}
-			//console.log("obj" + obj);
+				});
+		console.log("titlearr:" + titlearr1);
+        
+        
+		var obj = {};
+		var i;
+		for (i = 0; i < arr1.length; i++) {
+			var value = arr1[i];
+			var title1 = titlearr1[i].split("&");
+			obj = {
+				"questionId" : title1[0],
+				"empId" : title1[1],
+				"result" : value,
+				"QRId" : QRId,
+				"testType" : type,
+				"ztqzId" : ztqzId,
+				"projectGroupId" : projectGroupId,
+				"testId" : testId
+			};
+			retarr1.push(obj);
+		}
+		var j;
+		for (j = 0; j < checkboxarr1.length; j++) {
+			var value = checkboxarr1[j];
+			var title1 = titlearr1[j+i].split("&");
 			
+			value = value.join("&");
+			obj = {
+				"questionId" : title1[0],
+				"empId" : title1[1],
+				"result" : value,
+				"QRId" : QRId,
+				"testType" : type,
+				"ztqzId" : ztqzId,
+				"projectGroupId" : projectGroupId,
+				"testId" : testId
+			};
+			retarr1.push(obj);
+		}
+		
+		for (var k = 0; k < gaparr1.length; k++) {
+			var value = gaparr1[k];
+			var title1 = titlearr1[k+i+j];console.log(title1);
+			obj = {
+				"questionId" : title1[0],
+				"empId" : title1[1],
+				"result" : value,
+				"QRId" : QRId,
+				"testType" : type,
+				"ztqzId" : ztqzId,
+				"projectGroupId" : projectGroupId,
+				"testId" : testId
+			};
 			retarr1.push(obj);
 		}
  
