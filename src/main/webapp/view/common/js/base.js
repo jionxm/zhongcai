@@ -559,7 +559,8 @@ function downFileQr(fileId){
  * */
 function funToController(url,panelId){
 	var id = getPanelControlValue(panelId);
-	if(url!=null&&url!=""&&url!=undefined){
+	location.href = getRootPath_web()+"/"+url+"?id="+id;
+	/*if(url!=null&&url!=""&&url!=undefined){
 			 $.ajax({
 			        type: "post",
 			        url: getRootPath_web()+"/"+url+"?id="+id,
@@ -576,7 +577,7 @@ function funToController(url,panelId){
 			    })
 	}else{
 		return false;
-	}
+	}*/
 	
 }
 function getRootPath_web() {

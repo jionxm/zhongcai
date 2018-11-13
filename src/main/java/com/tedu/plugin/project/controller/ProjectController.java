@@ -44,6 +44,7 @@ import com.tedu.base.engine.service.FormService;
 import com.tedu.base.file.util.io.file;
 import com.tedu.base.task.SpringUtils;
 import com.tedu.plugin.project.service.QRCodeService;
+import com.tedu.plugin.project.util.DocUtil;
 
 @Controller
 @RequestMapping("/project")
@@ -72,9 +73,7 @@ public class ProjectController  {
 		qp.getData().put("projId", request.getParameter("id"));
 		qp.setQueryParam("export/QryProjName");//查询项目名字
 		List<Map<String,Object>> projName = formService.queryBySqlId(qp);
-		System.out.println("项目名称----:"+projName);		
-		String fileName = projName.get(0).get("name")+".xls";
-		System.out.println("导出名称----:"+fileName);		
+
 		
 		qp.setQueryParam("count/QryQuestionById");
 		List<Map<String,Object>> question = formService.queryBySqlId(qp);//查询该项目下所有的题目
@@ -85,44 +84,55 @@ public class ProjectController  {
 		log.info("答题结果----:"+result);
 		
 		
-		//创建HSSFWorkbook对象
-		HSSFWorkbook wkb = new HSSFWorkbook();
-		//创建HSSFSheet对象
-		HSSFSheet sheet = wkb.createSheet("sheet0");
-		//创建HSSFRow对象
-		HSSFRow row = sheet.createRow(0);
-		//创建HSSFCell对象
-		HSSFCell cell=row.createCell(0);
-		cell.setCellValue(projName.get(0).get("name").toString()+"数据统计");
-		sheet.addMergedRegion(new CellRangeAddress(0,0,0,3));
-		//设置单元格的值
-		HSSFRow row1 = sheet.createRow(1);
-		row1.createCell(0).setCellValue("单位");
-		for(int i=0;i<question.size();i++){
-			String questionName = question.get(i).get("question").toString();
-			row1.createCell(i+1).setCellValue(questionName);			
-		}
+		Map<Object, Object> maps = new HashMap<Object,Object>();
+		maps.put("deptName", "北玻有限公司");
+		maps.put("createDate", "2018年11月13日");
+		maps.put("year", "2018");
+		maps.put("peopleCount", "11");
 		
-		HSSFRow[] rows = new HSSFRow[result.size()];
-	    for(int j=0;j<result.size();j++){
-	    	rows[j] = sheet.createRow(j+2);
-	    	String resultName = null;
-	    	String testerName = result.get(j).get("name").toString();
-	    	for(int k=0;k<question.size();k++){
-	    		String quesName = question.get(k).get("question").toString();
-	    		resultName = (String) result.get(j).get(quesName);
-	    		log.info("答题结果----:"+testerName+quesName+resultName);
-	    		rows[j].createCell(0).setCellValue(testerName);
-	    		rows[j].createCell(k+1).setCellValue(resultName);
-	    	}
-	    }
-	  
+		List list = new ArrayList();
 		
-	    
-		FileOutputStream output=new FileOutputStream("d:\\"+fileName+".xls");
-		wkb.write(output);
-		output.flush();
 		
+		Map<Object, Object> map1 = new HashMap<Object,Object>();
+		map1.put("type", "总部公司领导");
+		map1.put("count", "");
+		map1.put("percent", "");
+		map1.put("leaderWeight", "40%");
+		map1.put("leaderWeight", "25%");
+		list.add(map1);
+		Map<Object, Object> map2 = new HashMap<Object,Object>();
+		map1.put("type", "总部职能部门");
+		map1.put("count", "");
+		map1.put("percent", "");
+		map1.put("leaderWeight", "20%");
+		map1.put("leaderWeight", "15%");
+		list.add(map2);
+		Map<Object, Object> map3 = new HashMap<Object,Object>();
+		map1.put("type", "领导班子正职");
+		map1.put("count", "2");
+		map1.put("percent", "(18%)");
+		map1.put("leaderWeight", "10%");
+		map1.put("leaderWeight", "15%");
+		list.add(map3);
+		Map<Object, Object> map4 = new HashMap<Object,Object>();
+		map1.put("type", "领导班子副职");
+		map1.put("count", "3");
+		map1.put("percent", "(27.27%)");
+		map1.put("leaderWeight", "19%");
+		map1.put("leaderWeight", "15%");
+		list.add(map4);
+		
+		Map<Object, Object> map5 = new HashMap<Object,Object>();
+		map1.put("type", "中层领导人员");
+		map1.put("count", "5");
+		map1.put("percent", "(54.55%)");
+		map1.put("leaderWeight", "19%");
+		map1.put("leaderWeight", "15%");
+		list.add(map5);
+		
+		maps.put("peo", list);
+		
+		DocUtil.download(request, response, "领导班子的综合测评.doc", maps,"test.ftl");
 		
 	}
 	
