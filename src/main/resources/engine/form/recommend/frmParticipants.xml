@@ -2,108 +2,88 @@
 <tsoftware xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="../componentConfig.xsd">
     <ui_layer>
-        <ui name="frmParticipants" title="新增参会人员">
-        <panel name="pToolBar" title="工具栏" object="" type="Toolbar">
-                <control name="btnAdd" title="新增人员" property="" type="Button"
-					edit="Y" required="" format="" width="" height="" column="" />
-				<!-- <control name="btnBack" title="返回" property="" type="Button"
-					edit="Y" required="" format="" width="" height="" column="" /> -->
+        <ui name="frmParticipants" title="新增对象分组">
+            <panel name="pForm" title="新增界面" object="groupType" type="Group">
+                <control name="id" title="推荐项目编号" property="id" type="Hidden" edit="N" required="" format="" 
+                         width="1" height="" column="1" />
+                <control name="ctlGroup" title="对象分组id" property="groupId" type="Hidden" edit="N" required="" format=""
+                         width="1" height="1" column="2"/>
+                <control name="ctlGroupName" title="对象分组" property="groupName" type="PopupBox" edit="Y" required="Y" format=""
+                         width="1" height="1" column="2"/> 
+                <control name="ctlNumber" title="人数" property="number" type="TextBox" edit="Y" required="Y" format=""
+                         width="1" height="1" column="4"/>                
+         <!--        <control name="ctlTestId" title="测评表" property="testId" type="Hidden" edit="Y" required="Y"
+                         format="" width="1" height="1" column="1"/> -->
+                <!-- <control name="ctlTestName" title="测评表" property="testName" type="PopupBox" edit="Y" required="Y"
+                         format="" width="1" height="1" column="1"/> -->
+<!--                 
+                <control name="updateTime" title="更新日期" property="updateTime" type="Hidden" edit="Y" required="N" target="CurrentTime()" format="" width="2" height="1" column="2"  />
+				<control name="updateBy" title="更新人" property="updateBy" type="Hidden" edit="Y" required="N" target="session.userInfo.empId" format="" width="2" height="1" column="2"  />		
+				<control name="createTime" title="创建日期" property="createTime" type="Hidden" edit="Y" required="N" target="editMode=='Add'?CurrentTime():nil" format="" width="2" height="1" column="2"  />
+				<control name="createBy" title="创建人" property="createBy" type="Hidden" edit="Y" required="N" target="editMode=='Add'?session.userInfo.empId:nil" format="" width="2" height="1" column="2"  />
+            	
+				<control name="createByName" title="创建人" property="createByName" type="TextBox" edit="N" required="N" initial="session.userInfo.empName" format="" width="2" height="1" column="2"  />
+				<control name="createTimeName" title="创建日期" property="createTimeName" type="TextBox" edit="N" required="N" initial="CurrentTime()" format="" width="2" height="1" column="2"  />
+				<control name="updateByName" title="更新人" property="updateByName" type="TextBox" edit="N" required="N" initial="session.userInfo.empName" format="" width="2" height="1" column="2"  />		
+            	<control name="updateTimeName" title="更新日期" property="updateTimeName" type="TextBox" edit="N" required="N" initial="CurrentTime()" format="" width="2" height="1" column="2"  /> -->
+            
+            
             </panel>
-         <panel name="RecGroup" title="推荐项目" object="recommend1" type="Group">
-                <control name="recId" title="id" property="id" type="Hidden"
-					edit="Y" required="" format="" width="1" height="" column="1" /> 
-				<control name="ctlRecTitle" title="推荐项目名称" property="title"
-					type="TextBox" edit="N" required="Y" format="" width="1" height="1"
-					column="2" />
-				<control name="empId" title="人员ID" property="" type="Hidden" edit="" required="" format="" width="1" height="1" column="1" />
-           </panel>
-            <panel name="EmpGroup" title="参会人员列表" object="participants" type="Grid">
-				<control name="RecId" title="推荐Id" property="recommendId" type="Hidden" edit="" required="" format="" width="" height="" column="" />
-				<control name="id" title="id" property="id" type="Hidden" edit="" required="" format="" width="" height="" column="" />
-			    <control name="ctlCancel" title="删除" property="" type="Link" edit="" required="" format="" width="40" height="" column=""/>
-				<control name="peopleName" title="参会人员名称" property="empName" type="TextBox" edit="" required="" format="" width="120" height="1" column="1" />
-				<control name="orgName" title="部门" property="orgName" type="TextBox" edit="" required="" format="" width="100" height="1" column="1" />
-			</panel>
- 			<panel name="pTable3" title="批量添加人员" object="participants" type="HiddenTable">
-				<control name="id" title="id" property="id" type="Hidden" edit="" required="" format="" width="120" height="" column=""/>
-				<control name="recId" title="推荐Id" property="recommendId" type="TextBox" edit="" required="" format="" width="" height="" column="" />
-				<control name="empId" title="人员ID" property="empId" type="TextBox" edit="" required="" format="" width="200" height="1" column="1" />
-			</panel>	
-			
-         <!-- 页面加载 -->
-            <flow trigger="" event="OnLoad" filter="">
-				
-				<procedure name="getRecId" server="" logic="DecodeId"
-					ifyes="qid" ifno="">
-					<param name="Out" value="RecGroup.recId"></param>
-				</procedure>
-				<procedure name="qid" logic="QueryById" ifyes="getAuthorize" ifno="">
-					<param name="In" value="RecGroup"></param>
-					<param name="Out" value="RecGroup"></param>
-					<param name="Sql" value="recommend/QryRecommendList"></param>
-				</procedure>
-				<procedure name="getAuthorize" logic="Query" ifyes="" ifno="">
-					<param name="In" value="RecGroup"></param>
-					<param name="Out" value="EmpGroup"></param>
-					<param name="Sql" value="recommend/QryEmpList"></param>
-				</procedure>				
-			</flow>
-			 <!--  取消授权 -->
-            <flow trigger="EmpGroup.ctlCancel" event="OnClick" filter="">
-             <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">
-		       <param name="Title" value="人员删除" />
-		       <param name="Msg" value="确认删除选中人员?" />
-		      </procedure>
-		      <procedure name="j1"  logic="Delete" ifyes="getAuthorize" ifno="">
-		        <param name="In" value="EmpGroup" />
-		        <param name="Msg" value="'人员删除成功！'" />
-		      </procedure>
-			<procedure name="getAuthorize" logic="Query" ifyes="" ifno="">
-					<param name="In" value="EmpGroup"></param>
-					<param name="Out" value="EmpGroup"></param>
-					<param name="Sql" value="recommend/QryEmpList"></param>
-			</procedure>
-			</flow>
-			<!-- 新增参会人员 -->
-			<flow trigger="pToolBar.btnAdd" event="OnClick" filter="">
-					<procedure name="findChoose" logic="Find" ifyes="jsDetail1"
-						ifno="">
-						<param name="In" value="RecGroup.recId"></param>
-						<param name="Out" value="RecGroup"></param>
-						<param name="Sql" value="ChooseEmp"></param>
-						<param name="Title" value="人员选择"></param>
-						<param name="Multi" value="Y"/>
-						<param name="Columns" value="id,分组人员编号,empId|name,分组人员名称,empName"></param>
-						<param name="Window" value="Large"></param>
-					</procedure>				
-				 	 <procedure name="jsDetail1"  logic="Master2Detail" ifyes="jssave" ifno="">
-				      	<param name="In" value="RecGroup.empId"/>
-				        <param name="Out" value="pTable3"/>
-				     </procedure>
-				       <procedure name="jssave" logic="Save" ifyes="getEmp" ifno="">
-				        <param name="In" value=",pTable3"/>
-				        <param name="Mode" value="Add"/>
-				        <param name="Msg" value="'人员新增成功'"/>
-				      </procedure>  
-				      <procedure name="getEmp" logic="Query" ifyes="jsclose" ifno="">
-						<param name="In" value="RecGroup"></param>
-						<param name="Out" value="EmpGroup"></param>
-						<param name="Sql" value="recommend/QryEmpList"></param>
-					  </procedure>
-			</flow>
-			<!-- <flow trigger="pToolBar.btnBack" event="OnClick" filter="">
-				<procedure name="jsclose" server="" logic="Close" ifyes="" ifno="">
+            <panel name="pToolbar" title="按钮" object="" type="Toolbar">
+                <control name="btnSave" title="确认" property="" type="Button" edit="" required="" format="" width=""
+                         height="" column=""/>
+                <control name="btnClose" title="取消" property="" type="Button" edit="" required="" format="" width=""
+                         height="" column=""/>
+            </panel>
+            <!-- 初始加载 -->
+            <flow trigger="" event="OnLoad" filter=""> 
+            	<procedure name="branch" server="" logic="Branch" ifyes="jsDecodeId" ifno="jsclear">
+        			<param name="In" value="getStorage('frmParticipants_EditMode')=='Edit'"/>
+      			</procedure> 
+            	<procedure name="jsDecodeId" logic="DecodeId" ifyes="qid" ifno="">
+                    <param name="Out" value="pForm.id"></param>
+                </procedure>
+                <procedure name="qid"  logic="QueryById" ifyes="" ifno="">
+			        <param name="In" value="pForm" />
+			        <param name="Out" value="pForm" />
+			        <param name="Sql" value="recommend/QryEmpList"/>
+      			</procedure>  
+                <procedure name="jsclear" logic="Clear" ifyes="" ifno="" sync="Y">
+                    <param name="Out" value="pForm"></param>
+                </procedure>   
+            </flow>
+            
+            <!-- 分组绑定 -->
+            <flow trigger="pForm.ctlGroupName" event="OnClick" filter="" >
+		        <procedure name="search"  logic="Find" ifyes="" ifno="">
+			        <param name="Out" value="pForm"/>
+			        <param name="Sql" value="projectGroup"/>
+			        <param name="Title" value="分组选择"/>
+			        <param name="Columns" value="id,分组id,ctlGroup|name,分组名称,ctlGroupName"/>
+		        </procedure>
+		    </flow>
+            <!-- 取消 -->
+            <flow trigger="pToolbar.btnClose" event="OnClick" filter="">
+                <procedure name="jsclose" server="" logic="Close" ifyes="" ifno="">
+                    <param name="Refresh" value="false"></param>
+                </procedure>
+            </flow>
+            <!-- 确定 -->
+            <flow trigger="pToolbar.btnSave" event="OnClick" filter="">
+                <procedure name="jssave" logic="Save" ifyes="jsclose" ifno="">
+                    <param name="In" value="pForm"></param>
+                    <param name="Msg" value="'保存成功'"></param>
+                </procedure>
+                <procedure name="jsclose" server="" logic="Close" ifyes="" ifno="">
                     <param name="Refresh" value="true"></param>
                 </procedure>
-			</flow> -->
-           
+            </flow>
             <layout>
-                 <region location="Center" scale="">
-                    <subregion panel="EmpGroup" location="Center" scale=""/>
-                     <subregion panel="RecGroup" location="North" scale=""/>
+                <region location="South" scale="">
+                    <subregion panel="pToolbar" location="North" scale=""/>
                 </region>
-                <region location="North" scale="">
-                    <subregion panel="pToolBar" location="South" scale=""/>
+                <region location="Center" scale="">
+                    <subregion panel="pForm" location="Center" scale=""/>
                 </region>
             </layout>
         </ui>

@@ -8,8 +8,10 @@ select * from (
 	t.name as createBy,
 	t2.name as updateBy,
 	g.update_time as updateTime,
-	g.create_time as createTime  
+	g.create_time as createTime,
+	o.name as deptName  
 	from t_group g 
 	LEFT JOIN t_employee t ON t.id=g.create_by 
-	LEFT JOIN t_employee t2 ON t2.id=g.update_by 
+	LEFT JOIN t_employee t2 ON t2.id=g.update_by
+	LEFT JOIN t_org o ON o.code = g.dept_code  
  ) a 
