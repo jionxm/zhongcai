@@ -46,7 +46,7 @@
       <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
         <param name="To" value="frmGroupEdit"></param>
         <param name="Mode" value="Add"></param>
-         <param name="Window" value="small"></param>
+         <param name="Window" value="Medium"></param>
          <param name="Title" value="新增分组"></param>
       </procedure>
       <procedure name="jsquery"  logic="Query" ifyes="" ifno="">

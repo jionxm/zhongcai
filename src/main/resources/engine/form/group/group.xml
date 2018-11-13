@@ -14,6 +14,7 @@
 		
 		<property name="empName" type="String" length="20" field=""/>
 		<property name="det" type="String" length="20" field=""/>
+		<property name="deptName" type="String" length="20" field=""/>
 	 </object>
 	 <!-- 分组人员model -->
 	  	<object name="grouppeople" table="t_group_emp" primary="id" unique="group_id,emp_id" order="">
