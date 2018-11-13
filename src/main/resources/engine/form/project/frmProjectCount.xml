@@ -39,113 +39,17 @@
         <param name="Sql" value="project/QryProjectList"></param>
       </procedure>
     </flow>
-    <!-- 启动 -->
-    <flow trigger="pTable.ctlStart" event="OnClick"  filter="row.state=='stop' &amp;&amp; row.qrStateName=='未生成'">
-		<procedure name ="jssave" logic="SaveCustom" ifyes="j2" ifno="">
-       		<param name="In" value="pTable"/>
-			<param name="Sql" value="project/UpdateProStateStart"/>
-		</procedure>      
-		<procedure name="j2"  logic="Query" ifyes="" ifno="">
-	        <param name="In" value="pCondition"></param>
-	        <param name="Out" value="pTable"></param>
-	        <param name="Sql" value="project/QryProjectList"></param>
+	<!--  得票统计 -->
+    <flow trigger="pTable.ctlDown" event="OnClick" filter="">
+      <procedure name="branch" logic="Branch" ifyes="" ifno="">
+      		<param name="In" value="funToController('project/export','pTable.id')"></param>
       </procedure>
-	</flow>
-	<!-- 关闭 -->
-    <flow trigger="pTable.ctlClose" event="OnClick"  filter="(row.state=='start'||row.state=='teststart') &amp;&amp; row.qrStateName=='未生成'">
-		<procedure name ="jssave" logic="SaveCustom" ifyes="j2" ifno="">
-       		<param name="In" value="pTable"/>
-			<param name="Sql" value="project/UpdateProStateClose"/>
-		</procedure>      
-		<procedure name="j2"  logic="Query" ifyes="" ifno="">
-	        <param name="In" value="pCondition"></param>
-	        <param name="Out" value="pTable"></param>
-	        <param name="Sql" value="project/QryProjectList"></param>
-      </procedure>
-	</flow>
-    <!-- 清空 -->
-    <flow trigger="pToolbar.ctlClear" event="OnClick" filter="">
-      <procedure name="jsclear"  logic="Clear" ifyes="" ifno="">
-        <param name="Out" value="pCondition"></param>
-      </procedure>
-    </flow>
-    <!-- 新增 -->
-    <flow trigger="pToolbar.ctlAdd" event="OnClick" filter="">
-      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
-        <param name="To" value="frmProjectEdit"></param>
-        <param name="Mode" value="Add"></param>
-         <param name="Window" value="Medium"></param>
-         <param name="Title" value="新增测评项目"></param>
-      </procedure>
-      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-        <param name="In" value="pCondition"></param>
-        <param name="Out" value="pTable"></param>
-        <param name="Sql" value="project/QryProjectList"></param>
-      </procedure>              
-    </flow>
-    <!-- 查询 -->
-    <flow trigger="pToolbar.ctlQuery" event="OnClick" filter="">
-      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-        <param name="In" value="pCondition"></param>
-        <param name="Out" value="pTable"></param>
-        <param name="Sql" value="project/QryProjectList"></param>
-      </procedure>              
-    </flow>  
-    <!-- 点击标题 -->
-    <flow trigger="pTable.ctlName" event="OnClick" filter="">
-      <procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jsgoto" ifno="">
-        <param name="In" value="pTable.id"></param>
-      </procedure>
-      <procedure name="jsgoto"  logic="Transition" ifyes="" ifno="">
-        <param name="To" value="frmProjectDetail"></param>
-        <param name="Mode" value="Readonly"></param>
-      </procedure>
-    </flow>
-    <!-- 点击发放二维码 -->
-   <flow trigger="pTable.ctlQr" event="OnClick" filter="">
-      <procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jsgoto" ifno="">
-        <param name="In" value="pTable.id"></param>
-      </procedure>
-      <procedure name="jsgoto"  logic="Transition" ifyes="" ifno="">
-        <param name="To" value="frmProjectQrDetail"></param>
-        <param name="Mode" value="Readonly"></param>
-      </procedure>
-    </flow>
-    <!-- 删除 --> 
-     <flow trigger="pTable.ctlDel" event="OnClick" filter="">
-      <procedure name="j0" server="" logic="ConfirmMsg" ifyes="j1" ifno="">
-       <param name="Title" value="删除提示" />
-       <param name="Msg" value="删除将会删掉该项目下所有数据，是否确认删除当前数据吗?" />
-      </procedure>
-      <procedure name="j1"  logic="Delete" ifyes="j2" ifno="">
-        <param name="In" value="pTable" />
-        <param name="Plugin" value="DeleteQrPlugin"></param>
-        <param name="Msg" value="'测评项目已删除'" />
-      </procedure>
-      <procedure name="j2"  logic="Query" ifyes="" ifno="">
-        <param name="In" value="pCondition"></param>
-        <param name="Out" value="pTable"></param>
-        <param name="Sql" value="project/QryProjectList"></param>
-      </procedure>          
-    </flow>  
-    <!-- 编辑 -->
-    <flow trigger="pTable.ctlEdit" event="OnClick" filter="row.qrStateName=='未生成'">
-      <procedure name="jsEncode" logic="EncodeId" ifyes="jspopup" ifno="">
-        <param name="In" value="pTable.id"></param>
-      </procedure>
-      <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
-        <param name="To" value="frmProjectEdit"></param>
-        <param name="Mode" value="Edit"></param>
-        <param name="Window" value="Medium"></param>
-        <param name="Title" value="编辑测评项目"></param>
-      </procedure>
-      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-        <param name="In" value="pCondition"></param>
-        <param name="Out" value="pTable"></param>
-        <param name="Sql" value="project/QryProjectList"></param>
-      </procedure>              
-    </flow> 
-    
+       <procedure name="sucMsg" logic="ConfirmMsg" ifyes="" ifno="">
+           	<param name="Title" value="提示"></param>
+           	<param name="Msg" value="数据错误！请联系相关技术人员！"></param>
+       </procedure>             
+    </flow>    
+  
     <layout>
       <region location ="North" scale="">
         <subregion panel="pToolbar" location="South" scale="" />
