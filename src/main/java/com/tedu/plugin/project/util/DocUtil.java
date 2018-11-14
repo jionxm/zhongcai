@@ -25,8 +25,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.tedu.base.common.demo.FreeMarkerUtil;
+
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import freemarker.template.TemplateException;
 
 /**
  * @类功能说明：
@@ -37,7 +40,10 @@ import freemarker.template.Template;
  * @创建时间：2018年4月10日 上午10:36:08 @版本：V1.0
  */
 public class DocUtil {
-	public static void download(HttpServletRequest request,HttpServletResponse response,String newWordName,Map dataMap,String temName) {
+	public static void download(HttpServletRequest request,HttpServletResponse response,String newWordName,Map<String,Object> dataMap,String temName) throws TemplateException, IOException {
+		
+//		new FreeMarkerUtil().print("test.ftl", "/template", dataMap);
+		
 		Configuration configuration = new Configuration();
 		configuration.setDefaultEncoding("utf-8");                                       //注意这里要设置编码
  
@@ -56,11 +62,11 @@ public class DocUtil {
 		try {
 			//word.xml是要生成Word文件的模板文件
 			t = configuration.getTemplate(temName,"utf-8");                  // 文件名 还有这里要设置编码
-			outFile = new File(newWordName);
+			outFile = new File("D://"+newWordName);
 			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile),"utf-8"));                 //还有这里要设置编码
 		
-			t.process(dataMap, out);
-	
+			t.process(dataMap,new OutputStreamWriter(new FileOutputStream(outFile),"utf-8"));
+	    
 			out.flush();
 			out.close();
 		
