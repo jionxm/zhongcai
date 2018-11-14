@@ -135,7 +135,7 @@ public class ProjectController  {
 		maps.put("peoples", list);
 //		model.addAttribute("", maps);
 		
-		DocUtil.download(request, response, "领导班子的综合测评.doc", maps,"test.ftl");
+		DocUtil.download(request, response, "领导班子的综合测评.doc", maps,"exportWeight.ftl");
 		
 	}
 	
