@@ -46,7 +46,7 @@ $('.box').click(function(e){
 			arr.push(item.value);
 			titlearr.push(questionId + "&" + empId);
 			    var must = $(item).parent().prev().attr("class");
-			    if(must=="must"){
+			    if(must=="ismust"){
 			    	radioNum+=1;
 			    }
 
@@ -101,7 +101,7 @@ function changeCheckbox(obj){
 	}*/
 	var name = $(obj).attr("name");
 	var clazz = $(obj).parent().prev().attr("class");
-	if(checkBoxIds.search(name)==-1&&clazz.search("must")!=-1){
+	if(checkBoxIds.search(name)==-1&&clazz.search("ismust")!=-1){
 		checkBoxIds = checkBoxIds+","+name;
 		checkNum = checkNum + 1;
 	}else if(checkBoxIds.search(name)!=-1){
@@ -124,7 +124,7 @@ function changeCheckbox(obj){
 $('textarea').change(function(e){
 	var id = $(this).prev().attr("id");
 	var clazz = $(this).prev().attr("class");
-	if(textareaIds.search(id)==-1&&clazz.search("must")!=-1&&$(this).val()!=""){
+	if(textareaIds.search(id)==-1&&clazz.search("ismust")!=-1&&$(this).val()!=""){
 		textareaIds = textareaIds+","+id;
 		totaltext = totaltext + 1;
 	}else if(textareaIds.search(id)!=-1&&$(this).val()==""){
