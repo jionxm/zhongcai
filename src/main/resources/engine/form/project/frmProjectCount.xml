@@ -42,7 +42,7 @@
 	<!--  得票统计 -->
     <flow trigger="pTable.ctlDown" event="OnClick" filter="">
       <procedure name="branch" logic="Branch" ifyes="" ifno="">
-      		<param name="In" value="funToController('project/export','pTable.id')"></param>
+      		<param name="In" value="funToController('project/export','pTable.id||pTable.state')"></param>
       </procedure>
        <procedure name="sucMsg" logic="ConfirmMsg" ifyes="" ifno="">
            	<param name="Title" value="提示"></param>
