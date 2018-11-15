@@ -44,7 +44,7 @@ function getRootPath_web() {
     var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
     
     var rootPath = localhostPath + projectName;
-    if(rootPath.search("ui") == -1){
+    if(pathName.search("zhongcai") != -1||pathName.search("zc_test")!=-1){
     	return projectName;
     }else{
     	return "";
