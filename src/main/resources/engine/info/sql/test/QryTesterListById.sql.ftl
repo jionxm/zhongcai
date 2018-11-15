@@ -2,7 +2,7 @@ select * from (
 	select 
 	t.id as id,
 	t.test_id as testId,
-	d.name as name,
+	d.code as name,
 	t.dimension as dimension,
 	t.update_by as updateBy,
 	t.create_by as createBy,
