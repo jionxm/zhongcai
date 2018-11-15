@@ -86,53 +86,55 @@ public class ProjectController  {
 		List<Map<String,Object>> result = formService.queryBySqlId(qp);//查询该项目下所有的题目
 		log.info("答题结果----:"+result);
 		
+		qp.setQueryParam("export/QryProjNumber");
+		List<Map<String,Object>> allNumber = formService.queryBySqlId(qp);//查询该项目下总人数
+		log.info("总人数----:"+allNumber);
+		
+		
+		qp.setQueryParam("export/QryTypeResult");
+		List<Map<String,Object>> type = formService.queryBySqlId(qp);//查询该项目下所有的题目
+		log.info("分组统计----:"+type);
+		
 		Map<String, Object> maps = new HashMap<String,Object>();
 		maps.put("deptName", "北玻有限公司");
 		maps.put("createDate", "2018年11月13日");
 		maps.put("year", "2018");
 		maps.put("peopleCount", "11");
 		
-		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+		/*
+		 * 分组人数权重统计
+		 */
+		List<Map<String, String>> grouplist = new ArrayList<Map<String, String>>();		
+		Map<String, String>[] groupmap = new Map[type.size()];
+		for(int i=0;i<type.size();i++){
+			groupmap[i] = new HashMap<String, String>();
+			groupmap[i].put("type", type.get(i).get("groupName").toString());
+			groupmap[i].put("count", type.get(i).get("number").toString());
+			groupmap[i].put("percent", "("+type.get(i).get("percent").toString()+")");
+			groupmap[i].put("leaderWeight", "40%");
+			groupmap[i].put("peoWeight", "25%");
+			grouplist.add(groupmap[i]);
+		}
 		
+		/*
+		 * 答题结果统计
+		 */
+		List<Map<String, String>> resultlist = new ArrayList<Map<String, String>>();		
+		Map<String, String>[] resultmap = new Map[result.size()];
+		for(int j=0;j<result.size();j++){
+			resultmap[j] = new HashMap<String, String>();
+			for(int k=0;k<question.size();k++){
+				String quesName = question.get(k).get("question").toString();
+				log.info("quesName----:"+quesName);
+				resultmap[j].put("testerName", result.get(j).get("name").toString());
+				resultmap[j].put(quesName, result.get(k).get(quesName).toString());
+			}
+			resultlist.add(resultmap[j]);
+		}
 		
-		Map<String, String> map1 = new HashMap<String, String>();
-		map1.put("type", "总部公司领导");
-		map1.put("count", "");
-		map1.put("percent", "");
-		map1.put("leaderWeight", "40%");
-		map1.put("peoWeight", "25%");
-		list.add(map1);
-		Map<String, String> map2 = new HashMap<String, String>();
-		map2.put("type", "总部职能部门");
-		map2.put("count", "");
-		map2.put("percent", "");
-		map2.put("leaderWeight", "20%");
-		map2.put("peoWeight", "15%");
-		list.add(map2);
-		Map<String, String> map3 = new HashMap<String, String>();
-		map3.put("type", "领导班子正职");
-		map3.put("count", "2");
-		map3.put("percent", "(18%)");
-		map3.put("leaderWeight", "10%");
-		map3.put("peoWeight", "15%");
-		list.add(map3);
-		Map<String, String> map4 = new HashMap<String, String>();
-		map4.put("type", "领导班子副职");
-		map4.put("count", "3");
-		map4.put("percent", "(27.27%)");
-		map4.put("leaderWeight", "19%");
-		map4.put("peoWeight", "15%");
-		list.add(map4);
-		
-		Map<String, String> map5 = new HashMap<String, String>();
-		map5.put("type", "中层领导人员");
-		map5.put("count", "5");
-		map5.put("percent", "(54.55%)");
-		map5.put("leaderWeight", "19%");
-		map5.put("peoWeight", "15%");
-		list.add(map5);
-		
-		maps.put("peoples", list);
+		maps.put("peoples", grouplist);
+		maps.put("results", resultlist);
+		log.info("maps----:"+maps);
 //		model.addAttribute("", maps);
 		
 		DocUtil.download(request, response, "领导班子的综合测评.doc", maps,"exportWeight.ftl");
