@@ -1358,6 +1358,9 @@
                   </w:pPr>
                 </w:p>
               </w:tc>
+              <#list questions as q>
+              
+              
               <w:tc>
                 <w:tcPr>
                   <w:tcW w:w="1036" w:type="dxa"/>
@@ -1387,406 +1390,15 @@
                       <w:sz w:val="24"/>
                       <w:szCs w:val="24"/>
                     </w:rPr>
-                    <w:t>政治方向</w:t>
+                    <w:t>${q.questions }</w:t>
                   </w:r>
                 </w:p>
               </w:tc>
-              <w:tc>
-                <w:tcPr>
-                  <w:tcW w:w="907" w:type="dxa"/>
-                  <w:tcBorders>
-                    <w:top w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:left w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:bottom w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                  </w:tcBorders>
-                  <w:vAlign w:val="center"/>
-                </w:tcPr>
-                <w:p w:rsidR="007D5D91" w:rsidRDefault="007D5D91" w:rsidP="00D52BF5">
-                  <w:pPr>
-                    <w:jc w:val="center"/>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                  </w:pPr>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体" w:hint="eastAsia"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                    <w:t>党的建设</w:t>
-                  </w:r>
-                </w:p>
-              </w:tc>
-              <w:tc>
-                <w:tcPr>
-                  <w:tcW w:w="906" w:type="dxa"/>
-                  <w:tcBorders>
-                    <w:top w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:left w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:bottom w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                  </w:tcBorders>
-                  <w:vAlign w:val="center"/>
-                </w:tcPr>
-                <w:p w:rsidR="007D5D91" w:rsidRDefault="007D5D91" w:rsidP="00D52BF5">
-                  <w:pPr>
-                    <w:jc w:val="center"/>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                  </w:pPr>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体" w:hint="eastAsia"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                    <w:t>社会责任</w:t>
-                  </w:r>
-                </w:p>
-              </w:tc>
-              <w:tc>
-                <w:tcPr>
-                  <w:tcW w:w="907" w:type="dxa"/>
-                  <w:tcBorders>
-                    <w:top w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:left w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:bottom w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                  </w:tcBorders>
-                  <w:vAlign w:val="center"/>
-                </w:tcPr>
-                <w:p w:rsidR="007D5D91" w:rsidRDefault="007D5D91" w:rsidP="00D52BF5">
-                  <w:pPr>
-                    <w:jc w:val="center"/>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                  </w:pPr>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体" w:hint="eastAsia"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                    <w:t>经济效益</w:t>
-                  </w:r>
-                </w:p>
-              </w:tc>
-              <w:tc>
-                <w:tcPr>
-                  <w:tcW w:w="907" w:type="dxa"/>
-                  <w:tcBorders>
-                    <w:top w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:left w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:bottom w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                  </w:tcBorders>
-                  <w:vAlign w:val="center"/>
-                </w:tcPr>
-                <w:p w:rsidR="007D5D91" w:rsidRDefault="007D5D91" w:rsidP="00D52BF5">
-                  <w:pPr>
-                    <w:jc w:val="center"/>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                  </w:pPr>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体" w:hint="eastAsia"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                    <w:t>管理提升</w:t>
-                  </w:r>
-                </w:p>
-              </w:tc>
-              <w:tc>
-                <w:tcPr>
-                  <w:tcW w:w="907" w:type="dxa"/>
-                  <w:tcBorders>
-                    <w:top w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:left w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:bottom w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                  </w:tcBorders>
-                  <w:vAlign w:val="center"/>
-                </w:tcPr>
-                <w:p w:rsidR="007D5D91" w:rsidRDefault="007D5D91" w:rsidP="00D52BF5">
-                  <w:pPr>
-                    <w:jc w:val="center"/>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                  </w:pPr>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体" w:hint="eastAsia"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                    <w:t>创新成效</w:t>
-                  </w:r>
-                </w:p>
-              </w:tc>
-              <w:tc>
-                <w:tcPr>
-                  <w:tcW w:w="906" w:type="dxa"/>
-                  <w:tcBorders>
-                    <w:top w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:left w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:bottom w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                  </w:tcBorders>
-                  <w:vAlign w:val="center"/>
-                </w:tcPr>
-                <w:p w:rsidR="007D5D91" w:rsidRDefault="007D5D91" w:rsidP="00D52BF5">
-                  <w:pPr>
-                    <w:jc w:val="center"/>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                  </w:pPr>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体" w:hint="eastAsia"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                    <w:t>风险防控</w:t>
-                  </w:r>
-                </w:p>
-              </w:tc>
-              <w:tc>
-                <w:tcPr>
-                  <w:tcW w:w="907" w:type="dxa"/>
-                  <w:tcBorders>
-                    <w:top w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:left w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:bottom w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                  </w:tcBorders>
-                  <w:vAlign w:val="center"/>
-                </w:tcPr>
-                <w:p w:rsidR="007D5D91" w:rsidRDefault="007D5D91" w:rsidP="00D52BF5">
-                  <w:pPr>
-                    <w:jc w:val="center"/>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                  </w:pPr>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体" w:hint="eastAsia"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                    <w:t>发扬民主</w:t>
-                  </w:r>
-                </w:p>
-              </w:tc>
-              <w:tc>
-                <w:tcPr>
-                  <w:tcW w:w="907" w:type="dxa"/>
-                  <w:tcBorders>
-                    <w:top w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:left w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:bottom w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                  </w:tcBorders>
-                  <w:vAlign w:val="center"/>
-                </w:tcPr>
-                <w:p w:rsidR="007D5D91" w:rsidRDefault="007D5D91" w:rsidP="00D52BF5">
-                  <w:pPr>
-                    <w:jc w:val="center"/>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                  </w:pPr>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体" w:hint="eastAsia"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                    <w:t>整体合力</w:t>
-                  </w:r>
-                </w:p>
-              </w:tc>
-              <w:tc>
-                <w:tcPr>
-                  <w:tcW w:w="907" w:type="dxa"/>
-                  <w:tcBorders>
-                    <w:top w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:left w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:bottom w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                  </w:tcBorders>
-                  <w:vAlign w:val="center"/>
-                </w:tcPr>
-                <w:p w:rsidR="007D5D91" w:rsidRDefault="007D5D91" w:rsidP="00D52BF5">
-                  <w:pPr>
-                    <w:jc w:val="center"/>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                  </w:pPr>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体" w:hint="eastAsia"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                    <w:t>运行效率</w:t>
-                  </w:r>
-                </w:p>
-              </w:tc>
-              <w:tc>
-                <w:tcPr>
-                  <w:tcW w:w="906" w:type="dxa"/>
-                  <w:tcBorders>
-                    <w:top w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:left w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:bottom w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                  </w:tcBorders>
-                  <w:vAlign w:val="center"/>
-                </w:tcPr>
-                <w:p w:rsidR="007D5D91" w:rsidRDefault="007D5D91" w:rsidP="00D52BF5">
-                  <w:pPr>
-                    <w:jc w:val="center"/>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                  </w:pPr>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体" w:hint="eastAsia"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                    <w:t>实干担当</w:t>
-                  </w:r>
-                </w:p>
-              </w:tc>
-              <w:tc>
-                <w:tcPr>
-                  <w:tcW w:w="907" w:type="dxa"/>
-                  <w:tcBorders>
-                    <w:top w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:left w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:bottom w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                  </w:tcBorders>
-                  <w:vAlign w:val="center"/>
-                </w:tcPr>
-                <w:p w:rsidR="007D5D91" w:rsidRDefault="007D5D91" w:rsidP="00D52BF5">
-                  <w:pPr>
-                    <w:jc w:val="center"/>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                  </w:pPr>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体" w:hint="eastAsia"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                    <w:t>选人用人</w:t>
-                  </w:r>
-                </w:p>
-              </w:tc>
-              <w:tc>
-                <w:tcPr>
-                  <w:tcW w:w="907" w:type="dxa"/>
-                  <w:tcBorders>
-                    <w:top w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:left w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                    <w:bottom w:val="single" w:sz="4" w:space="0" w:color="000000"/>
-                  </w:tcBorders>
-                  <w:vAlign w:val="center"/>
-                </w:tcPr>
-                <w:p w:rsidR="007D5D91" w:rsidRDefault="007D5D91" w:rsidP="00D52BF5">
-                  <w:pPr>
-                    <w:jc w:val="center"/>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                  </w:pPr>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:cs="宋体" w:hint="eastAsia"/>
-                      <w:b/>
-                      <w:bCs/>
-                      <w:sz w:val="24"/>
-                      <w:szCs w:val="24"/>
-                    </w:rPr>
-                    <w:t>廉洁自律</w:t>
-                  </w:r>
-                </w:p>
-              </w:tc>
+              
+              </#list>
+              
+          
+              
               <w:tc>
                 <w:tcPr>
                   <w:tcW w:w="910" w:type="dxa"/>
@@ -2274,6 +1886,9 @@
                 </w:p>
               </w:tc>
             </w:tr>
+            
+            <#list results as r>
+            
             <w:tr w:rsidR="007D5D91" w:rsidTr="00D52BF5">
               <w:trPr>
                 <w:trHeight w:val="642"/>
@@ -2304,10 +1919,13 @@
                       <w:sz w:val="24"/>
                       <w:szCs w:val="24"/>
                     </w:rPr>
-                    <w:t>领导班子正职</w:t>
+                    <w:t>${r.testerName }</w:t>
                   </w:r>
                 </w:p>
               </w:tc>
+              
+              <#list questions as q>
+              
               <w:tc>
                 <w:tcPr>
                   <w:tcW w:w="1036" w:type="dxa"/>
@@ -2334,10 +1952,13 @@
                       <w:sz w:val="24"/>
                       <w:szCs w:val="24"/>
                     </w:rPr>
-                    <w:t>9.00</w:t>
+                    <w:t>${r['${q.questions}'] }</w:t>
                   </w:r>
                 </w:p>
               </w:tc>
+              
+              </#list>
+              
               <w:tc>
                 <w:tcPr>
                   <w:tcW w:w="907" w:type="dxa"/>
@@ -2726,6 +2347,10 @@
                 </w:p>
               </w:tc>
             </w:tr>
+            
+            </#list>
+            
+            
             <w:tr w:rsidR="007D5D91" w:rsidTr="00D52BF5">
               <w:trPr>
                 <w:trHeight w:val="642"/>

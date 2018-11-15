@@ -117,6 +117,17 @@ public class ProjectController  {
 		}
 		
 		/*
+		 * 项目下题目统计
+		 */
+		List<Map<String, String>> questionlist = new ArrayList<Map<String, String>>();		
+		Map<String, String>[] questionmap = new Map[question.size()];
+		for(int i=0;i<question.size();i++){
+			questionmap[i] = new HashMap<String, String>();
+			questionmap[i].put("questions", question.get(i).get("question").toString());			
+			questionlist.add(questionmap[i]);
+		}
+		
+		/*
 		 * 答题结果统计
 		 */
 		List<Map<String, String>> resultlist = new ArrayList<Map<String, String>>();		
@@ -134,6 +145,7 @@ public class ProjectController  {
 		
 		maps.put("peoples", grouplist);
 		maps.put("results", resultlist);
+		maps.put("questions", questionlist);
 		log.info("maps----:"+maps);
 //		model.addAttribute("", maps);
 		
