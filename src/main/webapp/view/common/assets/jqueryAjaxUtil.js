@@ -30,10 +30,31 @@ $.ajaxSetup({
   }
 });
 
+	
+
+function getRootPath_web() {
+    //获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
+    var curWwwPath = window.document.location.href;
+    //获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+    var pathName = window.document.location.pathname;
+    var pos = curWwwPath.indexOf(pathName);
+    //获取主机b地址，如： http://localhost:8083
+    var localhostPath = curWwwPath.substring(0, pos);
+    //获取带"/"的项目名，如：/uimcardprj
+    var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+    
+    var rootPath = localhostPath + projectName;
+    if(pathName.search("zhongcai") != -1||pathName.search("zc_test")!=-1){
+    	return projectName;
+    }else{
+    	return "";
+    }
+}
 function getToken(tokenKey, cb) {
 	//console.log(API_PROXY+ '123456');
 	//API_PROXY = "vipcoding";
 	 //"http://localhost:8080/vipcoding"
+	API_PROXY = getRootPath_web();
   if (tokenKey) {
     var uiName = getUiName(tokenKey, APIS);
     //console.log(uiName);
