@@ -4,7 +4,7 @@
     <ui_layer>
         <ui name="frmTestEdit" title="推荐新增">
             <panel name="pForm" title="新增界面" object="test" type="Group">
-                <control name="ctlId" title="id" property="id" type="Hidden" edit="N" required="" format="" width="2"
+                <control name="ctlId" title="编号111" property="id" type="Hidden" edit="N" required="" format="" width="2"
                          height="" column=""/>
                 <control name="ctlTitle" title="测评表名称" property="title" type="TextBox" edit="Y" required="Y" format=""
                          width="1" height="1" column="1"/>
@@ -42,9 +42,9 @@
         			<param name="In" value="getStorage('frmTestEdit_EditMode')=='Edit'"/>
       			</procedure> 
             	<procedure name="jsDecodeId" logic="DecodeId" ifyes="qid" ifno="">
-                    <param name="Out" value="pForm.id"></param>
+                    <param name="Out" value="pForm.ctlId"></param>
                 </procedure>
-                <procedure name="qid"  logic="Query" ifyes="" ifno="">
+                <procedure name="qid"  logic="QueryById" ifyes="" ifno="">
 			        <param name="In" value="pForm" />
 			        <param name="Out" value="pForm" />
 			        <param name="Sql" value="test/QryTestList"/>
