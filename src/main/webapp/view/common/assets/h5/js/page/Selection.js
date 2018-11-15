@@ -48,7 +48,7 @@ $('.box').click(function(e){
 				console.log("测试"+item.value);
 				var must = $(item).parent().parent().prev().prev().children("font").attr("class");
 				//console.log("must" + must);
-				if(must=="must"){
+				if(must=="ismust"){
 			    	radioNum+=1;
 			    }
 		});
@@ -92,7 +92,7 @@ function changeCheckbox(obj){
 	var name = $(obj).attr("name");
 	var clazz = $(obj).parent().parent().prev().prev().children("font").attr("class");
 	
-	if(checkBoxIds.search(name)==-1&&clazz=="must"){
+	if(checkBoxIds.search(name)==-1&&clazz=="ismust"){
 		checkBoxIds = checkBoxIds+","+name;
 		checkNum = checkNum + 1;
 	}else if(checkBoxIds.search(name)!=-1){
@@ -117,7 +117,7 @@ function changeCheckbox(obj){
 $('textarea').change(function(e){
 	var id = $(this).prev().prev().children("font").attr("name");
 	var clazz = $(this).prev().prev().children("font").attr("class");
-	if(textareaIds.search(id)==-1&&clazz=="must"&&$(this).val()!=""){
+	if(textareaIds.search(id)==-1&&clazz=="ismust"&&$(this).val()!=""){
 		textareaIds = textareaIds+","+id;
 		totaltext = totaltext + 1;
 	}else if(textareaIds.search(id)!=-1&&$(this).val()==""){
@@ -309,5 +309,5 @@ $(document).ready(function () {
     $(".notHrefBtn").bind("click", notHrefBtnClick);
     $(".hrefBtn").hide();
     $(".notHrefBtn").show();
-    $(".must").parent().prepend('<i class="rip">*</i>');
+    $(".ismust").parent().prepend('<i class="rip">*</i>');
 })
