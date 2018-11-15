@@ -34,15 +34,23 @@ var flag = false;
 var retarr1=[];
 var arr1=[];
 var titlearr1=[];
-
+var radioNum=0;
+var checkNum=0;
+var totaltext=0;
 $('.box').click(function(e){
 	var retarr=[];
 	var arr=[];
 	var titlearr=[];
+	radioNum = 0;
 	if($(e.target).is('input')){
 		$("input[type='radio']:checked").each(function(index,item){
 				arr.push(item.value);
 				console.log("测试"+item.value);
+				var must = $(item).parent().parent().prev().prev().children("font").attr("class");
+				//console.log("must" + must);
+				if(must=="must"){
+			    	radioNum+=1;
+			    }
 		});
 		totle1=arr.length;
 //		if($("input[type='checkbox']:checked").length>0){
@@ -78,8 +86,45 @@ $('.box').click(function(e){
 }
 });
 
-$('textarea').change(function(e){
+var checkBoxIds = "";
+var textareaIds = "";
+function changeCheckbox(obj){
+	var name = $(obj).attr("name");
+	var clazz = $(obj).parent().parent().prev().prev().children("font").attr("class");
 	
+	if(checkBoxIds.search(name)==-1&&clazz=="must"){
+		checkBoxIds = checkBoxIds+","+name;
+		checkNum = checkNum + 1;
+	}else if(checkBoxIds.search(name)!=-1){
+		var f=false;
+		console.log("选择的长度"+$(":checkbox[name='"+name+"']:checked").length);
+		if($(":checkbox[name='"+name+"']:checked").length>0){
+			f=true;
+		}
+		if(!f){
+			checkBoxIds = checkBoxIds.replace(","+name, "");
+			checkNum = checkNum - 1;
+		}
+		
+	}
+	console.log("checkBoxIds="+checkBoxIds);
+	notHrefBtnClick();
+}
+
+
+
+
+$('textarea').change(function(e){
+	var id = $(this).prev().prev().children("font").attr("name");
+	var clazz = $(this).prev().prev().children("font").attr("class");
+	if(textareaIds.search(id)==-1&&clazz=="must"&&$(this).val()!=""){
+		textareaIds = textareaIds+","+id;
+		totaltext = totaltext + 1;
+	}else if(textareaIds.search(id)!=-1&&$(this).val()==""){
+		textareaIds = textareaIds.replace(","+id, "");
+		totaltext = totaltext - 1;
+	}
+	console.log("textareaIds="+textareaIds);
 	notHrefBtnClick();
 })
 //多选点击事件
@@ -111,22 +156,24 @@ function dc(me) {
 
 //试题完成度校验事件
 function notHrefBtnClick() {
+	totle1 = totaltext + radioNum + checkNum;     
+	console.log("radioNum:"+radioNum);
+	console.log("checkNum:"+checkNum);
+	console.log("totaltext:"+totaltext);
 	console.log("totle1:"+totle1);
 	console.log("sTotal:"+sTotal);
 	console.log(flag);
-	if(r==0){
-		flag=true;
-	}
-    if ((totle1 == sTotal) && flag){
-//        console.log(1);
-        $($(".hrefBtn")[1]).hide();
-        $($(".hrefBtn")[0]).show();
-        return true;
-    } else {
-//        console.log(2);
-        $($(".hrefBtn")[0]).hide();
-        $($(".hrefBtn")[1]).show();
-    }
+
+	if ((totle1) == sTotal){
+//      console.log(1);
+      $($(".hrefBtn")[1]).hide();
+      $($(".hrefBtn")[0]).show();
+      return true;
+  } else {
+//      console.log(2);
+      $($(".hrefBtn")[0]).hide();
+      $($(".hrefBtn")[1]).show();
+  }
 
 }
 function goto() {
@@ -251,7 +298,8 @@ function okBtn() {
 }
 
 function Close() {
-    $(".renameResumeWrap").hide();$(".bounced").hide();
+    $(".renameResumeWrap").hide();
+    $(".bounced").hide();
     retarr1=[];
 //	  $(".renameResume").removeClass("show");
 //	  $(".renameResume").addClass("no");
@@ -261,4 +309,5 @@ $(document).ready(function () {
     $(".notHrefBtn").bind("click", notHrefBtnClick);
     $(".hrefBtn").hide();
     $(".notHrefBtn").show();
+    $(".must").parent().prepend('<i class="rip">*</i>');
 })

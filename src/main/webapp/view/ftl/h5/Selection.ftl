@@ -36,7 +36,7 @@
             <#list total as t>
             <p>${x}/${t.total }</p>
             </#list>
-            <p class="top"><b>#${q.dimension}</b><font name="${q.questionId}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
+            <p class="top"><b>#${q.dimension}</b><font class="${q.must}" name="${q.questionId}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
             <div class="bounced">
 				<div class="bounced-con">
 				   <span onclick="Close()">X</span>
@@ -84,8 +84,8 @@
             </#if>
             </#list>
         </div>
-        <#assign sTotal=x />
-        <p id="i" hidden>${sTotal }</p>
+        <!-- <#assign sTotal=x />
+        <p id="i" hidden>${sTotal }</p>-->
         <!-- <div class="answer" id="2 3">
                 <p>2/12</p>
                 <p class="top"><b>#忠诚企业</b>重操守，有大局意识，服从安排，恪尽职守，勤勉敬业，维护企业整体利益。</p>
@@ -132,7 +132,7 @@
 		            </#list>
 		            <p id="i${r }" hidden>d${x}</p>
 		            <#assign r=r+1 />
-                    <p class="top"><b>#${q.dimension}</b><font name="${q.questionId}" >${q.questionName}（可多选）</font><a onclick="bounced(this)">(查看评价标准)</a></p>
+                    <p class="top"><b>#${q.dimension}</b><font class="${q.must}" name="${q.questionId}" >${q.questionName}（可多选）</font><a onclick="bounced(this)">(查看评价标准)</a></p>
                     <div class="bounced">
 				        <div class="bounced-con">
 				            <span onclick="Close()">X</span>
@@ -144,7 +144,7 @@
                         <dd class="box">
 		                    <#list cList as c>
 		                	<#if q.questionId == c.questionId && c.chooseType == "multi">
-                            <input  type="checkbox" name="d${x}" id="checkbox${c_index }" value="${c.score}">
+                            <input  type="checkbox" name="d${x}" id="checkbox${c_index }" value="${c.score}" onchange="changeCheckbox(this)">
                             <label for="checkbox${c_index }">&nbsp;${c.valueName}</label>
 		                    </#if>
 		                	</#list>
@@ -192,7 +192,7 @@
 		            <#list total as t>
 		            <p>${x}/${t.total }</p>
 		            </#list>
-                    <p class="top"><b>#${q.dimension}</b><font name="${q.questionId}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
+                    <p class="top"><b>#${q.dimension}</b><font class="${q.must}" name="${q.questionId}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
                     <div class="bounced">
 				        <div class="bounced-con">
 				            <span onclick="Close()">X</span>
@@ -229,8 +229,9 @@
      function popPage() {
             window.history.go(-1);
         }
-     var sTotal = $("#i").html(); 
-     var r = $("#sum").html();console.log(r);
+     var sTotal = $(".must").length; 
+     var r = $("#sum").html();
+     console.log(r);
      var radioNum=${sTotal };
      console.log(radioNum);
      <#list test as t>

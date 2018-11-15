@@ -3,7 +3,16 @@
  * @style
  * 2018/10/23
  */
-
+.rip{
+	width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 24px;
+    font-size: 22px;
+    color: #f00;
+}
  .title{
     height: 49px;
     background-color: #69abfa;

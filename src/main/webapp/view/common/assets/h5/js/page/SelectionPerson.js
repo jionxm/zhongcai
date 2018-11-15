@@ -28,8 +28,7 @@ var gaparr1 = [];
 var totaltext=0;
 var radioNum=0;
 var checkNum=0;
-var checkBoxIds = "";
-var textareaIds = "";
+
 
 //var resultarr=[];
 
@@ -41,12 +40,12 @@ $('.box').click(function(e){
 	if($(e.target).is('input')){
 		$("input[type='radio']:checked").each(function(index,item){
 			var empId = $(item).parent().prev().attr('id');
-			var questionId = $(item).parent().parent().prev()
+			var questionId = $(item).parent().parent().prev().prev()
 					.children("font").attr("id");
 			arr.push(item.value);
 			titlearr.push(questionId + "&" + empId);
 			    var must = $(item).parent().prev().attr("class");
-			    if(must=="ismust"){
+			    if(must=="must"){
 			    	radioNum+=1;
 			    }
 
@@ -101,7 +100,8 @@ function changeCheckbox(obj){
 	}*/
 	var name = $(obj).attr("name");
 	var clazz = $(obj).parent().prev().attr("class");
-	if(checkBoxIds.search(name)==-1&&clazz.search("ismust")!=-1){
+	if(checkBoxIds.search(name)==-1&&clazz=="must"){
+		
 		checkBoxIds = checkBoxIds+","+name;
 		checkNum = checkNum + 1;
 	}else if(checkBoxIds.search(name)!=-1){
@@ -124,7 +124,7 @@ function changeCheckbox(obj){
 $('textarea').change(function(e){
 	var id = $(this).prev().attr("id");
 	var clazz = $(this).prev().attr("class");
-	if(textareaIds.search(id)==-1&&clazz.search("ismust")!=-1&&$(this).val()!=""){
+	if(textareaIds.search(id)==-1&&clazz=="must"&&$(this).val()!=""){
 		textareaIds = textareaIds+","+id;
 		totaltext = totaltext + 1;
 	}else if(textareaIds.search(id)!=-1&&$(this).val()==""){
@@ -195,6 +195,12 @@ function gotoask() {
     }
 }
 
+function bounced(e) {
+	console.log(e);
+	  $(".bounced").css("height", $("body").css("height"));
+	  $(e).parent().next(".bounced").show();
+}
+
 function submit() {
     if (notHrefBtnClick()) {
         $(".renameResumeWrap").css("height", $("body").css("height"));
@@ -213,7 +219,7 @@ function submit() {
 		$('.answers dl .box').each(function(index,item){
 			var empId = $(item).prev().attr('id');
 			var questionId = $(item).parent()
-			.prev().children("font").attr("id");
+			.prev().prev().children("font").attr("id");
 			titlearr1.push(questionId + "&" + empId);
 		});
 		console.log("titlearr:" + titlearr1);
@@ -221,7 +227,7 @@ function submit() {
 		$('textarea').each(
 				function(index, item) {
 					var empId = $(item).prev().attr('id');
-					var questionId = $(item).parent().prev().children("font")
+					var questionId = $(item).parent().prev().prev().children("font")
 							.attr("id");
 					console.log("empId" + empId + "questionId" + questionId);
 					gaparr1.push($(item).val());
@@ -367,11 +373,14 @@ function okBtn() {
 
 function Close() {
     $(".renameResumeWrap").hide();
+    $(".bounced").hide();
     retarr1=[];
 }
 $(document).ready(function () {
     $(".renameResumeWrap").hide();
+    $(".bounced").hide();
     $(".notHrefBtn").bind("click", notHrefBtnClick);
     $(".hrefBtn").hide();
     $(".notHrefBtn").show();
+    $(".must").parent().prev().prev().prepend('<span class="rip">*</span>');
 })

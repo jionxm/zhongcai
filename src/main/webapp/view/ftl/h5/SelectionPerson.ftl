@@ -33,7 +33,14 @@
 				<#list total as t>
 				<p>${x}/${t.total }</p>
 				</#list> 
-            <p class="top"><b>#${q.dimension}</b><font id="${q.questionId}" name="${q.questionNumber}">${q.questionName}</font></p>
+            <p class="top"><b>#${q.dimension}</b><font id="${q.questionId}" name="${q.questionNumber}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
+            <div class="bounced">
+				<div class="bounced-con">
+				   	<span onclick="Close()">X</span>
+				   	<h4>详情</h4>
+				   	<p>${q.standard }</p>
+				</div>
+			</div>
             <dl>
             	<#assign y=0 />
             	<#list empList as e>
@@ -43,7 +50,7 @@
                 <dd  class="box" id="${x}${y}">
                     <#list cList as c>
                 	<#if q.questionId == c.questionId && c.chooseType == "single"> 
-                    <input type="radio" name="q${x}${y}" id="radio0${c_index}${y}" value="${c.valueName}" onclick="ddClick(this,'${x}','${y}')">
+                    <input type="radio" name="q${x}${y}" id="radio0${c_index}${y}" value="${c.score}" onclick="ddClick(this,'${x}','${y}')">
                     <label for="radio0${c_index }${y}">&nbsp;${c.valueName}</label>
                     </#if> 
                 	</#list>
@@ -67,7 +74,14 @@
 		            </#list>
 		            <p id="i${r }" hidden>d${x}</p>
 		            <#assign r=r+1 />
-                    <p class="top"><b>#${q.dimension}</b><font id="${q.questionId}" name="${q.questionNumber}">${q.questionName}</font></p>
+                    <p class="top"><b>#${q.dimension}</b><font id="${q.questionId}" name="${q.questionNumber}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
+                    <div class="bounced">
+						<div class="bounced-con">
+				   			<span onclick="Close()">X</span>
+				   			<h4>详情</h4>
+				   			<p>${q.standard }</p>
+						</div>
+					</div>
                     <dl onclick="dc(this)"> 
                     	<#assign y=0 />
             			<#list empList as e>
@@ -77,7 +91,7 @@
                 		<dd  class="box">
                 		<#list cList as c>
 						<#if q.questionId == c.questionId && c.chooseType == "multi">
-							<input  type="checkbox" name="d${x}${y}" id="checkbox0${c_index }${y}" value="${c.valueName}" onchange="changeCheckbox(this)">
+							<input  type="checkbox" name="d${x}${y}" id="checkbox0${c_index }${y}" value="${c.score}" onchange="changeCheckbox(this)">
 							<label for="checkbox0${c_index }${y}">&nbsp;${c.valueName}</label>	
 						</#if>
 						</#list>
@@ -96,7 +110,14 @@
 		            <#list total as t>
 		            <p>${x}/${t.total }</p>
 		            </#list>
-                    <p class="top"><b>#${q.dimension}</b><font id="${q.questionId}" name="${q.questionNumber}">${q.questionName}</font></p>
+                    <p class="top"><b>#${q.dimension}</b><font id="${q.questionId}" name="${q.questionNumber}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
+					<div class="bounced">
+						<div class="bounced-con">
+				   			<span onclick="Close()">X</span>
+				   			<h4>详情</h4>
+				   			<p>${q.standard }</p>
+						</div>
+					</div>
 					<dl>
 						<#assign y=0 />
 						<#list empList as e>
@@ -131,8 +152,9 @@
      function popPage() {
             window.history.go(-1);
         }
-     var sTotal = $(".ismust").length; 
-     var r = $("#sum").html();console.log(r);
+     var sTotal = $(".must").length; 
+     var r = $("#sum").html();
+     console.log(r);
      var radioNum=${sTotal };
      console.log(radioNum);
      <#list test as t>
