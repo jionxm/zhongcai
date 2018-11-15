@@ -152,7 +152,7 @@
      function popPage() {
             window.history.go(-1);
         }
-     var sTotal = $(".must").length; 
+     var sTotal = $(".ismust").length; 
      var r = $("#sum").html();
      console.log(r);
      var radioNum=${sTotal };
