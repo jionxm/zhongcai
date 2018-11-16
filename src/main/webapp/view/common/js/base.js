@@ -555,24 +555,28 @@ function downFileQr(fileId){
 /**
  * url 对应Controller中的方法请求
  * 
- * param 如pTable.id1||pTable.id2
+ * param 如pTable.id1.自定义获取参数||pTable.id2.自定义获取参数
  * */
 function funToController(url,param){
-	
-	var params = param.split("||");
-	var pars = "";
-	for(i=0;i<params.length;i++){
-		var temps = params[i].split(".");
-		var id = temps[1];
-		var value = getPanelControlValue(params[i]);
-		if(pars==""&&value!=""){
-			pars = "?"+id+"="+value;
-		}else if(value!=""){
-			pars += "&"+id+"="+value;
+	try{
+		var params = param.split("||");
+		var pars = "";
+		for(i=0;i<params.length;i++){
+			var temps = params[i].split(".");
+			
+			var value = getPanelControlValue(temps[0]+"."+temps[1]);
+			if(pars==""&&value!=""&&value!=null){
+				pars = "?"+temps[2]+"="+value;
+			}else if(value!=null&&value!=""){
+				pars += "&"+temps[2]+"="+value;
+			}
 		}
-	}
 	
-	location.href = getRootPath_web()+"/"+url+pars;
+		location.href = getRootPath_web()+"/"+url+pars;
+		return true;
+	}catch(error){
+		return false;
+	}
 	/*if(url!=null&&url!=""&&url!=undefined){
 			 $.ajax({
 			        type: "post",

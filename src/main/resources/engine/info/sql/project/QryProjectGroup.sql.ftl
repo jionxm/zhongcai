@@ -7,6 +7,7 @@ select * from (
 	t.title as testName,
 	p.state as state,
     tp.qrstate as qrState,
+    tp.id as projectId,
     (select count(1) from T_TESTER_NUMBER tn where tn.pro_group_id=p.id)as testerCount
 	from t_project_group p
 	LEFT JOIN t_group g ON g.id=p.group_id
