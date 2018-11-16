@@ -159,10 +159,10 @@
 		         <param name="Window" value="Large"/>
 		      </procedure>
 		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-		      	<param name="In" value="pnlDetailGroup"/>
 		        <param name="Out" value="pnlEmp"/>
 		        <param name="Sql" value="recommend/QryEmpList"/>
-		      </procedure>              
+		      </procedure>             
+		      
 		    </flow>
 		    <!-- 编辑推荐类别-->
 		    <flow trigger="pnlType.ctlEdit" event="OnClick" filter="">
@@ -191,9 +191,9 @@
 		         <param name="Window" value="Medium"/>
 		      </procedure>
 		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-		        <param name="Out" value="pnlType"/>
-		        <param name="Sql" value="recommend/QryParticipants"/>
-		      </procedure>                 
+		        <param name="Out" value="pnlEmp"/>
+		        <param name="Sql" value="recommend/QryEmpList"/>
+		      </procedure>              
 		    </flow>
             <!-- 返回 --> 
             <flow trigger="pnlDetailTool.ctlBack" event="OnClick" filter="">
