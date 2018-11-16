@@ -20,7 +20,7 @@
     <control name="ctlClose" title="关闭" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
      --><!-- <control name="ctlQr" title="发放二维码" property="" type="Link" edit="" required="" format="" width="" height="" column=""/> -->
     <control name="ctlDown" title="下载" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
-    <control name="ctlName" title="测评项目名称" property="name" type="TextBox" edit="N" required="" format="" width="200" height="" column=""/>
+    <control name="ctlName" title="测评项目名称" property="name" type="DataLink" edit="N" required="" format="" width="200" height="" column=""/>
     <control name="ctlState" title="状态" property="state" type="Hidden" edit="" required="" format="" width="80" height="" column=""/>      
     <control name="ctlStateName" title="状态" property="stateName" type="TextBox" edit="N" required="" format="" width="80" height="" column=""/>
     <control name="ctlYear" title="年份" property="year" type="TextBox" edit="N" required="" format="" width="80" height="" column=""/>
@@ -50,6 +50,16 @@
        </procedure>             
     </flow>    
   
+  <!--  项目详情-->
+    <flow trigger="pTable.ctlName" event="OnClick" filter="">
+      <procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jsgoto" ifno="">
+        <param name="In" value="pTable.id"></param>
+      </procedure>
+      <procedure name="jsgoto"  logic="Transition" ifyes="" ifno="">
+        <param name="To" value="frmReportDetail"></param>
+        <param name="Mode" value="Readonly"></param>
+        </procedure>
+    </flow>    
     <layout>
       <region location ="North" scale="">
         <subregion panel="pToolbar" location="South" scale="" />

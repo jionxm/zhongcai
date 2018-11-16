@@ -72,7 +72,7 @@
                 <w:szCs w:val="44"/>
                 <w:lang w:eastAsia="zh-CN"/>
               </w:rPr>
-              <w:t>${deptName}</w:t>
+              <w:t>${orgName}</w:t>
             </w:r>
             <w:r w:rsidR="007D5D91" w:rsidRPr="00DD751E">
               <w:rPr>
@@ -81,7 +81,7 @@
                 <w:sz w:val="44"/>
                 <w:szCs w:val="44"/>
               </w:rPr>
-              <w:t>公司</w:t>
+              <w:t></w:t>
             </w:r>
             <w:r w:rsidR="007D5D91" w:rsidRPr="00DD751E">
               <w:rPr>
@@ -196,14 +196,14 @@
                 <w:sz w:val="28"/>
                 <w:cs/>
               </w:rPr>
-              <w:t>${deptName}</w:t>
+              <w:t>${orgName}</w:t>
             </w:r>
             <w:r>
               <w:rPr>
                 <w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋" w:cs="仿宋" w:hint="eastAsia"/>
                 <w:sz w:val="28"/>
               </w:rPr>
-              <w:t>公司</w:t>
+              <w:t></w:t>
             </w:r>
           </w:p>
           <w:p w:rsidR="007D5D91" w:rsidRDefault="007D5D91" w:rsidP="007D5D91">
@@ -229,7 +229,7 @@
                 <w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋" w:cs="仿宋"/>
                 <w:sz w:val="28"/>
               </w:rPr>
-              <w:t>${createDate}</w:t>
+              <w:t>${reportDate}</w:t>
             </w:r>
           </w:p>
           <w:p w:rsidR="007D5D91" w:rsidRDefault="007D5D91" w:rsidP="007D5D91">
@@ -255,7 +255,7 @@
                 <w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋" w:cs="仿宋" w:hint="eastAsia"/>
                 <w:sz w:val="28"/>
               </w:rPr>
-              <w:t>${deptName}公司${year}年民主测评</w:t>
+              <w:t>${orgName}${year}年民主测评</w:t>
             </w:r>
           </w:p>
           <w:p w:rsidR="00A21CB2" w:rsidRDefault="00A21CB2"/>
@@ -461,7 +461,7 @@
                 <w:szCs w:val="28"/>
                 <w:cs/>
               </w:rPr>
-              <w:t>${deptName}</w:t>
+              <w:t>${orgName}</w:t>
             </w:r>
             <w:r>
               <w:rPr>

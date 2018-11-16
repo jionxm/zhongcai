@@ -68,16 +68,20 @@ public class ProjectController  {
 	@RequestMapping("/export")
 	@ResponseBody
 	public void export(HttpServletRequest request,HttpServletResponse response, FormModel formModel, Model model) throws IOException, TemplateException{
-		System.out.println(request.getParameter("id"));
-		
+		String projectId = request.getParameter("projectId");
+		String groupId = request.getParameter("groupId");
 		Map<String,Object> map =  formModel.getData();
 		QueryPage qp = new QueryPage();
 		qp.setParamsByMap(map);
-		qp.getData().put("projId", request.getParameter("id"));
+		qp.getData().put("projId", projectId);
+		qp.getData().put("groupId", groupId);
 		qp.setQueryParam("export/QryProjName");//查询项目名字
-		List<Map<String,Object>> projName = formService.queryBySqlId(qp);
+		List<Map<String,Object>> project = formService.queryBySqlId(qp);
 
-		
+		Map<String, Object> maps = new HashMap<String,Object>();
+		if(project.size()==1){
+			maps=project.get(0);
+		}
 		qp.setQueryParam("count/QryQuestionById");
 		List<Map<String,Object>> question = formService.queryBySqlId(qp);//查询该项目下所有的题目
 		log.info("项目下所有题目----:"+question);
@@ -95,11 +99,7 @@ public class ProjectController  {
 		List<Map<String,Object>> type = formService.queryBySqlId(qp);//查询该项目下所有的题目
 		log.info("分组统计----:"+type);
 		
-		Map<String, Object> maps = new HashMap<String,Object>();
-		maps.put("deptName", "北玻有限公司");
-		maps.put("createDate", "2018年11月13日");
-		maps.put("year", "2018");
-		maps.put("peopleCount", "11");
+		
 		
 		/*
 		 * 分组人数权重统计
