@@ -555,10 +555,9 @@ function downFileQr(fileId){
 /**
  * url 对应Controller中的方法请求
  * 
- * param 如pTable.id1||pTable.id2
+ * param 如pTable.id1.自定义获取参数||pTable.id2.自定义获取参数
  * */
 function funToController(url,param){
-	debugger
 	try{
 		var params = param.split("||");
 		var pars = "";
