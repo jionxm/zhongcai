@@ -1,0 +1,32 @@
+.title{
+    height: 49px;
+    background-color: #1d8aff;
+    text-align: center;
+    color: #fff;
+    line-height: 49px;
+    font-size: 20px;
+    position: relative;
+}
+@media (max-width: 992px) {
+    .r_return { 
+        position: absolute;
+        left: 20px; 
+        top: 0px; 
+        width: 30px; 
+        height: 45px; 
+        padding-right:33px; 
+        display:inline-block; 
+        background:url(../image/r_icon7.png)  center no-repeat; 
+        background-size: 30px 30px;
+    }
+}
+.content{
+    margin: 20% auto;
+    text-align: center; 
+}
+.content img{
+        width: 100px;
+}
+.content h3{
+    line-height: 40px;
+}
