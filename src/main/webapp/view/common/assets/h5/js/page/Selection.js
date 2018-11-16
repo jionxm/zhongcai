@@ -285,7 +285,7 @@ function okBtn() {
 	        										    'buttons' :{
 	        										        '确定' : function(){
 	        										            M.dialog2.close();
-	        										            window.location.reload(-1);
+	        										            window.location.href=API_PROXY + '/view/common/end.jsp';
 	        										        }
 	        										    }
 	        										})

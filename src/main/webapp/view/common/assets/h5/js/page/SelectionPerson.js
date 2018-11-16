@@ -275,7 +275,8 @@ function submit() {
 		
 		for (var k = 0; k < gaparr1.length; k++) {
 			var value = gaparr1[k];
-			var title1 = titlearr1[k+i+j];console.log(title1);
+			var title1 = titlearr1[k+i+j].split("&");
+			console.log(title1);
 			obj = {
 				"questionId" : title1[0],
 				"empId" : title1[1],
@@ -351,7 +352,7 @@ function okBtn() {
 	        										    'buttons' :{
 	        										        '确定' : function(){
 	        										            M.dialog2.close();
-	        										            window.location.reload(-1);
+	        										            window.location.href=API_PROXY + '/view/common/end.jsp';
 	        										        }
 	        										    }
 	        										})
