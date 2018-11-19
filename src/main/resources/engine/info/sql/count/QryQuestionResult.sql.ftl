@@ -1,26 +1,14 @@
-SET @sql = NULL;
-SELECT
-  GROUP_CONCAT(DISTINCT
-    CONCAT(
-      'MAX(CASE q.question when ''',
-      q.question ,
-      ''' THEN t.result ELSE 0 END)  ''',
-      q.question, ''''
-    )
-  ) INTO @sql
-from t_project_group p
-left join t_questions q on q.test_id = p.test_id
-where p.project_id = #{data.projId };
+select 
+	q.dimension,
+	avg(rs.result) avgScore,
+	q.question
+from t_result rs 
+LEFT JOIN t_questions q on q.id=rs.question_id
+LEFT JOIN t_test t on t.id = q.test_id
+LEFT JOIN t_project_group g on g.test_id=t.id 
+LEFT JOIN t_project tp on tp.id=g.project_id
+LEFT JOIN t_tester_number n on n.pro_group_id = g.id
+where g.id=#{data.groupId } and tp.id=#{data.projId} and  rs.QR_id in (select tq.id from t_qr tq where tq.project_id=tp.id and tq.tester_id=#{data.dimension})
+group by q.id   
 
-SET @sql = CONCAT('SELECT 
-	d.name,',@sql,
-' FROM t_questions q
-LEFT JOIN t_result t on t.question_id = q.id
-LEFT JOIN t_qr qr on qr.id = t.QR_id
-LEFT JOIN t_tester tr on tr.id = qr.tester_id
-LEFT JOIN t_dict d on d.`code` = tr.name and d.cata_code="t_employee.identity"
-WHERE t.QR_id in (SELECT id FROM t_qr WHERE project_id = ',#{data.projId },')
-GROUP BY d.name');
-PREPARE stmt FROM @sql;
-EXECUTE stmt;
-DEALLOCATE PREPARE stmt;
+ORDER BY q.dimension,q.question

@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -70,6 +71,8 @@ public class ProjectController  {
 	public void export(HttpServletRequest request,HttpServletResponse response, FormModel formModel, Model model) throws IOException, TemplateException{
 		String projectId = request.getParameter("projectId");
 		String groupId = request.getParameter("groupId");
+		
+		
 		Map<String,Object> map =  formModel.getData();
 		QueryPage qp = new QueryPage();
 		qp.setParamsByMap(map);
@@ -77,16 +80,88 @@ public class ProjectController  {
 		qp.getData().put("groupId", groupId);
 		qp.setQueryParam("export/QryProjName");//查询项目名字
 		List<Map<String,Object>> project = formService.queryBySqlId(qp);
-
+		//项目相关信息查询
 		Map<String, Object> maps = new HashMap<String,Object>();
 		if(project.size()==1){
 			maps=project.get(0);
 		}
-		qp.setQueryParam("count/QryQuestionById");
-		List<Map<String,Object>> question = formService.queryBySqlId(qp);//查询该项目下所有的题目
-		log.info("项目下所有题目----:"+question);
 		
-		qp.setQueryParam("count/QryQuestionResult");
+		//查询综合测评主体情况
+		//查询综合测评主体情况
+	
+		qp.setQueryParam("count/QryTesterDetail");
+		List<Map<String,Object>> peoples = formService.queryBySqlId(qp);
+		//人数合计
+		int peoCount = 0;
+		for(Map peoMap:peoples){
+			int count = Integer.parseInt(peoMap.get("count").toString());
+			peoCount+=count;
+		}
+		maps.put("peoCount",peoCount);
+		
+		//查询该项目下所有维度
+		qp.setQueryParam("count/QryDimension");
+		List<Map<String,Object>> questionTitle = formService.queryBySqlId(qp);
+		
+		//查询所有问题
+		qp.setQueryParam("count/QryQuestionsList");
+		List<Map<String,Object>> questionList = formService.queryBySqlId(qp);
+		
+		
+		//查询主体身份信息
+		qp.setQueryParam("count/QryTesterByGroup");
+		List<Map<String,Object>> testerList = formService.queryBySqlId(qp);
+		
+		//答题结果查询
+		List resultList = new ArrayList();
+		for(Map<String,Object> testerMap:testerList){
+			String dimension = testerMap.get("dimension").toString();
+			String dimensionName = (String) testerMap.get("dimensionName");
+			qp.getData().put("dimension", dimension);
+			qp.setQueryParam("count/QryQuestionResult");
+			List<Map<String,Object>> result = formService.queryBySqlId(qp);
+			double avg = 0;
+			String temp = "";
+			int count = 0;
+			int size = result.size();
+			for(int i=0;i<size;i++){
+				Map<String,Object> resMap = new HashMap<String,Object>();
+				resMap = result.get(i);
+				String dimensions = resMap.get("dimension").toString();
+				if(temp==""){
+					temp=dimensions;
+					avg += Double.parseDouble(resMap.get("avgScore").toString());
+					count ++;
+				}else if(temp.equals(dimensions)&&(i+1)!=size){
+					avg += Double.parseDouble(resMap.get("avgScore").toString());
+					count ++;
+				}else {
+					BigDecimal bigDecimal = new BigDecimal(avg);
+					BigDecimal resDecimal = bigDecimal.divide(new BigDecimal(count),2,BigDecimal.ROUND_HALF_UP);
+					Map<String,Object> totalMap = new HashMap<String,Object>();
+					totalMap.put("avgTotal", resDecimal);
+					totalMap.put("colspan", (i+1)==size?(count+1):count);
+					totalMap.put("testerName", dimensionName);
+					result.add(totalMap);
+					temp="";
+					avg = 0;
+					count = 0;
+					temp=dimensions;
+					avg += Double.parseDouble(resMap.get("avgScore").toString());
+					count ++;
+				}
+				
+			}
+			resultList.add(result);
+			
+			
+			
+			
+		}
+		
+		
+		
+		/*qp.setQueryParam("count/QryQuestionResult");
 		List<Map<String,Object>> result = formService.queryBySqlId(qp);//查询该项目下所有的题目
 		log.info("答题结果----:"+result);
 		
@@ -97,14 +172,14 @@ public class ProjectController  {
 		
 		qp.setQueryParam("export/QryTypeResult");
 		List<Map<String,Object>> type = formService.queryBySqlId(qp);//查询该项目下所有的题目
-		log.info("分组统计----:"+type);
+		log.info("分组统计----:"+type);*/
 		
 		
 		
 		/*
 		 * 分组人数权重统计
 		 */
-		List<Map<String, String>> grouplist = new ArrayList<Map<String, String>>();		
+		/*List<Map<String, String>> grouplist = new ArrayList<Map<String, String>>();		
 		Map<String, String>[] groupmap = new Map[type.size()];
 		for(int i=0;i<type.size();i++){
 			groupmap[i] = new HashMap<String, String>();
@@ -115,37 +190,13 @@ public class ProjectController  {
 			groupmap[i].put("peoWeight", "25%");
 			grouplist.add(groupmap[i]);
 		}
+		*/
 		
-		/*
-		 * 项目下题目统计
-		 */
-		List<Map<String, String>> questionlist = new ArrayList<Map<String, String>>();		
-		Map<String, String>[] questionmap = new Map[question.size()];
-		for(int i=0;i<question.size();i++){
-			questionmap[i] = new HashMap<String, String>();
-			questionmap[i].put("questions", question.get(i).get("question").toString());			
-			questionlist.add(questionmap[i]);
-		}
-		
-		/*
-		 * 答题结果统计
-		 */
-		List<Map<String, String>> resultlist = new ArrayList<Map<String, String>>();		
-		Map<String, String>[] resultmap = new Map[result.size()];
-		for(int j=0;j<result.size();j++){
-			resultmap[j] = new HashMap<String, String>();
-			for(int k=0;k<question.size();k++){
-				String quesName = question.get(k).get("question").toString();
-				log.info("quesName----:"+quesName);
-				resultmap[j].put("testerName", result.get(j).get("name").toString());
-				resultmap[j].put(quesName, result.get(k).get(quesName).toString());
-			}
-			resultlist.add(resultmap[j]);
-		}
-		
-		maps.put("peoples", grouplist);
-		maps.put("results", resultlist);
-		maps.put("questions", questionlist);
+		maps.put("peoples", peoples);
+		maps.put("titleSize", questionTitle.size());
+		maps.put("questionTitle", questionTitle);
+		maps.put("questions", questionList);
+		maps.put("results", resultList);
 		log.info("maps----:"+maps);
 //		model.addAttribute("", maps);
 		
