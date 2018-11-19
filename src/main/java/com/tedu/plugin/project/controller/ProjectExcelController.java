@@ -22,6 +22,8 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileSystemView;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -40,7 +42,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tedu.base.common.page.QueryPage;
+import com.tedu.base.common.utils.DateUtils;
+import com.tedu.base.common.utils.SessionUtils;
 import com.tedu.base.engine.dao.FormMapper;
+import com.tedu.base.engine.model.CustomFormModel;
 import com.tedu.base.engine.model.FormModel;
 import com.tedu.base.engine.service.FormService;
 import com.tedu.base.file.util.io.file;
@@ -69,13 +74,26 @@ public class ProjectExcelController  {
 	@RequestMapping("/excel")
 	@ResponseBody
 	public void export(HttpServletRequest request,HttpServletResponse response, FormModel formModel, Model model) throws IOException, TemplateException{
-		System.out.println(request.getParameter("id"));
-		log.info("项目id:"+request.getParameter("id"));
+		String projId = request.getParameter("id");
+		Long emp = SessionUtils.getUserInfo().getEmpId();
+		String date = DateUtils.getDateToStr("YYYYMMdd", new Date());
+    	String separator = File.separator;
+    	String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+		if(!rootPath.endsWith("/")&&!rootPath.endsWith("\\")){
+			rootPath = rootPath + separator;
+		}
+		String filePath = rootPath+separator+"private"+separator+"export"+separator+date +separator;
+		log.info("filePath----:"+filePath);
+		String qrfilePath = filePath + UUID.randomUUID().toString().replaceAll("-", "") + separator;			
+		String excelPath = filePath + "excel" + separator;
+		String path = excelPath+uuid.substring(0, 2)+separator;
+		log.info("path----:"+path);
+		String type = "person";
 		
 		Map<String,Object> map =  formModel.getData();
 		QueryPage qp = new QueryPage();
 		qp.setParamsByMap(map);
-		qp.getData().put("projId", request.getParameter("id"));
+		qp.getData().put("projId", projId);
 		qp.setQueryParam("excel/QryProjName");//查询项目名字
 		List<Map<String,Object>> projName = formService.queryBySqlId(qp);
 		System.out.println("项目名称----:"+projName);
@@ -123,6 +141,16 @@ public class ProjectExcelController  {
 	    	}
 	    }
 	    
+	    
+		File file = new File(path ); // 指定存放目录
+		if(!file.exists()){
+			file.mkdirs();
+		}
+	    FileOutputStream output=new FileOutputStream(path+fileName);
+		wkb.write(output);
+		output.flush();
+	    
+	    
 	    String downFileName = new String(fileName+".xls");
 	    try{
 	    	downFileName = URLEncoder.encode(downFileName, "UTF-8");
@@ -134,8 +162,8 @@ public class ProjectExcelController  {
 	    	response.reset();
 	    	response.setContentType("application/msexcel");//设置生成的文件类型
 	    	response.setCharacterEncoding("UTF-8");//设置文件头编码方式和文件名
-	    	response.setHeader("Content-Disposition", "attachment; filename=" + new String(downFileName.getBytes("utf-8"), "ISO8859-1"));  
-	    	OutputStream os = response.getOutputStream();
+	    	response.setHeader("Content-Disposition", "attachment; filename=" + new String(downFileName.getBytes("utf-8"), "ISO8859-1"));	    	
+            OutputStream os = response.getOutputStream();
 	    	wkb.write(os);
 	    	os.flush();
 	    	os.close();
@@ -144,12 +172,18 @@ public class ProjectExcelController  {
 	    }
 	    
 	    
-		/*FileOutputStream output=new FileOutputStream("d:\\"+fileName+".xls");
-		wkb.write(output);
-		output.flush();*/
-		
-		
+	    Map sqlMap = new HashMap();
+    	sqlMap.put("projectId", projId);
+    	sqlMap.put("path", path);
+    	sqlMap.put("type", type);
+    	sqlMap.put("createBy", emp);	    		    	
+    	CustomFormModel csmd = new CustomFormModel("","",sqlMap);
+    	csmd.setSqlId("excel/InsertRecord");
+    	formMapper.saveCustom(csmd);
 	}
+		
+		
+	
 	
 	
 }
