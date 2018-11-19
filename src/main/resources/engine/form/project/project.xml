@@ -125,6 +125,18 @@
 		<property name="stateName" type="String" length="20" initial="" field=""/>
 		<property name="testId" type="Long" length="20" initial="" field=""/>
  	</object>  
+ 	<!-- 测评统计下载记录表model -->
+ 	<object name="statisticsRecord" table="t_statistics_record" primary="id" unique="" order="">
+		<property name="id" type="Long" length="20" initial="" field="id"/>
+		<property name="path" type="String" length="500" initial="" field="path"/>
+		<property name="projectId" type="Long" length="20" initial="" field="project_id"/>
+		<property name="type" type="String" length="20" initial="" field="type"/>
+		<property name="createTime" type="Date" length="" validate=""  field="create_time" />
+		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
+		
+		<property name="projectName" type="String" length="20" initial="" field=""/>
+		<property name="typeName" type="String" length="20" initial="" field=""/>
+ 	</object>
  	
 </model_layer>
 </tsoftware>
