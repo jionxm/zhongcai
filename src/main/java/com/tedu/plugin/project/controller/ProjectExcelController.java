@@ -70,16 +70,17 @@ public class ProjectExcelController  {
 	@ResponseBody
 	public void export(HttpServletRequest request,HttpServletResponse response, FormModel formModel, Model model) throws IOException, TemplateException{
 		System.out.println(request.getParameter("id"));
+		log.info("项目id:"+request.getParameter("id"));
 		
 		Map<String,Object> map =  formModel.getData();
 		QueryPage qp = new QueryPage();
 		qp.setParamsByMap(map);
 		qp.getData().put("projId", request.getParameter("id"));
-		qp.setQueryParam("export/QryProjName");//查询项目名字
+		qp.setQueryParam("excel/QryProjName");//查询项目名字
 		List<Map<String,Object>> projName = formService.queryBySqlId(qp);
-		System.out.println("项目名称----:"+projName);		
+		System.out.println("项目名称----:"+projName);
 		String fileName = projName.get(0).get("name")+".xls";
-		System.out.println("导出名称----:"+fileName);		
+		System.out.println("导出名称----:"+fileName);
 		
 		qp.setQueryParam("count/QryQuestionById");
 		List<Map<String,Object>> question = formService.queryBySqlId(qp);//查询该项目下所有的题目
@@ -121,30 +122,29 @@ public class ProjectExcelController  {
 	    		rows[j].createCell(k+1).setCellValue(resultName);
 	    	}
 	    }
-	  
-	    /*String downFileName = new String("监控日志.xls");
-	    try {
-	    //若不进行编码在IE下会乱码  
-	    downFileName = URLEncoder.encode(downFileName, "UTF-8");
-	    } catch (UnsupportedEncodingException e) {
-	    	//e.printStackTrace();  
-	    }
-try {
-	    //清空response
-  response.reset();
-	    response.setContentType("application/msexcel");//设置生成的文件类型  
-	     response.setCharacterEncoding("UTF-8");//设置文件头编码方式和文件名  
-	    response.setHeader("Content-Disposition", "attachment; filename=" + new String(downFileName.getBytes("utf-8"), "ISO8859-1"));
-OutputStream os=response.getOutputStream();
-wkb.write(os);
-os.flush();
- os.close();
-} catch (IOException e) {
-		//e.printStackTrace();
-//log.error("startTime:"+ startTime+";endTime:"+endTime+";siteList=" + siteList +  "数据完整性导出xls失败", e);  
-	            } 
 	    
-		FileOutputStream output=new FileOutputStream("d:\\"+fileName+".xls");
+	    String downFileName = new String(fileName+".xls");
+	    try{
+	    	downFileName = URLEncoder.encode(downFileName, "UTF-8");
+	    }catch(Exception e){
+	    	e.printStackTrace();
+	    }
+	    try{
+	    	//清空respone
+	    	response.reset();
+	    	response.setContentType("application/msexcel");//设置生成的文件类型
+	    	response.setCharacterEncoding("UTF-8");//设置文件头编码方式和文件名
+	    	response.setHeader("Content-Disposition", "attachment; filename=" + new String(downFileName.getBytes("utf-8"), "ISO8859-1"));  
+	    	OutputStream os = response.getOutputStream();
+	    	wkb.write(os);
+	    	os.flush();
+	    	os.close();
+	    }catch(IOException e){
+	    	e.printStackTrace();
+	    }
+	    
+	    
+		/*FileOutputStream output=new FileOutputStream("d:\\"+fileName+".xls");
 		wkb.write(output);
 		output.flush();*/
 		

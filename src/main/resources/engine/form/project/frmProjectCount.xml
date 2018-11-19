@@ -20,6 +20,7 @@
     <control name="ctlClose" title="关闭" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
      --><!-- <control name="ctlQr" title="发放二维码" property="" type="Link" edit="" required="" format="" width="" height="" column=""/> -->
     <control name="ctlDown" title="下载" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
+    <control name="ctlDown1" title="下载excel" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlName" title="测评项目名称" property="name" type="DataLink" edit="N" required="" format="" width="200" height="" column=""/>
     <control name="ctlState" title="状态" property="state" type="Hidden" edit="" required="" format="" width="80" height="" column=""/>      
     <control name="ctlStateName" title="状态" property="stateName" type="TextBox" edit="N" required="" format="" width="80" height="" column=""/>
@@ -49,7 +50,16 @@
            	<param name="Msg" value="数据错误！请联系相关技术人员！"></param>
        </procedure>             
     </flow>    
-  
+  <!--  导出excel -->
+    <flow trigger="pTable.ctlDown1" event="OnClick" filter="">
+      <procedure name="branch" logic="Branch" ifyes="" ifno="">
+      		<param name="In" value="funToController('project/excel','pTable.id.id||pTable.state.state')"></param>
+      </procedure>
+       <procedure name="sucMsg" logic="ConfirmMsg" ifyes="" ifno="">
+           	<param name="Title" value="提示"></param>
+           	<param name="Msg" value="数据错误！请联系相关技术人员！"></param>
+       </procedure>             
+    </flow>    
   <!--  项目详情-->
     <flow trigger="pTable.ctlName" event="OnClick" filter="">
       <procedure name="jsencodeid" server="" logic="EncodeId" ifyes="jsgoto" ifno="">
