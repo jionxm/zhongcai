@@ -15,6 +15,7 @@
   <panel name="pTable" title="查询结果" object="project" type="Grid">
     <control name="id" title="id" property="id" type="Hidden" edit="N" required="" format="" width="50" height="" column=""/>
    	<control name="ctlDown" title="下载" property="" type="Link" edit="" required="" format="" width="150" height="" column=""/>
+   	<control name="ctlDownResult" title="下载总体结果" property="" type="Link" edit="" required="" format="" width="150" height="" column=""/>
     <control name="ctlDownExcel" title="下载excel" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlName" title="测评项目名称" property="name" type="DataLink" edit="N" required="" format="" width="200" height="" column=""/>
     <control name="ctlState" title="状态" property="state" type="Hidden" edit="" required="" format="" width="80" height="" column=""/>      
@@ -51,6 +52,16 @@
     <flow trigger="pTable.ctlDownExcel" event="OnClick" filter="">
       <procedure name="branch" logic="Branch" ifyes="" ifno="">
       		<param name="In" value="funToController('project/excel','pTable.id.id||pTable.type.type')"></param>
+      </procedure>
+       <procedure name="sucMsg" logic="ConfirmMsg" ifyes="" ifno="">
+           	<param name="Title" value="提示"></param>
+           	<param name="Msg" value="数据错误！请联系相关技术人员！"></param>
+       </procedure>             
+    </flow>  
+  <!--  导出Result -->
+    <flow trigger="pTable.ctlDownResult" event="OnClick" filter="">
+      <procedure name="branch" logic="Branch" ifyes="" ifno="">
+      		<param name="In" value="funToController('export/excel','pTable.id.id||pTable.type.type')"></param>
       </procedure>
        <procedure name="sucMsg" logic="ConfirmMsg" ifyes="" ifno="">
            	<param name="Title" value="提示"></param>
