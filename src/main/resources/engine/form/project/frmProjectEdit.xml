@@ -10,6 +10,8 @@
                          width="1" height="1" column="1"/>
                 <control name="ctlYear" title="年份" property="year" type="ComboBox" edit="Y" required="Y" format=""
                          width="1" height="1" column="1"/>
+                <control name="ctlType" title="类别" property="type" type="ComboBox" edit="Y" required="Y" format=""
+                         width="1" height="1" column="1"/>
                 <control name="ctlPlanDate" title="计划时间" property="planDate" type="DateBox" edit="Y" required="N"
                          format="" width="1" height="1" column="1"/>
                 <control name="ctlAddress" title="投票地点" property="address" type="TextBox" edit="Y"
@@ -34,10 +36,14 @@
                          height="" column=""/>
             </panel>
             <flow trigger="" event="OnLoad" filter="">
-           		 <procedure name="queryYear" server="" logic="List" ifyes="branch" ifno="">
+           		 <procedure name="queryYear" server="" logic="List" ifyes="list2" ifno="">
         			<param name="Out" value="pForm.ctlYear"/>
         			<param name="Sql" value="project/QueryYear"/>
-      			</procedure> 
+      			</procedure>
+      			<procedure name="list2" logic="List" ifyes="branch" ifno="">
+                    <param name="Out" value="pForm.ctlType"></param>
+                    <param name="Sql" value="testType"></param>
+                </procedure> 
             	<procedure name="branch" server="" logic="Branch" ifyes="jsDecodeId" ifno="jsclear">
         			<param name="In" value="getStorage('frmProjectEdit_EditMode')=='Edit'"/>
       			</procedure> 

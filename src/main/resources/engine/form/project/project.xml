@@ -7,6 +7,7 @@
 		<property name="id" type="Long" length="20" initial="" field="id"/>
 		<property name="name" type="String" length="50" initial="" field="name"/>
 		<property name="year" type="Long" length="20" field="year"/>
+		<property name="type" type="String" length="20" field="type"/>
 		<property name="scope" type="Long" length="20" field="scope"/>
 		<property name="planDate" type="Date" length="" field="plan_date"/>
 		<property name="address" type="String" length="50" field="address"/>
@@ -24,6 +25,7 @@
 		<property name="stateName" type="String" length="20" validate=""  field="" />
 		<property name="qrStateName" type="String" length="20" validate=""  field="" />
 		<property name="scopeName" type="String" length="20" validate=""  field="" />
+		<property name="typeName" type="String" length="20" validate="" field="" />
 		
 		<property name="question" type="String" length="20" validate=""  field="" />
  	</object>  
