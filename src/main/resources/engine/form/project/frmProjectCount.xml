@@ -14,16 +14,13 @@
   </panel>  
   <panel name="pTable" title="查询结果" object="project" type="Grid">
     <control name="id" title="id" property="id" type="Hidden" edit="N" required="" format="" width="50" height="" column=""/>
-    <!-- <control name="ctlEdit" title="编辑" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
-    <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
-    <control name="ctlStart" title="启动" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
-    <control name="ctlClose" title="关闭" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
-     --><!-- <control name="ctlQr" title="发放二维码" property="" type="Link" edit="" required="" format="" width="" height="" column=""/> -->
-    <control name="ctlDown" title="下载" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
-    <control name="ctlDown1" title="下载excel" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
+   	<control name="ctlDown" title="下载" property="" type="Link" edit="" required="" format="" width="150" height="" column=""/>
+    <control name="ctlDownExcel" title="下载excel" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlName" title="测评项目名称" property="name" type="DataLink" edit="N" required="" format="" width="200" height="" column=""/>
     <control name="ctlState" title="状态" property="state" type="Hidden" edit="" required="" format="" width="80" height="" column=""/>      
     <control name="ctlStateName" title="状态" property="stateName" type="TextBox" edit="N" required="" format="" width="80" height="" column=""/>
+    <control name="ctlType" title="类别" property="type" type="Hidden" edit="N" required="" format="" width="80" height="" column=""/>
+    <control name="ctlTypeName" title="类别" property="typeName" type="TextBox" edit="N" required="" format="" width="80" height="" column=""/>
     <control name="ctlYear" title="年份" property="year" type="TextBox" edit="N" required="" format="" width="80" height="" column=""/>
     <control name="ctlPlanDate" title="计划时间" property="planDate" type="TextBox" edit="N" required="" format="" width="100" height="" column=""/>
     <control name="ctlAddress" title="地点" property="address" type="TextBox" edit="N" required="" format="" width="150" height="" column=""/>
@@ -51,9 +48,9 @@
        </procedure>             
     </flow>    
   <!--  导出excel -->
-    <flow trigger="pTable.ctlDown1" event="OnClick" filter="">
+    <flow trigger="pTable.ctlDownExcel" event="OnClick" filter="">
       <procedure name="branch" logic="Branch" ifyes="" ifno="">
-      		<param name="In" value="funToController('project/excel','pTable.id.id||pTable.state.state')"></param>
+      		<param name="In" value="funToController('project/excel','pTable.id.id||pTable.type.type')"></param>
       </procedure>
        <procedure name="sucMsg" logic="ConfirmMsg" ifyes="" ifno="">
            	<param name="Title" value="提示"></param>

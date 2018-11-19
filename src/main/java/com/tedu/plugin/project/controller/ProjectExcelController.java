@@ -88,7 +88,7 @@ public class ProjectExcelController  {
 		String excelPath = filePath + "excel" + separator;
 		String path = excelPath+uuid.substring(0, 2)+separator;
 		log.info("path----:"+path);
-		String type = "person";
+		String type = request.getParameter("type");
 		
 		Map<String,Object> map =  formModel.getData();
 		QueryPage qp = new QueryPage();
@@ -146,7 +146,7 @@ public class ProjectExcelController  {
 		if(!file.exists()){
 			file.mkdirs();
 		}
-	    FileOutputStream output=new FileOutputStream(path+fileName);
+	    FileOutputStream output=new FileOutputStream(path+uuid+".xls");
 		wkb.write(output);
 		output.flush();
 	    
