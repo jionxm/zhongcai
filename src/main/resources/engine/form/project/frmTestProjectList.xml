@@ -14,7 +14,7 @@
   </panel>  
   <panel name="pTable" title="查询结果" object="project" type="Grid">
     <control name="id" title="id" property="id" type="Hidden" edit="N" required="" format="" width="50" height="" column=""/>
-    <control name="ctlEdit" title="编辑" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
+    <control name="ctlEdit" title="编辑" property="" type="Link" edit="" required="" format="" width="120" height="" column=""/>
     <control name="ctlDel" title="删除" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlStart" title="启动" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlClose" title="关闭" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
