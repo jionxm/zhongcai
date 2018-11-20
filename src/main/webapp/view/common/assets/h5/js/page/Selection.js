@@ -195,6 +195,13 @@ function bounced(e) {
 //	  $(".renameResume").addClass("show");
 	 }
 
+$(document).mouseup(function(e) { 
+    var  pop = $('.bounced-con');  
+    if(!pop.is(e.target) && pop.has(e.target).length === 0) { 
+        $('.bounced').hide(); 
+    }  
+});
+
 function submit() {
     if (notHrefBtnClick()) {
         $(".renameResumeWrap").css("height", $("body").css("height"));
@@ -299,7 +306,6 @@ function okBtn() {
 
 function Close() {
     $(".renameResumeWrap").hide();
-    $(".bounced").hide();
     retarr1=[];
 //	  $(".renameResume").removeClass("show");
 //	  $(".renameResume").addClass("no");

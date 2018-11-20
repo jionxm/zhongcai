@@ -2,6 +2,7 @@ select * from (
 	select 	
 	p.id as id,
 	p.project_id as projectId,
+	p1.type as type,
 	p1.name as projectName,
 	p.create_by as createBy,
 	e1.name as createByName,

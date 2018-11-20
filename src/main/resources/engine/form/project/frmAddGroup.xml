@@ -8,6 +8,8 @@
                          height="" column="1"/>
                 <control name="ctlProjectId" title="项目编号" property="projectId" type="TextBox" edit="N" required="" format="" width="1"
                          height="" column="1"/>
+                <control name="ctlType" title="类别" property="type" type="Hidden" edit="N" required="" format="" width="1"
+                         height="" column="1"/>
                 <control name="ctlGroup" title="对象分组id" property="groupId" type="Hidden" edit="Y" required="" format=""
                          width="1" height="1" column="1"/>
                 <control name="ctlGroupName" title="对象分组" property="groupName" type="PopupBox" edit="Y" required="Y" format=""
@@ -56,9 +58,14 @@
                 <procedure name="jsclear" logic="Clear" ifyes="jsDecodeId" ifno="" sync="Y">
                     <param name="Out" value="pForm"></param>
                 </procedure>
-                <procedure name="jsDecodeId" logic="DecodeId" ifyes="" ifno="">
+                <procedure name="jsDecodeId" logic="DecodeId" ifyes="getType" ifno="">
                     <param name="Out" value="pForm.ctlProjectId"></param>
                 </procedure>
+                <procedure name="getType"  logic="Query" ifyes="" ifno="">
+			        <param name="In" value="pForm" />
+			        <param name="Out" value="pForm" />
+			        <param name="Sql" value="project/QryProjectType"/>
+      			</procedure> 
             </flow>
             
             <!-- 分组绑定 -->
@@ -74,7 +81,7 @@
 		    <!-- 测评表绑定 -->
             <flow trigger="pForm.ctlTestName" event="OnClick" filter="" >
 		        <procedure name="search"  logic="Find" ifyes="" ifno="">
-			      	<param name="In" value="pForm.ctlGroup"/>
+			      	<param name="In" value="pForm"/>
 			        <param name="Sql" value="test"/>
 			        <param name="Out" value="pForm"/>
 			        <param name="Title" value="测评表选择"/>

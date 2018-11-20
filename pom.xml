@@ -22,11 +22,6 @@
   <artifactId>core</artifactId>  
   <version>3.0.0</version>  
 </dependency>  
-		<dependency>
-			<groupId>com.tarena.uc</groupId>
-			<artifactId>uc-util</artifactId>
-			<version>0.0.3</version>
-		</dependency>
 		<!-- wechat payment -->
 	 	<dependency>
             <groupId>com.github.wxpay</groupId>
