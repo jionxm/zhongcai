@@ -104,12 +104,16 @@ public class ExportExcelController  {
 		List<Map<String,Object>> question = formService.queryBySqlId(qp);//查询该项目下所有的题目
 		log.info("项目下所有题目----:"+question);
 		
+		qp.setQueryParam("excel/QryGroup");
+		List<Map<String,Object>> group = formService.queryBySqlId(qp);//查询该项目下所有的题目
+		log.info("题目分组----:"+group);
+		
 		qp.setQueryParam("count/QryQuestionResult");
 		List<Map<String,Object>> result = formService.queryBySqlId(qp);//查询该项目下所有的题目
 		log.info("答题结果----:"+result);
 		
 		
-		//创建HSSFWorkbook对象
+		/*//创建HSSFWorkbook对象
 		HSSFWorkbook wkb = new HSSFWorkbook();
 		//创建HSSFSheet对象
 		HSSFSheet sheet = wkb.createSheet("sheet0");
@@ -180,11 +184,11 @@ public class ExportExcelController  {
     	CustomFormModel csmd = new CustomFormModel("","",sqlMap);
     	csmd.setSqlId("excel/InsertRecord");
     	formMapper.saveCustom(csmd);
+	*/
+		
+		
+	
+	
 	}
-		
-		
-	
-	
-	
 }
 
