@@ -1,6 +1,5 @@
 package com.tedu.plugin.project.controller;
 
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -52,7 +51,7 @@ import freemarker.template.TemplateException;
 
 @Controller
 @RequestMapping("/project")
-public class ProjectController  {	
+public class ProjectController {
 	@Value("${file.upload.path}")
 	private String rootPath;
 	@Resource
@@ -60,7 +59,6 @@ public class ProjectController  {
 	FormMapper formMapper = SpringUtils.getBean("simpleDao");
 	public final Logger log = Logger.getLogger(this.getClass());
 
-		
 	@Resource
 	QRCodeService qrCodeService;
 	@Autowired
@@ -68,142 +66,197 @@ public class ProjectController  {
 
 	@RequestMapping("/export")
 	@ResponseBody
-	public void export(HttpServletRequest request,HttpServletResponse response, FormModel formModel, Model model) throws IOException, TemplateException{
+	public void export(HttpServletRequest request, HttpServletResponse response, FormModel formModel, Model model)
+			throws IOException, TemplateException {
 		String projectId = request.getParameter("projectId");
 		String groupId = request.getParameter("groupId");
-		
-		
-		Map<String,Object> map =  formModel.getData();
+
+		Map<String, Object> map = formModel.getData();
 		QueryPage qp = new QueryPage();
 		qp.setParamsByMap(map);
 		qp.getData().put("projId", projectId);
 		qp.getData().put("groupId", groupId);
-		qp.setQueryParam("export/QryProjName");//查询项目名字
-		List<Map<String,Object>> project = formService.queryBySqlId(qp);
-		//项目相关信息查询
-		Map<String, Object> maps = new HashMap<String,Object>();
-		if(project.size()==1){
-			maps=project.get(0);
+		qp.setQueryParam("export/QryProjName");// 查询项目名字
+		List<Map<String, Object>> project = formService.queryBySqlId(qp);
+		// 项目相关信息查询
+		Map<String, Object> maps = new HashMap<String, Object>();
+		if (project.size() == 1) {
+			maps = project.get(0);
 		}
-		
-		//查询综合测评主体情况
-		//查询综合测评主体情况
-	
+
+		// 查询综合测评主体情况
+		// 查询综合测评主体情况
+
 		qp.setQueryParam("count/QryTesterDetail");
-		List<Map<String,Object>> peoples = formService.queryBySqlId(qp);
-		//人数合计
+		List<Map<String, Object>> peoples = formService.queryBySqlId(qp);
+		// 人数合计
 		int peoCount = 0;
-		for(Map peoMap:peoples){
-			int count = Integer.parseInt(peoMap.get("count").toString());
-			peoCount+=count;
+		for (Map peoMap : peoples) {
+			int count = Integer.parseInt(peoMap.get("count") == null ? 0 + "" : peoMap.get("count").toString());
+			peoCount += count;
 		}
-		maps.put("peoCount",peoCount);
-		
-		//查询该项目下所有维度
+		maps.put("peoCount", peoCount);
+
+		// 查询该项目下所有维度
 		qp.setQueryParam("count/QryDimension");
-		List<Map<String,Object>> questionTitle = formService.queryBySqlId(qp);
-		
-		//查询所有问题
+		List<Map<String, Object>> questionTitle = formService.queryBySqlId(qp);
+
+		// 查询所有问题
 		qp.setQueryParam("count/QryQuestionsList");
-		List<Map<String,Object>> questionList = formService.queryBySqlId(qp);
-		
-		
-		//查询主体身份信息
+		List<Map<String, Object>> questionList = formService.queryBySqlId(qp);
+		maps.put("questionCount", questionList.size());
+		// 查询主体身份信息
 		qp.setQueryParam("count/QryTesterByGroup");
-		List<Map<String,Object>> testerList = formService.queryBySqlId(qp);
-		
-		//答题结果查询
+		List<Map<String, Object>> testerList = formService.queryBySqlId(qp);
+
+		// 答题结果查询
 		List resultList = new ArrayList();
-		for(Map<String,Object> testerMap:testerList){
+		for (Map<String, Object> testerMap : testerList) {
+			if (testerMap == null) {
+				break;
+			}
 			String dimension = testerMap.get("dimension").toString();
 			String dimensionName = (String) testerMap.get("dimensionName");
 			qp.getData().put("dimension", dimension);
 			qp.setQueryParam("count/QryQuestionResult");
-			List<Map<String,Object>> result = formService.queryBySqlId(qp);
+			List<Map<String, Object>> result = formService.queryBySqlId(qp);
 			double avg = 0;
 			String temp = "";
 			int count = 0;
 			int size = result.size();
-			for(int i=0;i<size;i++){
-				Map<String,Object> resMap = new HashMap<String,Object>();
+			for (int i = 0; i < size; i++) {
+				Map<String, Object> resMap = new HashMap<String, Object>();
 				resMap = result.get(i);
-				String dimensions = resMap.get("dimension").toString();
-				if(temp==""){
-					temp=dimensions;
-					avg += Double.parseDouble(resMap.get("avgScore").toString());
-					count ++;
-				}else if(temp.equals(dimensions)&&(i+1)!=size){
-					avg += Double.parseDouble(resMap.get("avgScore").toString());
-					count ++;
-				}else {
-					BigDecimal bigDecimal = new BigDecimal(avg);
-					BigDecimal resDecimal = bigDecimal.divide(new BigDecimal(count),2,BigDecimal.ROUND_HALF_UP);
-					Map<String,Object> totalMap = new HashMap<String,Object>();
-					totalMap.put("avgTotal", resDecimal);
-					totalMap.put("colspan", (i+1)==size?(count+1):count);
-					totalMap.put("testerName", dimensionName);
-					result.add(totalMap);
-					temp="";
-					avg = 0;
-					count = 0;
-					temp=dimensions;
-					avg += Double.parseDouble(resMap.get("avgScore").toString());
-					count ++;
+				if (resMap.get("dimension") != null) {
+					String dimensions = resMap.get("dimension").toString();
+					if (temp == "") {
+						temp = dimensions;
+						avg += Double.parseDouble(resMap.get("avgScore").toString());
+						count++;
+					} else if (temp.equals(dimensions) && (i + 1) != size) {
+						avg += Double.parseDouble(resMap.get("avgScore").toString());
+						count++;
+					} else {
+						
+						BigDecimal bigDecimal = new BigDecimal(avg);
+						BigDecimal resDecimal = bigDecimal.divide(new BigDecimal(count), 2, BigDecimal.ROUND_HALF_UP);
+						Map<String, Object> totalMap = new HashMap<String, Object>();
+						totalMap.put("avgTotal", resDecimal);
+						totalMap.put("colspan", (i + 1) == size ? (count + 1) : count);
+						totalMap.put("testerName", dimensionName);
+						result.add(totalMap);
+						temp = "";
+						avg = 0;
+						count = 0;
+						temp = dimensions;
+						avg += Double.parseDouble(resMap.get("avgScore").toString());
+						count++;
+					}
 				}
-				
+
 			}
 			resultList.add(result);
-			
-			
-			
-			
+
 		}
-		
-		
-		
-		/*qp.setQueryParam("count/QryQuestionResult");
-		List<Map<String,Object>> result = formService.queryBySqlId(qp);//查询该项目下所有的题目
-		log.info("答题结果----:"+result);
-		
-		qp.setQueryParam("export/QryProjNumber");
-		List<Map<String,Object>> allNumber = formService.queryBySqlId(qp);//查询该项目下总人数
-		log.info("总人数----:"+allNumber);
-		
-		
-		qp.setQueryParam("export/QryTypeResult");
-		List<Map<String,Object>> type = formService.queryBySqlId(qp);//查询该项目下所有的题目
-		log.info("分组统计----:"+type);*/
-		
-		
-		
-		/*
-		 * 分组人数权重统计
+
+		/**
+		 * 如果为测评为人员组，则查询领导班子成员得分情况否则不查
+		 * 
 		 */
-		/*List<Map<String, String>> grouplist = new ArrayList<Map<String, String>>();		
-		Map<String, String>[] groupmap = new Map[type.size()];
-		for(int i=0;i<type.size();i++){
-			groupmap[i] = new HashMap<String, String>();
-			groupmap[i].put("type", type.get(i).get("groupName").toString());
-			groupmap[i].put("count", type.get(i).get("number").toString());
-			groupmap[i].put("percent", "("+type.get(i).get("percent").toString()+")");
-			groupmap[i].put("leaderWeight", "40%");
-			groupmap[i].put("peoWeight", "25%");
-			grouplist.add(groupmap[i]);
+		List<Map<String, Object>> persionResult = new ArrayList<Map<String, Object>>();
+		if ("person".equals(maps.get("type").toString())) {
+			// 查询该项目下所有维度
+			qp.setQueryParam("count/QryPersionQuestion");
+			persionResult = formService.queryBySqlId(qp);
+
+			int size = persionResult.size();
+			for (int i = 0; i < size; i++) {
+				double avg = 0;
+				String temp = "";
+				int count = 0;
+				double davg = 0;
+				String dtemp = "";
+				int dcount = 0;
+				int cols = 0;
+				StringBuilder sResult = new StringBuilder();
+				StringBuilder sDimension = new StringBuilder();
+				StringBuilder sDimensionCount = new StringBuilder();
+				Map<String, Object> resMap = new HashMap<String, Object>();
+				resMap = persionResult.get(i);
+				String[] questions = resMap.get("questions").toString().split(",");
+				String[] results = resMap.get("results").toString().split(",");
+				String[] dimensions = resMap.get("dimension").toString().split(",");
+				for (int j = 0; j < questions.length; j++) {
+					
+					String question = questions[j];
+					if (temp == "") {
+						temp = question;
+						avg += Double.parseDouble(results[j]);
+						count++;
+					} else if (temp.equals(question) && (j + 1) != questions.length) {
+						avg += Double.parseDouble(results[j]);
+						count++;
+					} else {
+						if((j + 1) == questions.length){
+							count++;
+						}
+						cols = count;
+						BigDecimal bigDecimal = new BigDecimal(avg);
+						BigDecimal resDecimal = bigDecimal.divide(new BigDecimal(count), 2, BigDecimal.ROUND_HALF_UP);
+						sResult.append(resDecimal).append(",");
+						temp = "";
+						avg = 0;
+						count = 0;
+						temp = question;
+						avg += Double.parseDouble(results[j]);
+						count++;
+					}
+					
+					String dimension = dimensions[j];
+					if (dtemp == "") {
+						dtemp = dimension;
+						davg += Double.parseDouble(results[j]);
+						dcount++;
+					} else if (dtemp.equals(dimension) && (j + 1) != questions.length) {
+						davg += Double.parseDouble(results[j]);
+						dcount++;
+					} else {
+						if((j + 1) == questions.length){
+							dcount++;
+						}
+						BigDecimal bigDecimal = new BigDecimal(davg);
+						BigDecimal resDecimal = bigDecimal.divide(new BigDecimal(dcount), 2, BigDecimal.ROUND_HALF_UP);
+						sDimension.append(resDecimal).append(",");
+						
+						sDimensionCount.append(dcount/cols).append(",");
+						dtemp = "";
+						davg = 0;
+						dcount = 0;
+						dtemp = dimension;
+						davg += Double.parseDouble(results[j]);
+						dcount++;
+					}
+					
+				}
+				
+				resMap.put("results", sResult.substring(0, sResult.lastIndexOf(",")));
+				resMap.put("dimentsion", sDimension.substring(0, sDimension.lastIndexOf(",")));
+				resMap.put("dCount", sDimensionCount.substring(0, sDimensionCount.lastIndexOf(",")));
+			}
+
 		}
-		*/
-		
+
+		maps.put("persionResult", persionResult);
 		maps.put("peoples", peoples);
 		maps.put("titleSize", questionTitle.size());
 		maps.put("questionTitle", questionTitle);
 		maps.put("questions", questionList);
 		maps.put("results", resultList);
-		log.info("maps----:"+maps);
-//		model.addAttribute("", maps);
-		
-		DocUtil.download(request, response, "领导班子的综合测评.doc", maps,"exportWeight.ftl");
-		
-	}
-	
-	
-}
+		log.info("maps----:" + maps);
+		// model.addAttribute("", maps);
 
+		DocUtil.download(request, response, "领导班子的综合测评.doc", maps, "exportWeight.ftl");
+
+	}
+
+}
