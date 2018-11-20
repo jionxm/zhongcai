@@ -28,6 +28,8 @@
                          width="1" height="1" column="5"/>
                 <control name="ctlState" title="状态" property="state" type="Hidden" edit="Y" required="" format="" width="1"
                          height="1" column="1"/>
+                <control name="ctlType" title="类别" property="type" type="Hidden" edit="Y" required="" format="" width="1"
+                         height="1" column="1"/>
                 <control name="ctlQrState" title="二维码生成状态" property="qrState" type="Hidden" edit="Y" required="" format="" width="1"
                          height="1" column="1"/>
                 <control name="ctlMessage" title="指导语" property="message" type="TextBox" edit="Y" required="N"
