@@ -101,9 +101,6 @@ public class ExportExcelQuestionController  {
 		String fileName = projName.get(0).get("name").toString();
 		System.out.println("导出名称----:"+fileName);
 		
-		/*qp.setQueryParam("excel/QryGroupById");//查询该项目下所有分组的答案
-		List<Map<String,Object>> groupresult = formService.queryBySqlId(qp);
-		log.info("项目下所有分组的答案----:"+groupresult);*/
 		
 		qp.setQueryParam("excel/QryGroupNameById");//查询该项目下所有的分组
 		List<Map<String,Object>> group = formService.queryBySqlId(qp);
@@ -115,7 +112,7 @@ public class ExportExcelQuestionController  {
 		String excellentGroup = "";
 		String competentGroup = "";
 		String incompetentGroup = "";
-		for(Map groupmap:group){
+		/*for(Map groupmap:group){
 			String groupname = groupmap.get("groupName").toString();
 			qp.getData().put("groupname", groupname);
 			qp.setQueryParam("excel/QryGroupById");//查询该项目下所有分组的答案
@@ -147,32 +144,52 @@ public class ExportExcelQuestionController  {
 		if(incompetentGroup!=""){
 			incompetentGroup = incompetentGroup.substring(0, incompetentGroup.length()-1);	
 		}
+		*/
 		
+		
+		int resultCount=0;
+		for(Map groupmap:group){
+			String groupname = groupmap.get("groupName").toString();
+			qp.getData().put("groupname", groupname);
+			qp.setQueryParam("excel/QryGroupById");//查询该项目下所有分组的答案
+			List<Map<String,Object>> groupresult = formService.queryBySqlId(qp);
+			for(Map resultmap:groupresult){
+				String result = resultmap.get("rs").toString();
+				int score = Integer.parseInt(result);
+				
+					resultCount = resultCount+score;
+				
+				//log.info("分组-答案-分组1---:"+groupname+"-"+result+"-"+group1);
+				log.info("分组-答案总分---:"+groupname+"-"+resultCount);
+			}
+			if(resultCount>=90){
+				excellentCount++;
+				excellentGroup = excellentGroup+groupname+"、";
+			}
+			if(resultCount<90&&resultCount>=60){
+				competentCount++;
+				competentGroup = competentGroup+groupname+"、";
+			}
+			if(resultCount<60){
+				incompetentCount++;
+				incompetentGroup = incompetentGroup+groupname+"";
+			}
+			
+			resultCount = 0;
+		}
+		if(excellentGroup!=""){
+			excellentGroup = excellentGroup.substring(0, excellentGroup.length()-1);			
+		}
+		if(competentGroup!=""){
+			competentGroup = competentGroup.substring(0, competentGroup.length()-1);		
+		}
+		if(incompetentGroup!=""){
+			incompetentGroup = incompetentGroup.substring(0, incompetentGroup.length()-1);	
+		}
 		
 		log.info("优秀---:"+excellentCount+"-"+excellentGroup);
 		log.info("称职---:"+competentCount+"-"+competentGroup);
 		log.info("不称职---:"+incompetentCount+"-"+incompetentGroup);
-		
-		
-		/*int excellentCount = 0;
-		int competentCount = 0;
-		int incompetentCount = 0;
-		int resultCount = 0;
-		for(Map groupmap:group){
-			String groupname = groupmap.get("groupName").toString();
-			for(Map resultmap:groupresult){
-				String result = resultmap.get("result").toString();
-				String group1 = resultmap.get("groupName").toString();
-				int score = Integer.parseInt(result);
-				if(group1.equals(groupname)){
-					resultCount = resultCount+score;
-				}
-				log.info("分组-答案-分组1---:"+groupname+"-"+result+"-"+group1);
-			}
-			log.info("分组-答案总分---:"+groupname+"-"+resultCount);
-			resultCount = 0;
-		}*/
-		
 		
 		//创建HSSFWorkbook对象
 		HSSFWorkbook wkb = new HSSFWorkbook();

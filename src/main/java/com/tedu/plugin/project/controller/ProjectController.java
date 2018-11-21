@@ -164,6 +164,7 @@ public class ProjectController {
 		 * 
 		 */
 		List<Map<String, Object>> persionResult = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> testerResult = new ArrayList<Map<String, Object>>();
 		if ("person".equals(maps.get("type").toString())) {
 			// 查询该项目下所有维度
 			qp.setQueryParam("count/QryPersionQuestion");
@@ -243,9 +244,17 @@ public class ProjectController {
 				resMap.put("dimentsion", sDimension.substring(0, sDimension.lastIndexOf(",")));
 				resMap.put("dCount", sDimensionCount.substring(0, sDimensionCount.lastIndexOf(",")));
 			}
-
+			/**
+			 * 按测评主体得分统计情况
+			 * 
+			 */
+			// 查询该项目下所有维度
+			qp.setQueryParam("count/QryTesterResult");
+			testerResult = formService.queryBySqlId(qp);
+			
 		}
-
+		
+		maps.put("testerResult", testerResult);
 		maps.put("persionResult", persionResult);
 		maps.put("peoples", peoples);
 		maps.put("titleSize", questionTitle.size());
@@ -255,7 +264,7 @@ public class ProjectController {
 		log.info("maps----:" + maps);
 		// model.addAttribute("", maps);
 
-		DocUtil.download(request, response, "领导班子的综合测评.doc", maps, "exportWeight.ftl");
+		DocUtil.download(request, response, rootPath, "领导班子的综合测评.doc", maps, "exportWeight.ftl");
 
 	}
 
