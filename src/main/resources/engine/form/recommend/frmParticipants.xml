@@ -10,8 +10,8 @@
                          width="1" height="1" column="2"/>
                 <control name="ctlGroupName" title="对象分组" property="groupName" type="PopupBox" edit="Y" required="Y" format=""
                          width="1" height="1" column="2"/> 
-                <!-- <control name="ctlNumber" title="人数" property="number" type="TextBox" edit="Y" required="Y" format=""
-                         width="1" height="1" column="4"/>                 -->
+                <control name="ctlNumber" title="人数" property="number" type="TextBox" edit="Y" required="Y" format=""
+                         width="1" height="1" column="4"/>
          <!--        <control name="ctlTestId" title="测评表" property="testId" type="Hidden" edit="Y" required="Y"
                          format="" width="1" height="1" column="1"/> -->
                 <!-- <control name="ctlTestName" title="测评表" property="testName" type="PopupBox" edit="Y" required="Y"
