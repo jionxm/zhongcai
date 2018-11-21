@@ -36,6 +36,7 @@
             <p class="top"><b>#${q.dimension}</b><font id="${q.questionId}" name="${q.questionNumber}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
             <div class="bounced">
 				<div class="bounced-con">
+					<span onclick="Close()">X</span>
 				   	<h4>详情</h4>
 				   	<p>${q.standard }</p>
 				</div>
@@ -76,6 +77,7 @@
                     <p class="top"><b>#${q.dimension}</b><font id="${q.questionId}" name="${q.questionNumber}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
                     <div class="bounced">
 						<div class="bounced-con">
+				   			<span onclick="Close()">X</span>
 				   			<h4>详情</h4>
 				   			<p>${q.standard }</p>
 						</div>
@@ -111,6 +113,7 @@
                     <p class="top"><b>#${q.dimension}</b><font id="${q.questionId}" name="${q.questionNumber}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
 					<div class="bounced">
 						<div class="bounced-con">
+				   			<span onclick="Close()">X</span>
 				   			<h4>详情</h4>
 				   			<p>${q.standard }</p>
 						</div>
