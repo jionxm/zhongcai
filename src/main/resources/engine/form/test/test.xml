@@ -49,6 +49,7 @@
 			<property name="name" type="String" length="50" initial=""
 				field="name" />
 			<property name="dimension" type="Long" length="20" field="dimension" />
+			<property name="name1" type="Long" length="20" field="" />
 
 			<property name="createTime" type="Date" length="" validate=""
 				field="create_time" />
