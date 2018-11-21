@@ -34,13 +34,11 @@
 				<p>${x}/${t.total }</p>
 				</#list> 
             <p class="top"><b>#${q.dimension}</b><font id="${q.questionId}" name="${q.questionNumber}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
-            <div class="bounced">
-				<div class="bounced-con">
-					<span onclick="Close()">X</span>
-				   	<h4>详情</h4>
-				   	<p>${q.standard }</p>
-				</div>
-			</div>
+            <div class="bounced" onclick="Close()"></div>
+					<div class="bounced-con">
+				   			<h4>详情</h4>
+				   			<p>${q.standard }</p>
+					</div>
             <dl>
             	<#assign y=0 />
             	<#list empList as e>
@@ -75,12 +73,10 @@
 		            <p id="i${r }" hidden>d${x}</p>
 		            <#assign r=r+1 />
                     <p class="top"><b>#${q.dimension}</b><font id="${q.questionId}" name="${q.questionNumber}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
-                    <div class="bounced">
-						<div class="bounced-con">
-				   			<span onclick="Close()">X</span>
+                    <div class="bounced" onclick="Close()"></div>
+					<div class="bounced-con">
 				   			<h4>详情</h4>
 				   			<p>${q.standard }</p>
-						</div>
 					</div>
                     <dl onclick="dc(this)"> 
                     	<#assign y=0 />
@@ -111,12 +107,10 @@
 		            <p>${x}/${t.total }</p>
 		            </#list>
                     <p class="top"><b>#${q.dimension}</b><font id="${q.questionId}" name="${q.questionNumber}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
-					<div class="bounced">
-						<div class="bounced-con">
-				   			<span onclick="Close()">X</span>
+					<div class="bounced" onclick="Close()"></div>
+					<div class="bounced-con">
 				   			<h4>详情</h4>
 				   			<p>${q.standard }</p>
-						</div>
 					</div>
 					<dl>
 						<#assign y=0 />

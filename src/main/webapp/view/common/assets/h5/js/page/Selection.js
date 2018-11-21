@@ -191,6 +191,8 @@ function bounced(e) {
 	console.log(e);
 	  $(".bounced").css("height", $("body").css("height"));
 	  $(e).parent().next(".bounced").show();
+	  $(e).parent().next().next(".bounced-con").show();
+	  
 //	  $(".renameResume").removeClass("no");
 //	  $(".renameResume").addClass("show");
 	 }
@@ -307,6 +309,7 @@ function okBtn() {
 function Close() {
     $(".renameResumeWrap").hide();
     $(".bounced").hide();
+    $(".bounced-con").hide();
     retarr1=[];
 //	  $(".renameResume").removeClass("show");
 //	  $(".renameResume").addClass("no");
@@ -315,6 +318,7 @@ $(document).ready(function () {
     $(".renameResumeWrap").hide();$(".bounced").hide();
     $(".notHrefBtn").bind("click", notHrefBtnClick);
     $(".hrefBtn").hide();
+    $(".bounced-con").hide();
     $(".notHrefBtn").show();
-    $(".ismust").parent().prepend('<i class="rip">*</i>');
+    $(".ismust").parent().prev().prepend('<i class="rip">*</i>');
 })

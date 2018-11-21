@@ -37,13 +37,11 @@
             <p>${x}/${t.total }</p>
             </#list>
             <p class="top"><b>#${q.dimension}</b><font class="${q.must}" name="${q.questionId}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
-            <div class="bounced">
-				<div class="bounced-con">
-				   <span onclick="Close()">X</span>
+            <div class="bounced" onclick="Close()"></div>
+            <div class="bounced-con">
 				   <h4>详情</h4>
 				   <p>${q.standard }</p>
 				</div>
-			</div>
             <dl>
                 <!-- <dt id="0">张大大</dt> -->
                 
@@ -133,13 +131,11 @@
 		            <p id="i${r }" hidden>d${x}</p>
 		            <#assign r=r+1 />
                     <p class="top"><b>#${q.dimension}</b><font class="${q.must}" name="${q.questionId}" >${q.questionName}（可多选）</font><a onclick="bounced(this)">(查看评价标准)</a></p>
-                    <div class="bounced">
-				        <div class="bounced-con">
-				        	<span onclick="Close()">X</span>
+                    <div class="bounced" onclick="Close()"></div>
+			    	 <div class="bounced-con">
 				            <h4>详情</h4>
 				            <p>${q.standard }</p>
 				        </div>
-			    	</div>
                     <dl onclick="dc(this)">
                         <dd class="box">
 		                    <#list cList as c>
@@ -193,13 +189,11 @@
 		            <p>${x}/${t.total }</p>
 		            </#list>
                     <p class="top"><b>#${q.dimension}</b><font class="${q.must}" name="${q.questionId}">${q.questionName}</font><a onclick="bounced(this)">(查看评价标准)</a></p>
-                    <div class="bounced">
-				        <div class="bounced-con">
-				            <span onclick="Close()">X</span>
+                    <div class="bounced" onclick="Close()"></div>
+                    <div class="bounced-con">
 				            <h4>详情</h4>
 				            <p>${q.standard }</p>
 				        </div>
-			    	</div>
                     <#if q.textLength gt 10>
                     <textarea class="usertext textarea" placeholder="请填写您的意见" ></textarea>
                     <#else>
