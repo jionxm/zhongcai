@@ -1,7 +1,6 @@
 SELECT * from(
 	SELECT 
-SUM(r.result) as result,
-g.name as groupName
+	r.result as rs
 from t_project_group pg
 LEFT JOIN t_qr q on q.proj_group_id = pg.id
 LEFT JOIN t_group g on g.id = pg.group_id
