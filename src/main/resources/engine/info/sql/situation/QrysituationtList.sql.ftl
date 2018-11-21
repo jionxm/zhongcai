@@ -1,12 +1,15 @@
 select * from (
 	select 
-	t.id as id,
+	g.id as id,
+	g.group_id as groupid,	
+	g.test_id as testid,
 	d.name as name,
-	t.test_id as testid,
 	t.dimension as dimension,
 	n.number as number,
-	n.pro_group_id as groupid
-	from t_tester t
-	left join t_tester_number n on t.id=n.dimension
+	g.project_id as projectid
+	from t_project_group g
+	left join t_tester t on t.test_id=g.test_id
 	left join t_dict d on d.code=t.name
+	left join t_tester_number n on n.dimension=t.id
  ) a 
+

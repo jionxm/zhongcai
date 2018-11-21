@@ -12,8 +12,8 @@
 					edit="Y" required="" format="" width="" height="" column="" /> 
 		        <control name="ctlTestId" title="testId" property="testId" type="Hidden"
 					edit="Y" required="" format="" width="" height="" column="" /> 
-				<control name="ctlTesterName" title="主体身份" property="name"
-					type="ComboBox" edit="N" required="Y" format="" width="1" height="1"
+				<control name="ctlTesterName" title="主体身份" property="name1"
+					type="TextBox" edit="N" required="Y" format="" width="1" height="1"
 					column="" />
 				<control name="ctlDimension" title="维度" property="dimension"
 					type="TextBox" edit="N" required="Y" format="" width="1" height="1"

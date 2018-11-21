@@ -7,10 +7,11 @@
 		<property name="id" type="Long" length="20" initial="" field="id"/>
 		<property name="groupid" type="Long" length="20" initial="" field="group_id"/>
 		<property name="name" type="String" length="50" initial="" field=""/>
+		<property name="projectid" type="Long" length="20" initial="" field="project_id"/>
 		<property name="testid" type="Long" length="20" field="test_id"/>
 		<property name="dimension" type="Long" length="20" field=""/>
 		<property name="number" type="Long" length="20" field=""/>
-		<property name="test" type="Long" length="20" field=""/>
+		<property name="project" type="Long" length="20" field=""/>
 		<property name="group" type="Long" length="20" field=""/>
  	</object>  
  	

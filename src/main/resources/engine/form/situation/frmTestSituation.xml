@@ -9,15 +9,16 @@
     <control name="ctlClear" title="清空条件" property="" type="Button" edit="" required="" format="" width="" height="" column=""/>    
   </panel>
   <panel name="pCondition" title="查询条件" object="situation" type="Group">
-  	<control name="eq_testid" title="测评项目id" property="testid" type="Hidden" edit="Y" required="N" format="" width="1" height="1" column=""/>
-    <control name="ctltest" title="测评项目" property="test" type="PopupBox" edit="Y" required="N" format="" width="1" height="1" column=""/> 
-    <control name="eq_groupid" title="测评对象" property="groupid" type="ComboBox" edit="Y" required="N" format="" width="1" height="1" column="3"/> 
+  	<control name="eq_projectid" title="测评项目id" property="projectid" type="Hidden" edit="Y" required="N" format="" width="1" height="1" column=""/>
+    <control name="ctlproject" title="测评项目" property="project" type="PopupBox" edit="Y" required="N" format="" width="1" height="1" column=""/> 
+    <control name="eq_groupid" title="分组" property="groupid" type="ComboBox" edit="Y" required="N" format="" width="1" height="1" initial="'请先选择测评项目'" column="3"/> 
   </panel>  
   <panel name="pTable" title="查询结果" object="situation" type="Grid">
     <control name="id" title="id" property="id" type="Hidden" edit="Y" required="" format="" width="" height="" column=""/>
     <control name="ctlName" title="人员类别" property="name" type="TextBox" edit="" required="" format="" width="200" height="" column=""/>
     <control name="ctlTestid" title="测评表id" property="testid" type="Hidden" edit="" required="" format="" width="300" height="" column=""/>
-    <control name="ctlGroupid" title="测评对象id" property="groupid" type="Hidden" edit="" required="" format="" width="300" height="" column=""/>
+    <control name="ctlprojectid" title="测评项目id" property="projectid" type="Hidden" edit="" required="" format="" width="300" height="" column=""/>
+    <control name="ctlGroupid" title="分组id" property="groupid" type="Hidden" edit="" required="" format="" width="300" height="" column=""/>
     <control name="ctlNumber" title="人数" property="number" type="TextBox" edit="" required="" format="" width="300" height="" column=""/>
     <control name="ctldimension" title="权重" property="dimension" type="TextBox" edit="" required="" format="" width="300" height="" column=""/>
     
@@ -47,17 +48,18 @@
       </procedure>              
     </flow>  
     <!-- 测评项目 -->
-    <flow trigger="pCondition.ctltest" event="OnClick" filter="" >
+    <flow trigger="pCondition.ctlproject" event="OnClick" filter="" >
 	<procedure name="search"  logic="Find" ifyes="search2" ifno="">
 		<param name="Out" value="pCondition"/>
 		<param name="Sql" value="situation"/>
 		<param name="Title" value="测评表选择"/>
-		<param name="Columns" value="id,测评表id,eq_testid|name,测评表名称,ctltest"/>
+		<param name="Columns" value="id,测评项目id,eq_projectid|name,测评项目,ctlproject"/>
 	</procedure>
 		<procedure name="search2"  logic="List" ifyes="" ifno="">
 		<param name="In" value="pCondition"/>
 		<param name="Out" value="pCondition.eq_groupid"/>
 		<param name="Sql" value="siuation"/>
+		
 		
 	</procedure>
 	</flow>
