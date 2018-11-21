@@ -58,18 +58,20 @@ public class DocUtil {
 		Template t = null;
 		InputStream fis = null;
 		OutputStream toClient = null;
-		
-	
+		OutputStreamWriter outputStreamWriter = null;
+		FileOutputStream fileOutputStream = null;
 		File outFile = null;
 		Writer out = null;
 		String filename = newWordName;
 		try {
 			//word.xml是要生成Word文件的模板文件
 			t = configuration.getTemplate(temName,"utf-8");                  // 文件名 还有这里要设置编码
-			outFile = new File(rootPath+File.separator+UUID.randomUUID().toString().replace("-", "")+newWordName);
-			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile),"utf-8"));                 //还有这里要设置编码
+			outFile = new File(rootPath+File.separator+UUID.randomUUID().toString().replace("-", "")+".doc");
+			fileOutputStream = new FileOutputStream(outFile); 
+			outputStreamWriter = new OutputStreamWriter(fileOutputStream,"utf-8");
+			out = new BufferedWriter(outputStreamWriter);                 //还有这里要设置编码
 		
-			t.process(dataMap,new OutputStreamWriter(new FileOutputStream(outFile),"utf-8"));
+			t.process(dataMap,out);
 	    
 			out.flush();
 			out.close();
@@ -92,21 +94,20 @@ public class DocUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally{
-				outFile.delete();
-			try {
-				if(fis!=null){
-					fis.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
+			if(outputStreamWriter!=null){
+				outputStreamWriter.close();
 			}
-			try {
-				if(toClient!=null){
-					toClient.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
+			if(fileOutputStream!=null){
+				fileOutputStream.close();
 			}
+			if(fis!=null){
+				fis.close();
+			}
+			if(toClient!=null){
+				toClient.close();
+			}
+			boolean flag = outFile.delete();
+			
 		}
 	}
 }
