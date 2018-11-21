@@ -21,9 +21,12 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.URLEncoder;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Value;
 
 import com.tedu.base.common.demo.FreeMarkerUtil;
 
@@ -40,7 +43,8 @@ import freemarker.template.TemplateException;
  * @创建时间：2018年4月10日 上午10:36:08 @版本：V1.0
  */
 public class DocUtil {
-	public static void download(HttpServletRequest request,HttpServletResponse response,String newWordName,Map<String,Object> dataMap,String temName) throws TemplateException, IOException {
+	
+	public static void download(HttpServletRequest request,HttpServletResponse response,String rootPath,String newWordName,Map<String,Object> dataMap,String temName) throws TemplateException, IOException {
 		
 //		new FreeMarkerUtil().print("test.ftl", "/template", dataMap);
 		
@@ -62,7 +66,7 @@ public class DocUtil {
 		try {
 			//word.xml是要生成Word文件的模板文件
 			t = configuration.getTemplate(temName,"utf-8");                  // 文件名 还有这里要设置编码
-			outFile = new File("D://"+newWordName);
+			outFile = new File(rootPath+File.separator+UUID.randomUUID().toString().replace("-", "")+newWordName);
 			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile),"utf-8"));                 //还有这里要设置编码
 		
 			t.process(dataMap,new OutputStreamWriter(new FileOutputStream(outFile),"utf-8"));
@@ -88,6 +92,7 @@ public class DocUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally{
+				outFile.delete();
 			try {
 				if(fis!=null){
 					fis.close();
