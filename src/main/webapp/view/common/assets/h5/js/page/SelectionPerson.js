@@ -199,6 +199,7 @@ function bounced(e) {
 	console.log(e);
 	  $(".bounced").css("height", $("body").css("height"));
 	  $(e).parent().next(".bounced").show();
+	  $(e).parent().next().next(".bounced-con").show();
 }
 
 
@@ -383,13 +384,15 @@ function okBtn() {
 function Close() {
     $(".renameResumeWrap").hide();
     $(".bounced").hide();
+    $(".bounced-con").hide();
     retarr1=[];
 }
 $(document).ready(function () {
     $(".renameResumeWrap").hide();
     $(".bounced").hide();
+    $(".bounced-con").hide();
     $(".notHrefBtn").bind("click", notHrefBtnClick);
     $(".hrefBtn").hide();
     $(".notHrefBtn").show();
-    $(".ismust").parent().prev().prev().prepend('<span class="rip">*</span>');
+    $(".ismust").parent().prev().prev().prev().prepend('<span class="rip">*</span>');
 })
