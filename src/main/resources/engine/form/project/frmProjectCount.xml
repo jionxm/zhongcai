@@ -16,7 +16,7 @@
     <control name="id" title="id" property="id" type="Hidden" edit="N" required="" format="" width="50" height="" column=""/>
    	<control name="ctlDown" title="下载" property="" type="Link" edit="" required="" format="" width="400" height="" column=""/>
    	<control name="ctlDownResult" title="下载总体结果" property="" type="Link" edit="" required="" format="" width="150" height="" column=""/>
-    <control name="ctlDownQuestion" title="下载题目结果" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
+    <control name="ctlDownQuestion" title="测评结果下载" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlDownExcel" title="下载excel" property="" type="Link" edit="" required="" format="" width="" height="" column=""/>
     <control name="ctlName" title="测评项目名称" property="name" type="DataLink" edit="N" required="" format="" width="200" height="" column=""/>
     <control name="ctlState" title="状态" property="state" type="Hidden" edit="" required="" format="" width="80" height="" column=""/>      

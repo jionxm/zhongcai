@@ -23,8 +23,8 @@ import com.tedu.base.engine.model.FormModel;
 import com.tedu.base.engine.service.FormService;
 import com.tedu.base.task.SpringUtils;
 
-@Service("CheckNumPlugin")
-public class CheckNumPlugin implements ILogicPlugin {
+@Service("CheckNumPlugin2")
+public class CheckNumPlugin2 implements ILogicPlugin {
 	@Resource
 	FormService formService;
 	FormMapper formMapper = SpringUtils.getBean("simpleDao");
@@ -33,7 +33,7 @@ public class CheckNumPlugin implements ILogicPlugin {
 	@Override
 	public Object doBefore(FormEngineRequest requestObj, FormModel formModel) {
 		//主体权重校验(0-100%)
-		String strDimension = formModel.getData().get("ctlDimension").toString();
+		String strDimension = formModel.getData().get("ctlWeight").toString();
 		if (StringUtils.isNotEmpty(strDimension)){
 			//判断是否为0到100的数
 			Pattern pattern = Pattern.compile("^(((\\d|[1-9]\\d)(\\.\\d{1,2})?)|100|100.0|100.00)$");
