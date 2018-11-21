@@ -6,6 +6,8 @@
             <panel name="pnlDetailTool" title="工具条" object="" type="Toolbar">
                 <control name="ctlType" title="新增推荐类别" property="" type="Button" edit="" required="" format=""
                          width="" height="" column=""/>
+                <control name="ctlAdd" title="生成二维码" property="" type="Button" edit="" required="" format=""
+                         width="" height="" column=""/>                         
                 <control name="ctlEmp" title="参会人员" property="" type="Button" edit="" required="" format=""
                          width="" height="" column=""/>
                          
@@ -16,6 +18,8 @@
                 <control name="ctlId" title="id" property="id" type="Hidden" edit="N" required="N" format=""
                          width="1" height="1" column="1"/>
                 <control name="ctlTitle" title="标题" property="title" type="TextBox" edit="Y" required="" format="" width="2"
+                         height="" column=""/>
+                <control name="ctlType" title="类型" property="type" type="Hidden" edit="Y" required="" format="" width="2"
                          height="" column=""/>
                 <control name="ctlPlanDate" title="计划日期" property="planDate" type="DateBox" edit="Y" required="Y" format=""
                          width="1" height="1" column=""/>
@@ -200,7 +204,17 @@
                 <procedure name="jsback" logic="Back" ifyes="" ifno="">
                 </procedure>
             </flow>
+            <!-- 生成二维码 -->
+            <flow trigger="pnlDetailTool.ctlAdd" event="OnClick" filter="">
             
+                
+                <procedure name="jssave" logic="Save" ifyes="jsdel" ifno="">
+			   	  <param name="In" value="pnlDetailGroup"></param>
+			   	  <param name="Plugin" value="insertRecommendQRPlugin"></param>
+			   	  <param name="Msg" value="二维码已生成"></param>
+   	  			</procedure>
+   	  			
+            </flow>
             <!-- 布局 -->
             <layout>
                 <region location="North" scale="">
