@@ -48,7 +48,7 @@
 				field="test_id" />	
 			<property name="name" type="String" length="50" initial=""
 				field="name" />
-			<property name="dimension" type="Long" length="20" field="dimension" />
+			<property name="dimension" type="Double" length="5.2" field="dimension" />
 			<property name="name1" type="Long" length="20" field="" />
 
 			<property name="createTime" type="Date" length="" validate=""
@@ -92,7 +92,7 @@
 				field="test_id" />
 			<property name="dimension" type="String" length="200" field="dimension" />
 			<property name="question" type="String" length="200" field="question" />
-			<property name="weight" type="Long" length="20" initial=""
+			<property name="weight" type="Double" length="5.2" initial=""
 				field="weight" />
 			<property name="type" type="String" length="20" field="type" />
 			<property name="must" type="String" length="20" field="must" />
