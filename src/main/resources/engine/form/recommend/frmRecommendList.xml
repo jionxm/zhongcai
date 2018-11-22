@@ -69,7 +69,7 @@
       <procedure name="jspopup" logic="Popup" ifyes="jsquery" ifno="">
         <param name="To" value="frmRecommendEdit"></param>
         <param name="Mode" value="Add"></param>
-         <param name="Window" value="Large"></param>
+         <param name="Window" value="Medium"></param>
       </procedure>
       <procedure name="jsquery"  logic="QueryByid" ifyes="" ifno="">
         <param name="In" value="pCondition"></param>

@@ -11,6 +11,8 @@ select * from (
 	d2.name as methodName,
 	r.state as state,
 	d3.name as stateName,
+	r.otherCreate as otherCreate,
+	d4.name as otherName,
 	r.update_by as updateBy,
 	r.create_by as createBy,
 	r.update_time as updateTime,
@@ -20,4 +22,5 @@ select * from (
 	LEFT JOIN t_dict d1 ON r.type=d1.code=d1.code and d1.cata_code="t_recommend.type"
   	LEFT JOIN t_dict d2 ON r.method=d2.code and d2.cata_code="t_recommend.method"
 	LEFT JOIN t_dict d3 ON r.state=d3.code and d3.cata_code="t_recommend.state"
+	LEFT JOIN t_dict d4 ON r.otherCreate=d4.code and d4.cata_code="t_recommend.otherCreate"
  ) a 

@@ -6,12 +6,14 @@
 	<object name="recommend1" table="t_recommend" primary="id" unique="" order="">
 		<property name="id" type="Long" length="20" initial="" field="id"/>
 		<property name="type" type="String" length="20" initial="" field="type"/>
+		<property name="otherCreate" type="String" length="20" initial="" field="otherCreate"/>
 		<property name="title" type="String" length="20" field="title"/>
 		<property name="planDate" type="Date" length="20" field="plan_date"/>
 		<property name="address" type="String" length="50" field="address"/>
 		<property name="message" type="String" length="200" field="message"/>
 		<property name="method" type="String" length="20" field="method"/>
 		<property name="state" type="String" length="20" field="state"/>
+		
 		
 		<property name="createTime" type="Date" length="" validate=""  field="create_time" />		
 		<property name="createBy" type="Long" length="10" validate=""  field="create_by" />
