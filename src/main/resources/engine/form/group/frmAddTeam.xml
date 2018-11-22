@@ -10,13 +10,11 @@
          <panel name="testerGroup" title="分组人员详情信息" object="grouplist" type="Group">
                 <control name="ztqzId" title="id" property="id" type="Hidden"
 					edit="Y" required="" format="" width="1" height="" column="1" /> 
-<!-- 		        <control name="ctlTestId" title="testId" property="testId" type="Hidden"
+		<!--  <control name="ctlTestId" title="testId" property="testId" type="Hidden"
 					edit="Y" required="" format="" width="" height="" column="" />  -->
 				<control name="ctlTesterName" title="分组名称" property="name"
 					type="TextBox" edit="N" required="Y" format="" width="1" height="1"
 					column="2" />
-				
-
 				<control name="empId" title="人员ID" property="" type="Hidden" edit="" required="" format="" width="1" height="1" column="1" />
            </panel>
             
@@ -95,13 +93,10 @@
 						<param name="Columns" value="id,分组人员编号,empId|name,分组人员名称,empName"></param>
 						<param name="Window" value="Large"></param>
 					</procedure>
-				
 				 	  <procedure name="jsDetail1"  logic="Master2Detail" ifyes="jssave" ifno="">
 				      	<param name="In" value="testerGroup.empId"/>
 				        <param name="Out" value="pTable3"/>
 				      </procedure>  
-				     
-				          
 				       <procedure name="jssave" logic="Save" ifyes="getAuthorize" ifno="">
 				        <param name="In" value=",pTable3"/>
 				        <param name="Mode" value="Add"/>
