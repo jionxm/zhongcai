@@ -46,8 +46,8 @@ $('.box').click(function(e){
 		$("input[type='radio']:checked").each(function(index,item){
 				arr.push(item.value);
 				console.log("测试"+item.value);
-				var must = $(item).parent().parent().prev().prev().children("font").attr("class");
-				//console.log("must" + must);
+				var must = $(item).parent().parent().prev().prev().prev().children("font").attr("class");
+				console.log("must" + must);
 				if(must=="ismust"){
 			    	radioNum+=1;
 			    }
@@ -90,7 +90,7 @@ var checkBoxIds = "";
 var textareaIds = "";
 function changeCheckbox(obj){
 	var name = $(obj).attr("name");
-	var clazz = $(obj).parent().parent().prev().prev().children("font").attr("class");
+	var clazz = $(obj).parent().parent().prev().prev().prev().children("font").attr("class");
 	
 	if(checkBoxIds.search(name)==-1&&clazz=="ismust"){
 		checkBoxIds = checkBoxIds+","+name;
@@ -115,8 +115,8 @@ function changeCheckbox(obj){
 
 
 $('textarea').change(function(e){
-	var id = $(this).prev().prev().children("font").attr("name");
-	var clazz = $(this).prev().prev().children("font").attr("class");
+	var id = $(this).prev().prev().prev().children("font").attr("name");
+	var clazz = $(this).prev().prev().prev().children("font").attr("class");
 	if(textareaIds.search(id)==-1&&clazz=="ismust"&&$(this).val()!=""){
 		textareaIds = textareaIds+","+id;
 		totaltext = totaltext + 1;
