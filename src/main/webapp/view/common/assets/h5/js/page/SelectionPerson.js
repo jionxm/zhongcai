@@ -41,7 +41,7 @@ $('.box').click(function(e){
 		$("input[type='radio']:checked").each(function(index,item){
 			var empId = $(item).parent().prev().attr('id');
 			var questionId = $(item).parent().parent().prev().prev()
-					.children("font").attr("id");
+					.prev().children("font").attr("id");
 			arr.push(item.value);
 			titlearr.push(questionId + "&" + empId);
 			    var must = $(item).parent().prev().attr("class");
@@ -228,7 +228,7 @@ function submit() {
 		$('.answers dl .box').each(function(index,item){
 			var empId = $(item).prev().attr('id');
 			var questionId = $(item).parent()
-			.prev().prev().children("font").attr("id");
+			.prev().prev().prev().children("font").attr("id");
 			titlearr1.push(questionId + "&" + empId);
 		});
 		console.log("titlearr:" + titlearr1);
@@ -236,7 +236,7 @@ function submit() {
 		$('textarea').each(
 				function(index, item) {
 					var empId = $(item).prev().attr('id');
-					var questionId = $(item).parent().prev().prev().children("font")
+					var questionId = $(item).parent().prev().prev().prev().children("font")
 							.attr("id");
 					console.log("empId" + empId + "questionId" + questionId);
 					gaparr1.push($(item).val());

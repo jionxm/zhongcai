@@ -56,7 +56,7 @@ import com.tedu.plugin.project.util.DocUtil;
 import freemarker.template.TemplateException;
 
 @Controller
-@RequestMapping("/export")
+@RequestMapping("/proj")
 public class ExportExcelController  {	
 	@Value("${file.upload.path}")
 	private String rootPath;
@@ -82,13 +82,13 @@ public class ExportExcelController  {
 		if(!rootPath.endsWith("/")&&!rootPath.endsWith("\\")){
 			rootPath = rootPath + separator;
 		}
-		String filePath = rootPath+separator+"private"+separator+"export"+separator+date +separator;
+		String filePath = rootPath+separator+"private"+separator+"proj"+separator+date +separator;
 		log.info("filePath----:"+filePath);
 		String qrfilePath = filePath + UUID.randomUUID().toString().replaceAll("-", "") + separator;			
 		String excelPath = filePath + "excel" + separator;
 		String path = excelPath+uuid.substring(0, 2)+separator;
 		log.info("path----:"+path);
-		String type = "person";
+		String type = "department";
 		
 		Map<String,Object> map =  formModel.getData();
 		QueryPage qp = new QueryPage();
@@ -100,8 +100,8 @@ public class ExportExcelController  {
 		String fileName = projName.get(0).get("name")+".xls";
 		System.out.println("导出名称----:"+fileName);
 		
-		qp.setQueryParam("count/QryQuestionById");
-		List<Map<String,Object>> question = formService.queryBySqlId(qp);//查询该项目下所有的题目
+		qp.setQueryParam("count/QryQuestions");
+		List<Map<String,Object>> question = formService.queryBySqlId(qp);//查询该项目下所有的维度及题目
 		log.info("项目下所有题目----:"+question);
 		
 		qp.setQueryParam("excel/QryGroup");
