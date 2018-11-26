@@ -15,7 +15,7 @@
                          height="" column=""/>
             </panel>
             <panel name="pnlDetailGroup" title="详细信息" object="recommend1" type="Group">                
-                <control name="ctlId" title="id" property="id" type="Hidden" edit="N" required="N" format=""
+                <control name="ctlId" title="id" property="id" type="TextBox" edit="N" required="N" format=""
                          width="1" height="1" column="1"/>
                 <control name="ctlTitle" title="标题" property="title" type="TextBox" edit="Y" required="" format="" width="2"
                          height="" column=""/>
@@ -131,10 +131,11 @@
 		        <param name="Mode" value="Add"/>
 		         <param name="Window" value="Medium"/>
 		      </procedure>
-		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
-		        <param name="Out" value="pnlEmp"/>
-		        <param name="Sql" value="recommend/QryEmpList"/>
-		      </procedure>              
+		      <procedure name="jsquery" logic="Query" ifyes="" ifno="">
+                    <param name="In" value="pnlDetailGroup"></param>
+                    <param name="Out" value="pnlEmp"></param>
+                    <param name="Sql" value="recommend/QryEmpList"></param>
+                </procedure>             
 		    </flow>
 		     <!-- 参会删除 -->
 		    <flow trigger="pnlEmp.ctlDel" event="OnClick" filter="">
@@ -163,6 +164,7 @@
 		         <param name="Window" value="Large"/>
 		      </procedure>
 		      <procedure name="jsquery"  logic="Query" ifyes="" ifno="">
+		        <param name="In" value="pnlDetailGroup"></param>
 		        <param name="Out" value="pnlEmp"/>
 		        <param name="Sql" value="recommend/QryEmpList"/>
 		      </procedure>             
